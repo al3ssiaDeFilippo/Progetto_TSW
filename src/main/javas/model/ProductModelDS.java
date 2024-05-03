@@ -1,15 +1,13 @@
-package main.javas;
+package main.javas.model;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -38,7 +36,7 @@ public class ProductModelDS implements ProductModel {
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT, FRAME, COLORFRAME, SIZE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
@@ -50,6 +48,9 @@ public class ProductModelDS implements ProductModel {
             preparedStatement.setFloat(5, product.getPrice());
             preparedStatement.setInt(6, product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
+            preparedStatement.setString(8, product.getFrame());
+            preparedStatement.setString(9, product.getFrameColor());
+            preparedStatement.setString(9, product.getSize());
 
             preparedStatement.executeUpdate();
 
@@ -90,6 +91,9 @@ public class ProductModelDS implements ProductModel {
                 bean.setPrice(rs.getFloat("PRICE"));
                 bean.setIva(rs.getInt("IVA"));
                 bean.setDiscount(rs.getInt("DISCOUNT"));
+                bean.setFrame(rs.getString("FRAME"));
+                bean.setFrameColor(rs.getString("FRAMECOLOR"));
+                bean.setSize(rs.getString("SIZE"));
             }
 
         } finally {
@@ -163,6 +167,9 @@ public class ProductModelDS implements ProductModel {
                 bean.setPrice(rs.getFloat("PRICE"));
                 bean.setIva(rs.getInt("IVA"));
                 bean.setDiscount(rs.getInt("DISCOUNT"));
+                bean.setFrame(rs.getString("FRAME"));
+                bean.setFrameColor(rs.getString("FRAMECOLOR"));
+                bean.setSize(rs.getString("SIZE"));
                 products.add(bean);
             }
 

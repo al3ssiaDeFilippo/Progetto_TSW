@@ -1,6 +1,6 @@
 23-Apr-2024 15:37:25.020 INFO [http-nio-8080-exec-4] org.apache.catalina.core.ApplicationContext.log Marking servlet [ProductControl] as unavailable
 23-Apr-2024 15:37:25.020 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Allocate exception for servlet [ProductControl]
-	java.lang.ClassNotFoundException: main.javas.ProductControl
+	java.lang.ClassNotFoundException: main.javas.filter.ProductControl
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1353)
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
 		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:491)
@@ -27,7 +27,7 @@
 		at java.base/java.lang.Thread.run(Thread.java:834)
 23-Apr-2024 15:42:10.455 INFO [http-nio-8080-exec-6] org.apache.catalina.core.ApplicationContext.log Marking servlet [ProductControl] as unavailable
 23-Apr-2024 15:42:10.455 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Allocate exception for servlet [ProductControl]
-	java.lang.ClassNotFoundException: main.javas.ProductControl
+	java.lang.ClassNotFoundException: main.javas.filter.ProductControl
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1353)
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
 		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:491)
@@ -54,7 +54,7 @@
 		at java.base/java.lang.Thread.run(Thread.java:834)
 23-Apr-2024 15:44:00.122 INFO [http-nio-8080-exec-6] org.apache.catalina.core.ApplicationContext.log Marking servlet [ProductControl] as unavailable
 23-Apr-2024 15:44:00.122 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Allocate exception for servlet [ProductControl]
-	java.lang.ClassNotFoundException: main.javas.ProductControl
+	java.lang.ClassNotFoundException: main.javas.filter.ProductControl
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1353)
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
 		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:491)
@@ -81,7 +81,7 @@
 		at java.base/java.lang.Thread.run(Thread.java:834)
 23-Apr-2024 15:53:52.983 INFO [http-nio-8080-exec-4] org.apache.catalina.core.ApplicationContext.log Marking servlet [ProductControl] as unavailable
 23-Apr-2024 15:53:52.985 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Allocate exception for servlet [ProductControl]
-	java.lang.ClassNotFoundException: main.javas.ProductControl
+	java.lang.ClassNotFoundException: main.javas.filter.ProductControl
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1353)
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
 		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:491)
@@ -108,7 +108,7 @@
 		at java.base/java.lang.Thread.run(Thread.java:834)
 23-Apr-2024 15:58:47.282 INFO [http-nio-8080-exec-5] org.apache.catalina.core.ApplicationContext.log Marking servlet [ProductControl] as unavailable
 23-Apr-2024 15:58:47.282 SEVERE [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Allocate exception for servlet [ProductControl]
-	java.lang.ClassNotFoundException: main.javas.ProductControl
+	java.lang.ClassNotFoundException: main.javas.filter.ProductControl
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1353)
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
 		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:491)
@@ -135,7 +135,7 @@
 		at java.base/java.lang.Thread.run(Thread.java:834)
 23-Apr-2024 16:55:58.510 INFO [http-nio-8080-exec-9] org.apache.catalina.core.ApplicationContext.log Marking servlet [ProductControl] as unavailable
 23-Apr-2024 16:55:58.511 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Allocate exception for servlet [ProductControl]
-	java.lang.ClassNotFoundException: main.javas.ProductControl
+	java.lang.ClassNotFoundException: main.javas.filter.ProductControl
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1353)
 		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
 		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:491)
@@ -164,8 +164,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:56)
-		at main.javas.ProductControl.doPost(ProductControl.java:93)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:56)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:93)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -194,8 +194,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:56)
-		at main.javas.ProductControl.doPost(ProductControl.java:93)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:56)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:93)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -224,8 +224,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:56)
-		at main.javas.ProductControl.doPost(ProductControl.java:93)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:56)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:93)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -254,8 +254,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:56)
-		at main.javas.ProductControl.doPost(ProductControl.java:93)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:56)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:93)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -284,8 +284,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:51)
-		at main.javas.ProductControl.doPost(ProductControl.java:88)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:51)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:88)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -314,8 +314,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:51)
-		at main.javas.ProductControl.doPost(ProductControl.java:88)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:51)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:88)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -344,8 +344,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:51)
-		at main.javas.ProductControl.doPost(ProductControl.java:88)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:51)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:88)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)

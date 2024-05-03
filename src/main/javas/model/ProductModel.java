@@ -1,4 +1,4 @@
-package main.javas;
+package main.javas.model;
 
 import java.sql.SQLException;
 import java.util.Collection;

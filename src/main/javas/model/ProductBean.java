@@ -1,4 +1,4 @@
-package main.javas;
+package main.javas.model;
 
 import java.io.Serializable;
 
@@ -15,6 +15,9 @@ public class ProductBean implements Serializable {
     float price;
     int iva;
     int discount;
+    String frame;
+    String frameColor;
+    String size;
 
     //costruttore di ProductBean()
     public ProductBean() {
@@ -26,6 +29,9 @@ public class ProductBean implements Serializable {
         price = 0;
         iva = 0;
         discount = 0;
+        frame = "";
+        frameColor = "";
+        size = "";
     }
 
     //metodi get
@@ -37,6 +43,9 @@ public class ProductBean implements Serializable {
     public float getPrice(){return price;}
     public int getIva(){return iva;}
     public int getDiscount(){return discount;}
+    public String getFrame(){return frame;}
+    public String getFrameColor(){return frameColor;}
+    public String getSize(){return size;}
 
     //metodi set
     public void setCode(int code){this.code = code;}
@@ -47,8 +56,12 @@ public class ProductBean implements Serializable {
     public void setPrice(float price){this.price=price;}
     public void setIva(int iva){this.iva=iva;}
     public void setDiscount(int discount){this.discount=discount;}
+    public void setFrame(String frame){this.frame=frame;}
+    public void setFrameColor(String frameColor){this.frameColor=frameColor;}
+    public void setSize(String size){this.size=size;}
 
     //ToString
+
     @Override
     public String toString() {
         return "ProductBean{" +
@@ -60,6 +73,9 @@ public class ProductBean implements Serializable {
                 ", price=" + price +
                 ", iva=" + iva +
                 ", discount=" + discount +
+                ", frame='" + frame + '\'' +
+                ", frameColor='" + frameColor + '\'' +
+                ", size='" + size + '\'' +
                 '}';
     }
 }

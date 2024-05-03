@@ -1,14 +1,17 @@
-package main.javas;
+package main.javas.filter;
+
+import main.javas.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
+@WebServlet("/ProductControl")
 public class ProductControl extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -33,6 +36,7 @@ public class ProductControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String dis = "/ProductView.jsp"; //serve per fare l'invio dei dati alla view
+        System.out.println(dis);
 
         //recupera il parametro action dalla richiesta HTTP
         String action = request.getParameter("action"); //action indica l'azione da eseguire sul prodotto (read, delete o insert)
@@ -53,11 +57,10 @@ public class ProductControl extends HttpServlet {
                     //viene chiamato il metodo doRetreiveByKey per recuperare il prodotto con il codice specificato
                     //e il prodotto viene impostato come attributo della richiesta con request.setAttribute
                     request.setAttribute("product", model.doRetrieveByKey(code));
-                    dis = "/DetailProductPage.jsp";
+                    dis = "/ProductView.jsp";
 
                 } else if (action.equalsIgnoreCase("delete")) {
                     //viene recuperato il parametro code dalla richiesta
-
                     int code = 0;
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
@@ -93,6 +96,11 @@ public class ProductControl extends HttpServlet {
                         discount = Integer.parseInt(request.getParameter("discount"));
                     }
 
+                    //controlli sull'attributo frame
+                    String frame = request.getParameter("frame");
+                    String frameColor = request.getParameter("frameColor");
+                    String size = request.getParameter("frameSize");
+
                     ProductBean bean = new ProductBean();
                     bean.setProductName(productName);
                     bean.setDetails(details);
@@ -101,6 +109,9 @@ public class ProductControl extends HttpServlet {
                     bean.setPrice(price);
                     bean.setIva(iva);
                     bean.setDiscount(discount);
+                    bean.setFrame(frame);
+                    bean.setFrameColor(frameColor);
+                    bean.setSize(size);
                     model.doSave(bean);
                 }
             }
@@ -114,6 +125,7 @@ public class ProductControl extends HttpServlet {
             request.removeAttribute("products");
 
             request.setAttribute("products", model.doRetrieveAll(sort));
+            System.out.println(model.doRetrieveAll(sort));
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }

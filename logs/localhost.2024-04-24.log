@@ -2,8 +2,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:60)
-		at main.javas.ProductControl.doPost(ProductControl.java:97)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:60)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:97)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -32,8 +32,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:60)
-		at main.javas.ProductControl.doPost(ProductControl.java:97)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:60)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:97)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -63,8 +63,8 @@
 		at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1838)
 		at java.base/jdk.internal.math.FloatingDecimal.parseFloat(FloatingDecimal.java:122)
 		at java.base/java.lang.Float.parseFloat(Float.java:455)
-		at main.javas.ProductControl.doGet(ProductControl.java:67)
-		at main.javas.ProductControl.doPost(ProductControl.java:102)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:67)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:102)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -93,8 +93,8 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:77)
-		at main.javas.ProductControl.doPost(ProductControl.java:110)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:77)
+		at main.javas.filter.ProductControl.doPost(ProductControl.java:110)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -123,7 +123,7 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:45)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:45)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -152,7 +152,7 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:45)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:45)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -181,7 +181,7 @@
 	java.lang.NumberFormatException: null
 		at java.base/java.lang.Integer.parseInt(Integer.java:614)
 		at java.base/java.lang.Integer.parseInt(Integer.java:770)
-		at main.javas.ProductControl.doGet(ProductControl.java:58)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:58)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -329,7 +329,7 @@ Stacktrace:
 		at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:459)
 		at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
 		at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
-		at main.javas.ProductControl.doGet(ProductControl.java:120)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:120)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -383,7 +383,7 @@ Stacktrace:] with root cause
 		at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:459)
 		at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
 		at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
-		at main.javas.ProductControl.doGet(ProductControl.java:120)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:120)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -496,7 +496,7 @@ Stacktrace:] with root cause
 	java.lang.IllegalArgumentException: Path [DetailProductPage.jsp] does not start with a "/" character
 		at org.apache.catalina.core.ApplicationContext.getRequestDispatcher(ApplicationContext.java:402)
 		at org.apache.catalina.core.ApplicationContextFacade.getRequestDispatcher(ApplicationContextFacade.java:222)
-		at main.javas.ProductControl.doGet(ProductControl.java:121)
+		at main.javas.filter.ProductControl.doGet(ProductControl.java:121)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -521,3 +521,1845 @@ Stacktrace:] with root cause
 		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 		at java.base/java.lang.Thread.run(Thread.java:829)
+24-Apr-2024 17:05:55.934 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Only a type can be imported. main.javas.ProductBean resolves to a package
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Only a type can be imported. main.javas.ProductBean resolves to a package
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+24-Apr-2024 17:55:04.805 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [39] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+36:     </tr>
+37: 
+38:     <tr>
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+
+
+An error occurred at line: [40] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+37: 
+38:     <tr>
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+
+
+An error occurred at line: [41] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+38:     <tr>
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+
+
+An error occurred at line: [42] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+
+
+An error occurred at line: [44] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+
+
+An error occurred at line: [45] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+
+
+An error occurred at line: [46] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+49:         </td>
+
+
+An error occurred at line: [47] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+49:         </td>
+50:     </tr>
+
+
+An error occurred at line: [48] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+49:         </td>
+50:     </tr>
+51:     <%
+
+
+An error occurred at line: [52] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+49:         </td>
+50:     </tr>
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ".", @ expected after this token
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "SimpleName" to complete QualifiedName
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Identifier (" to complete MethodHeaderName
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error, insert ")" to complete MethodDeclaration
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [234] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", invalid AnnotationName
+
+An error occurred at line: [234] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [234] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "enum Identifier" to complete EnumHeader
+
+An error occurred at line: [236] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [236] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [237] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [237] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [239] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [240] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [242] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [245] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [245] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [248] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", invalid AnnotationTypeDeclarationHeader
+
+An error occurred at line: [248] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "}" to complete AnnotationTypeBody
+
+An error occurred at line: [249] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [39] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+36:     </tr>
+37: 
+38:     <tr>
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+
+
+An error occurred at line: [40] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+37: 
+38:     <tr>
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+
+
+An error occurred at line: [41] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+38:     <tr>
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+
+
+An error occurred at line: [42] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+39:         <td><%=bean.getCode()%></td>
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+40:         <td><%=bean.getProductName()%></td>
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+
+
+An error occurred at line: [44] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+41:         <td><%=bean.getDetails()%></td>
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+
+
+An error occurred at line: [45] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+42:         <td><%=bean.getQuantity()%></td>
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+
+
+An error occurred at line: [46] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+43:         <td><%=bean.getCategory()%></td>
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+49:         </td>
+
+
+An error occurred at line: [47] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+44:         <td><%=bean.getPrice()%></td>
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+49:         </td>
+50:     </tr>
+
+
+An error occurred at line: [48] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+45:         <td><%=bean.getIva()%></td>
+46:         <td><%=bean.getDiscount()%></td>
+47:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+48:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+49:         </td>
+50:     </tr>
+51:     <%
+
+
+An error occurred at line: [52] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+49:         </td>
+50:     </tr>
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ".", @ expected after this token
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [54] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+57: <h2>Insert</h2>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "SimpleName" to complete QualifiedName
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Identifier (" to complete MethodHeaderName
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [59] in the jsp file: [/ProductView.jsp]
+Syntax error, insert ")" to complete MethodDeclaration
+56: 
+57: <h2>Insert</h2>
+58: <form action="product" method="post">
+59:     <%--@declare id="nome_prodotto"--%><%--@declare id="dettagli"--%><%--@declare id="categoria"--%><%--@declare id="quantita"--%><%--@declare id="prezzo"--%><%--@declare id="iva"--%><%--@declare id="sconto"--%><input type="hidden" name="action" value="insert">
+60: 
+61:     <label for="nome_prodotto">Nome:</label><br>
+62:     <input name="productName" type="text" maxlength="20" required placeholder="enter name"><br>
+
+
+An error occurred at line: [234] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", invalid AnnotationName
+
+An error occurred at line: [234] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [234] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "enum Identifier" to complete EnumHeader
+
+An error occurred at line: [236] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [236] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [237] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [237] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [239] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [240] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [242] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [245] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [245] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [248] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", invalid AnnotationTypeDeclarationHeader
+
+An error occurred at line: [248] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "}" to complete AnnotationTypeBody
+
+An error occurred at line: [249] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+24-Apr-2024 17:56:04.111 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [53] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+50:     </tr>
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+
+
+An error occurred at line: [236] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", Identifier expected
+
+An error occurred at line: [238] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [238] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [239] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [239] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [241] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [242] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [244] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [247] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [247] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [250] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", { expected
+
+An error occurred at line: [251] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [53] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+50:     </tr>
+51:     <%
+52:             }
+53:         }
+54:     %>
+55: </table>
+56: 
+
+
+An error occurred at line: [236] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", Identifier expected
+
+An error occurred at line: [238] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [238] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [239] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [239] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [241] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [242] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [244] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [247] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [247] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [250] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", { expected
+
+An error occurred at line: [251] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+24-Apr-2024 18:01:04.957 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [33] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+30:         <th>Sconto <a href="product?sort=sconto&direction=asc">Sort</a></th>
+31:         <th>Action</th>
+32:     <tr>
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+
+
+An error occurred at line: [34] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+31:         <th>Action</th>
+32:     <tr>
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+
+
+An error occurred at line: [35] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+32:     <tr>
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+
+
+An error occurred at line: [36] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+
+
+An error occurred at line: [37] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+
+
+An error occurred at line: [38] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+
+
+An error occurred at line: [39] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+
+
+An error occurred at line: [40] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+43:         </td>
+
+
+An error occurred at line: [41] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+43:         </td>
+44:     </tr>
+
+
+An error occurred at line: [42] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+43:         </td>
+44:     </tr>
+45: 
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [33] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+30:         <th>Sconto <a href="product?sort=sconto&direction=asc">Sort</a></th>
+31:         <th>Action</th>
+32:     <tr>
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+
+
+An error occurred at line: [34] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+31:         <th>Action</th>
+32:     <tr>
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+
+
+An error occurred at line: [35] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+32:     <tr>
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+
+
+An error occurred at line: [36] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+33:         <td><%=bean.getCode()%></td>
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+
+
+An error occurred at line: [37] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+34:         <td><%=bean.getProductName()%></td>
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+
+
+An error occurred at line: [38] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+35:         <td><%=bean.getDetails()%></td>
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+
+
+An error occurred at line: [39] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+36:         <td><%=bean.getQuantity()%></td>
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+
+
+An error occurred at line: [40] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+37:         <td><%=bean.getCategory()%></td>
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+43:         </td>
+
+
+An error occurred at line: [41] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+38:         <td><%=bean.getPrice()%></td>
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+43:         </td>
+44:     </tr>
+
+
+An error occurred at line: [42] in the jsp file: [/ProductView.jsp]
+bean cannot be resolved
+39:         <td><%=bean.getIva()%></td>
+40:         <td><%=bean.getDiscount()%></td>
+41:         <td><a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
+42:             <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+43:         </td>
+44:     </tr>
+45: 
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+24-Apr-2024 18:14:23.585 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [/ProductView.jsp (line: [10], column: [1]) Page directive must not have multiple occurrences of pageencoding] with root cause
+	org.apache.jasper.JasperException: /ProductView.jsp (line: [10], column: [1]) Page directive must not have multiple occurrences of pageencoding
+		at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:42)
+		at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:292)
+		at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:115)
+		at org.apache.jasper.compiler.Validator$DirectiveVisitor.visit(Validator.java:201)
+		at org.apache.jasper.compiler.Node$PageDirective.accept(Node.java:579)
+		at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2389)
+		at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2441)
+		at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2447)
+		at org.apache.jasper.compiler.Node$Root.accept(Node.java:470)
+		at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2389)
+		at org.apache.jasper.compiler.Validator.validateDirectives(Validator.java:1817)
+		at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:203)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:386)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)

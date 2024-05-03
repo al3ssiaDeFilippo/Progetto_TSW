@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="main.javas.ProductBean" %>
+<%@ page import="java.util.*" %>
+<%@ page import="main.javas.model.ProductBean" %>
+
+<%
+    ProductBean product = (ProductBean) request.getAttribute("product");
+    System.out.println(product);
+%>
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +17,6 @@
 <body>
 <h2>Dettagli Prodotto</h2>
 <%
-    ProductBean product = (ProductBean) request.getAttribute("product");
     if (product != null) {
 %>
 <table border="1">
@@ -20,21 +24,14 @@
         <th>Id</th>
         <th>Nome</th>
         <th>Dettagli</th>
-        <th>Quantità</th>
-        <th>Categoria</th>
-        <th>Prezzo</th>
-        <th>Iva</th>
-        <th>Sconto</th>
+        <!-- Aggiungi qui gli altri attributi del prodotto, se necessario -->
     </tr>
     <tr>
         <td><%= product.getCode() %></td>
         <td><%= product.getProductName() %></td>
         <td><%= product.getDetails() %></td>
-        <td><%= product.getQuantity() %></td>
-        <td><%= product.getCategory() %></td>
-        <td><%= product.getPrice() %></td>
-        <td><%= product.getIva() %></td>
-        <td><%= product.getDiscount() %></td>
+
+        <!-- Aggiungi qui gli altri attributi del prodotto, se necessario -->
     </tr>
 </table>
 <% } else { %>

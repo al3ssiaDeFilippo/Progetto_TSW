@@ -1,4 +1,6 @@
-package main.javas;
+package main.javas.model;
+
+import main.javas.DriverManagerConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +29,7 @@ public class ProductModelDM implements ProductModel {
 
         //Query per aggiungere un prodotto all'interno del database
         String insertSQL = "INSERT INTO " + ProductModelDM.TABLE_NAME
-                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT, FRAME, COLORFRAME, SIZE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         //Assegna i valori passati dall'utente, ai segnaposti della query
         try {
@@ -40,6 +42,9 @@ public class ProductModelDM implements ProductModel {
             preparedStatement.setFloat(5, product.getPrice());
             preparedStatement.setInt(6, product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
+            preparedStatement.setString(8, product.getFrame());
+            preparedStatement.setString(9, product.getFrameColor());
+            preparedStatement.setString(10, product.getSize());
 
             //Esegue la query
             preparedStatement.executeUpdate();
@@ -84,6 +89,9 @@ public class ProductModelDM implements ProductModel {
                 bean.setPrice(rs.getFloat("PRICE"));
                 bean.setIva(rs.getInt("IVA"));
                 bean.setDiscount(rs.getInt("DISCOUNT"));
+                bean.setFrame(rs.getString("FRAME"));
+                bean.setFrameColor(rs.getString("FRAMECOLOR"));
+                bean.setSize(rs.getString("SIZE"));
             }
 
         } finally {
@@ -158,6 +166,9 @@ public class ProductModelDM implements ProductModel {
                 bean.setPrice(rs.getFloat("PRICE"));
                 bean.setIva(rs.getInt("IVA"));
                 bean.setDiscount(rs.getInt("DISCOUNT"));
+                bean.setFrame(rs.getString("FRAME"));
+                bean.setFrameColor(rs.getString("FRAMECOLOR"));
+                bean.setSize(rs.getString("SIZE"));
 
                 products.add(bean); // Aggiungi l'oggetto ProductBean alla collezione
             }
