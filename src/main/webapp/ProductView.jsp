@@ -59,7 +59,7 @@
         <td><%=bean.getDiscount()%></td>
         <td>
             <a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
-            <a href="DetailProductPage.jsp?action=read&code=<%=bean.getCode()%>">Details</a>
+            <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
         </td>
 
     </tr>

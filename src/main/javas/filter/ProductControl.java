@@ -36,7 +36,7 @@ public class ProductControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String dis = "/ProductView.jsp"; //serve per fare l'invio dei dati alla view
-        System.out.println(dis);
+        //System.out.println(dis);
 
         //recupera il parametro action dalla richiesta HTTP
         String action = request.getParameter("action"); //action indica l'azione da eseguire sul prodotto (read, delete o insert)
@@ -54,10 +54,11 @@ public class ProductControl extends HttpServlet {
                         code = Integer.parseInt(request.getParameter("code"));
                         request.removeAttribute("product");
                     }
+
                     //viene chiamato il metodo doRetreiveByKey per recuperare il prodotto con il codice specificato
                     //e il prodotto viene impostato come attributo della richiesta con request.setAttribute
                     request.setAttribute("product", model.doRetrieveByKey(code));
-                    dis = "/ProductView.jsp";
+                    dis = "/DetailProductPage.jsp";
 
                 } else if (action.equalsIgnoreCase("delete")) {
                     //viene recuperato il parametro code dalla richiesta
@@ -125,7 +126,9 @@ public class ProductControl extends HttpServlet {
             request.removeAttribute("products");
 
             request.setAttribute("products", model.doRetrieveAll(sort));
-            System.out.println(model.doRetrieveAll(sort));
+
+            //System.out.println(model.doRetrieveAll(sort)); stampa i dati di un prodotto in riga di comando
+
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }

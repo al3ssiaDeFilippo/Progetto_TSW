@@ -4,7 +4,6 @@
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
-    System.out.println(product);
 %>
 
 <!DOCTYPE html>
@@ -15,6 +14,7 @@
     <title>Dettagli Prodotto</title>
 </head>
 <body>
+
 <h2>Dettagli Prodotto</h2>
 <%
     if (product != null) {
@@ -24,14 +24,30 @@
         <th>Id</th>
         <th>Nome</th>
         <th>Dettagli</th>
-        <!-- Aggiungi qui gli altri attributi del prodotto, se necessario -->
+        <th>Quantità</th>
+        <th>Categoria</th>
+        <th>Prezzo</th>
+        <th>Iva</th>
+        <th>Sconto</th>
+        <th>Frame</th>
+        <th>FrameColor</th>
+        <th>Size</th>
+
     </tr>
+
     <tr>
         <td><%= product.getCode() %></td>
         <td><%= product.getProductName() %></td>
         <td><%= product.getDetails() %></td>
+        <td><%= product.getQuantity() %></td>
+        <td><%= product.getCategory() %></td>
+        <td><%= product.getPrice() %></td>
+        <td><%= product.getIva() %></td>
+        <td><%= product.getDiscount() %></td>
+        <td><%= product.getFrame() %></td>
+        <td><%= product.getFrameColor() %></td>
+        <td><%= product.getSize() %></td>
 
-        <!-- Aggiungi qui gli altri attributi del prodotto, se necessario -->
     </tr>
 </table>
 <% } else { %>
