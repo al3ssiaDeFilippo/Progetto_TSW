@@ -58,8 +58,21 @@
         <td><%=bean.getIva()%></td>
         <td><%=bean.getDiscount()%></td>
         <td>
-            <a href="product?action=delete&code=<%=bean.getCode()%>">Delete</a><br>
-            <a href="product?action=read&code=<%=bean.getCode()%>">Details</a>
+            <form action="product" method="get">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="code" value="<%=bean.getCode()%>">
+                <input type="submit" value="Delete">
+            </form>
+            <form action="product" method="get">
+                <input type="hidden" name="action" value="read">
+                <input type="hidden" name="code" value="<%=bean.getCode()%>">
+                <input type="submit" value="Details">
+            </form>
+            <form action="ServletCarrello" method="get">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="code" value="<%=bean.getCode()%>">
+                <input type="submit" value="Add to Cart">
+            </form>
         </td>
 
     </tr>
@@ -70,6 +83,8 @@
     %>
 
 </table>
+
+<a href="carrello.jsp">Visualizza Carrello</a>
 
 </body>
 </html>

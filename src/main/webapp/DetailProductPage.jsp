@@ -50,6 +50,8 @@
 
     </tr>
 </table>
+<a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>
+<a href="carrello.jsp">Visualizza Carrello</a>
 <% } else { %>
 <p>Nessun prodotto selezionato</p>
 <% } %>

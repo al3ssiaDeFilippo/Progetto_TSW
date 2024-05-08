@@ -78,4 +78,5 @@ public class ProductBean implements Serializable {
                 ", size='" + size + '\'' +
                 '}';
     }
+
 }
