@@ -2,13 +2,14 @@
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.model.ProductBean" %>
 <%@ page import="main.javas.util.Carrello" %>
+<%@ page import="main.javas.model.CartBean" %>
 
 <%
     Carrello carrello = (Carrello) session.getAttribute("cart");
     if (carrello == null) {
         carrello = new Carrello();
     }
-    List<ProductBean> arrayArticoli = carrello.getProdotti();
+    List<CartBean> arrayArticoli = carrello.getProdotti();
 %>
 
 <!DOCTYPE html>
@@ -20,19 +21,18 @@
     <h1>Carrello</h1>
     <table border="1">
         <tr>
-            <th>Nome</th>
+
             <th>Prezzo</th>
             <th>Quantità</th>
             <th>Elimina</th>
         </tr>
         <%
-            for (ProductBean articolo : arrayArticoli) {
+            for (CartBean articolo : arrayArticoli) {
         %>
         <tr>
-            <td><%=articolo.getProductName()%></td>
             <td><%=articolo.getPrice()%></td>
             <td><%=articolo.getQuantity()%></td>
-            <td><a href="ServletCarrello?action=remove&code=<%=articolo.getCode()%>">Rimuovi</a></td>
+            <td><a href="ServletCarrello?action=delete&code=<%=articolo.getCode()%>">Rimuovi</a></td>
         </tr>
         <%
             }

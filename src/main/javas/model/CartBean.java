@@ -1,8 +1,8 @@
 package main.javas.model;
 
-import java.io.Serializable;
-
-public class OrderBean {
+import main.javas.model.ProductBean;
+//Oggetto che rappresenta un prodotto all'interno del carrello
+public class CartBean {
     private static final long serialVersionUID = 1L;
 
     int code;
@@ -10,19 +10,11 @@ public class OrderBean {
     float price;
     int idProduct;
 
-    public OrderBean() {
+    public CartBean() {
         code = -1;
         quantity = 0;
         price = 0;
-        idProduct = -1;
-    }
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+        idProduct = 0;
     }
 
     public float getPrice() {
@@ -49,14 +41,17 @@ public class OrderBean {
         this.code = code;
     }
 
+    public int getIdProduct() { return idProduct; }
+
+    public void setIdProduct(int idProduct) { this.idProduct = idProduct; }
+
     @Override
     public String toString() {
-        return "OrderBean{" +
+        return "CartBean{" +
                 "code=" + code +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", idProduct=" + idProduct +
                 '}';
     }
-
 }

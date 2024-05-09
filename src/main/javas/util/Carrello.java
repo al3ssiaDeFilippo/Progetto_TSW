@@ -2,33 +2,37 @@ package main.javas.util;
 
 import java.util.ArrayList;
 import java.util.List;
-import main.javas.model.ProductBean;
+
+import main.javas.model.CartBean;
+
+//Implementazione dei metodi per la gestione del carrello
 
 public class Carrello {
-    private List<ProductBean> prodotti;
+    //lista di prodotti presenti nel carrello
+    private List<CartBean> prodotti;
 
     public Carrello() {
-        prodotti = new ArrayList<ProductBean>();
+        prodotti = new ArrayList<CartBean>();
     }
 
-    public void aggiungi(ProductBean prodotto) {
+    //aggiunge un prodotto alla lista del carrello
+    public void aggiungi(CartBean prodotto) {
         prodotti.add(prodotto);
     }
 
-    public void rimuovi(ProductBean prodotto) {
+    //rimuove un prodotto dalla lista del carrello
+    public void rimuovi(CartBean prodotto) {
         prodotti.remove(prodotto);
     }
 
-    public List<ProductBean> getProdotti() {
+    //restituisce la lista dei prodotti del carrello
+    public List<CartBean> getProdotti() {
         return prodotti;
     }
 
+    //svuota la lista
     public void svuota() {
         prodotti.clear();
-    }
-
-    public void removeProduct(ProductBean product) {
-        prodotti.remove(product);
     }
 
     @Override
