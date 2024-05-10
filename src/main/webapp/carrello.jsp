@@ -9,7 +9,7 @@
     if (carrello == null) {
         carrello = new Carrello();
     }
-    List<CartBean> arrayArticoli = carrello.getProdotti();
+    List<ProductBean> arrayArticoli = carrello.getProdotti();
 %>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
             <th>Elimina</th>
         </tr>
         <%
-            for (CartBean articolo : arrayArticoli) {
+            for (ProductBean articolo : arrayArticoli) {
         %>
         <tr>
             <td><%=articolo.getPrice()%></td>

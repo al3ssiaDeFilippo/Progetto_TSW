@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.javas.model.CartBean;
+import main.javas.model.ProductBean;
 import main.javas.util.Carrello;
 import main.javas.model.OrderModel;
 
@@ -23,54 +23,58 @@ public class ServletCarrello extends  HttpServlet {
     public ServletCarrello() {
         super();
     }
-//Metodo che gestisce le richieste HTTP di tipo GET
-@Override
-protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String action = req.getParameter("action");
+    //Metodo che gestisce le richieste HTTP di tipo GET
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
 
-    try {
-        if (action != null) {
+        try {
+            if (action != null) {
 
-            if (action.equals("add")) {
-                //va a prendere il codice del prodotto
-                int code = 0;
-                String codeParameter = req.getParameter("code");
-                if (codeParameter != null && !codeParameter.isEmpty()) {
-                    code = Integer.parseInt(req.getParameter("code"));
+                if (action.equals("add")) {
+                    //va a prendere il codice del prodotto
+                    int code = 0;
+                    String codeParameter = req.getParameter("code");
+                    if (codeParameter != null && !codeParameter.isEmpty()) {
+                        code = Integer.parseInt(req.getParameter("code"));
+                    }
+                    ProductBean product = model.doRetrieveByKey(code);
+                    if(product != null) {
+                        req.setAttribute("product", product);
+                        String dis = req.getContextPath() + "/ProductView.jsp";
+                        resp.sendRedirect(dis);
+                        Carrello cart = (Carrello) req.getSession().getAttribute("cart");
+                        if (cart == null) {
+                            cart = new Carrello();
+                        }
+                        cart.aggiungi(product);
+                        model.doSave(product);
+                        req.getSession().setAttribute("cart", cart);
+                    } else {
+                        System.out.println("PRODOTTO NON ESISTENTE");
+                    }
+
+                } else if (action.equals("delete")) {
+                    int code = 0;
+                    String codeParameter = req.getParameter("code");
+                    if (codeParameter != null && !codeParameter.isEmpty()) {
+                        code = Integer.parseInt(req.getParameter("code"));
+                    }
+                    Carrello cart = (Carrello) req.getSession().getAttribute("cart");
+                    if (cart != null) {
+                        ProductBean product = model.doRetrieveByKey(code);
+                        cart.rimuovi(product);
+                        model.doDelete(product);
+                        req.getSession().setAttribute("cart", cart);
+                    }
+                    req.getRequestDispatcher("/carrello.jsp").forward(req, resp);
+
                 }
-                System.out.println("Code --> "+code);
-                CartBean product = model.doRetrieveByKey(code);
-                req.setAttribute("product", product);
-                String dis = req.getContextPath() + "/ProductView.jsp";
-                resp.sendRedirect(dis);
-
-                Carrello cart = (Carrello) req.getSession().getAttribute("cart");
-                if (cart == null) {
-                    cart = new Carrello();
-                }
-                cart.aggiungi(product);
-                req.getSession().setAttribute("cart", cart);
-
-            } else if (action.equals("delete")) {
-                int code = 0;
-                String codeParameter = req.getParameter("code");
-                if (codeParameter != null && !codeParameter.isEmpty()) {
-                    code = Integer.parseInt(req.getParameter("code"));
-                }
-                Carrello cart = (Carrello) req.getSession().getAttribute("cart");
-                if (cart != null) {
-                    CartBean product = model.doRetrieveByKey(code);
-                    cart.rimuovi(product);
-                    req.getSession().setAttribute("cart", cart);
-                }
-                req.getRequestDispatcher("/carrello.jsp").forward(req, resp);
-
             }
+        } catch(SQLException e) {
+            throw new ServletException(e);
         }
-    } catch(SQLException e) {
-        throw new ServletException(e);
     }
-}
 
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);

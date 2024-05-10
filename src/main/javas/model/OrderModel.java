@@ -11,9 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-//La classe OrderModel implementa l'interfaccia OrderInterface
 public class OrderModel implements OrderInterface{
-
     private static DataSource ds;
 
     static {
@@ -29,41 +27,38 @@ public class OrderModel implements OrderInterface{
     }
     private static final String TABLE_NAME = "cart";
 
-//Il metodo doSave salva un oggetto CartBean nel database.
     @Override
-    public synchronized void doSave(CartBean order) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
+public synchronized void doSave(ProductBean product) throws SQLException {
+    Connection con = null;
+    PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + OrderModel.TABLE_NAME
-                + "(QUANTITY, PRICE, IDPRODUCT) +  VALUES (?, ?, ?)";
-
+    String insertSQL = "INSERT INTO " + OrderModel.TABLE_NAME
+            + "(QUANTITY, PRICE, IDPRODUCT) VALUES (?, ?, ?)";
+    try {
+        con = ds.getConnection();
+        con.setAutoCommit(false);
+        preparedStatement = con.prepareStatement(insertSQL);
+        preparedStatement.setInt(1, product.getQuantity());
+        preparedStatement.setFloat(2, product.getPrice());
+        preparedStatement.setInt(3, product.getCode());
+        preparedStatement.executeUpdate();
+        con.commit();
+        con.setAutoCommit(true);
+    }finally {
         try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            preparedStatement = con.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, order.getQuantity());
-            preparedStatement.setFloat(2, order.getPrice());
-            preparedStatement.setInt(3, order.getIdProduct());
-            preparedStatement.executeUpdate();
-            con.commit();
-            con.setAutoCommit(true);
-        }finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } finally {
-               if (con != null) {
-                   con.close();
-               }
+            if (preparedStatement != null) {
+                preparedStatement.close();
             }
+        } finally {
+           if (con != null) {
+               con.close();
+           }
         }
     }
+}
 
-//il metodo doDelete elimina un oggetto CartBean dal database.l
     @Override
-    public synchronized boolean doDelete(int code) throws SQLException {
+    public synchronized boolean doDelete(ProductBean product) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
@@ -75,7 +70,7 @@ public class OrderModel implements OrderInterface{
             con = ds.getConnection();
             con.setAutoCommit(false);
             preparedStatement = con.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, code);
+            preparedStatement.setInt(1, product.getCode());
 
             result = preparedStatement.executeUpdate();
             con.commit();
@@ -95,14 +90,11 @@ public class OrderModel implements OrderInterface{
         return (result != 0);
     }
 
-    //Il metodo doRetrieveByKey recupera un oggetto CartBean dal database.
     @Override
-    public synchronized CartBean doRetrieveByKey(int code) throws SQLException {
+    public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
-        CartBean order = new CartBean();
-
-        System.out.println("CODE preso in input da doRetrieveByKey --> " + code);
+        ProductBean product = new ProductBean();
 
         String selectSQL = "SELECT * FROM " + OrderModel.TABLE_NAME + " WHERE CODE = ?";
 
@@ -115,11 +107,10 @@ public class OrderModel implements OrderInterface{
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                order.setQuantity(rs.getInt("QUANTITY"));
-                order.setPrice(rs.getFloat("PRICE"));
-                order.setIdProduct(rs.getInt("IDPRODUCT"));
+                product.setQuantity(rs.getInt("QUANTITY"));
+                product.setPrice(rs.getFloat("PRICE"));
+                product.setCode(rs.getInt("IDPRODUCT"));
             }
-            System.out.print("Riga 122, file OrderModel.java, stampa dell'order --> code --> " + order.getCode());
 
             con.commit();
             con.setAutoCommit(true);
@@ -134,15 +125,14 @@ public class OrderModel implements OrderInterface{
                 }
             }
         }
-        return order;
+        return product;
     }
 
-    //Il metodo doRetrieveAll recupera tutti gli oggetti CartBean dal database.
     @Override
-    public synchronized Collection<CartBean> doRetrieveAll(String order) throws SQLException {
+    public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
-        Collection<CartBean> orders = new LinkedList<CartBean>();
+        Collection<ProductBean> products = new LinkedList<ProductBean>();
 
         String selectSQL = "SELECT * FROM " + OrderModel.TABLE_NAME;
 
@@ -157,11 +147,11 @@ public class OrderModel implements OrderInterface{
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                CartBean bean = new CartBean();
+                ProductBean bean = new ProductBean();
                 bean.setQuantity(rs.getInt("QUANTITY"));
                 bean.setPrice(rs.getFloat("PRICE"));
-                bean.setIdProduct(rs.getInt("IDPRODUCT"));
-                orders.add(bean);
+                bean.setCode(rs.getInt("IDPRODUCT"));
+                products.add(bean);
             }
         } finally {
             try {
@@ -174,6 +164,6 @@ public class OrderModel implements OrderInterface{
                 }
             }
         }
-        return orders;
+        return products;
     }
 }
