@@ -2,12 +2,14 @@ package main.javas.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.javas.model.ProductBean;
+import main.javas.model.ProductModelDS;
 import main.javas.util.Carrello;
 import main.javas.model.OrderModel;
 
@@ -19,6 +21,7 @@ public class ServletCarrello extends  HttpServlet {
 
     //il campo model viene utilizzato per interagire con il db
     static OrderModel model = new OrderModel();
+    static ProductModelDS prMod = new ProductModelDS();
 
     public ServletCarrello() {
         super();
@@ -38,20 +41,21 @@ public class ServletCarrello extends  HttpServlet {
                     if (codeParameter != null && !codeParameter.isEmpty()) {
                         code = Integer.parseInt(req.getParameter("code"));
                     }
-                    ProductBean product = model.doRetrieveByKey(code);
+                    ProductBean product = prMod.doRetrieveByKey(code);
                     if(product != null) {
-                        req.setAttribute("product", product);
-                        String dis = req.getContextPath() + "/ProductView.jsp";
-                        resp.sendRedirect(dis);
                         Carrello cart = (Carrello) req.getSession().getAttribute("cart");
-                        if (cart == null) {
+                        if(cart == null) {
                             cart = new Carrello();
                         }
                         cart.aggiungi(product);
                         model.doSave(product);
                         req.getSession().setAttribute("cart", cart);
+
+                        req.setAttribute("product", product);
+                        String dis = req.getContextPath() + "/ProductView.jsp";
+                        resp.sendRedirect(dis);
                     } else {
-                        System.out.println("PRODOTTO NON ESISTENTE");
+                        System.out.println("Prodotto non esistente!!");
                     }
 
                 } else if (action.equals("delete")) {
@@ -62,11 +66,13 @@ public class ServletCarrello extends  HttpServlet {
                     }
                     Carrello cart = (Carrello) req.getSession().getAttribute("cart");
                     if (cart != null) {
-                        ProductBean product = model.doRetrieveByKey(code);
+                        ProductBean product = prMod.doRetrieveByKey(code);
                         cart.rimuovi(product);
                         model.doDelete(product);
                         req.getSession().setAttribute("cart", cart);
                     }
+                    List<ProductBean> updatedProducts = cart.getProdotti();
+                    req.setAttribute("updatedProducts", updatedProducts); // Aggiorna l'attributo della richiesta con la lista aggiornata
                     req.getRequestDispatcher("/carrello.jsp").forward(req, resp);
 
                 }

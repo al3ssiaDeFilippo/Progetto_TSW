@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [08/May/2024:10:07:00 +0200] "GET /sito HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [08/May/2024:10:07:01 +0200] "GET /sito/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [08/May/2024:10:07:02 +0200] "GET /sito/ProductControl HTTP/1.1" 200 1395
+0:0:0:0:0:0:0:1 - - [08/May/2024:10:07:02 +0200] "GET /sito/ProductStyle.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/May/2024:10:07:02 +0200] "GET /favicon.ico HTTP/1.1" 404 713
+0:0:0:0:0:0:0:1 - - [08/May/2024:10:07:04 +0200] "GET /sito/DetailProductPage.jsp?action=read&code=1 HTTP/1.1" 200 328

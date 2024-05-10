@@ -23,31 +23,38 @@ public class CartBean {
     }
 
     //restituisce il prezzo del prodotto
-    public float getPrice(ProductBean product) {
-        return product.getPrice();
+
+    public int getCode() {
+        return code;
     }
 
-    public void setPrice(ProductBean product) {
-        price = product.getPrice();
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity() {
-        quantity = countQuantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public int getCode() {
-        return code;
+    public float getPrice() {
+        return price;
     }
 
-    public int getIdProduct(ProductBean product) {
-        return product.getCode();
+    public void setPrice(float price) {
+        this.price = price;
     }
 
-    public void setIdProduct(ProductBean product) { idProduct = product.getCode(); }
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
 
     @Override
     public String toString() {

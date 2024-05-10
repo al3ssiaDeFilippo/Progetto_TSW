@@ -1,0 +1,1060 @@
+03-May-2024 10:37:16.832 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Only a type can be imported. main.javas.ProductBean resolves to a package
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Only a type can be imported. main.javas.ProductBean resolves to a package
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 10:38:08.593 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Only a type can be imported. main.javas.ProductBean resolves to a package
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Only a type can be imported. main.javas.ProductBean resolves to a package
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [7] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     ProductBean product = (ProductBean) request.getAttribute("product");
+8: %>
+9: 
+10: <!DOCTYPE html>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+An error occurred at line: [43] in the jsp file: [/ProductView.jsp]
+ProductBean cannot be resolved to a type
+40:     } else {
+41:         Iterator<?> it = products.iterator();
+42:         while (it.hasNext()) {
+43:             ProductBean bean = (ProductBean) it.next();
+44:     %>
+45:     <tr>
+46:         <td><%=bean.getCode()%></td>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 10:56:36.877 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [49] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+46:     </tr>
+47: 
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ".", @ expected after this token
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "SimpleName" to complete QualifiedName
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Identifier (" to complete MethodHeaderName
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error, insert ")" to complete MethodDeclaration
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [185] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", invalid AnnotationName
+
+An error occurred at line: [185] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [185] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "enum Identifier" to complete EnumHeader
+
+An error occurred at line: [187] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [187] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [188] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [188] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [190] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [191] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [193] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [196] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [196] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [199] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", invalid AnnotationTypeDeclarationHeader
+
+An error occurred at line: [199] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "}" to complete AnnotationTypeBody
+
+An error occurred at line: [200] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [49] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+46:     </tr>
+47: 
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ".", @ expected after this token
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error on token ";", @ expected
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "SimpleName" to complete QualifiedName
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Identifier (" to complete MethodHeaderName
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+Syntax error, insert ")" to complete MethodDeclaration
+48:     <%
+49:         }
+50:         }
+51:     %>
+52: </table>
+53: 
+54: </body>
+
+
+An error occurred at line: [185] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", invalid AnnotationName
+
+An error occurred at line: [185] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [185] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "enum Identifier" to complete EnumHeader
+
+An error occurred at line: [187] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [187] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [188] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [188] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [190] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [191] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [193] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [196] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [196] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [199] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", invalid AnnotationTypeDeclarationHeader
+
+An error occurred at line: [199] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error, insert "}" to complete AnnotationTypeBody
+
+An error occurred at line: [200] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 11:55:29.461 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [An exception occurred processing [/ProductView.jsp] at line [35]
+
+32:     </tr>
+33: 
+34:     <%
+35:         if (products != null || !products.iterator().hasNext()) {
+36:     %>
+37: 
+38:     <tr>
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException
+		at org.apache.jsp.ProductView_jsp._jspService(ProductView_jsp.java:156)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:477)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 12:02:59.966 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [50] in the jsp file: [/ProductView.jsp]
+The method getCode() is undefined for the type Collection<capture#7-of ?>
+47:     %>
+48: 
+49:     <tr>
+50:         <td><%=products.getCode()%></td>
+51:         <td><%=products.getProductName()%></td>
+52:         <td><%=bean.getDetails()%></td>
+53:         <td><%=bean.getQuantity()%></td>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+The method getProductName() is undefined for the type Collection<capture#8-of ?>
+48: 
+49:     <tr>
+50:         <td><%=products.getCode()%></td>
+51:         <td><%=products.getProductName()%></td>
+52:         <td><%=bean.getDetails()%></td>
+53:         <td><%=bean.getQuantity()%></td>
+54:         <td><%=bean.getCategory()%></td>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [50] in the jsp file: [/ProductView.jsp]
+The method getCode() is undefined for the type Collection<capture#7-of ?>
+47:     %>
+48: 
+49:     <tr>
+50:         <td><%=products.getCode()%></td>
+51:         <td><%=products.getProductName()%></td>
+52:         <td><%=bean.getDetails()%></td>
+53:         <td><%=bean.getQuantity()%></td>
+
+
+An error occurred at line: [51] in the jsp file: [/ProductView.jsp]
+The method getProductName() is undefined for the type Collection<capture#8-of ?>
+48: 
+49:     <tr>
+50:         <td><%=products.getCode()%></td>
+51:         <td><%=products.getProductName()%></td>
+52:         <td><%=bean.getDetails()%></td>
+53:         <td><%=bean.getQuantity()%></td>
+54:         <td><%=bean.getCategory()%></td>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 12:34:21.012 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [56] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+53: 
+54:     <%
+55:             }
+56:         }
+57:     %>
+58: 
+59: </table>
+
+
+An error occurred at line: [203] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", Identifier expected
+
+An error occurred at line: [205] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [205] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [206] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [206] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [208] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [209] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [211] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [214] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [214] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [217] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", { expected
+
+An error occurred at line: [218] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [56] in the jsp file: [/ProductView.jsp]
+Syntax error, insert "Finally" to complete TryStatement
+53: 
+54:     <%
+55:             }
+56:         }
+57:     %>
+58: 
+59: </table>
+
+
+An error occurred at line: [203] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "catch", Identifier expected
+
+An error occurred at line: [205] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [205] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_out cannot be resolved to a variable
+
+An error occurred at line: [206] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved to a variable
+
+An error occurred at line: [206] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [208] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+response cannot be resolved
+
+An error occurred at line: [209] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [211] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+out cannot be resolved
+
+An error occurred at line: [214] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+An error occurred at line: [214] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved
+
+An error occurred at line: [217] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+Syntax error on token "finally", { expected
+
+An error occurred at line: [218] in the generated java file: [C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\work\Catalina\localhost\sito\org\apache\jsp\ProductView_jsp.java]
+_jspx_page_context cannot be resolved to a variable
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 12:34:44.373 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [An exception occurred processing [/ProductView.jsp] at line [34]
+
+31:     </tr>
+32: 
+33:     <%
+34:             Iterator<?> it = products.iterator();
+35:             while(it.hasNext()) {
+36:                 ProductBean bean = (ProductBean) it.next();
+37:     %>
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException
+		at org.apache.jsp.ProductView_jsp._jspService(ProductView_jsp.java:155)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:477)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 14:13:31.568 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [An exception occurred processing [/ProductView.jsp] at line [7]
+
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     System.out.println(products.toArray()[0]);
+8:     ProductBean product = (ProductBean) request.getAttribute("product");
+9: %>
+10: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException
+		at org.apache.jsp.ProductView_jsp._jspService(ProductView_jsp.java:126)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:477)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 14:14:40.274 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [An exception occurred processing [/ProductView.jsp] at line [7]
+
+4: 
+5: <%
+6:     Collection<?> products = (Collection<?>) request.getAttribute("products");
+7:     System.out.println(products.isEmpty());
+8:     ProductBean product = (ProductBean) request.getAttribute("product");
+9: %>
+10: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException
+		at org.apache.jsp.ProductView_jsp._jspService(ProductView_jsp.java:126)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:477)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+03-May-2024 15:43:55.724 SEVERE [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/sito] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/DetailProductPage.jsp]
+Duplicate local variable product
+21: <body>
+22: <h2>Dettagli Prodotto</h2>
+23: <%
+24:     ProductBean product = (ProductBean) request.getAttribute("product");
+25:     if (product != null) {
+26: %>
+27: <table border="1">
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/DetailProductPage.jsp]
+Duplicate local variable product
+21: <body>
+22: <h2>Dettagli Prodotto</h2>
+23: <%
+24:     ProductBean product = (ProductBean) request.getAttribute("product");
+25:     if (product != null) {
+26: %>
+27: <table border="1">
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:519)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:392)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:362)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:346)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:605)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:400)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)

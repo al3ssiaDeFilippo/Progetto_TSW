@@ -22,6 +22,7 @@
     <table border="1">
         <tr>
 
+            <th>Id Prodotto</th>
             <th>Prezzo</th>
             <th>Quantità</th>
             <th>Elimina</th>
@@ -30,6 +31,7 @@
             for (ProductBean articolo : arrayArticoli) {
         %>
         <tr>
+            <td><%=articolo.getCode()%></td>
             <td><%=articolo.getPrice()%></td>
             <td><%=articolo.getQuantity()%></td>
             <td><a href="ServletCarrello?action=delete&code=<%=articolo.getCode()%>">Rimuovi</a></td>
