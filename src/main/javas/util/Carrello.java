@@ -1,37 +1,46 @@
 package main.javas.util;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import main.javas.model.CartBean;
 import main.javas.model.ProductBean;
 
-//Implementazione dei metodi per la gestione del carrello
-
 public class Carrello {
-    //lista di prodotti presenti nel carrello
-    private List<ProductBean> prodotti;
+    private List<CartBean> prodotti;
 
     public Carrello() {
-        prodotti = new ArrayList<ProductBean>();
+        prodotti = new ArrayList<>();
     }
 
-    //aggiunge un prodotto alla lista del carrello
-    public void aggiungi(ProductBean prodotto) {
+    public void aggiungi(CartBean prodotto) {
+        for (CartBean p : prodotti) {
+            if (p.getCode() == prodotto.getCode()) {
+                // Se il prodotto è già presente, aumenta la quantità e esci dal metodo
+                p.setQuantity(p.getQuantity()  + prodotto.getQuantity());
+                return;
+            }
+        }
+        // Se il prodotto non è già presente, aggiungilo al carrello
         prodotti.add(prodotto);
     }
 
-    //rimuove un prodotto dalla lista del carrello
-    public void rimuovi(ProductBean prodotto) {
-        prodotti.remove(prodotto);
+    public void rimuovi(CartBean prodotto) {
+        Iterator<CartBean> iterator = prodotti.iterator();
+        while (iterator.hasNext()) {
+            CartBean p = iterator.next();
+            if (p.getCode() == prodotto.getCode()) {
+                iterator.remove();
+                break; // Esci dopo aver rimosso il prodotto
+            }
+        }
     }
 
-    //restituisce la lista dei prodotti del carrello
-    public List<ProductBean> getProdotti() {
+    public List<CartBean> getProdotti() {
         return prodotti;
     }
 
-    //svuota la lista
     public void svuota() {
         prodotti.clear();
     }

@@ -9,7 +9,7 @@
     if (carrello == null) {
         carrello = new Carrello();
     }
-    List<ProductBean> arrayArticoli = carrello.getProdotti();
+    List<CartBean> arrayArticoli = carrello.getProdotti();
 %>
 
 <!DOCTYPE html>
@@ -28,12 +28,20 @@
             <th>Elimina</th>
         </tr>
         <%
-            for (ProductBean articolo : arrayArticoli) {
+            for (CartBean articolo : arrayArticoli) {
         %>
         <tr>
             <td><%=articolo.getCode()%></td>
             <td><%=articolo.getPrice()%></td>
-            <td><%=articolo.getQuantity()%></td>
+            <!-- <td><%=articolo.getQuantity()%></td>-->
+            <td>
+                <form action="ServletCarrello?action=add" method="post">
+                    <input type="hidden" name="code" value="<%=articolo.getCode()%>">
+                    <input type="number" name="quantity" value="1" min="1"> <!-- Campo per la quantità -->
+                    <input type="submit" value="Aggiorna">
+                </form>
+
+            </td>
             <td><a href="ServletCarrello?action=delete&code=<%=articolo.getCode()%>">Rimuovi</a></td>
         </tr>
         <%

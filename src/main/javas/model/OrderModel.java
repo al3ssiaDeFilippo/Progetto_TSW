@@ -29,38 +29,40 @@ public class OrderModel implements OrderInterface{
 
     //metodo che salva un prodotto nel db nella tabella cart (salva un prodotto nel carrello)
     @Override
-    public synchronized void doSave(ProductBean productInCart) throws SQLException {
+    public synchronized void doSave(ProductBean productInCart, int quantityToAdd) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        // Verifica se il prodotto è già presente nel carrello
-        boolean existingProductInCart = isProductInCart(productInCart.getCode());
-
-        if(existingProductInCart) {
-            System.out.println("Prodotto già presente nel carrello. Aumento della quantità...");
-            increaseQuantity(productInCart.getCode());
-        } else {
-            String insertSQL = "INSERT INTO " + OrderModel.TABLE_NAME + "(IDPRODUCT, QUANTITY, PRICE) VALUES (?, ?, ?)";
-            try {
-                con = ds.getConnection();
-                con.setAutoCommit(false);
+        try {
+            con = ds.getConnection();
+            con.setAutoCommit(false);
+            if (isProductInCart(productInCart.getCode())) {
+                // Se il prodotto è già presente nel carrello, aggiorna la quantità
+                String updateSQL = "UPDATE " + OrderModel.TABLE_NAME + " SET QUANTITY = QUANTITY + ? WHERE IDPRODUCT = ?";
+                preparedStatement = con.prepareStatement(updateSQL);
+                preparedStatement.setInt(1, quantityToAdd);
+                preparedStatement.setInt(2, productInCart.getCode());
+                preparedStatement.executeUpdate();
+            } else {
+                // Se il prodotto non è presente nel carrello, inserisce un nuovo record
+                String insertSQL = "INSERT INTO " + OrderModel.TABLE_NAME + "(IDPRODUCT, QUANTITY, PRICE) VALUES (?, ?, ?)";
                 preparedStatement = con.prepareStatement(insertSQL);
                 preparedStatement.setInt(1, productInCart.getCode());
-                preparedStatement.setInt(2, 1); // Quantità di partenza
+                preparedStatement.setInt(2, quantityToAdd);
                 preparedStatement.setFloat(3, productInCart.getPrice());
-                int rowsAffected = preparedStatement.executeUpdate();
-                con.commit();
-                System.out.println(rowsAffected + " riga/e inserita/e nel database.");
-            } finally {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
+                preparedStatement.executeUpdate();
+            }
+            con.commit();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
             }
         }
     }
+
 
 
     //elimina un prodotto dal carrello nel database
@@ -188,7 +190,7 @@ public class OrderModel implements OrderInterface{
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String updateSQL = "UPDATE cart SET quantity = quantity + 1 WHERE IDPRODUCT = ?";
+        String updateSQL = "UPDATE cart SET QUANTITY = QUANTITY + 1 WHERE IDPRODUCT = ?";
 
         try {
             con = ds.getConnection();
