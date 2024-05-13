@@ -34,15 +34,11 @@ public class OrderModel implements OrderInterface{
         PreparedStatement preparedStatement = null;
 
         try {
+            System.out.println("QuantityToAdd: " + quantityToAdd);
             con = ds.getConnection();
             con.setAutoCommit(false);
             if (isProductInCart(productInCart.getCode())) {
-                // Se il prodotto è già presente nel carrello, aggiorna la quantità
-                String updateSQL = "UPDATE " + OrderModel.TABLE_NAME + " SET QUANTITY = QUANTITY + ? WHERE IDPRODUCT = ?";
-                preparedStatement = con.prepareStatement(updateSQL);
-                preparedStatement.setInt(1, quantityToAdd);
-                preparedStatement.setInt(2, productInCart.getCode());
-                preparedStatement.executeUpdate();
+                updateQuantity(productInCart, quantityToAdd);
             } else {
                 // Se il prodotto non è presente nel carrello, inserisce un nuovo record
                 String insertSQL = "INSERT INTO " + OrderModel.TABLE_NAME + "(IDPRODUCT, QUANTITY, PRICE) VALUES (?, ?, ?)";
@@ -186,33 +182,6 @@ public class OrderModel implements OrderInterface{
         return products;
     }
 
-    private synchronized void increaseQuantity(int idProduct) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-
-        String updateSQL = "UPDATE cart SET QUANTITY = QUANTITY + 1 WHERE IDPRODUCT = ?";
-
-        try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            preparedStatement = con.prepareStatement(updateSQL);
-            preparedStatement.setInt(1, idProduct);
-            preparedStatement.executeUpdate();
-            con.commit();
-            con.setAutoCommit(true);
-        } finally {
-            try {
-                if(preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } finally {
-                if(con != null) {
-                    con.close();
-                }
-            }
-        }
-    }
-
     // Metodo per verificare se un prodotto è presente nel carrello
     private boolean isProductInCart(int productId) throws SQLException {
         Connection con = null;
@@ -247,5 +216,67 @@ public class OrderModel implements OrderInterface{
             }
         }
         return exists;
+    }
+
+    public synchronized float getTotalPrice() throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        float totalPrice = 0;
+
+        String selectSQL = "SELECT ROUND(SUM(PRICE * QUANTITY), 2) AS TOTAL FROM " + OrderModel.TABLE_NAME;
+
+        try {
+            con = ds.getConnection();
+            con.setAutoCommit(false);
+            preparedStatement = con.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                totalPrice = rs.getFloat("TOTAL");
+            }
+
+            con.commit();
+            con.setAutoCommit(true);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } finally {
+                if (con != null) {
+                    con.close();
+                }
+            }
+        }
+        return totalPrice;
+    }
+
+    public synchronized void updateQuantity(ProductBean productInCart, int quantityToAdd) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            con = ds.getConnection();
+            con.setAutoCommit(false);
+
+            String updateSQL = "UPDATE " + OrderModel.TABLE_NAME + " SET QUANTITY = ? WHERE IDPRODUCT = ?";
+
+            System.out.println("ciaooo");
+
+            preparedStatement = con.prepareStatement(updateSQL);
+            preparedStatement.setInt(1, quantityToAdd);
+            preparedStatement.setInt(2, productInCart.getCode());
+            preparedStatement.executeUpdate();
+
+            con.commit();
+        } finally {
+            if(preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if(con != null) {
+                con.close();
+            }
+        }
     }
 }

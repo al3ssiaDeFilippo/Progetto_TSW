@@ -1,18 +1,22 @@
 package main.javas.control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import main.javas.model.CartBean;
+import main.javas.model.ProductBean;
 import main.javas.util.Carrello;
+import main.javas.model.OrderModel;
 
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/UpdateQuantityServlet")
 public class UpdateQuantityServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    static OrderModel model = new OrderModel();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,7 +34,19 @@ public class UpdateQuantityServlet extends HttpServlet {
                 // Trova il prodotto nel carrello e aggiorna la quantità
                 for (CartBean item : carrello.getProdotti()) {
                     if (item.getCode() == code) {
-                        item.setQuantity(quantity);
+                        ProductBean productInCart = new ProductBean();
+                        productInCart.setCode(code);
+                        try {
+                            if (quantity == 0) {
+                                model.doDelete(productInCart); // Elimina il prodotto se la quantità è 0
+                                carrello.rimuovi(item); // Rimuovi il prodotto dal carrello
+                            } else {
+                                model.updateQuantity(productInCart, quantity);
+                                item.setQuantity(quantity); // Aggiorna la quantità nel carrello
+                            }
+                        } catch (SQLException e) {
+                            throw new ServletException(e);
+                        }
                         break;
                     }
                 }
@@ -38,7 +54,6 @@ public class UpdateQuantityServlet extends HttpServlet {
                 request.getSession().setAttribute("cart", carrello);
             }
         }
-
         // Reindirizza alla pagina del carrello dopo l'aggiornamento
         response.sendRedirect(request.getContextPath() + "/carrello.jsp");
     }

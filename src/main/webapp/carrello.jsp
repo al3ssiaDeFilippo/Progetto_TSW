@@ -3,6 +3,8 @@
 <%@ page import="main.javas.model.ProductBean" %>
 <%@ page import="main.javas.util.Carrello" %>
 <%@ page import="main.javas.model.CartBean" %>
+<%@ page import="main.javas.model.OrderModel" %>
+<%@ page import="java.sql.SQLException" %>
 
 <%
     Carrello carrello = (Carrello) session.getAttribute("cart");
@@ -10,6 +12,13 @@
         carrello = new Carrello();
     }
     List<CartBean> arrayArticoli = carrello.getProdotti();
+    OrderModel model = new OrderModel();
+    float totalPrice = 0;
+    try {
+        totalPrice = model.getTotalPrice();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 %>
 
 <!DOCTYPE html>
@@ -21,33 +30,29 @@
     <h1>Carrello</h1>
     <table border="1">
         <tr>
-
             <th>Id Prodotto</th>
-            <th>Prezzo</th>
             <th>Quantità</th>
-            <th>Elimina</th>
+            <th>Prezzo</th>
         </tr>
         <%
             for (CartBean articolo : arrayArticoli) {
         %>
         <tr>
             <td><%=articolo.getCode()%></td>
-            <td><%=articolo.getPrice()%></td>
-            <!-- <td><%=articolo.getQuantity()%></td>-->
             <td>
-                <form action="ServletCarrello?action=add" method="post">
+                <form action="UpdateQuantityServlet" method="post">
                     <input type="hidden" name="code" value="<%=articolo.getCode()%>">
-                    <input type="number" name="quantity" value="1" min="1"> <!-- Campo per la quantità -->
+                    <input type="number" name="quantity" value="<%=articolo.getQuantity()%>" min="0">
                     <input type="submit" value="Aggiorna">
                 </form>
-
             </td>
-            <td><a href="ServletCarrello?action=delete&code=<%=articolo.getCode()%>">Rimuovi</a></td>
+            <td><%=articolo.getPrice()%></td>
         </tr>
         <%
             }
         %>
     </table>
+    <h2>Prezzo totale: <%=totalPrice%></h2>
     <a href="ProductView.jsp">Torna alla home</a>
     <a href="checkout.jsp">Vai al checkout</a>
 </body>
