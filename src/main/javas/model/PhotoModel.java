@@ -71,7 +71,7 @@ public class PhotoModel {
         return bt;
     }
 
-    public synchronized static void updatePhoto(ProductBean product) throws SQLException {
+    public synchronized static void updatePhoto(ProductBean product, String photoPath) throws SQLException, IOException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
@@ -80,20 +80,21 @@ public class PhotoModel {
             con.setAutoCommit(false);
             String sql = "UPDATE PRODUCT SET PHOTO = ? WHERE ID = ?";
 
-            File file = new File(String.valueOf(product.getPhoto()));
-            try {
-
-                FileInputStream fis = new FileInputStream(file);
-
-                preparedStatement = con.prepareStatement(sql);
-                preparedStatement.setByte(1, product.getPhoto());
-                preparedStatement.setInt(2, product.getCode());
-                preparedStatement.executeUpdate();
-
-
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+            File file = new File(photoPath);
+            if (!file.exists()) {
+                throw new FileNotFoundException("File not found: " + photoPath);
             }
+
+            FileInputStream fis = new FileInputStream(file);
+
+            // Converti il file in un array di byte
+            byte[] photoBytes = new byte[(int) file.length()];
+            fis.read(photoBytes);
+
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setBytes(1, photoBytes);
+            preparedStatement.setInt(2, product.getCode());
+            preparedStatement.executeUpdate();
 
             con.commit();
         } finally {

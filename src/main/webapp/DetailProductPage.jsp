@@ -32,7 +32,7 @@
         <th>Frame</th>
         <th>FrameColor</th>
         <th>Size</th>
-
+        <th>Foto</th>
     </tr>
 
     <tr>
@@ -47,7 +47,7 @@
         <td><%= product.getFrame() %></td>
         <td><%= product.getFrameColor() %></td>
         <td><%= product.getSize() %></td>
-
+        <td><img src="getPicture?id=<%=product.getCode()%>" alt="<%=product.getProductName()%>"></td>
     </tr>
 </table>
 <a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>

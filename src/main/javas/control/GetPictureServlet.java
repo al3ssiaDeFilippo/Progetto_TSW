@@ -28,6 +28,9 @@ public class GetPictureServlet extends HttpServlet {
         String StringId = (String) req.getParameter("id");
         if(StringId != null) {
             int id = Integer.parseInt(StringId);
+            if (id <= 0) {
+                throw new IllegalArgumentException("Invalid product ID: " + id);
+            }
             try {
                 ProductBean product = prMod.doRetrieveByKey(id);
                 if(product != null) {
@@ -39,6 +42,8 @@ public class GetPictureServlet extends HttpServlet {
                         resp.setContentType("image/jpg");
                     }
                     out.close();
+                } else {
+                    throw new NullPointerException("No product found with ID: " + id);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
