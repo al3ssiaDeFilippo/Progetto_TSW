@@ -46,13 +46,16 @@
                     <input type="submit" value="Aggiorna">
                 </form>
             </td>
-            <td><%=articolo.getPrice()%></td>
+            <td> <%=articolo.getPrice()%> x <%=articolo.getQuantity()%> </td>
         </tr>
         <%
             }
         %>
+        <tr>
+            <td colspan = "2">Prezzo totale:</td>
+            <td><%=totalPrice%></td>
+        </tr>
     </table>
-    <h2>Prezzo totale: <%=totalPrice%></h2>
     <a href="ProductView.jsp">Torna alla home</a>
     <a href="checkout.jsp">Vai al checkout</a>
 </body>
