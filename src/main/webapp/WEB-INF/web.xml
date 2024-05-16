@@ -9,7 +9,7 @@
 </welcome-file-list>
   <servlet>
     <servlet-name>ProductControl</servlet-name>
-    <servlet-class>main.javas.filter.ProductControl</servlet-class>
+    <servlet-class>main.javas.control.ProductControl</servlet-class>
   </servlet>
 
   <servlet-mapping>

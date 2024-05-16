@@ -18,7 +18,7 @@ public class ProductBean implements Serializable {
     String frame;
     String frameColor;
     String size;
-    Byte photo;
+    byte[] photo;
 
     //costruttore di ProductBean()
     public ProductBean() {
@@ -33,7 +33,7 @@ public class ProductBean implements Serializable {
         frame = "";
         frameColor = "";
         size = "";
-        photo = 0;
+        photo = null;
     }
 
     //metodi get
@@ -48,7 +48,7 @@ public class ProductBean implements Serializable {
     public String getFrame(){return frame;}
     public String getFrameColor(){return frameColor;}
     public String getSize(){return size;}
-    public Byte getPhoto() {return photo;}
+    public byte[] getPhoto() {return photo;}
 
     //metodi set
     public void setCode(int code){this.code = code;}
@@ -62,7 +62,7 @@ public class ProductBean implements Serializable {
     public void setFrame(String frame){this.frame=frame;}
     public void setFrameColor(String frameColor){this.frameColor=frameColor;}
     public void setSize(String size){this.size=size;}
-    public void setPhoto(Byte photo) {this.photo = photo;}
+    public void setPhoto(byte[] photo) {this.photo = photo;}
 
     //ToString
 

@@ -47,7 +47,7 @@
         <td><%= product.getFrame() %></td>
         <td><%= product.getFrameColor() %></td>
         <td><%= product.getSize() %></td>
-        <td><img src="getPicture?id=<%=product.getCode()%>" alt="<%=product.getProductName()%>"></td>
+        <td><img src="http://localhost:8080/sito/GetPictureServlet?photoPath=Crash.jpg" alt="Image"></td>
     </tr>
 </table>
 <a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>

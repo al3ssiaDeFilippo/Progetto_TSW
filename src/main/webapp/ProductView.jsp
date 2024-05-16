@@ -85,6 +85,7 @@
 </table>
 
 <a href="carrello.jsp">Visualizza Carrello</a>
+<a href="InsertImagePage.jsp">Inserisci un prodotto</a>
 
 </body>
 </html>

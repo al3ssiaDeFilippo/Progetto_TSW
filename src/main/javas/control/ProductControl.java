@@ -1,4 +1,4 @@
-package main.javas.filter;
+package main.javas.control;
 
 import main.javas.model.*;
 
@@ -88,7 +88,16 @@ public class ProductControl extends HttpServlet {
                         price = Float.parseFloat(request.getParameter("price"));
                     }
 
-                    int iva = Integer.parseInt(request.getParameter("iva"));
+                    String ivaParam = request.getParameter("iva");
+                    int iva = 0; // default value
+                    if (ivaParam != null && !ivaParam.isEmpty()) {
+                        try {
+                            iva = Integer.parseInt(ivaParam);
+                        } catch (NumberFormatException e) {
+                            // handle the case where ivaParam is not a valid integer
+                            System.out.println("IVA parameter is not a valid integer: " + ivaParam);
+                        }
+                    }
 
                     //controlli sull'attributo discount
                     int discount=0;

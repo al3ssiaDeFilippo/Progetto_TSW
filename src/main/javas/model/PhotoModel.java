@@ -41,7 +41,7 @@ public class PhotoModel {
         try {
             connection = ds.getConnection();
             connection.setAutoCommit(false);
-            String sql = "SELECT PHOTO FROM PRODUCT WHERE ID = ?";
+            String sql = "SELECT PHOTO FROM PRODUCT WHERE code = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, product.getCode());
             resultSet = preparedStatement.executeQuery();
@@ -74,18 +74,19 @@ public class PhotoModel {
     public synchronized static void updatePhoto(ProductBean product, String photoPath) throws SQLException, IOException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
+        FileInputStream fis = null;
 
         try {
             con = DriverManagerConnectionPool.getConnection();
             con.setAutoCommit(false);
-            String sql = "UPDATE PRODUCT SET PHOTO = ? WHERE ID = ?";
+            String sql = "UPDATE PRODUCT SET PHOTO = ? WHERE code = ?";
 
             File file = new File(photoPath);
             if (!file.exists()) {
                 throw new FileNotFoundException("File not found: " + photoPath);
             }
 
-            FileInputStream fis = new FileInputStream(file);
+            fis = new FileInputStream(file);
 
             // Converti il file in un array di byte
             byte[] photoBytes = new byte[(int) file.length()];
@@ -94,10 +95,25 @@ public class PhotoModel {
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setBytes(1, photoBytes);
             preparedStatement.setInt(2, product.getCode());
-            preparedStatement.executeUpdate();
+
+            System.out.println("Updating photo for product with ID: " + product.getCode());
+
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            if (rowsUpdated == 0) {
+                throw new SQLException("No product found with ID: " + product.getCode());
+            }
 
             con.commit();
         } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    System.out.println("Failed to close FileInputStream: " + e.getMessage());
+                }
+            }
             if (preparedStatement != null) {
                 preparedStatement.close();
             }

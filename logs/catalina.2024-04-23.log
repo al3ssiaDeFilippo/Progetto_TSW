@@ -930,7 +930,7 @@
 		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:198)
 		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:717)
 		... 37 more
-	Caused by: java.lang.IllegalArgumentException: The servlets named [ProductControl] and [main.javas.filter.ProductControl] are both mapped to the url-pattern [/prodotto] which is not permitted
+	Caused by: java.lang.IllegalArgumentException: The servlets named [ProductControl] and [main.javas.control.ProductControl] are both mapped to the url-pattern [/prodotto] which is not permitted
 		at org.apache.tomcat.util.descriptor.web.WebXml.addServletMappingDecoded(WebXml.java:342)
 		at org.apache.tomcat.util.descriptor.web.WebXml.addServletMapping(WebXml.java:335)
 		at org.apache.catalina.startup.ContextConfig.processAnnotationWebServlet(ContextConfig.java:2465)
