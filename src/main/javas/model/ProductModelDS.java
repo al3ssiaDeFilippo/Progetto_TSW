@@ -36,7 +36,7 @@ public class ProductModelDS implements ProductModel {
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT, FRAME, COLORFRAME, SIZE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT, FRAME, COLORFRAME, SIZE, PHOTO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
@@ -51,6 +51,7 @@ public class ProductModelDS implements ProductModel {
             preparedStatement.setString(8, product.getFrame());
             preparedStatement.setString(9, product.getFrameColor());
             preparedStatement.setString(9, product.getSize());
+            preparedStatement.setBlob(10, product.getPhoto());
 
             preparedStatement.executeUpdate();
 
@@ -94,6 +95,7 @@ public class ProductModelDS implements ProductModel {
                 bean.setFrame(rs.getString("FRAME"));
                 bean.setFrameColor(rs.getString("FRAMECOLOR"));
                 bean.setSize(rs.getString("SIZE"));
+                bean.setPhoto(rs.getBlob("PHOTO"));
             }
 
         } finally {
@@ -170,6 +172,7 @@ public class ProductModelDS implements ProductModel {
                 bean.setFrame(rs.getString("FRAME"));
                 bean.setFrameColor(rs.getString("FRAMECOLOR"));
                 bean.setSize(rs.getString("SIZE"));
+                bean.setPhoto(rs.getBlob("PHOTO"));
                 products.add(bean);
             }
 

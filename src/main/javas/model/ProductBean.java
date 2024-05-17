@@ -1,8 +1,11 @@
 package main.javas.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class ProductBean implements Serializable {
+
+    private Blob foto;
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +21,7 @@ public class ProductBean implements Serializable {
     String frame;
     String frameColor;
     String size;
-    byte[] photo;
+    Blob photo;
 
     //costruttore di ProductBean()
     public ProductBean() {
@@ -48,7 +51,7 @@ public class ProductBean implements Serializable {
     public String getFrame(){return frame;}
     public String getFrameColor(){return frameColor;}
     public String getSize(){return size;}
-    public byte[] getPhoto() {return photo;}
+    public Blob getPhoto() {return photo;}
 
     //metodi set
     public void setCode(int code){this.code = code;}
@@ -62,7 +65,7 @@ public class ProductBean implements Serializable {
     public void setFrame(String frame){this.frame=frame;}
     public void setFrameColor(String frameColor){this.frameColor=frameColor;}
     public void setSize(String size){this.size=size;}
-    public void setPhoto(byte[] photo) {this.photo = photo;}
+    public void setPhoto(Blob photo) {this.photo = photo;}
 
     //ToString
 

@@ -24,6 +24,7 @@
     <tr>
         <th>Id_prodotto</th>
         <th>Nome_Prodotto</th>
+        <th>Foto</th>
         <th>Dettagli</th>
         <th>Quantità</th>
         <th>Categoria</th>
@@ -51,6 +52,7 @@
     <tr>
         <td><%=bean.getCode()%></td>
         <td><%=bean.getProductName()%></td>
+        <td><img src="ImmagineProdottoServlet?code=<%=bean.getCode()%>" alt="image not found"></td>
         <td><%=bean.getDetails()%></td>
         <td><%=bean.getQuantity()%></td>
         <td><%=bean.getCategory()%></td>
@@ -85,7 +87,7 @@
 </table>
 
 <a href="carrello.jsp">Visualizza Carrello</a>
-<a href="InsertImagePage.jsp">Inserisci un prodotto</a>
+<a href="InsertPage.jsp">Inserisci un prodotto</a>
 
 </body>
 </html>

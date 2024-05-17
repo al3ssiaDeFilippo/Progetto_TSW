@@ -233,7 +233,7 @@ public final class ProductView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</table>\r\n");
       out.write("\r\n");
       out.write("<a href=\"carrello.jsp\">Visualizza Carrello</a>\r\n");
-      out.write("<a href=\"InsertImagePage.jsp\">Inserisci un prodotto</a>\r\n");
+      out.write("<a href=\"InsertPage.jsp\">Inserisci un prodotto</a>\r\n");
       out.write("\r\n");
       out.write("</body>\r\n");
       out.write("</html>");

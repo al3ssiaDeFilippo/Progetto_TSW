@@ -9,14 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
 
 @WebServlet("/ProductControl")
 public class ProductControl extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // ProductModelDS usa il DataSource
-    // ProductModelDM usa il DriverManager
     static boolean isDataSource = true;
 
     static ProductModel model;
@@ -35,19 +34,13 @@ public class ProductControl extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String dis = "/ProductView.jsp"; //serve per fare l'invio dei dati alla view
-        //System.out.println(dis);
+        String dis = "/ProductView.jsp";
 
-        //recupera il parametro action dalla richiesta HTTP
-        String action = request.getParameter("action"); //action indica l'azione da eseguire sul prodotto (read, delete o insert)
+        String action = request.getParameter("action");
 
         try {
-            //se action è nullo, non viene eseguita nessuna azione
             if (action != null) {
-                //controllo per determinare quale azione deve essere eseguita in base al suo valore
                 if (action.equalsIgnoreCase("read")) {
-                    //viene recuperato il parametro code dalla richiesta HTTP e viene convertito in un numero intero
-
                     int code = 0;
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
@@ -55,13 +48,10 @@ public class ProductControl extends HttpServlet {
                         request.removeAttribute("product");
                     }
 
-                    //viene chiamato il metodo doRetreiveByKey per recuperare il prodotto con il codice specificato
-                    //e il prodotto viene impostato come attributo della richiesta con request.setAttribute
                     request.setAttribute("product", model.doRetrieveByKey(code));
                     dis = "/DetailProductPage.jsp";
 
                 } else if (action.equalsIgnoreCase("delete")) {
-                    //viene recuperato il parametro code dalla richiesta
                     int code = 0;
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
@@ -74,14 +64,12 @@ public class ProductControl extends HttpServlet {
                     String details = request.getParameter("details");
 
                     int quantity = 0;
-                    //controlli sull'attributo quantity
                     String quantityParam = request.getParameter("quantity");
                     if(quantityParam != null && !quantityParam.isEmpty()) {
                         quantity = Integer.parseInt(request.getParameter("quantity"));
                     }
                     String category = request.getParameter("category");
 
-                    //controlli sull'attributo price
                     float price = 0;
                     String priceParam = request.getParameter("price");
                     if(priceParam != null && !priceParam.isEmpty()) {
@@ -89,24 +77,19 @@ public class ProductControl extends HttpServlet {
                     }
 
                     String ivaParam = request.getParameter("iva");
-                    int iva = 0; // default value
+                    int iva = 0;
                     if (ivaParam != null && !ivaParam.isEmpty()) {
-                        try {
-                            iva = Integer.parseInt(ivaParam);
-                        } catch (NumberFormatException e) {
-                            // handle the case where ivaParam is not a valid integer
-                            System.out.println("IVA parameter is not a valid integer: " + ivaParam);
-                        }
+                        iva = Integer.parseInt(ivaParam);
                     }
 
-                    //controlli sull'attributo discount
                     int discount=0;
                     String discountParam = request.getParameter("discount");
                     if(discountParam != null && !discountParam.isEmpty()) {
                         discount = Integer.parseInt(request.getParameter("discount"));
                     }
 
-                    //controlli sull'attributo frame
+                    Blob photo = (Blob) request.getAttribute("photo");
+
                     String frame = request.getParameter("frame");
                     String frameColor = request.getParameter("frameColor");
                     String size = request.getParameter("frameSize");
@@ -122,6 +105,7 @@ public class ProductControl extends HttpServlet {
                     bean.setFrame(frame);
                     bean.setFrameColor(frameColor);
                     bean.setSize(size);
+                    bean.setPhoto(photo);
                     model.doSave(bean);
                 }
             }
@@ -135,8 +119,6 @@ public class ProductControl extends HttpServlet {
             request.removeAttribute("products");
 
             request.setAttribute("products", model.doRetrieveAll(sort));
-
-            //System.out.println(model.doRetrieveAll(sort)); stampa i dati di un prodotto in riga di comando
 
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());

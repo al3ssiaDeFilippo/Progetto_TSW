@@ -38,7 +38,7 @@
     <tr>
         <td><%= product.getCode() %></td>
         <td><%= product.getProductName() %></td>
-        <td><img src="http://localhost:8080/sito/GetPictureServlet?photoPath=C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\src\main\webapp\Gallery\Film\Crash.jpg" alt="Image"></td>
+        <td><img src="ImmagineProdottoServlet?code=<%= product.getCode() %>" alt="image not found"></td>
         <td><%= product.getDetails() %></td>
         <td><%= product.getQuantity() %></td>
         <td><%= product.getCategory() %></td>
