@@ -23,21 +23,22 @@
     <tr>
         <th>Id</th>
         <th>Nome</th>
+        <th>Photo</th>
         <th>Dettagli</th>
         <th>Quantità</th>
         <th>Categoria</th>
         <th>Prezzo</th>
         <th>Iva</th>
         <th>Sconto</th>
-        <th>Frame</th>
+        <th>FrameMaterial</th>
         <th>FrameColor</th>
         <th>Size</th>
-        <th>Foto</th>
     </tr>
 
     <tr>
         <td><%= product.getCode() %></td>
         <td><%= product.getProductName() %></td>
+        <td><img src="http://localhost:8080/sito/GetPictureServlet?photoPath=C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\src\main\webapp\Gallery\Film\Crash.jpg" alt="Image"></td>
         <td><%= product.getDetails() %></td>
         <td><%= product.getQuantity() %></td>
         <td><%= product.getCategory() %></td>
@@ -47,7 +48,6 @@
         <td><%= product.getFrame() %></td>
         <td><%= product.getFrameColor() %></td>
         <td><%= product.getSize() %></td>
-        <td><img src="http://localhost:8080/sito/GetPictureServlet?photoPath=Crash.jpg" alt="Image"></td>
     </tr>
 </table>
 <a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>
