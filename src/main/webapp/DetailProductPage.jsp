@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="ProductStyle.css" rel="stylesheet" type="text/css">
+    <link href="DetailProductPage.css" rel="stylesheet" type="text/css">
     <title>Dettagli Prodotto</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
 <%
     if (product != null) {
 %>
-<table border="1">
+<table class="product-table" border="1">
     <tr>
         <th>Id</th>
         <th>Nome</th>
@@ -38,7 +38,7 @@
     <tr>
         <td><%= product.getCode() %></td>
         <td><%= product.getProductName() %></td>
-        <td><img src="ImmagineProdottoServlet?code=<%= product.getCode() %>" alt="image not found"></td>
+        <td><img class="product-image" src="ImmagineProdottoServlet?code=<%= product.getCode() %>" alt="image not found"></td>
         <td><%= product.getDetails() %></td>
         <td><%= product.getQuantity() %></td>
         <td><%= product.getCategory() %></td>
@@ -50,10 +50,16 @@
         <td><%= product.getSize() %></td>
     </tr>
 </table>
-<a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>
-<a href="carrello.jsp">Visualizza Carrello</a>
 <% } else { %>
 <p>Nessun prodotto selezionato</p>
 <% } %>
+
+<div class="centered-links">
+    <a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>
+    <a href="carrello.jsp">Visualizza Carrello</a>
+    <a href="ProductView.jsp">Torna alla Home</a>
+
+</div>
+
 </body>
 </html>

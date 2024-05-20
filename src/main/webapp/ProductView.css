@@ -1,0 +1,39 @@
+body {
+    /* Imposta il colore di sfondo a nero */
+    background-color: #ffffff;
+    /* Imposta il colore del testo a bianco per garantire la leggibilità sullo sfondo nero */
+    color: #000;
+}
+
+#product-view {
+    /* Centra il contenuto orizzontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Imposta lo stile per l'elemento con ID 'product-view' */
+    width: 10%;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.product-details {
+    /* Imposta lo stile per gli elementi con la classe 'product-details' all'interno dell'elemento con ID 'product-view' */
+    font-size: 16px;
+    color: #333;
+}
+
+.product-image {
+    /* Imposta lo stile per gli elementi con la classe 'product-image' all'interno dell'elemento con ID 'product-view' */
+    width: 100%;
+    max-width: 100px;
+    max-height: 200px; /* Aggiunto per limitare l'altezza massima dell'immagine a 300px */
+}
+
+.product-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered-links {
+    text-align: center;
+}

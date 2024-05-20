@@ -252,6 +252,14 @@ public class OrderModel implements OrderInterface{
         return totalPrice;
     }
 
+   /* public synchronized float getPriceWithOutIVA() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String query = "";
+
+    }*/
+
     public synchronized void updateQuantity(ProductBean productInCart, int quantityToAdd) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;

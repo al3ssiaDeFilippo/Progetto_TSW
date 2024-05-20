@@ -134,7 +134,7 @@ public final class ProductView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("    <link href=\"ProductStyle.css\" rel=\"stylesheet\" type=\"text/css\">\r\n");
+      out.write("    <link href=\"ProductView.css\" rel=\"stylesheet\" type=\"text/css\">\r\n");
       out.write("    <title>PosterWorld</title>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");

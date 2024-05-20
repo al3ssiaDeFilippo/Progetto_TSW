@@ -14,23 +14,17 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="ProductStyle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="ProductView.css">
     <title>PosterWorld</title>
 </head>
 <body>
 
 <h2>Products</h2>
-<table border = "1">
+<table class="product-table" border = "1">
     <tr>
-        <th>Id_prodotto</th>
         <th>Nome_Prodotto</th>
         <th>Foto</th>
-        <th>Dettagli</th>
-        <th>Quantità</th>
-        <th>Categoria</th>
         <th>Prezzo</th>
-        <th>Iva</th>
-        <th>Sconto</th>
         <th>Action</th>
     </tr>
 
@@ -50,15 +44,9 @@
     %>
 
     <tr>
-        <td><%=bean.getCode()%></td>
         <td><%=bean.getProductName()%></td>
-        <td><img src="ImmagineProdottoServlet?code=<%=bean.getCode()%>" alt="image not found"></td>
-        <td><%=bean.getDetails()%></td>
-        <td><%=bean.getQuantity()%></td>
-        <td><%=bean.getCategory()%></td>
+        <td><img class="product-image" src="ImmagineProdottoServlet?code=<%=bean.getCode()%>" alt="image not found"></td>
         <td><%=bean.getPrice()%></td>
-        <td><%=bean.getIva()%></td>
-        <td><%=bean.getDiscount()%></td>
         <td>
             <form action="product" method="get">
                 <input type="hidden" name="action" value="delete">
@@ -76,7 +64,6 @@
                 <input type="submit" value="Add to Cart">
             </form>
         </td>
-
     </tr>
 
     <%
@@ -86,8 +73,10 @@
 
 </table>
 
-<a href="carrello.jsp">Visualizza Carrello</a>
-<a href="InsertPage.jsp">Inserisci un prodotto</a>
+<div class="centered-links">
+    <a href="carrello.jsp">Visualizza Carrello</a>
+    <a href="InsertPage.jsp">Inserisci un prodotto</a>
+</div>
 
 </body>
 </html>
