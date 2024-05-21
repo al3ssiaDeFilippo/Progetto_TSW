@@ -57,6 +57,6 @@
         </tr>
     </table>
     <a href="ProductView.jsp">Torna alla home</a>
-    <a href="Checkout.jsp">Vai al checkout</a>
+    <a href="LogIn.jsp">Vai al checkout</a>
 </body>
 </html>

@@ -36,7 +36,7 @@ public class ProductModelDS implements ProductModel {
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT, FRAME, COLORFRAME, SIZE, PHOTO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " (PRODUCTNAME, DETAILS, QUANTITY, CATEGORY, PRICE, IVA, DISCOUNT, FRAME, FRAMECOLOR, SIZE, PHOTO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
@@ -50,8 +50,8 @@ public class ProductModelDS implements ProductModel {
             preparedStatement.setInt(7, product.getDiscount());
             preparedStatement.setString(8, product.getFrame());
             preparedStatement.setString(9, product.getFrameColor());
-            preparedStatement.setString(9, product.getSize());
-            preparedStatement.setBlob(10, product.getPhoto());
+            preparedStatement.setString(10, product.getSize());
+            preparedStatement.setBlob(11, product.getPhoto());
 
             preparedStatement.executeUpdate();
 
@@ -75,6 +75,8 @@ public class ProductModelDS implements ProductModel {
         ProductBean bean = new ProductBean();
 
         String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
+
+        System.out.println("Mi trovo nel metodo doSave. Questa è la query: " + selectSQL + ". Questo è il codice: " + code + ".\n");
 
         try {
             connection = ds.getConnection();
@@ -118,6 +120,8 @@ public class ProductModelDS implements ProductModel {
         int result = 0;
 
         String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
+
+        System.out.println("Debug: sto eliminando il prodotto con codice " + code);
 
         try {
             connection = ds.getConnection();

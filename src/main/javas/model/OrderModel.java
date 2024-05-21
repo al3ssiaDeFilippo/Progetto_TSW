@@ -252,13 +252,56 @@ public class OrderModel implements OrderInterface{
         return totalPrice;
     }
 
-   /* public synchronized float getPriceWithOutIVA() {
-        Connection connection = null;
+    public synchronized float getPriceWithoutIVA(int code) throws SQLException {
+        Connection con = null;
         PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
 
-        String query = "";
+        String query = "SELECT PRICE, IVA, ROUND((PRICE / (1 + IVA / 100)), 2) AS PRICE_WITHOUT_IVA " +
+                "FROM PRODUCT WHERE CODE = ?";
 
-    }*/
+        try {
+            con = ds.getConnection();
+            con.setAutoCommit(false);
+            preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(1, code);
+
+            rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getFloat("PRICE_WITHOUT_IVA");
+            } else {
+                throw new SQLException("No product found with code: " + code);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SQLException(e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     public synchronized void updateQuantity(ProductBean productInCart, int quantityToAdd) throws SQLException {
         Connection con = null;

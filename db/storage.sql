@@ -2,30 +2,55 @@ DROP DATABASE IF EXISTS storage;
 CREATE DATABASE storage;
 USE storage;
 
-
 CREATE TABLE product (
-                         code int primary key AUTO_INCREMENT,
-                         productName char(20) not null,
-                         details char(200),
-                         quantity int default 0,
-                         category varchar(8) check(category in('Film', 'Anime', 'Fumetti', 'Giochi', 'Serie TV')) not null,
-                         price float default 0 not null,
-                         iva int default 0 not null,
-                         discount int default 0,
-                         frame varchar(8) check(frame in('no frame', 'wood', 'PVC')) not null,
-                         frameColor varchar(5) check(frameColor in ('black', 'brown', 'white')) not null,
-                         size varchar(5) check(size in('21x30', '85x60', '91x61')) not null,
-                         photo mediumblob
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  code INT PRIMARY KEY AUTO_INCREMENT,
+  productName VARCHAR(50) UNIQUE NOT NULL,
+  details VARCHAR(255),
+  quantity INT DEFAULT 0,
+  category VARCHAR(8) NOT NULL CHECK (category IN ('Film', 'Anime', 'Fumetti', 'Giochi', 'Serie TV')),
+  price FLOAT DEFAULT 0 NOT NULL,
+  iva INT DEFAULT 0 NOT NULL,
+  discount INT DEFAULT 0,
+  frame VARCHAR(8) NOT NULL CHECK (frame IN ('no frame', 'wood', 'PVC')),
+  frameColor VARCHAR(5) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white')),
+  size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')),
+  photo LONGBLOB
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE cart (
-                      code int primary key auto_increment,
-                      quantity int not null,
-                      price float not null,
-                      idProduct int not null,
-                      foreign key (idProduct) references product(code)
+  code INT PRIMARY KEY AUTO_INCREMENT,
+  quantity INT NOT NULL,
+  price FLOAT NOT NULL,
+  idProduct INT NOT NULL,
+  FOREIGN KEY (idProduct) REFERENCES product(code)
 );
 
+CREATE TABLE user(
+    idUser INT PRIMARY KEY AUTO_INCREMENT,
+    surname VARCHAR(50) NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    username VARCHAR(30) UNIQUE NOT NULL,
+    BirthDate DATE NOT NULL,
+    address VARCHAR(70) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    TelNumber VARCHAR(12) NOT NULL
+ );
 
-INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 'wood', 'brown', '85x60', LOAD_FILE('C:\Users\biagi\IdeaProjects\Progetto_TSW\src\main\webapp\Gallery\Giochi\Crash.jpg'));
-INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 'PVC', 'white', '91x61', null);
+CREATE VIEW user_view AS
+SELECT
+    idUser,
+    username,
+    name,
+    surname,
+    BirthDate,
+    address,
+    email,
+    TelNumber
+FROM user;
+
+INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) 
+VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 'wood', 'brown', '85x60', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));
+INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 'PVC', 'white', '91x61', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
+SELECT * FROM PRODUCT;
+

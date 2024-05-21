@@ -4,15 +4,20 @@ import main.javas.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 
 @WebServlet("/ProductControl")
+@MultipartConfig
 public class ProductControl extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -60,19 +65,22 @@ public class ProductControl extends HttpServlet {
                     }
 
                 } else if (action.equalsIgnoreCase("insert")) {
+
+                    System.out.println("Debug: action : insert!");
+
                     String productName = request.getParameter("productName");
                     String details = request.getParameter("details");
 
                     int quantity = 0;
                     String quantityParam = request.getParameter("quantity");
-                    if(quantityParam != null && !quantityParam.isEmpty()) {
+                    if (quantityParam != null && !quantityParam.isEmpty()) {
                         quantity = Integer.parseInt(request.getParameter("quantity"));
                     }
                     String category = request.getParameter("category");
 
                     float price = 0;
                     String priceParam = request.getParameter("price");
-                    if(priceParam != null && !priceParam.isEmpty()) {
+                    if (priceParam != null && !priceParam.isEmpty()) {
                         price = Float.parseFloat(request.getParameter("price"));
                     }
 
@@ -82,17 +90,29 @@ public class ProductControl extends HttpServlet {
                         iva = Integer.parseInt(ivaParam);
                     }
 
-                    int discount=0;
+                    int discount = 0;
                     String discountParam = request.getParameter("discount");
-                    if(discountParam != null && !discountParam.isEmpty()) {
+                    if (discountParam != null && !discountParam.isEmpty()) {
                         discount = Integer.parseInt(request.getParameter("discount"));
                     }
 
-                    Blob photo = (Blob) request.getAttribute("photo");
+                    Part photoPart = request.getPart("photoPath");
+                    Blob photo = null;
+                    if (photoPart != null && photoPart.getSize() > 0) {
+                        InputStream inputStream = photoPart.getInputStream();
+                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+                        while ((bytesRead = inputStream.read(buffer)) != -1) {
+                            outputStream.write(buffer, 0, bytesRead);
+                        }
+                        byte[] photoBytes = outputStream.toByteArray();
+                        photo = new javax.sql.rowset.serial.SerialBlob(photoBytes);
+                    }
 
                     String frame = request.getParameter("frame");
                     String frameColor = request.getParameter("frameColor");
-                    String size = request.getParameter("frameSize");
+                    String size = request.getParameter("size");
 
                     ProductBean bean = new ProductBean();
                     bean.setProductName(productName);
@@ -132,5 +152,4 @@ public class ProductControl extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-
 }

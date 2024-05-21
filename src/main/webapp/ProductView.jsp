@@ -76,6 +76,7 @@
 <div class="centered-links">
     <a href="carrello.jsp">Visualizza Carrello</a>
     <a href="InsertPage.jsp">Inserisci un prodotto</a>
+    <a href="LogIn.jsp">Log In</a>
 </div>
 
 </body>
