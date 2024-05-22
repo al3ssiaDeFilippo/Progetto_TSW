@@ -66,7 +66,7 @@ public class ServletCarrello extends HttpServlet {
                         String dis = req.getContextPath() + "/ProductView.jsp";
                         resp.sendRedirect(dis);
                     } else {
-                        System.out.println("Prodotto non esistente!!");
+                        System.out.println("Prodotto non esistente");
                     }
 
                 } else if (action.equals("delete")) {

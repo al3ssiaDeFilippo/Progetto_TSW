@@ -54,3 +54,14 @@
 0:0:0:0:0:0:0:1 - - [17/May/2024:14:45:44 +0200] "GET /sito/ProductControl HTTP/1.1" 200 2756
 0:0:0:0:0:0:0:1 - - [17/May/2024:14:45:49 +0200] "GET /sito/product?action=read&code=1 HTTP/1.1" 200 1238
 0:0:0:0:0:0:0:1 - - [17/May/2024:14:45:49 +0200] "GET null HTTP/1.1" 400 1996
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:03:36 +0200] "GET /sito HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:03:36 +0200] "GET /sito/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:03:37 +0200] "GET /sito/ProductControl HTTP/1.1" 200 2940
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:03:37 +0200] "GET /sito/ImmagineProdottoServlet?code=1 HTTP/1.1" 500 1381
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:03:37 +0200] "GET /sito/ImmagineProdottoServlet?code=2 HTTP/1.1" 500 1381
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:06:47 +0200] "GET /sito HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:06:47 +0200] "GET /sito/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:06:48 +0200] "GET /sito/ProductControl HTTP/1.1" 200 2940
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:06:48 +0200] "GET /sito/ImmagineProdottoServlet?code=1 HTTP/1.1" 200 105117
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:06:48 +0200] "GET /sito/ImmagineProdottoServlet?code=2 HTTP/1.1" 200 109747
+0:0:0:0:0:0:0:1 - - [17/May/2024:18:06:48 +0200] "GET /favicon.ico HTTP/1.1" 404 713

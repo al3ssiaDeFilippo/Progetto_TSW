@@ -19,7 +19,7 @@
 
     <label for="category">Categoria:</label><br>
     <select id="category" name="category">
-        <option value="selectAcategory">Seleziona una categoria</option>
+        <option value="selectAcategory" disabled selected>Seleziona una categoria</option>
         <option value="Film">Film</option>
         <option value="Anime">Anime</option>
         <option value="Giochi">Giochi</option>
@@ -38,6 +38,7 @@
 
     <label for="frame">Frame:</label><br>
     <select id="frame" name="frame">
+        <option value="selectAframe" disabled selected>Seleziona una tipologia di frame</option>
         <option value="no frame">No Frame</option>
         <option value="wood">Wood</option>
         <option value="PVC">PVC</option>
@@ -45,6 +46,7 @@
 
     <label for="frameColor">Colore Frame:</label><br>
     <select id="frameColor" name="frameColor">
+        <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
         <option value="black">Black</option>
         <option value="brown">Brown</option>
         <option value="white">White</option>
@@ -52,6 +54,7 @@
 
     <label for="size">Dimensione:</label><br>
     <select id="size" name="size">
+        <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
         <option value="21x30">21x30</option>
         <option value="85x60">85x60</option>
         <option value="91x61">91x61</option>
