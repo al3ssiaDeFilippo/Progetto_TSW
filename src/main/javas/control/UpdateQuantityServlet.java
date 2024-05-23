@@ -37,7 +37,14 @@ public class UpdateQuantityServlet extends HttpServlet {
                         ProductBean productInCart = new ProductBean();
                         productInCart.setCode(code);
                         try {
-                            if (quantity == 0) {
+                            int availableQuantity = model.getAvailableQuantity(code);
+                            if (quantity > availableQuantity) {
+                                request.setAttribute("errorMessage", "Quantità richiesta superiore alla quantità disponibile");
+                                item.setQuantity(availableQuantity);
+                                model.updateQuantity(productInCart, availableQuantity);
+                                request.getRequestDispatcher("/carrello.jsp").forward(request, response);
+                                return;
+                            } else if (quantity == 0) {
                                 model.doDelete(productInCart); // Elimina il prodotto se la quantità è 0
                                 carrello.rimuovi(item); // Rimuovi il prodotto dal carrello
                             } else {

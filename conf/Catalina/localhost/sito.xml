@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Context docBase="C:\Users\defil\Desktop\ECLIPSE, TOMCAT ECC\PROGETTO\src\main\webapp">
+<Context docBase="C:\Users\biagi\IdeaProjects\Progetto_TSW\src\main\webapp">
       
   <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" name="jdbc/storage" password="0000" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/storage?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" username="root"/>
   
   <Resources cacheMaxSize="10240">
-    <PreResources base="C:/Users/defil/Desktop/ECLIPSE, TOMCAT ECC/PROGETTO/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+    <PreResources base="C:/Users/biagi/IdeaProjects/Progetto_TSW/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
   </Resources>
 </Context>

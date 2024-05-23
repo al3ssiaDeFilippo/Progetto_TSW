@@ -302,6 +302,69 @@ public class OrderModel implements OrderInterface{
         }
     }
 
+    /*public int getAvailableQuantity(ProductBean product) throws SQLException {
+    Connection connection = null;
+    String selectSQL = "SELECT quantity FROM product WHERE code = ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+        preparedStatement.setInt(1, product.getCode());
+        try (ResultSet rs = preparedStatement.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("quantity");
+            }
+        }
+    }
+    return 0;
+    }*/
+
+    public int getAvailableQuantity(int code) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+
+        try {
+            con = ds.getConnection();
+            con.setAutoCommit(false);
+            String selectSQL = "SELECT quantity FROM product WHERE code = ?";
+            preparedStatement = con.prepareStatement(selectSQL);
+
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, code);
+
+            rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("QUANTITY");
+            } else {
+                throw new SQLException("No product found with code: " + code);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SQLException(e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     public synchronized void updateQuantity(ProductBean productInCart, int quantityToAdd) throws SQLException {
         Connection con = null;
@@ -312,8 +375,8 @@ public class OrderModel implements OrderInterface{
             con.setAutoCommit(false);
 
             String updateSQL = "UPDATE " + OrderModel.TABLE_NAME + " SET QUANTITY = ? WHERE IDPRODUCT = ?";
-
-            System.out.println("ciaooo");
+            System.out.println("mi trovo nel metodo updatequantity e il codice è: " + productInCart.getCode());
+            System.out.println("La quantità da aggiungere è: " + quantityToAdd);
 
             preparedStatement = con.prepareStatement(updateSQL);
             preparedStatement.setInt(1, quantityToAdd);

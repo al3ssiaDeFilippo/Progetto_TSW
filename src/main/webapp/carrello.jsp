@@ -56,6 +56,10 @@
             <td><%=totalPrice%></td>
         </tr>
     </table>
+    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+    <% if (errorMessage != null) { %>
+    <p style="color:red;"><%= errorMessage %></p>
+    <% } %>
     <a href="ProductView.jsp">Torna alla home</a>
     <a href="LogIn.jsp">Vai al checkout</a>
 </body>

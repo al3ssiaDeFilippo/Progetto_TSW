@@ -12,11 +12,28 @@
     <servlet-class>main.javas.control.ProductControl</servlet-class>
   </servlet>
 
-  /////////
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>main.javas.control.LogInServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>ProductControl</servlet-name>
     <url-pattern>/product</url-pattern>
   </servlet-mapping>
+
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>main.javas.control.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/LogIn.jsp</url-pattern>
+  </filter-mapping>
 
 </web-app>

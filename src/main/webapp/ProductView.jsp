@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.model.ProductBean" %>
+<%@ page import="main.javas.model.UserBean" %>
 
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");
-    if(products == null){
-      response.sendRedirect("./ProductControl");
+    if (products == null) {
+        response.sendRedirect("./ProductControl");
+        return; // Stop further processing of the page
     }
-    ProductBean product = (ProductBean) request.getAttribute("product");
+
+    // Use the implicit session object
+    UserBean user = (UserBean) session.getAttribute("user");
 %>
 
 <!DOCTYPE html>
@@ -20,7 +24,7 @@
 <body>
 
 <h2>Products</h2>
-<table class="product-table" border = "1">
+<table class="product-table" border="1">
     <tr>
         <th>Nome_Prodotto</th>
         <th>Foto</th>
@@ -29,20 +33,16 @@
     </tr>
 
     <%
-        if (products == null) {
+        if (products.isEmpty()) {
     %>
-
     <tr>
-        <td colspan = "9">No products available.</td>
+        <td colspan="4">No products available.</td>
     </tr>
-
     <%
-        } else {
-            Iterator<?> it = products.iterator();
-            while(it.hasNext()) {
-                ProductBean bean = (ProductBean) it.next();
+    } else {
+        for (Object obj : products) {
+            ProductBean bean = (ProductBean) obj;
     %>
-
     <tr>
         <td><%=bean.getProductName()%></td>
         <td><img class="product-image" src="ImmagineProdottoServlet?code=<%=bean.getCode()%>" alt="image not found"></td>
@@ -65,19 +65,29 @@
             </form>
         </td>
     </tr>
-
     <%
             }
         }
     %>
-
 </table>
 
 <div class="centered-links">
+    <form action="ProductControl" method="get">
+        <input type="submit" value="Refresh">
+    </form>
     <a href="carrello.jsp">Visualizza Carrello</a>
     <a href="InsertPage.jsp">Inserisci un prodotto</a>
+    <% if (user == null) { %>
     <a href="LogIn.jsp">Log In</a>
+    <% } %>
 </div>
+
+<% if (user != null) { %>
+<form action="UserServlet" method="post">
+    <input type="hidden" name="action" value="logout">
+    <input type="submit" value="Logout">
+</form>
+<% } %>
 
 </body>
 </html>

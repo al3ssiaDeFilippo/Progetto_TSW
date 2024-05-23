@@ -5,7 +5,7 @@
 </head>
 <body>
 <h2>Login</h2>
-<form action="UserServlet" method="post">
+<form action="LogInServlet" method="post">
     <input type="hidden" name="action" value="register">
     <div>
         <label for="username">Username:</label>
