@@ -1,8 +1,6 @@
 package main.javas.control;
 
 import main.javas.model.ModelFoto;
-import main.javas.model.OrderModel;
-import main.javas.model.ProductModelDS;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

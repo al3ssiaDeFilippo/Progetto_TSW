@@ -23,6 +23,7 @@ CREATE TABLE cart (
   price FLOAT NOT NULL,
   idProduct INT NOT NULL,
   FOREIGN KEY (idProduct) REFERENCES product(code)
+  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE user(
@@ -52,5 +53,5 @@ FROM user;
 INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) 
 VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 'wood', 'brown', '85x60', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));
 INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 'PVC', 'white', '91x61', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
-SELECT * FROM PRODUCT;
+SELECT * FROM cart;
 

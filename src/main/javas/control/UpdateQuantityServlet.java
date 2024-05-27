@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import main.javas.model.CartBean;
 import main.javas.model.ProductBean;
 import main.javas.util.Carrello;
-import main.javas.model.OrderModel;
+import main.javas.model.CartModel;
 
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/UpdateQuantityServlet")
 public class UpdateQuantityServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    static OrderModel model = new OrderModel();
+    static CartModel model = new CartModel();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

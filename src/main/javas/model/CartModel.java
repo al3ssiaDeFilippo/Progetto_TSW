@@ -11,7 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class OrderModel implements OrderInterface{
+public class CartModel implements OrderInterface{
     private static DataSource ds;
 
     static {
@@ -41,7 +41,7 @@ public class OrderModel implements OrderInterface{
                 updateQuantity(productInCart, quantityToAdd);
             } else {
                 // Se il prodotto non è presente nel carrello, inserisce un nuovo record
-                String insertSQL = "INSERT INTO " + OrderModel.TABLE_NAME + "(IDPRODUCT, QUANTITY, PRICE) VALUES (?, ?, ?)";
+                String insertSQL = "INSERT INTO " + CartModel.TABLE_NAME + "(IDPRODUCT, QUANTITY, PRICE) VALUES (?, ?, ?)";
                 preparedStatement = con.prepareStatement(insertSQL);
                 preparedStatement.setInt(1, productInCart.getCode());
                 preparedStatement.setInt(2, quantityToAdd);
@@ -75,7 +75,7 @@ public class OrderModel implements OrderInterface{
             return false;
         } else {
 
-            String insertSQL = "DELETE FROM " + OrderModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
+            String insertSQL = "DELETE FROM " + CartModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
 
             try {
                 con = ds.getConnection();
@@ -103,7 +103,7 @@ public class OrderModel implements OrderInterface{
         PreparedStatement preparedStatement = null;
         ProductBean product = null;
 
-        String selectSQL = "SELECT * FROM " + OrderModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
+        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
 
         try {
             con = ds.getConnection();
@@ -149,7 +149,7 @@ public class OrderModel implements OrderInterface{
         PreparedStatement preparedStatement = null;
         Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-        String selectSQL = "SELECT * FROM " + OrderModel.TABLE_NAME;
+        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME;
 
         if (order != null && !order.equals("")) {
             selectSQL += " ORDER BY " + order;
@@ -188,7 +188,7 @@ public class OrderModel implements OrderInterface{
         PreparedStatement preparedStatement = null;
         boolean exists = false;
 
-        String selectSQL = "SELECT * FROM " + OrderModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
+        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
 
         try {
             con = ds.getConnection();
@@ -223,7 +223,7 @@ public class OrderModel implements OrderInterface{
         PreparedStatement preparedStatement = null;
         float totalPrice = 0;
 
-        String selectSQL = "SELECT ROUND(SUM(PRICE * QUANTITY), 2) AS TOTAL FROM " + OrderModel.TABLE_NAME;
+        String selectSQL = "SELECT ROUND(SUM(PRICE * QUANTITY), 2) AS TOTAL FROM " + CartModel.TABLE_NAME;
 
         try {
             con = ds.getConnection();
@@ -301,20 +301,7 @@ public class OrderModel implements OrderInterface{
             }
         }
     }
-
-    /*public int getAvailableQuantity(ProductBean product) throws SQLException {
-    Connection connection = null;
-    String selectSQL = "SELECT quantity FROM product WHERE code = ?";
-    try (PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
-        preparedStatement.setInt(1, product.getCode());
-        try (ResultSet rs = preparedStatement.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt("quantity");
-            }
-        }
-    }
-    return 0;
-    }*/
+    
 
     public int getAvailableQuantity(int code) throws SQLException {
         Connection con = null;
@@ -374,7 +361,7 @@ public class OrderModel implements OrderInterface{
             con = ds.getConnection();
             con.setAutoCommit(false);
 
-            String updateSQL = "UPDATE " + OrderModel.TABLE_NAME + " SET QUANTITY = ? WHERE IDPRODUCT = ?";
+            String updateSQL = "UPDATE " + CartModel.TABLE_NAME + " SET QUANTITY = ? WHERE IDPRODUCT = ?";
             System.out.println("mi trovo nel metodo updatequantity e il codice è: " + productInCart.getCode());
             System.out.println("La quantità da aggiungere è: " + quantityToAdd);
 

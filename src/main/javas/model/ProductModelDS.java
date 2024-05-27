@@ -119,15 +119,23 @@ public class ProductModelDS implements ProductModel {
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
+        String deleteProductSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
+        String deleteFromCartSQL = "DELETE FROM cart WHERE idProduct = ?";
 
         System.out.println("Debug: sto eliminando il prodotto con codice " + code);
 
         try {
             connection = ds.getConnection();
-            preparedStatement = connection.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, code);
 
+            // Elimina il prodotto dalla tabella cart
+            preparedStatement = connection.prepareStatement(deleteFromCartSQL);
+            preparedStatement.setInt(1, code);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            // Elimina il prodotto dalla tabella product
+            preparedStatement = connection.prepareStatement(deleteProductSQL);
+            preparedStatement.setInt(1, code);
             result = preparedStatement.executeUpdate();
 
         } finally {
@@ -141,6 +149,7 @@ public class ProductModelDS implements ProductModel {
         }
         return (result != 0);
     }
+
 
     @Override
     public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
@@ -191,5 +200,6 @@ public class ProductModelDS implements ProductModel {
         }
         return products;
     }
+
 
 }

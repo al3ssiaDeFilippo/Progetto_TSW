@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.javas.model.CartBean;
+import main.javas.model.CartModel;
 import main.javas.model.ProductBean;
 import main.javas.model.ProductModelDS;
 import main.javas.util.Carrello;
-import main.javas.model.OrderModel;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -20,7 +20,7 @@ import javax.servlet.annotation.WebServlet;
 public class ServletCarrello extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    static OrderModel model = new OrderModel();
+    static CartModel model = new CartModel();
     static ProductModelDS prMod = new ProductModelDS();
 
     public ServletCarrello() {
@@ -35,7 +35,7 @@ public class ServletCarrello extends HttpServlet {
             if (action != null) {
                 if (action.equals("add")) {
                     int code = 0;
-                    int quantity = 0;
+                    int quantity = 1;
 
                     String codeParameter = req.getParameter("code");
                     String quantityParameter = req.getParameter("quantity");
@@ -78,11 +78,13 @@ public class ServletCarrello extends HttpServlet {
                     Carrello cart = (Carrello) req.getSession().getAttribute("cart");
                     if (cart != null) {
                         ProductBean product = prMod.doRetrieveByKey(code);
-                        CartBean cartItem = new CartBean();
-                        cartItem.setCode(product.getCode());
-                        model.doDelete(product);
-                        cart.rimuovi(cartItem);
-                        req.getSession().setAttribute("cart", cart);
+                        if (product != null) {
+                            model.doDelete(product);
+                            CartBean cartItem = new CartBean();
+                            cartItem.setCode(product.getCode());
+                            cart.rimuovi(cartItem);
+                            req.getSession().setAttribute("cart", cart);
+                        }
                     }
                     List<CartBean> updatedProducts = cart.getProdotti();
                     req.setAttribute("arrayArticoli", updatedProducts);
@@ -94,8 +96,9 @@ public class ServletCarrello extends HttpServlet {
         }
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+    doGet(req, resp);
     }
 }
