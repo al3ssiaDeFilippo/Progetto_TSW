@@ -25,56 +25,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Carrello</title>
+    <title>Riepilogo Ordine</title>
 </head>
 <body>
-<h1>Carrello</h1>
+<h1>Riepilogo Ordine</h1>
 <table border="1">
     <tr>
         <th>Id Prodotto</th>
         <th>Quantità</th>
-        <th>Prezzo</th>
-        <th>Azioni</th>
+        <th>Prezzo Unitario</th>
+        <th>Subtotale</th>
     </tr>
     <%
         for (CartBean articolo : arrayArticoli) {
     %>
     <tr>
         <td><%= articolo.getCode() %></td>
-        <td>
-            <form action="UpdateQuantityServlet" method="post">
-                <input type="hidden" name="code" value="<%= articolo.getCode() %>">
-                <input type="number" name="quantity" value="<%= articolo.getQuantity() %>" min="0">
-                <input type="submit" value="Aggiorna">
-            </form>
-        </td>
-        <td> <%= articolo.getPrice() %> x <%= articolo.getQuantity() %> </td>
-        <td>
-            <form action="ServletCarrello" method="get">
-                <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="code" value="<%= articolo.getCode() %>">
-                <input type="submit" value="Elimina">
-            </form>
-        </td>
+        <td><%= articolo.getQuantity() %></td>
+        <td><%= articolo.getPrice() %> €</td>
+        <td><%= articolo.getQuantity() * articolo.getPrice() %> €</td>
     </tr>
     <%
         }
     %>
     <tr>
-        <td colspan="2">Prezzo totale:</td>
-        <td colspan="2"><%= totalPrice %></td>
+        <td colspan="4" style="text-align:right;"><strong>Totale:</strong></td>
+        <td><strong><%= totalPrice %> €</strong></td>
     </tr>
 </table>
+
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
 <% if (errorMessage != null) { %>
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
-<a href="ProductView.jsp">Torna alla home</a>
+<a href="ProductView.jsp">Continua lo shopping</a>
 
-<form action="CheckoutServlet" method="get">
-    <input type="hidden" name="nextPage" value="Checkout.jsp">
-    <button type="submit">Vai al pagamento</button>
-</form>
 
 </body>
 </html>

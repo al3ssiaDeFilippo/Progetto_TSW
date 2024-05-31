@@ -31,21 +31,25 @@ public class UserModel {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (USERNAME, NAME, SURNAME, BIRTHDATE, ADDRESS, EMAIL, PASSWORD, TELNUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, ADDRESS, EMAIL, PASSWORD, TELNUMBER, TYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = ds.getConnection();
+            con.setAutoCommit(false);
             preparedStatement = con.prepareStatement(insertSQL);
-            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(1, user.getSurname());
             preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getSurname());
+            preparedStatement.setString(3, user.getUsername());
             preparedStatement.setDate(4, user.getBirthDate());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, user.getEmail());
             preparedStatement.setString(7, user.getPassword());
-            preparedStatement.setString(8, user.getTelNumber());
+            preparedStatement.setInt(8, user.getTelNumber());
+            preparedStatement.setString(9, user.getType());
 
             preparedStatement.executeUpdate();
+            con.commit();
+            con.setAutoCommit(true);
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -72,14 +76,15 @@ public class UserModel {
 
             if (rs.next()) {
                 user = new UserBean();
-                user.setUsername(rs.getString("USERNAME"));
-                user.setName(rs.getString("NAME"));
                 user.setSurname(rs.getString("SURNAME"));
+                user.setName(rs.getString("NAME"));
+                user.setUsername(rs.getString("USERNAME"));
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
-                user.setTelNumber(rs.getString("TELNUMBER"));
+                user.setTelNumber(rs.getInt("TELNUMBER"));
+                user.setType(rs.getString("TYPE"));
             }
         } finally {
             if (preparedStatement != null) {
@@ -144,14 +149,15 @@ public class UserModel {
             while (rs.next()) {
                 UserBean user = new UserBean();
                 user.setIdUser(rs.getInt("IDUSER"));
-                user.setUsername(rs.getString("USERNAME"));
-                user.setName(rs.getString("NAME"));
                 user.setSurname(rs.getString("SURNAME"));
+                user.setName(rs.getString("NAME"));
+                user.setUsername(rs.getString("USERNAME"));
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
-                user.setTelNumber(rs.getString("TELNUMBER"));
+                user.setTelNumber(rs.getInt("TELNUMBER"));
+                user.setType(rs.getString("TYPE"));
                 users.add(user);
             }
         } finally {
@@ -185,14 +191,15 @@ public class UserModel {
             if (rs.next()) {
                 user = new UserBean();
                 user.setIdUser(rs.getInt("IDUSER"));
-                user.setUsername(rs.getString("USERNAME"));
-                user.setName(rs.getString("NAME"));
                 user.setSurname(rs.getString("SURNAME"));
+                user.setName(rs.getString("NAME"));
+                user.setUsername(rs.getString("USERNAME"));
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
-                user.setTelNumber(rs.getString("TELNUMBER"));
+                user.setTelNumber(rs.getInt("TELNUMBER"));
+                user.setType(rs.getString("TYPE"));
             }
         } finally {
             if (preparedStatement != null) {
@@ -204,5 +211,4 @@ public class UserModel {
         }
         return user;
     }
-
 }

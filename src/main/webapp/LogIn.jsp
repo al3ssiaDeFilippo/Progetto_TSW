@@ -26,7 +26,10 @@
         <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <input type="submit" value="Login">
+        <form action="LogInServlet" method="get">
+            <input type="hidden" name="nextPage" value="ProductView.jsp">
+            <input type="submit" value="Login">
+        </form>
     </div>
 </form>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>

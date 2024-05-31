@@ -68,8 +68,6 @@ public class ProductBean implements Serializable {
     public void setPhoto(Blob photo) {this.photo = photo;}
 
     //ToString
-
-
     @Override
     public String toString() {
         return "ProductBean{" +

@@ -33,9 +33,10 @@ CREATE TABLE user(
     username VARCHAR(30) UNIQUE NOT NULL,
     BirthDate DATE NOT NULL,
     address VARCHAR(70) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
-    TelNumber VARCHAR(12) NOT NULL
+    TelNumber VARCHAR(12) NOT NULL,
+	type VARCHAR(6) NOT NULL CHECK (type IN ('admin','user'))
  );
 
 CREATE VIEW user_view AS
@@ -53,5 +54,6 @@ FROM user;
 INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) 
 VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 'wood', 'brown', '85x60', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));
 INSERT INTO product (productName, details, quantity, category, price, iva, frame, frameColor, size, photo) VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 'PVC', 'white', '91x61', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
-SELECT * FROM cart;
+
+SELECT * FROM user;
 

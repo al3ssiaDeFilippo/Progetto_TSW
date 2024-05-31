@@ -72,22 +72,17 @@
 </table>
 
 <div class="centered-links">
-    <form action="ProductControl" method="get">
-        <input type="submit" value="Refresh">
-    </form>
     <a href="carrello.jsp">Visualizza Carrello</a>
     <a href="InsertPage.jsp">Inserisci un prodotto</a>
     <% if (user == null) { %>
     <a href="LogIn.jsp">Log In</a>
+    <% } if (user != null) { %>
+    <form action="LogInServlet" method="post">
+        <input type="hidden" name="action" value="logout">
+        <input type="submit" value="Logout">
+    </form>
     <% } %>
 </div>
-
-<% if (user != null) { %>
-<form action="UserServlet" method="post">
-    <input type="hidden" name="action" value="logout">
-    <input type="submit" value="Logout">
-</form>
-<% } %>
 
 </body>
 </html>

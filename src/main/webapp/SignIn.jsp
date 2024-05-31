@@ -40,6 +40,9 @@
         <input type="tel" id="telNumber" name="telNumber" required>
     </div>
     <div>
+        <input type="hidden" name="type" value="user">
+    </div>
+    <div>
         <input type="submit" value="Sign In">
     </div>
 </form>
