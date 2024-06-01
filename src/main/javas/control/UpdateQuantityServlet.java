@@ -1,4 +1,4 @@
-package main.javas.control;
+/*package main.javas.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -37,7 +37,7 @@ public class UpdateQuantityServlet extends HttpServlet {
                         ProductBean productInCart = new ProductBean();
                         productInCart.setCode(code);
                         try {
-                            int availableQuantity = model.getAvailableQuantity(code);
+                            int availableQuantity = model.getProductQuantity(code);
                             if (quantity > availableQuantity) {
                                 request.setAttribute("errorMessage", "Quantità richiesta superiore alla quantità disponibile");
                                 item.setQuantity(availableQuantity);
@@ -64,4 +64,4 @@ public class UpdateQuantityServlet extends HttpServlet {
         // Reindirizza alla pagina del carrello dopo l'aggiornamento
         response.sendRedirect(request.getContextPath() + "/carrello.jsp");
     }
-}
+}*/

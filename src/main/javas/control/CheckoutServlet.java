@@ -20,7 +20,6 @@ public class CheckoutServlet extends HttpServlet {
         super.init();
         // Inizializza il modello utente e la connessione al database
         userModel = new UserModel();
-        // Assicurati di avere una funzione che stabilisce la connessione al database in UserModel
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

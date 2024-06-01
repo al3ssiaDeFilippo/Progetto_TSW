@@ -27,6 +27,7 @@
     </div>
     <div>
         <form action="LogInServlet" method="get">
+            <input type="hidden" name="action" value="login">
             <input type="hidden" name="nextPage" value="ProductView.jsp">
             <input type="submit" value="Login">
         </form>

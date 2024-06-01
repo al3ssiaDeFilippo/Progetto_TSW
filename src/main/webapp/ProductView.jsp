@@ -58,7 +58,7 @@
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Details">
             </form>
-            <form action="ServletCarrello" method="get">
+            <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Add to Cart">

@@ -14,12 +14,6 @@
     }
     List<CartBean> arrayArticoli = carrello.getProdotti();
     CartModel model = new CartModel();
-    float totalPrice = 0;
-    try {
-        totalPrice = model.getTotalPrice();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
 %>
 
 <!DOCTYPE html>
@@ -42,15 +36,25 @@
     <tr>
         <td><%= articolo.getCode() %></td>
         <td><%= articolo.getQuantity() %></td>
+        <%
+            if(articolo.getPrice() == model.getDiscountedPrice(articolo.getCode())) {
+        %>
         <td><%= articolo.getPrice() %> €</td>
-        <td><%= articolo.getQuantity() * articolo.getPrice() %> €</td>
+        <%
+            } else {
+        %>
+        <td><del><%= articolo.getPrice() %> €</del> <span style="color: red;"><%=model.getDiscountedPrice(articolo.getCode())%> €</span></td>
+        <%
+            }
+        %>
+        <td><%=model.getDiscountedPrice(articolo.getCode()) * articolo.getQuantity()%> €</td>
     </tr>
     <%
         }
     %>
     <tr>
-        <td colspan="4" style="text-align:right;"><strong>Totale:</strong></td>
-        <td><strong><%= totalPrice %> €</strong></td>
+        <td colspan="3" style="text-align:left;"><strong>Totale:</strong></td>
+        <td><%= String.format("%.2f", carrello.calcolaPrezzoTotale(model)) %>€</td>
     </tr>
 </table>
 

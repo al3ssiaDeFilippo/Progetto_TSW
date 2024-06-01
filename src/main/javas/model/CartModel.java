@@ -1,267 +1,176 @@
 package main.javas.model;
 
+import main.javas.DriverManagerConnectionPool;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.LinkedList;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CartModel implements OrderInterface{
-    private static DataSource ds;
+public class CartModel {
 
-    static {
-        try {
-            Context initCtx = new InitialContext();
-            Context envCtx = (Context) initCtx.lookup("java:comp/env");
-
-            ds = (DataSource) envCtx.lookup("jdbc/storage");
-
-        } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
-        }
-    }
-    private static final String TABLE_NAME = "cart";
-
-    //metodo che salva un prodotto nel db nella tabella cart (salva un prodotto nel carrello)
-    @Override
-    public synchronized void doSave(ProductBean productInCart, int quantityToAdd) throws SQLException {
-        Connection con = null;
+    public void doSave(CartBean cart) throws SQLException {
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
 
+        String insertSQL = "INSERT INTO cart (idUser, idProduct, quantity, price) VALUES (?, ?, ?, ?)";
+
         try {
-            System.out.println("QuantityToAdd: " + quantityToAdd);
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            if (isProductInCart(productInCart.getCode())) {
-                updateQuantity(productInCart, quantityToAdd);
-            } else {
-                // Se il prodotto non è presente nel carrello, inserisce un nuovo record
-                String insertSQL = "INSERT INTO " + CartModel.TABLE_NAME + "(IDPRODUCT, QUANTITY, PRICE) VALUES (?, ?, ?)";
-                preparedStatement = con.prepareStatement(insertSQL);
-                preparedStatement.setInt(1, productInCart.getCode());
-                preparedStatement.setInt(2, quantityToAdd);
-                preparedStatement.setFloat(3, productInCart.getPrice());
-                preparedStatement.executeUpdate();
-            }
-            con.commit();
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement.setInt(1, cart.getIdUser());
+            preparedStatement.setInt(2, cart.getIdProduct());
+            preparedStatement.setInt(3, cart.getQuantity());
+            preparedStatement.setFloat(4, cart.getPrice());
+
+            preparedStatement.executeUpdate();
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
             }
-            if (con != null) {
-                con.close();
+            if (connection != null) {
+                connection.close();
             }
         }
     }
 
-
-
-    //elimina un prodotto dal carrello nel database
-    @Override
-    public synchronized boolean doDelete(ProductBean productInCart) throws SQLException {
-        Connection con = null;
+    public void doDelete(int code) throws SQLException {
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        int result = 0;
-
-        ProductBean existingProduct = doRetrieveByKey(productInCart.getCode());
-        if(existingProduct == null) {
-            System.out.println("Prodotto non esistente nel carrello!");
-            return false;
-        } else {
-
-            String insertSQL = "DELETE FROM " + CartModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
-
-            try {
-                con = ds.getConnection();
-                con.setAutoCommit(false);
-                preparedStatement = con.prepareStatement(insertSQL);
-                preparedStatement.setInt(1, productInCart.getCode());
-                result = preparedStatement.executeUpdate();
-                con.commit();
-                con.setAutoCommit(true);
-            } finally {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            }
-        }
-        return (result != 0);
-    }
-
-    @Override
-    public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-        ProductBean product = null;
-
-        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
+        String deleteSQL = "DELETE FROM cart WHERE code = ?";
 
         try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            preparedStatement = con.prepareStatement(selectSQL);
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(deleteSQL);
+            preparedStatement.setInt(1, code);
+
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
+    public CartBean doRetrieveByKey(int code) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        CartBean cart = new CartBean();
+
+        String selectSQL = "SELECT * FROM cart WHERE code = ?";
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, code);
 
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                product = new ProductBean();
-                product.setQuantity(rs.getInt("QUANTITY"));
-                product.setPrice(rs.getFloat("PRICE"));
-                product.setCode(rs.getInt("IDPRODUCT"));
+                cart.setCode(rs.getInt("code"));
+                cart.setIdUser(rs.getInt("idUser"));
+                cart.setIdProduct(rs.getInt("idProduct"));
+                cart.setQuantity(rs.getInt("quantity"));
+                cart.setPrice(rs.getFloat("price"));
             }
-
-            con.commit();
-            con.setAutoCommit(true);
-
-            if (product != null) {
-                System.out.println("Prodotto recuperato con successo: " + product.getCode());
-            } else {
-                System.out.println("Nessun prodotto trovato con il codice: " + code);
-            }
-
         } finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } finally {
-                if (con != null) {
-                    con.close();
-                }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
             }
         }
-        return product;
+        return cart;
     }
 
-    @Override
-    public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
-        Connection con = null;
+    public boolean productExists(int productId) throws SQLException {
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
-        Collection<ProductBean> products = new LinkedList<ProductBean>();
+        ResultSet resultSet = null;
+        boolean exists = false;
 
-        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME;
-
-        if (order != null && !order.equals("")) {
-            selectSQL += " ORDER BY " + order;
-        }
+        String query = "SELECT COUNT(*) FROM product WHERE code = ?";
 
         try {
-            con = ds.getConnection();
-            preparedStatement = con.prepareStatement(selectSQL);
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, productId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                exists = count > 0;
+            }
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+
+        return exists;
+    }
+
+    public List<CartBean> doRetrieveAll() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<CartBean> carts = new ArrayList<>();
+
+        String selectSQL = "SELECT * FROM cart";
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
 
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                ProductBean bean = new ProductBean();
-                bean.setQuantity(rs.getInt("QUANTITY"));
-                bean.setPrice(rs.getFloat("PRICE"));
-                bean.setCode(rs.getInt("IDPRODUCT"));
-                products.add(bean);
+                CartBean cart = new CartBean();
+                cart.setCode(rs.getInt("code"));
+                cart.setIdUser(rs.getInt("idUser"));
+                cart.setIdProduct(rs.getInt("idProduct"));
+                cart.setQuantity(rs.getInt("quantity"));
+                cart.setPrice(rs.getFloat("price"));
+                carts.add(cart);
             }
         } finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } finally {
-                if (con != null) {
-                    con.close();
-                }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
             }
         }
-        return products;
+        return carts;
     }
 
-    // Metodo per verificare se un prodotto è presente nel carrello
-    private boolean isProductInCart(int productId) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-        boolean exists = false;
-
-        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE IDPRODUCT = ?";
-
-        try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            preparedStatement = con.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, productId);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                exists = true;
-            }
-
-            con.commit();
-            con.setAutoCommit(true);
-        } finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } finally {
-                if (con != null) {
-                    con.close();
-                }
-            }
-        }
-        return exists;
-    }
-
-    public synchronized float getTotalPrice() throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-        float totalPrice = 0;
-
-        String selectSQL = "SELECT ROUND(SUM(PRICE * QUANTITY), 2) AS TOTAL FROM " + CartModel.TABLE_NAME;
-
-        try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            preparedStatement = con.prepareStatement(selectSQL);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                totalPrice = rs.getFloat("TOTAL");
-            }
-
-            con.commit();
-            con.setAutoCommit(true);
-        } finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } finally {
-                if (con != null) {
-                    con.close();
-                }
-            }
-        }
-        return totalPrice;
-    }
-
-    public synchronized float getPriceWithoutIVA(int code) throws SQLException {
+    public synchronized float getDiscountedPrice(int code) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
 
-        String query = "SELECT PRICE, IVA, ROUND((PRICE / (1 + IVA / 100)), 2) AS PRICE_WITHOUT_IVA " +
-                "FROM PRODUCT WHERE CODE = ?";
+        System.out.println("Debug: mi trovo nel metodo getDiscountedPrice e il codice è: " + code);
+
+        String query = "SELECT productName, price, discount, ROUND(price - (price * discount / 100), 2) " +
+                "AS price_after_discount FROM product WHERE code = ?";
+
 
         try {
-            con = ds.getConnection();
+            con = DriverManagerConnectionPool.getConnection();
             con.setAutoCommit(false);
             preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, code);
@@ -269,7 +178,7 @@ public class CartModel implements OrderInterface{
             rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                return rs.getFloat("PRICE_WITHOUT_IVA");
+                return rs.getFloat("price_after_discount");
             } else {
                 throw new SQLException("No product found with code: " + code);
             }
@@ -301,82 +210,68 @@ public class CartModel implements OrderInterface{
             }
         }
     }
-    
 
-    public int getAvailableQuantity(int code) throws SQLException {
+    public int getProductQuantity(int code) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
+        int quantity = 0;
 
         try {
-            con = ds.getConnection();
+            con = DriverManagerConnectionPool.getConnection();
             con.setAutoCommit(false);
             String selectSQL = "SELECT quantity FROM product WHERE code = ?";
             preparedStatement = con.prepareStatement(selectSQL);
-
-            preparedStatement = con.prepareStatement(selectSQL);
             preparedStatement.setInt(1, code);
-
             rs = preparedStatement.executeQuery();
+
             if (rs.next()) {
-                return rs.getInt("QUANTITY");
+                quantity = rs.getInt("quantity");
             } else {
                 throw new SQLException("No product found with code: " + code);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new SQLException(e);
+            con.commit();
+        } catch (SQLException e) {
+            if (con != null) {
+                con.rollback();
+            }
+            throw e;
         } finally {
             if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-    public synchronized void updateQuantity(ProductBean productInCart, int quantityToAdd) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-
-            String updateSQL = "UPDATE " + CartModel.TABLE_NAME + " SET QUANTITY = ? WHERE IDPRODUCT = ?";
-            System.out.println("mi trovo nel metodo updatequantity e il codice è: " + productInCart.getCode());
-            System.out.println("La quantità da aggiungere è: " + quantityToAdd);
-
-            preparedStatement = con.prepareStatement(updateSQL);
-            preparedStatement.setInt(1, quantityToAdd);
-            preparedStatement.setInt(2, productInCart.getCode());
-            preparedStatement.executeUpdate();
-
-            con.commit();
-        } finally {
-            if(preparedStatement != null) {
                 preparedStatement.close();
             }
-            if(con != null) {
+            if (con != null) {
                 con.close();
+            }
+        }
+
+        return quantity;
+    }
+
+    // Aggiungi il metodo updateQuantity
+    public void updateQuantity(int code, int newQuantity) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String updateSQL = "UPDATE cart SET quantity = ? WHERE code = ?";
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection();
+            preparedStatement = connection.prepareStatement(updateSQL);
+            preparedStatement.setInt(1, newQuantity);
+            preparedStatement.setInt(2, code);
+
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
             }
         }
     }

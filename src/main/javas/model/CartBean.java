@@ -10,19 +10,20 @@ public class CartBean {
     int quantity;
     float price;
     int idProduct;
-
-    private static int countQuantity = 0;
+    int idUser;
 
     public CartBean() {
         code = -1;
         quantity = 0;
         price = 0;
         idProduct = 0;
+        idUser = 0;
 
-        countQuantity++;
     }
 
-    //restituisce il prezzo del prodotto
+    public int getIdUser() { return idUser; }
+
+    public void setIdUser(int idUser) { this.idUser = idUser; }
 
     public int getCode() {
         return code;
@@ -61,6 +62,7 @@ public class CartBean {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", idProduct=" + idProduct +
+                ", idUser=" + idUser +
                 '}';
     }
 }

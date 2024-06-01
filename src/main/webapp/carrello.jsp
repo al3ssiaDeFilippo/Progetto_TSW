@@ -14,12 +14,6 @@
     }
     List<CartBean> arrayArticoli = carrello.getProdotti();
     CartModel model = new CartModel();
-    float totalPrice = 0;
-    try {
-        totalPrice = model.getTotalPrice();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
 %>
 
 <!DOCTYPE html>
@@ -42,16 +36,37 @@
     <tr>
         <td><%= articolo.getCode() %></td>
         <td>
-            <form action="UpdateQuantityServlet" method="post">
+            <form action="ServletCarrello" method="post">
+                <input type="hidden" name="action" value="updateQuantity">
                 <input type="hidden" name="code" value="<%= articolo.getCode() %>">
-                <input type="number" name="quantity" value="<%= articolo.getQuantity() %>" min="0">
+                <%
+                    int maxQuantity = 0;
+                    try {
+                        maxQuantity = model.getProductQuantity(articolo.getCode());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                %>
+                <input type="number" name="quantity" value="<%= articolo.getQuantity() %>" min="0" max="<%= maxQuantity %>">
                 <input type="submit" value="Aggiorna">
             </form>
         </td>
-        <td> <%= articolo.getPrice() %> x <%= articolo.getQuantity() %> </td>
+        <%
+            if(model.getDiscountedPrice(articolo.getCode()) == articolo.getPrice()) {
+        %>
+        <td> <%= articolo.getPrice() %> € x <%= articolo.getQuantity() %> </td>
+        <%
+        } else {
+            if(model.getDiscountedPrice(articolo.getCode()) != articolo.getPrice()) {
+        %>
+        <td> <del><%= articolo.getPrice() %></del> <span style="color: red;"><%= model.getDiscountedPrice(articolo.getCode()) %>  </span> € x <%= articolo.getQuantity() %> </td>
+        <%
+                }
+            }
+        %>
         <td>
-            <form action="ServletCarrello" method="get">
-                <input type="hidden" name="action" value="delete">
+            <form action="ServletCarrello" method="post">
+                <input type="hidden" name="action" value="remove">
                 <input type="hidden" name="code" value="<%= articolo.getCode() %>">
                 <input type="submit" value="Elimina">
             </form>
@@ -60,15 +75,18 @@
     <%
         }
     %>
-    <tr>
+    <tr class="total-row">
         <td colspan="2">Prezzo totale:</td>
-        <td colspan="2"><%= totalPrice %></td>
+        <td><%= String.format("%.2f", carrello.calcolaPrezzoTotale(model)) %>€</td>
+        <td></td>
     </tr>
+
 </table>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
 <% if (errorMessage != null) { %>
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
+
 <a href="ProductView.jsp">Torna alla home</a>
 
 <form action="CheckoutServlet" method="get">
