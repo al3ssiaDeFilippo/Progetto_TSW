@@ -28,7 +28,7 @@ public class CheckoutServlet extends HttpServlet {
 
         if (user == null) {
             // L'utente non è loggato, imposta la pagina di destinazione dopo il login
-            String nextPage = "Checkout.jsp";
+            String nextPage = "CheckoutShipping.jsp";
             session.setAttribute("nextPage", nextPage);
             response.sendRedirect("LogIn.jsp");
         } else {
@@ -67,9 +67,7 @@ public class CheckoutServlet extends HttpServlet {
     }
 
     private void processCheckout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Implementa qui la logica del checkout
-        // ...
-        // Dopo aver completato il checkout, reindirizza l'utente alla pagina di conferma
-        response.sendRedirect("Checkout.jsp");
+
+        response.sendRedirect("CheckoutShipping.jsp");
     }
 }

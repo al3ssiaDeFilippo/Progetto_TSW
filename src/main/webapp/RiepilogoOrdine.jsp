@@ -6,9 +6,13 @@
 <%@ page import="main.javas.model.CartModel" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="main.javas.model.UserBean" %>
+<%@ page import="main.javas.model.ShippingBean" %>
+<%@ page import="main.javas.model.CreditCardBean" %>
 
 <%
     Carrello carrello = (Carrello) session.getAttribute("cart");
+    ShippingBean shippingAddress = (ShippingBean) session.getAttribute("shippingAddress");
+    CreditCardBean cardInfo = (CreditCardBean) session.getAttribute("cardInfo");
     if (carrello == null) {
         carrello = new Carrello();
     }
@@ -23,47 +27,53 @@
 </head>
 <body>
 <h1>Riepilogo Ordine</h1>
+
+<h2>Prodotti Acquistati</h2>
 <table border="1">
     <tr>
-        <th>Id Prodotto</th>
-        <th>Quantità</th>
-        <th>Prezzo Unitario</th>
-        <th>Subtotale</th>
+        <th>Code</th>
+        <th>Quantity</th>
+        <th>Price</th>
     </tr>
-    <%
-        for (CartBean articolo : arrayArticoli) {
-    %>
+    <% for (CartBean prodotto : arrayArticoli) { %>
     <tr>
-        <td><%= articolo.getCode() %></td>
-        <td><%= articolo.getQuantity() %></td>
-        <%
-            if(articolo.getPrice() == model.getDiscountedPrice(articolo.getCode())) {
-        %>
-        <td><%= articolo.getPrice() %> €</td>
-        <%
-            } else {
-        %>
-        <td><del><%= articolo.getPrice() %> €</del> <span style="color: red;"><%=model.getDiscountedPrice(articolo.getCode())%> €</span></td>
-        <%
-            }
-        %>
-        <td><%=model.getDiscountedPrice(articolo.getCode()) * articolo.getQuantity()%> €</td>
+        <td><%= prodotto.getProductCode() %></td>
+        <td><%= prodotto.getQuantity() %></td>
+        <td>
+            <% if(model.getSingleProductDiscountedPrice(prodotto) == prodotto.getPrice()) { %>
+            <%= prodotto.getPrice() %> € x <%= prodotto.getQuantity() %>
+            <% } else if(model.getSingleProductDiscountedPrice(prodotto) != prodotto.getPrice()) { %>
+            <del><%= prodotto.getPrice() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € x <%= prodotto.getQuantity() %>
+            <% } %>
+        </td>
     </tr>
-    <%
-        }
-    %>
-    <tr>
-        <td colspan="3" style="text-align:left;"><strong>Totale:</strong></td>
-        <td><%= String.format("%.2f", carrello.calcolaPrezzoTotale(model)) %>€</td>
-    </tr>
+    <% } %>
 </table>
+
+<h2>Indirizzo di Spedizione</h2>
+<% if (shippingAddress != null) { %>
+<p><%= shippingAddress.getRecipientName() %></p>
+<p><%= shippingAddress.getAddress() %></p>
+<p><%= shippingAddress.getCity() %></p>
+<p><%= shippingAddress.getCap() %></p>
+<% } else { %>
+<p>Indirizzo di spedizione non disponibile</p>
+<% } %>
+
+<h2>Informazioni sulla Carta</h2>
+<% if (cardInfo != null) { %>
+<p><%= cardInfo.getIdCard() %></p>
+<p><%= cardInfo.getOwnerCard() %></p>
+<p><%= cardInfo.getExpirationDate() %></p>
+<% } else { %>
+<p>Informazioni sulla carta non disponibili</p>
+<% } %>
 
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
 <% if (errorMessage != null) { %>
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
 <a href="ProductView.jsp">Continua lo shopping</a>
-
 
 </body>
 </html>

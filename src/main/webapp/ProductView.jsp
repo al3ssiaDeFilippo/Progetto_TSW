@@ -77,11 +77,13 @@
     <% if (user == null) { %>
     <a href="LogIn.jsp">Log In</a>
     <% } if (user != null) { %>
+    <a href="ModificaDati.jsp">Profilo</a>
     <form action="LogInServlet" method="post">
         <input type="hidden" name="action" value="logout">
         <input type="submit" value="Logout">
     </form>
     <% } %>
+
 </div>
 
 </body>

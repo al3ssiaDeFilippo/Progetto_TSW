@@ -14,7 +14,7 @@ public class UserBean {
     String address;
     String email;
     String password;
-    int TelNumber;
+    String TelNumber;
     String type;
 
     public UserBean() {
@@ -26,7 +26,7 @@ public class UserBean {
         address = "";
         email = "";
         password = "";
-        TelNumber = 0;
+        TelNumber = "";
         type = "";
     }
 
@@ -34,11 +34,11 @@ public class UserBean {
 
     public void setType(String type) { this.type = type; }
 
-    public int getTelNumber() {
+    public String getTelNumber() {
         return TelNumber;
     }
 
-    public void setTelNumber(int telNumber) {
+    public void setTelNumber(String telNumber) {
         TelNumber = telNumber;
     }
 

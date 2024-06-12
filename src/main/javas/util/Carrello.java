@@ -18,22 +18,41 @@ public class Carrello {
     }
 
     public void aggiungi(CartBean prodotto) {
-        for (CartBean p : prodotti) {
-            if (p.getCode() == prodotto.getCode()) {
-                // Se il prodotto è già presente, aumenta la quantità e esci dal metodo
-                p.setQuantity(p.getQuantity()  + prodotto.getQuantity());
-                return;
+        ProductModelDS productModel = new ProductModelDS();
+        ProductBean product = null;
+        try {
+            product = productModel.doRetrieveByKey(prodotto.getProductCode());
+
+            for (CartBean p : prodotti) {
+                if (p.getProductCode() == prodotto.getProductCode()) {
+                    // If the product is already in the cart, increase the quantity up to the available quantity
+                    int newQuantity = p.getQuantity() + prodotto.getQuantity();
+                    if (newQuantity > product.getQuantity()) {
+                        p.setQuantity(product.getQuantity());
+                        System.out.println("Requested quantity exceeds available quantity. Set to maximum available quantity.");
+                    } else {
+                        p.setQuantity(newQuantity);
+                    }
+                    return;
+                }
             }
+            // If the product is not already in the cart, add it
+            if (prodotto.getQuantity() > product.getQuantity()) {
+                prodotto.setQuantity(product.getQuantity());
+                System.out.println("Requested quantity exceeds available quantity. Set to maximum available quantity.");
+            }
+            prodotti.add(prodotto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
         }
-        // Se il prodotto non è già presente, aggiungilo al carrello
-        prodotti.add(prodotto);
     }
 
     public void rimuovi(CartBean prodotto) {
         Iterator<CartBean> iterator = prodotti.iterator();
         while (iterator.hasNext()) {
             CartBean p = iterator.next();
-            if (p.getCode() == prodotto.getCode()) {
+            if (p.getProductCode() == prodotto.getProductCode()) {
                 iterator.remove();
                 break; // Esci dopo aver rimosso il prodotto
             }
@@ -42,7 +61,7 @@ public class Carrello {
 
     public void aggiornaQuantita(int code, int quantity) {
         for (CartBean prodotto : prodotti) {
-            if (prodotto.getCode() == code) {
+            if (prodotto.getProductCode() == code) {
                 prodotto.setQuantity(quantity);
                 break;
             }
@@ -52,7 +71,7 @@ public class Carrello {
     public float calcolaPrezzoTotale(CartModel model) throws SQLException {
         float totalPrice = 0;
         for(CartBean prodotto : prodotti) {
-            float discountedPrice = model.getDiscountedPrice(prodotto.getCode());
+            float discountedPrice = model.getDiscountedTotalPrice(prodotti);
             totalPrice += discountedPrice * prodotto.getQuantity();
         }
         return totalPrice;
@@ -60,7 +79,7 @@ public class Carrello {
 
     public boolean contieneProdotto(int code) {
         for (CartBean prodotto : prodotti) {
-            if (prodotto.getCode() == code) {
+            if (prodotto.getProductCode() == code) {
                 return true;
             }
         }

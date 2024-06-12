@@ -27,20 +27,27 @@ public class LogInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        System.out.println("Action: " + action); // Debug print
+
         try {
             if ("register".equals(action)) {
+                System.out.println("Attempting to register..."); // Debug print
                 register(request, response);
             } else if ("login".equals(action)) {
+                System.out.println("Attempting to login..."); // Debug print
                 login(request, response);
             } else if ("logout".equals(action)) {
+                System.out.println("Attempting to logout..."); // Debug print
                 logout(request, response);
             }
         } catch (SQLException e) {
+            System.out.println("SQLException caught: " + e.getMessage()); // Debug print
             throw new ServletException("Database error in LogInServlet", e);
         }
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+
         String username = request.getParameter("username");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
@@ -48,45 +55,42 @@ public class LogInServlet extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String telNumberString = request.getParameter("telNumber");
+        String telNumber = request.getParameter("telNumber");
         String type = request.getParameter("type");
 
+        System.out.println("Username: " + username); // Debug print
+        System.out.println("Name: " + name); // Debug print
+        System.out.println("Surname: " + surname); // Debug print
+        System.out.println("Birthdate: " + birthdateString); // Debug print
+        System.out.println("Address: " + address); // Debug print
+        System.out.println("Email: " + email); // Debug print
+        System.out.println("Password: " + password); // Debug print
+        System.out.println("TelNumber: " + telNumber); // Debug print
+        System.out.println("Type: " + type); // Debug print
 
-        // Controllo se la stringa non è null e se corrisponde al formato di una data
+
+        // Validazione dei campi obbligatori
+        if (username == null || name == null || surname == null || birthdateString == null || address == null || email == null || password == null || telNumber == null || type == null) {
+            request.setAttribute("errorMessage", "Tutti i campi sono obbligatori");
+            request.getRequestDispatcher("LogIn.jsp").forward(request, response);
+            return;
+        }
+
+        // Parsing della data di nascita
         Date birthdate = null;
-        if (birthdateString != null && birthdateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            try {
-                // Definizione del formato della data
-                SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-
-                // Conversione della stringa in una data util.Date
-                java.util.Date dataNascitaUtil = formatoData.parse(birthdateString);
-
-                // Conversione da util.Date a sql.Date
-                birthdate = new Date(dataNascitaUtil.getTime());
-                System.out.println("Data di nascita valida: " + birthdate);
-            } catch (ParseException e) {
-                System.out.println("La stringa non è nel formato di data valido (yyyy-MM-dd).");
-            }
-        } else {
-            System.out.println("La stringa fornita è null o non è nel formato di data corretto.");
+        try {
+            SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date dataNascitaUtil = formatoData.parse(birthdateString);
+            birthdate = new Date(dataNascitaUtil.getTime());
+            System.out.println("Parsed birthdate: " + birthdate.toString()); // Debug print
+        } catch (ParseException e) {
+            request.setAttribute("errorMessage", "La data di nascita non è nel formato corretto (yyyy-MM-dd)");
+            request.getRequestDispatcher("LogIn.jsp").forward(request, response);
+            System.out.println("Error parsing birthdate: " + e.getMessage()); // Debug print
+            return;
         }
 
-        // Controllo se la stringa non è null e se è un numero valido
-        int telNumber = 0;
-        if (telNumberString != null && telNumberString.matches("\\d+")) {
-            try {
-                // Conversione della stringa in un intero
-                telNumber = Integer.parseInt(telNumberString);
-                System.out.println("Numero di telefono valido: " + telNumber);
-            } catch (NumberFormatException e) {
-                System.out.println("La stringa non è un numero valido.");
-            }
-        } else {
-            System.out.println("La stringa fornita è null o non è un numero.");
-        }
-
-
+        // Creazione dell'oggetto UserBean
         UserBean userBean = new UserBean();
         userBean.setSurname(surname);
         userBean.setName(name);
@@ -98,8 +102,15 @@ public class LogInServlet extends HttpServlet {
         userBean.setTelNumber(telNumber);
         userBean.setType(type);
 
+        System.out.println("Attempting to save user to database..."); // Debug print
+
+        // Salvataggio dell'utente nel database
         userModel.doSave(userBean);
 
+        System.out.println("User saved to database."); // Debug print
+
+        // Reindirizzamento alla pagina di login con un messaggio di successo
+        request.setAttribute("successMessage", "Registrazione completata con successo. Effettua il login.");
         request.getRequestDispatcher("LogIn.jsp").forward(request, response);
     }
 
@@ -110,37 +121,28 @@ public class LogInServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String nextPage = (String) session.getAttribute("nextPage");
 
-        System.out.println("Valore di nextpage: " + nextPage);
-
         UserBean userBean = userModel.doRetrieveByUsername(username);
 
         if (userBean != null && userBean.getPassword().equals(password)) {
+            System.out.println("User login successful."); // Debug print
             session.setAttribute("user", userBean);
 
-            // Check for items in the session cart and save them to the database
-            Carrello sessionCart = (Carrello) session.getAttribute("cart");
-            if (sessionCart != null) {
-                List<CartBean> prodotti = sessionCart.getProdotti();
-                System.out.println(prodotti.size());
-                for (CartBean item : prodotti) {
-                    // Check if the product exists in the database
-                    CartModel cartModel = new CartModel();
-                    System.out.println("ciaoooooo: " + item.getIdProduct());
-                    if (cartModel.productExists(item.getIdProduct())) {
-                        item.setIdUser(userBean.getIdUser()); // Set user ID for each cart item
-                        cartModel.doSave(item); // Save item to database
-                    } else {
-                        System.out.println("Product with ID " + item.getIdProduct() + " does not exist.");
-                    }
-                }
-                session.removeAttribute("cart"); // Clear the session cart
+            // Caricamento del carrello dell'utente dal database
+            CartModel cartModel = new CartModel();
+            List<CartBean> cartItems = cartModel.doRetrieveAll(userBean.getIdUser());
+            Carrello cart = new Carrello();
+            for (CartBean item : cartItems) {
+                cart.aggiungi(item);
             }
+            session.setAttribute("cart", cart);
 
+            // Reindirizzamento alla pagina successiva
             if (nextPage == null || nextPage.isEmpty()) {
-                nextPage = "ProductView.jsp"; // Default page if nextPage is not set
+                nextPage = "ProductView.jsp"; // Pagina predefinita se nextPage non è impostata
             }
             response.sendRedirect(response.encodeRedirectURL(nextPage));
         } else {
+            System.out.println("User login failed."); // Debug print
             request.setAttribute("errorMessage", "Username o password non validi");
             request.getRequestDispatcher("LogIn.jsp").forward(request, response);
         }
@@ -150,6 +152,7 @@ public class LogInServlet extends HttpServlet {
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         if (session != null) {
+            System.out.println("Invalidating session..."); // Debug print
             session.invalidate();
         }
         response.sendRedirect("ProductView.jsp");

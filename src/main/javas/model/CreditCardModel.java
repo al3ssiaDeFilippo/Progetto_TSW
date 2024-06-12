@@ -17,20 +17,19 @@ public class CreditCardModel {
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
 
-            ds = (DataSource) initCtx.lookup("jdbc/storage");
+            ds = (DataSource) envCtx.lookup("jdbc/storage");
         } catch (NamingException e) {
             System.out.println("Error:" + e.getMessage());
         }
     }
 
-    private static final String TABLE_NAME = "creditCard";
+    private static final String TABLE_NAME = "card";
 
     public synchronized void doSave(CreditCardBean creditCard) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO" + CreditCardModel.TABLE_NAME + "(idCard, ownerCard, expitation , cvv) VALUES (?, ?, ?, ?)";
-
+        String insertSQL = "INSERT INTO " + CreditCardModel.TABLE_NAME + " (idCard, ownerCard, expirationDate, cvv, idUser) VALUES (?, ?, ?, ?, ?)";
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(insertSQL);
@@ -38,6 +37,7 @@ public class CreditCardModel {
             preparedStatement.setString(2, creditCard.getOwnerCard());
             preparedStatement.setDate(3, creditCard.getExpirationDate());
             preparedStatement.setInt(4, creditCard.getCvv());
+            preparedStatement.setInt(5, creditCard.getIdUser());
 
             preparedStatement.executeUpdate();
         } finally {
@@ -73,12 +73,12 @@ public class CreditCardModel {
         }
     }
 
-    public synchronized CreditCardBean doRetriveByKey(int idCard) throws SQLException, SQLException {
+    public synchronized CreditCardBean doRetriveByKey(int idCard) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement= null;
         CreditCardBean creditCard = null;
 
-        String selectSQL = "SELECT * FROM" + CreditCardModel.TABLE_NAME + " WHERE idCard = ?";
+        String selectSQL = "SELECT * FROM " + CreditCardModel.TABLE_NAME + " WHERE idCard = ?";
 
         try {
             con = ds.getConnection();
@@ -90,8 +90,10 @@ public class CreditCardModel {
             if (rs.next()) {
                 creditCard = new CreditCardBean();
                 creditCard.setIdCard(rs.getInt("idCard"));
-                creditCard.setExpirationDate(rs.getDate("scadenza"));
+                creditCard.setOwnerCard(rs.getString("ownerCard"));
+                creditCard.setExpirationDate(rs.getDate("expirationDate"));
                 creditCard.setCvv(rs.getInt("cvv"));
+                creditCard.setIdUser(rs.getInt("idUser"));
             }
         } finally {
             if (preparedStatement != null) {

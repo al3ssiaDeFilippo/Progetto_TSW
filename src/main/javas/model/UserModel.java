@@ -44,7 +44,7 @@ public class UserModel {
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, user.getEmail());
             preparedStatement.setString(7, user.getPassword());
-            preparedStatement.setInt(8, user.getTelNumber());
+            preparedStatement.setString(8, user.getTelNumber());
             preparedStatement.setString(9, user.getType());
 
             preparedStatement.executeUpdate();
@@ -83,7 +83,7 @@ public class UserModel {
                 user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
-                user.setTelNumber(rs.getInt("TELNUMBER"));
+                user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setType(rs.getString("TYPE"));
             }
         } finally {
@@ -156,7 +156,7 @@ public class UserModel {
                 user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
-                user.setTelNumber(rs.getInt("TELNUMBER"));
+                user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setType(rs.getString("TYPE"));
                 users.add(user);
             }
@@ -198,7 +198,7 @@ public class UserModel {
                 user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
-                user.setTelNumber(rs.getInt("TELNUMBER"));
+                user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setType(rs.getString("TYPE"));
             }
         } finally {

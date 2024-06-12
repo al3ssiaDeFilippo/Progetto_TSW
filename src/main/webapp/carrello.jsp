@@ -8,12 +8,14 @@
 <%@ page import="main.javas.model.UserBean" %>
 
 <%
-    Carrello carrello = (Carrello) session.getAttribute("cart");
-    if (carrello == null) {
-        carrello = new Carrello();
+    Carrello cart = (Carrello) session.getAttribute("cart");
+    if (cart == null) {
+        cart = new Carrello();
+        session.setAttribute("cart", cart);
     }
-    List<CartBean> arrayArticoli = carrello.getProdotti();
+    List<CartBean> prodotti = cart.getProdotti();
     CartModel model = new CartModel();
+    float totalPrice = model.getDiscountedTotalPrice(prodotti);
 %>
 
 <!DOCTYPE html>
@@ -25,62 +27,50 @@
 <h1>Carrello</h1>
 <table border="1">
     <tr>
-        <th>Id Prodotto</th>
-        <th>Quantità</th>
-        <th>Prezzo</th>
-        <th>Azioni</th>
+        <th>Code</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
     </tr>
-    <%
-        for (CartBean articolo : arrayArticoli) {
-    %>
+    <% for (CartBean prodotto : prodotti) { %>
     <tr>
-        <td><%= articolo.getCode() %></td>
+        <td><%= prodotto.getProductCode() %></td>
         <td>
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="updateQuantity">
-                <input type="hidden" name="code" value="<%= articolo.getCode() %>">
-                <%
-                    int maxQuantity = 0;
-                    try {
-                        maxQuantity = model.getProductQuantity(articolo.getCode());
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                %>
-                <input type="number" name="quantity" value="<%= articolo.getQuantity() %>" min="0" max="<%= maxQuantity %>">
-                <input type="submit" value="Aggiorna">
+                <input type="hidden" name="code" value="<%= prodotto.getProductCode() %>">
+                <input type="number" name="quantity" value="<%= prodotto.getQuantity() %>" min="1" max="<%= model.ProductMaxQuantity(prodotto) %>">
+                <input type="submit" value="Update">
             </form>
         </td>
+
         <%
-            if(model.getDiscountedPrice(articolo.getCode()) == articolo.getPrice()) {
+            if(model.getSingleProductDiscountedPrice(prodotto) == prodotto.getPrice()) {
         %>
-        <td> <%= articolo.getPrice() %> € x <%= articolo.getQuantity() %> </td>
+        <td> <%= prodotto.getPrice() %> € x <%= prodotto.getQuantity() %> </td>
         <%
         } else {
-            if(model.getDiscountedPrice(articolo.getCode()) != articolo.getPrice()) {
+            if(model.getSingleProductDiscountedPrice(prodotto) != prodotto.getPrice()) {
         %>
-        <td> <del><%= articolo.getPrice() %></del> <span style="color: red;"><%= model.getDiscountedPrice(articolo.getCode()) %>  </span> € x <%= articolo.getQuantity() %> </td>
+        <td> <del><%= prodotto.getPrice() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € x <%= prodotto.getQuantity() %> </td>
         <%
                 }
             }
         %>
+
         <td>
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="remove">
-                <input type="hidden" name="code" value="<%= articolo.getCode() %>">
-                <input type="submit" value="Elimina">
+                <input type="hidden" name="code" value="<%= prodotto.getProductCode() %>">
+                <input type="submit" value="Remove">
             </form>
         </td>
     </tr>
-    <%
-        }
-    %>
-    <tr class="total-row">
-        <td colspan="2">Prezzo totale:</td>
-        <td><%= String.format("%.2f", carrello.calcolaPrezzoTotale(model)) %>€</td>
-        <td></td>
+    <% } %>
+    <tr>
+        <td colspan="2">Total Price</td>
+        <td colspan="2"> <del><%=model.getTotalPriceWithDiscount(prodotti)%> € </del> <span style="color: red;"><%=totalPrice%></span> €</td>
     </tr>
-
 </table>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
 <% if (errorMessage != null) { %>
