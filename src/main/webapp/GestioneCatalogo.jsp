@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.model.ProductBean" %>
-<%@ page import="main.javas.model.UserBean" %>
+
 
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");
@@ -10,8 +10,6 @@
         return; // Stop further processing of the page
     }
 
-    // Use the implicit session object
-    UserBean user = (UserBean) session.getAttribute("user");
 %>
 
 <!DOCTYPE html>
@@ -53,10 +51,10 @@
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Details">
             </form>
-            <form action="ServletCarrello" method="post">
-                <input type="hidden" name="action" value="add">
+            <form action="ProductControl" method="get">
+                <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
-                <input type="submit" value="Add to Cart">
+                <input type="submit" value="Delete">
             </form>
         </td>
     </tr>
@@ -65,20 +63,5 @@
         }
     %>
 </table>
-
-<div class="centered-links">
-    <a href="carrello.jsp">Visualizza Carrello</a>
-    <% if (user == null) { %>
-    <a href="LogIn.jsp">Log In</a>
-    <% } if (user != null) { %>
-    <a href="Profilo.jsp">Profilo</a>
-    <form action="LogInServlet" method="post">
-        <input type="hidden" name="action" value="logout">
-        <input type="submit" value="Logout">
-    </form>
-    <% } %>
-
-</div>
-
 </body>
 </html>

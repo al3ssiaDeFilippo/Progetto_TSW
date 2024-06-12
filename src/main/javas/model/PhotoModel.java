@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Arrays;
+import java.util.List;
 
 public class PhotoModel {
 
@@ -55,7 +57,7 @@ public class PhotoModel {
         } catch (SQLException e) {
             System.out.println(e);
         }
-            finally {
+        finally {
             try {
                 if(preparedStatement != null) {
                     preparedStatement.close();
@@ -86,6 +88,11 @@ public class PhotoModel {
                 throw new FileNotFoundException("File not found: " + photoPath);
             }
 
+            // Aggiungi il controllo sul tipo di immagine qui
+            if (!isValidImageFile(photoPath)) {
+                throw new IllegalArgumentException("Invalid image type: " + photoPath);
+            }
+
             fis = new FileInputStream(file);
 
             // Converti il file in un array di byte
@@ -97,7 +104,6 @@ public class PhotoModel {
             preparedStatement.setInt(2, product.getCode());
 
             System.out.println("Updating photo for product with ID: " + product.getCode());
-
 
             int rowsUpdated = preparedStatement.executeUpdate();
 
@@ -121,5 +127,11 @@ public class PhotoModel {
                 con.close();
             }
         }
+    }
+
+    public static boolean isValidImageFile(String filePath) {
+        List<String> validExtensions = Arrays.asList(".jpg", ".jpeg"); // aggiungi altre estensioni valide se necessario
+        String fileExtension = filePath.substring(filePath.lastIndexOf('.')).toLowerCase();
+        return validExtensions.contains(fileExtension);
     }
 }

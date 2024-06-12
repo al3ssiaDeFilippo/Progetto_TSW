@@ -13,6 +13,16 @@
   </servlet>
 
   <servlet>
+    <servlet-name>DetailControl</servlet-name>
+    <servlet-class>main.javas.control.DetailControl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DetailControl</servlet-name>
+    <url-pattern>/detail</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>main.javas.control.LogInServlet</servlet-class>
   </servlet>

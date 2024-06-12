@@ -56,7 +56,7 @@ public class LogInServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String telNumber = request.getParameter("telNumber");
-        String type = request.getParameter("type");
+        String admin = request.getParameter("admin");
 
         System.out.println("Username: " + username); // Debug print
         System.out.println("Name: " + name); // Debug print
@@ -66,11 +66,11 @@ public class LogInServlet extends HttpServlet {
         System.out.println("Email: " + email); // Debug print
         System.out.println("Password: " + password); // Debug print
         System.out.println("TelNumber: " + telNumber); // Debug print
-        System.out.println("Type: " + type); // Debug print
+        System.out.println("Admin: " + admin); // Debug print
 
 
         // Validazione dei campi obbligatori
-        if (username == null || name == null || surname == null || birthdateString == null || address == null || email == null || password == null || telNumber == null || type == null) {
+        if (username == null || name == null || surname == null || birthdateString == null || address == null || email == null || password == null || telNumber == null || admin == null) {
             request.setAttribute("errorMessage", "Tutti i campi sono obbligatori");
             request.getRequestDispatcher("LogIn.jsp").forward(request, response);
             return;
@@ -100,7 +100,7 @@ public class LogInServlet extends HttpServlet {
         userBean.setEmail(email);
         userBean.setPassword(password);
         userBean.setTelNumber(telNumber);
-        userBean.setType(type);
+        userBean.setAdmin(Boolean.parseBoolean(admin));
 
         System.out.println("Attempting to save user to database..."); // Debug print
 
@@ -122,6 +122,13 @@ public class LogInServlet extends HttpServlet {
         String nextPage = (String) session.getAttribute("nextPage");
 
         UserBean userBean = userModel.doRetrieveByUsername(username);
+
+        if(userBean != null && userBean.getPassword().equals(password) && userBean.getAdmin()) {
+            System.out.println("Admin login successful."); // Debug print
+            session.setAttribute("admin", userBean);
+            response.sendRedirect("AdminView.jsp");
+            return;
+        }
 
         if (userBean != null && userBean.getPassword().equals(password)) {
             System.out.println("User login successful."); // Debug print

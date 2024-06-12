@@ -14,7 +14,8 @@ public class UpdateProfileServlet extends HttpServlet {
         response.sendRedirect("LogIn.jsp");
         return;
     }
-    // Raccogli i nuovi dettagli del profilo dal modulo        String nome = request.getParameter("nome");
+    // Raccogli i nuovi dettagli del profilo dal modulo
+    String nome = request.getParameter("nome");
     String cognome = request.getParameter("cognome");
     String nickname = request.getParameter("nickname");
     String dataNascita = request.getParameter("dataNascita");
@@ -28,8 +29,9 @@ public class UpdateProfileServlet extends HttpServlet {
     user.setBirthDate(Date.valueOf(dataNascita));
     user.setAddress(indirizzo);
     user.setEmail(email);
-    user.setTelNumber(Integer.parseInt(telefono));
-    // Aggiorna i dati nel database        UserModel userModel = new UserModel();
+    user.setTelNumber(telefono);
+    // Aggiorna i dati nel database
+    UserModel userModel = new UserModel();
     try {
         userModel.updateUser(user);
         session.setAttribute("user", user); // Aggiorna l'oggetto user nella sessione
@@ -39,5 +41,5 @@ public class UpdateProfileServlet extends HttpServlet {
         return;
         }
     // Reindirizza l'utente alla pagina del profilo
-        // response.sendRedirect("Profilo.jsp");
+    response.sendRedirect("Profilo.jsp");
 }}

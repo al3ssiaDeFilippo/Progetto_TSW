@@ -40,7 +40,7 @@
         <input type="tel" id="telNumber" name="telNumber" required>
     </div>
     <div>
-        <input type="hidden" name="type" value="user">
+        <input type="hidden" name="admin" value="false">
     </div>
     <div>
         <input type="submit" value="Sign In">

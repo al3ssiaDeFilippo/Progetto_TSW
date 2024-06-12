@@ -64,7 +64,6 @@
     <input type="file" id="photoPath" name="photoPath"><br>
 
     <input type="submit" value="Inserisci Prodotto">
-    <a href="ProductView.jsp">Torna al catalogo</a>
 </form>
 </body>
 </html>

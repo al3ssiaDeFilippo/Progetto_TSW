@@ -114,6 +114,19 @@ public class ProductControl extends HttpServlet {
                     String frameColor = request.getParameter("frameColor");
                     String size = request.getParameter("size");
 
+                    System.out.println("Debug: productName : " + productName);
+                    System.out.println("Debug: details : " + details);
+                    System.out.println("Debug: quantity : " + quantity);
+                    System.out.println("Debug: category : " + category);
+                    System.out.println("Debug: price : " + price);
+                    System.out.println("Debug: iva : " + iva);
+                    System.out.println("Debug: discount : " + discount);
+                    System.out.println("Debug: frame : " + frame);
+                    System.out.println("Debug: frameColor : " + frameColor);
+                    System.out.println("Debug: size : " + size);
+                    System.out.println("Debug: photo : " + photo);
+
+
                     ProductBean bean = new ProductBean();
                     bean.setProductName(productName);
                     bean.setDetails(details);

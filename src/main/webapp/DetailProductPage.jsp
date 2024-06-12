@@ -55,7 +55,11 @@
 <% } %>
 
 <div class="centered-links">
-    <a href="ServletCarrello?action=add&code=<%=product.getCode()%>">Add to Cart</a>
+    <form action="ServletCarrello" method="post">
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="code" value="<%=product.getCode()%>">
+        <input type="submit" value="Add to Cart">
+    </form>
     <a href="carrello.jsp">Visualizza Carrello</a>
     <a href="ProductView.jsp">Torna alla Home</a>
 

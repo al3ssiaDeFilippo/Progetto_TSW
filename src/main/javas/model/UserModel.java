@@ -31,7 +31,7 @@ public class UserModel {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, ADDRESS, EMAIL, PASSWORD, TELNUMBER, TYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, ADDRESS, EMAIL, PASSWORD, TELNUMBER, ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = ds.getConnection();
@@ -45,7 +45,7 @@ public class UserModel {
             preparedStatement.setString(6, user.getEmail());
             preparedStatement.setString(7, user.getPassword());
             preparedStatement.setString(8, user.getTelNumber());
-            preparedStatement.setString(9, user.getType());
+            preparedStatement.setBoolean(9, user.getAdmin());
 
             preparedStatement.executeUpdate();
             con.commit();
@@ -53,6 +53,33 @@ public class UserModel {
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public synchronized void updateUser(UserBean user) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        String updateSQL = "UPDATE " + TABLE_NAME + " SET surname = ?, name = ?, username = ?, BirthDate = ?, address = ?, email = ?, TelNumber = ?, admin = ? WHERE idUser = ?";
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(updateSQL);
+            preparedStatement.setString(1, user.getSurname());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setDate(4, user.getBirthDate());
+            preparedStatement.setString(5, user.getAddress());
+            preparedStatement.setString(6, user.getEmail());
+            preparedStatement.setString(7, user.getTelNumber());
+            preparedStatement.setBoolean(8, user.getAdmin());
+            preparedStatement.setInt(9, user.getIdUser());
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null) {
+            preparedStatement.close();
             }
             if (con != null) {
                 con.close();
@@ -84,7 +111,7 @@ public class UserModel {
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));
-                user.setType(rs.getString("TYPE"));
+                user.setAdmin(rs.getBoolean("ADMIN"));
             }
         } finally {
             if (preparedStatement != null) {
@@ -157,7 +184,7 @@ public class UserModel {
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));
-                user.setType(rs.getString("TYPE"));
+                user.setAdmin(rs.getBoolean("ADMIN"));
                 users.add(user);
             }
         } finally {
@@ -199,7 +226,7 @@ public class UserModel {
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));
-                user.setType(rs.getString("TYPE"));
+                user.setAdmin(rs.getBoolean("ADMIN"));
             }
         } finally {
             if (preparedStatement != null) {

@@ -27,7 +27,7 @@ CREATE TABLE user(
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     TelNumber VARCHAR(13) NOT NULL,
-	type VARCHAR(6) NOT NULL CHECK (type IN ('admin','user'))
+	admin BOOLEAN NOT NULL,
  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE cart (
@@ -78,6 +78,8 @@ VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 10, 'wood',
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, frame, frameColor, size, photo)
 VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 20, 'PVC', 'white', '91x61', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
 
+
+INSERT INTO user(surname, name, username, BirthDate, address, email, password, TelNumber, admin)  values('a', 'b', 'admin', '2004-01-02', 'ciao', 'a@a.iy', 'admin', '34676424', 'true');
 SELECT * FROM product;
 SELECT COUNT(*) FROM product WHERE code = 2;
 
