@@ -61,13 +61,20 @@
 <% } %>
 
 <h2>Informazioni sulla Carta</h2>
-<% if (cardInfo != null) { %>
-<p><%= cardInfo.getIdCard() %></p>
-<p><%= cardInfo.getOwnerCard() %></p>
-<p><%= cardInfo.getExpirationDate() %></p>
-<% } else { %>
+<%
+    CreditCardBean selectedCard = (CreditCardBean) session.getAttribute("selectedCard");
+    if (selectedCard != null) {
+%>
+<p>Numero Carta: <%= selectedCard.getIdCard() %></p>
+<p>Nome Titolare: <%= selectedCard.getOwnerCard() %></p>
+<p>Data di Scadenza: <%= selectedCard.getExpirationDate() %></p>
+<%
+} else {
+%>
 <p>Informazioni sulla carta non disponibili</p>
-<% } %>
+<%
+    }
+%>
 
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
 <% if (errorMessage != null) { %>

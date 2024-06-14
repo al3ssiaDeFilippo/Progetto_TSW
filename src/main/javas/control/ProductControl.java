@@ -13,6 +13,7 @@ import javax.servlet.http.Part;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -96,6 +97,16 @@ public class ProductControl extends HttpServlet {
                     Part photoPart = request.getPart("photoPath");
                     Blob photo = null;
                     if (photoPart != null && photoPart.getSize() > 0) {
+                        String fileName = Paths.get(photoPart.getSubmittedFileName()).getFileName().toString();
+                        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1);
+                        if (!fileExtension.equalsIgnoreCase("jpg")) {
+                            System.out.println("Errore: Il file deve essere in formato .jpg");
+                            request.setAttribute("errorMessage", "Errore: Il file deve essere in formato .jpg");
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/InsertPage.jsp");
+                            dispatcher.forward(request, response);
+                            return;
+                        }
+
                         InputStream inputStream = photoPart.getInputStream();
                         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                         byte[] buffer = new byte[4096];

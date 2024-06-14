@@ -23,13 +23,12 @@ public class CheckoutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        UserBean user = (UserBean) session.getAttribute("user");
+        UserBean user = (UserBean) request.getSession().getAttribute("user");
+        String nextPage = (String) request.getParameter("nextPage");
 
         if (user == null) {
             // L'utente non è loggato, imposta la pagina di destinazione dopo il login
-            String nextPage = "CheckoutShipping.jsp";
-            session.setAttribute("nextPage", nextPage);
+            request.getSession().setAttribute("nextPage", nextPage);
             response.sendRedirect("LogIn.jsp");
         } else {
             // L'utente è già loggato, procedi con il checkout
@@ -53,7 +52,7 @@ public class CheckoutServlet extends HttpServlet {
                 // Reindirizza alla pagina di destinazione
                 String nextPage = (String) session.getAttribute("nextPage");
                 if (nextPage == null || nextPage.isEmpty()) {
-                    nextPage = "ProductView.jsp"; // Pagina di default se non è stato impostato un nextPage
+                    nextPage = "ProductView.jsp"; // Pagina di de// fault se non è stato impostato un nextPage
                 }
                 response.sendRedirect(nextPage);
             } else {

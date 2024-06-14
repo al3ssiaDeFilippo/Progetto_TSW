@@ -41,7 +41,7 @@ CREATE TABLE cart (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE card(
-                     idCard INT PRIMARY KEY,
+                     idCard VARCHAR(16) PRIMARY KEY,
                      ownerCard VARCHAR(50) NOT NULL,
                      expirationDate DATE NOT NULL,
                      cvv INT NOT NULL,

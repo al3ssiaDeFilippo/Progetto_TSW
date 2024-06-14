@@ -24,10 +24,6 @@
         <input type="date" id="birthdate" name="birthdate" required>
     </div>
     <div>
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required>
-    </div>
-    <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
     </div>

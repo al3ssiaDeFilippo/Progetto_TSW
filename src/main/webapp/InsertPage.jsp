@@ -4,9 +4,31 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Inserisci Prodotto</title>
+    <script>
+        window.onload = function() {
+            var frameSelect = document.getElementById("frame");
+            var frameColorSelect = document.getElementById("frameColor");
+            var frameColorLabel = document.getElementById("frameColorLabel");
+
+            frameSelect.onchange = function() {
+                if (frameSelect.value === "no frame") {
+                    frameColorSelect.style.display = "none";
+                    frameColorLabel.style.display = "none";
+                } else {
+                    frameColorSelect.style.display = "inline";
+                    frameColorLabel.style.display = "inline";
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 <h2>Inserisci Prodotto</h2>
+<% if (request.getAttribute("errorMessage") != null) { %>
+<div class="alert alert-danger">
+    <%= request.getAttribute("errorMessage") %>
+</div>
+<% } %>
 <form action="ProductControl?action=insert" method="post" enctype="multipart/form-data">
     <label for="productName">Nome:</label><br>
     <input type="text" id="productName" name="productName"><br>
@@ -44,7 +66,7 @@
         <option value="PVC">PVC</option>
     </select><br>
 
-    <label for="frameColor">Colore Frame:</label><br>
+    <label for="frameColor" id = "frameColorLabel">Colore Frame:</label><br>
     <select id="frameColor" name="frameColor">
         <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
         <option value="black">Black</option>

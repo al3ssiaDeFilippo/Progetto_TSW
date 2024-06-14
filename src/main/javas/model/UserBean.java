@@ -11,7 +11,6 @@ public class UserBean {
     String name;
     String surname;
     Date birthDate;
-    String address;
     String email;
     String password;
     String TelNumber;
@@ -23,7 +22,6 @@ public class UserBean {
         name = "";
         surname = "";
         birthDate = null;
-        address = "";
         email = "";
         password = "";
         TelNumber = "";
@@ -56,14 +54,6 @@ public class UserBean {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public Date getBirthDate() {
@@ -114,7 +104,6 @@ public class UserBean {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", birthDate=" + birthDate +
-                ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", TelNumber=" + TelNumber +

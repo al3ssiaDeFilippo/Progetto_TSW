@@ -3,7 +3,6 @@ package main.javas;
 public class comments {
     /*
     Problemi da risolvere:
-    - evitare di poter aggiungere file che non siano in formato .jpg
     - finalizzare l'acquisto
 
 

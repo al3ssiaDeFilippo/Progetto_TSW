@@ -32,10 +32,12 @@ public class CreditCardServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
 
-        if (user == null) {
+        /*if (user == null) {
             response.sendRedirect("LogIn.jsp");
             return;
-        }
+        }*/
+
+        System.out.println("Sono in CreditCardServlet");
 
         String action = request.getParameter("action");
 
@@ -45,15 +47,23 @@ public class CreditCardServlet extends HttpServlet {
 
         switch (action) {
             case "add":
+                System.out.println("add");
                 addCard(request, response, user);
                 break;
             case "delete":
+                System.out.println("delete");
                 deleteCard(request, response, user);
                 break;
             case "read":
+                System.out.println("read");
                 readCard(request, response, user);
                 break;
+            case "select":
+                System.out.println("select");
+                selectCard(request, response, user);
+                break;
             default:
+                System.out.println("EOEEOEOEOEOEOEOEOEOEOEO");
                 throw new ServletException("Invalid action parameter.");
         }
     }
@@ -62,7 +72,8 @@ public class CreditCardServlet extends HttpServlet {
         // The existing code for adding a card goes here
         // Retrieve the form data
         HttpSession session = request.getSession();
-        String nextPage = (String) session.getAttribute("nextPage");
+        String nextPage = (String) request.getParameter("nextPage");
+        System.out.println("Next page: " + nextPage);
         String cardNumber = request.getParameter("cardNumber");
         String cardHolder = request.getParameter("cardHolder");
         String expiryDateString = request.getParameter("expiryDate");
@@ -111,7 +122,6 @@ public class CreditCardServlet extends HttpServlet {
             throw new ServletException("Database error: " + e.getMessage());
         }
 
-        session = request.getSession();
         // Imposta l'attributo "cardInfo" nella sessione
         session.setAttribute("cardInfo", creditCard);
 
@@ -131,22 +141,50 @@ public class CreditCardServlet extends HttpServlet {
         }
 
         try {
-            creditCardModel.doDelete(Integer.parseInt(cardId));
+            creditCardModel.doDelete(cardId);
             response.sendRedirect("CarteUtente.jsp");
         } catch (SQLException e) {
             throw new ServletException("Database error: " + e.getMessage());
         }
     }
 
+    //recupera le carte di credito dell'utente
     private void readCard(HttpServletRequest request, HttpServletResponse response, UserBean user) throws ServletException, IOException {
         // Code for reading a card goes here
         int idUser = user.getIdUser();
         try {
             Collection<CreditCardBean> cards = creditCardModel.doRetrieveAll(idUser);
-            request.setAttribute("cards", cards);
-            request.getRequestDispatcher("CarteUtente.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            session.setAttribute("cards", cards);
+            response.sendRedirect("CarteUtente.jsp");
         } catch (SQLException e) {
             throw new ServletException("Database error: " + e.getMessage());
         }
+    }
+
+    //seleziona la carta di credito
+    private void selectCard(HttpServletRequest request, HttpServletResponse response, UserBean user) throws ServletException, IOException {
+        String selectedCardId = request.getParameter("selectedCard");
+
+        if (selectedCardId == null) {
+            throw new ServletException("Missing selectedCard parameter.");
+        }
+
+        try {
+            CreditCardBean selectedCard = creditCardModel.doRetrieveByKey(selectedCardId);
+            if (selectedCard == null) {
+                throw new ServletException("Selected card not found.");
+            }
+
+            HttpSession session = request.getSession();
+            session.setAttribute("selectedCard", selectedCard);
+            response.sendRedirect("RiepilogoOrdine.jsp");
+        } catch (SQLException e) {
+            throw new ServletException("Database error: " + e.getMessage());
+        }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

@@ -3,6 +3,7 @@
 <%@ page import="main.javas.model.CreditCardModel" %>
 <%@ page import="main.javas.model.CreditCardBean" %>
 <%@ page import="java.util.Collection" %>
+
 <%
     UserBean user = (UserBean) session.getAttribute("user");
     String nextPage = (String) session.getAttribute("nextPage");

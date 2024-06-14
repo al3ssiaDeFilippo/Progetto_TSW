@@ -74,10 +74,6 @@
             <td><%= user.getBirthDate() %></td>
         </tr>
         <tr>
-            <th>Indirizzo</th>
-            <td><%= user.getAddress() %></td>
-        </tr>
-        <tr>
             <th>Email</th>
             <td><%= user.getEmail() %></td>
         </tr>

@@ -94,6 +94,10 @@ public class Carrello {
         prodotti.clear();
     }
 
+    /*public boolean isEmpty() {
+        return prodotti.isEmpty();
+    }*/
+
     @Override
     public String toString() {
         return "Carrello [prodotti=" + prodotti + "]";

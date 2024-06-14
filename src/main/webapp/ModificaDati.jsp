@@ -32,9 +32,6 @@
     <label for="dataNascita">Data di Nascita:</label>
     <input type="date" id="dataNascita" name="dataNascita" value="<%= user.getBirthDate() %>" required><br>
 
-    <label for="indirizzo">Indirizzo:</label>
-    <input type="text" id="indirizzo" name="indirizzo" value="<%= user.getAddress() %>" required><br>
-
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" value="<%= user.getEmail() %>" required><br>
 

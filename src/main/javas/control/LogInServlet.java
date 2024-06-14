@@ -52,7 +52,6 @@ public class LogInServlet extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String birthdateString = request.getParameter("birthdate");
-        String address = request.getParameter("address");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String telNumber = request.getParameter("telNumber");
@@ -62,7 +61,6 @@ public class LogInServlet extends HttpServlet {
         System.out.println("Name: " + name); // Debug print
         System.out.println("Surname: " + surname); // Debug print
         System.out.println("Birthdate: " + birthdateString); // Debug print
-        System.out.println("Address: " + address); // Debug print
         System.out.println("Email: " + email); // Debug print
         System.out.println("Password: " + password); // Debug print
         System.out.println("TelNumber: " + telNumber); // Debug print
@@ -70,7 +68,7 @@ public class LogInServlet extends HttpServlet {
 
 
         // Validazione dei campi obbligatori
-        if (username == null || name == null || surname == null || birthdateString == null || address == null || email == null || password == null || telNumber == null || admin == null) {
+        if (username == null || name == null || surname == null || birthdateString == null || email == null || password == null || telNumber == null || admin == null) {
             request.setAttribute("errorMessage", "Tutti i campi sono obbligatori");
             request.getRequestDispatcher("LogIn.jsp").forward(request, response);
             return;
@@ -96,7 +94,6 @@ public class LogInServlet extends HttpServlet {
         userBean.setName(name);
         userBean.setUsername(username);
         userBean.setBirthDate(birthdate);
-        userBean.setAddress(address);
         userBean.setEmail(email);
         userBean.setPassword(password);
         userBean.setTelNumber(telNumber);

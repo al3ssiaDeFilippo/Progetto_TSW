@@ -83,10 +83,15 @@
 
 <a href="ProductView.jsp">Torna alla home</a>
 
+<%
+    if(cart.getProdotti().isEmpty()) { %>
+        <p style="color:red;">Il carrello è vuoto</p>
+<%  } else { %>
+
 <form action="CheckoutServlet" method="get">
-    <input type="hidden" name="nextPage" value="Checkout.jsp">
+    <input type="hidden" name="nextPage" value="CheckoutShipping.jsp">
     <button type="submit">Vai al pagamento</button>
 </form>
-
+  <%}%>
 </body>
 </html>

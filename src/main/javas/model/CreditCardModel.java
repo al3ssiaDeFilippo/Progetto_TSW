@@ -52,7 +52,7 @@ public class CreditCardModel {
         }
     }
 
-    public synchronized boolean doDelete(int idCard) throws SQLException {
+    public synchronized boolean doDelete(String idCard) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
@@ -61,7 +61,7 @@ public class CreditCardModel {
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, idCard);
+            preparedStatement.setString(1, idCard);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;
@@ -75,7 +75,7 @@ public class CreditCardModel {
         }
     }
 
-    public synchronized CreditCardBean doRetrieveByKey(int idCard) throws SQLException {
+    public synchronized CreditCardBean doRetrieveByKey(String idCard) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement= null;
         CreditCardBean creditCard = null;
@@ -85,7 +85,7 @@ public class CreditCardModel {
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idCard);
+            preparedStatement.setString(1, idCard);
 
             ResultSet rs = preparedStatement.executeQuery();
 

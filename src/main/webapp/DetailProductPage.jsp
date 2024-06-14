@@ -41,7 +41,6 @@
             </p>
             <p><strong>Colore Cornice:</strong>
                 <select name="frameColor">
-                    <option value="<%= product.getFrameColor() %>"><%= product.getFrameColor() %></option>
                     <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
                     <option value="black">Black</option>
                     <option value="brown">Brown</option>

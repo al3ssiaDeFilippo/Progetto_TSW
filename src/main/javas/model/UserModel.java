@@ -31,7 +31,7 @@ public class UserModel {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, ADDRESS, EMAIL, PASSWORD, TELNUMBER, ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, EMAIL, PASSWORD, TELNUMBER, ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = ds.getConnection();
@@ -41,11 +41,10 @@ public class UserModel {
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getUsername());
             preparedStatement.setDate(4, user.getBirthDate());
-            preparedStatement.setString(5, user.getAddress());
-            preparedStatement.setString(6, user.getEmail());
-            preparedStatement.setString(7, user.getPassword());
-            preparedStatement.setString(8, user.getTelNumber());
-            preparedStatement.setBoolean(9, user.getAdmin());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getPassword());
+            preparedStatement.setString(7, user.getTelNumber());
+            preparedStatement.setBoolean(8, user.getAdmin());
 
             preparedStatement.executeUpdate();
             con.commit();
@@ -63,7 +62,7 @@ public class UserModel {
     public synchronized void updateUser(UserBean user) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
-        String updateSQL = "UPDATE " + TABLE_NAME + " SET surname = ?, name = ?, username = ?, BirthDate = ?, address = ?, email = ?, TelNumber = ?, admin = ? WHERE idUser = ?";
+        String updateSQL = "UPDATE " + TABLE_NAME + " SET surname = ?, name = ?, username = ?, BirthDate = ?, email = ?, TelNumber = ?, admin = ? WHERE idUser = ?";
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(updateSQL);
@@ -71,11 +70,10 @@ public class UserModel {
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getUsername());
             preparedStatement.setDate(4, user.getBirthDate());
-            preparedStatement.setString(5, user.getAddress());
-            preparedStatement.setString(6, user.getEmail());
-            preparedStatement.setString(7, user.getTelNumber());
-            preparedStatement.setBoolean(8, user.getAdmin());
-            preparedStatement.setInt(9, user.getIdUser());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getTelNumber());
+            preparedStatement.setBoolean(7, user.getAdmin());
+            preparedStatement.setInt(8, user.getIdUser());
             preparedStatement.executeUpdate();
         } finally {
             if (preparedStatement != null) {
@@ -107,7 +105,6 @@ public class UserModel {
                 user.setName(rs.getString("NAME"));
                 user.setUsername(rs.getString("USERNAME"));
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
-                user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));
@@ -180,7 +177,6 @@ public class UserModel {
                 user.setName(rs.getString("NAME"));
                 user.setUsername(rs.getString("USERNAME"));
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
-                user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));
@@ -222,7 +218,6 @@ public class UserModel {
                 user.setName(rs.getString("NAME"));
                 user.setUsername(rs.getString("USERNAME"));
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
-                user.setAddress(rs.getString("ADDRESS"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));

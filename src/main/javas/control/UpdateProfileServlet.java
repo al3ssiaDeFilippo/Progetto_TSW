@@ -19,7 +19,6 @@ public class UpdateProfileServlet extends HttpServlet {
     String cognome = request.getParameter("cognome");
     String nickname = request.getParameter("nickname");
     String dataNascita = request.getParameter("dataNascita");
-    String indirizzo = request.getParameter("indirizzo");
     String email = request.getParameter("email");
     String telefono = request.getParameter("telefono");
     // Aggiorna l'oggetto user con i nuovi dettagli
@@ -27,7 +26,6 @@ public class UpdateProfileServlet extends HttpServlet {
     user.setSurname(cognome);
     user.setUsername(nickname);
     user.setBirthDate(Date.valueOf(dataNascita));
-    user.setAddress(indirizzo);
     user.setEmail(email);
     user.setTelNumber(telefono);
     // Aggiorna i dati nel database
