@@ -45,14 +45,14 @@
         </td>
 
         <%
-            if(model.getSingleProductDiscountedPrice(prodotto) == prodotto.getPrice()) {
+            if(!model.checkDiscount(prodotto)) {
         %>
-        <td> <%= prodotto.getPrice() %> € x <%= prodotto.getQuantity() %> </td>
+        <td> <%= prodotto.getPrice() * prodotto.getQuantity() %> €</td>
         <%
         } else {
             if(model.getSingleProductDiscountedPrice(prodotto) != prodotto.getPrice()) {
         %>
-        <td> <del><%= prodotto.getPrice() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € x <%= prodotto.getQuantity() %> </td>
+        <td> <del><%= prodotto.getPrice() * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € </td>
         <%
                 }
             }
@@ -69,7 +69,11 @@
     <% } %>
     <tr>
         <td colspan="2">Total Price</td>
+        <% if(model.getTotalPriceWithDiscount(prodotti) == totalPrice) { %>
+        <td><%=model.getTotalPriceWithDiscount(prodotti)%> €</td>
+        <% } else { %>
         <td colspan="2"> <del><%=model.getTotalPriceWithDiscount(prodotti)%> € </del> <span style="color: red;"><%=totalPrice%></span> €</td>
+        <% } %>
     </tr>
 </table>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>

@@ -22,7 +22,13 @@
         <input type="text" id="cvv" name="cvv" required>
     </div>
     <div>
-        <input type="submit" value="Aggiungi Carta">
+        <input type="checkbox" id="saveCard" name="saveCard" value="true">
+        <label for="saveCard">Salva Carta (autorizzo PosterWorld a salvare i dati della mia carta)</label>
+    </div>
+    <div>
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="nextPage" value="RiepilogoOrdine.jsp">
+        <input type="submit" value="Prosegui al pagamento">
     </div>
 </form>
 </body>

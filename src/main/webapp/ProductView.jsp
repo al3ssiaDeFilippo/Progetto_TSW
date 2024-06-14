@@ -48,16 +48,36 @@
         <td><img class="product-image" src="ImmagineProdottoServlet?code=<%=bean.getCode()%>" alt="image not found"></td>
         <td><%=bean.getPrice()%></td>
         <td>
-            <form action="product" method="get">
-                <input type="hidden" name="action" value="read">
-                <input type="hidden" name="code" value="<%=bean.getCode()%>">
-                <input type="submit" value="Details">
-            </form>
+
+            <% if (user == null || !user.getAdmin()) { %>
+
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Add to Cart">
             </form>
+
+            <% } %>
+
+            <form action="product" method="get">
+                <input type="hidden" name="action" value="read">
+                <input type="hidden" name="code" value="<%=bean.getCode()%>">
+                <input type="submit" value="Details">
+            </form>
+
+            <% if (user != null && user.getAdmin()) { %>
+            <form action="product" method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="code" value="<%=bean.getCode()%>">
+                <input type="submit" value="Delete">
+            </form>
+            <form action="product" method="post">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="code" value="<%=bean.getCode()%>">
+                <input type="submit" value="Edit">
+            </form>
+            <% } %>
+
         </td>
     </tr>
     <%
@@ -67,18 +87,36 @@
 </table>
 
 <div class="centered-links">
-    <a href="carrello.jsp">Visualizza Carrello</a>
-    <% if (user == null) { %>
-    <a href="LogIn.jsp">Log In</a>
-    <% } if (user != null) { %>
+
+    <!-- Blocco admin: -->
+    <% if (user != null && user.getAdmin()) { %>
     <a href="Profilo.jsp">Profilo</a>
+
     <form action="LogInServlet" method="post">
         <input type="hidden" name="action" value="logout">
         <input type="submit" value="Logout">
     </form>
+
+    <a href="InsertPage.jsp">Inserisci prodotto</a>
     <% } %>
 
-</div>
+    <!-- Blocco utente: -->
+    <% if (user != null && !user.getAdmin()) { %>
+    <a href="Profilo.jsp">Profilo</a>
 
+    <form action="LogInServlet" method="post">
+        <input type="hidden" name="action" value="logout">
+        <input type="submit" value="Logout">
+    </form>
+
+    <a href="carrello.jsp">Visualizza Carrello</a>
+    <% } %>
+
+    <!-- Blocco guest: -->
+    <% if (user == null) { %>
+        <a href="LogIn.jsp">Log In</a>
+        <a href="carrello.jsp">Visualizza Carrello</a>
+    <% } %>
+</div>
 </body>
 </html>

@@ -40,10 +40,10 @@
         <td><%= prodotto.getProductCode() %></td>
         <td><%= prodotto.getQuantity() %></td>
         <td>
-            <% if(model.getSingleProductDiscountedPrice(prodotto) == prodotto.getPrice()) { %>
-            <%= prodotto.getPrice() %> € x <%= prodotto.getQuantity() %>
+            <% if(!model.checkDiscount(prodotto)) { %>
+            <%= prodotto.getPrice() * prodotto.getQuantity()%> €
             <% } else if(model.getSingleProductDiscountedPrice(prodotto) != prodotto.getPrice()) { %>
-            <del><%= prodotto.getPrice() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € x <%= prodotto.getQuantity() %>
+            <del><%= prodotto.getPrice() * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> €
             <% } %>
         </td>
     </tr>

@@ -199,6 +199,27 @@ public class CartModel {
         return totalPrice;
     }
 
+    //restituisce il prezzo totale del carrello senza considerare lo sconto
+    public float getTotalPriceWithDiscount(List<CartBean> cartItems) throws SQLException {
+        float totalPrice = 0.0f;
+
+        for (CartBean cartItem : cartItems) {
+
+            totalPrice += cartItem.getPrice() * cartItem.getQuantity();
+        }
+
+        // Round the total price to two decimal places
+        totalPrice = Math.round(totalPrice * 100.0f) / 100.0f;
+
+        return totalPrice;
+    }
+
+    public boolean checkDiscount(CartBean cartItem) throws SQLException {
+        ProductModelDS productModel = new ProductModelDS();
+        ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
+        return product.getDiscount() > 0;
+    }
+
     //controlla se un prodotto esiste
     public boolean productExists(int productCode) throws SQLException {
         Connection connection = null;
@@ -238,21 +259,6 @@ public class CartModel {
         return productQuantity;
     }
 
-    //restituisce il prezzo totale del carrello senza considerare lo sconto
-    public float getTotalPriceWithDiscount(List<CartBean> cartItems) throws SQLException {
-        float totalPrice = 0.0f;
-
-        for (CartBean cartItem : cartItems) {
-
-            totalPrice += cartItem.getPrice() * cartItem.getQuantity();
-        }
-
-        // Round the total price to two decimal places
-        totalPrice = Math.round(totalPrice * 100.0f) / 100.0f;
-
-        return totalPrice;
-    }
-
 
     public synchronized List<CartBean> doRetrieveAll(int idUser) throws SQLException {
     Connection con = null;
@@ -286,5 +292,6 @@ public class CartModel {
         }
     }
     return cartItems;
-}
+    }
+
 }

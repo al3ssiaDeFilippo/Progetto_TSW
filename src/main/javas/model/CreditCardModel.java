@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class CreditCardModel {
     private static DataSource ds;
@@ -33,7 +35,7 @@ public class CreditCardModel {
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, creditCard.getIdCard());
+            preparedStatement.setString(1, creditCard.getIdCard());
             preparedStatement.setString(2, creditCard.getOwnerCard());
             preparedStatement.setDate(3, creditCard.getExpirationDate());
             preparedStatement.setInt(4, creditCard.getCvv());
@@ -73,7 +75,7 @@ public class CreditCardModel {
         }
     }
 
-    public synchronized CreditCardBean doRetriveByKey(int idCard) throws SQLException {
+    public synchronized CreditCardBean doRetrieveByKey(int idCard) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement= null;
         CreditCardBean creditCard = null;
@@ -89,7 +91,7 @@ public class CreditCardModel {
 
             if (rs.next()) {
                 creditCard = new CreditCardBean();
-                creditCard.setIdCard(rs.getInt("idCard"));
+                creditCard.setIdCard(rs.getString("idCard"));
                 creditCard.setOwnerCard(rs.getString("ownerCard"));
                 creditCard.setExpirationDate(rs.getDate("expirationDate"));
                 creditCard.setCvv(rs.getInt("cvv"));
@@ -104,5 +106,77 @@ public class CreditCardModel {
             }
         }
         return creditCard;
+    }
+
+    public synchronized boolean SavedCard(UserBean user) {
+        Connection con = null;
+        PreparedStatement preparedStatement= null;
+        CreditCardBean creditCard = null;
+
+        String selectSQL = "SELECT COUNT(*) FROM card WHERE idUser = ?";
+
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, user.getIdUser());
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
+
+    public synchronized Collection<CreditCardBean> doRetrieveAll(int idUser) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Collection<CreditCardBean> cards = new LinkedList<CreditCardBean>();
+
+        String selectSQL = "SELECT * FROM " + CreditCardModel.TABLE_NAME + " WHERE idUser = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idUser);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                CreditCardBean card = new CreditCardBean();
+                card.setIdCard(rs.getString("idCard"));
+                card.setOwnerCard(rs.getString("ownerCard"));
+                card.setExpirationDate(rs.getDate("expirationDate"));
+                card.setCvv(rs.getInt("cvv"));
+                card.setIdUser(rs.getInt("idUser"));
+                cards.add(card);
+            }
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return cards;
     }
 }

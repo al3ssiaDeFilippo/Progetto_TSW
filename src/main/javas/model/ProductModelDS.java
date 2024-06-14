@@ -120,7 +120,7 @@ public class ProductModelDS implements ProductModel {
         int result = 0;
 
         String deleteProductSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
-        String deleteFromCartSQL = "DELETE FROM cart WHERE idProduct = ?";
+        String deleteFromCartSQL = "DELETE FROM cart WHERE productCode = ?";
 
         System.out.println("Debug: sto eliminando il prodotto con codice " + code);
 
@@ -201,5 +201,33 @@ public class ProductModelDS implements ProductModel {
         return products;
     }
 
+    public void doUpdate(ProductBean product) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ?, frame = ?, frameColor = ?, size = ? WHERE code = ?";
+
+    try {
+        connection = ds.getConnection();
+        preparedStatement = connection.prepareStatement(updateSQL);
+        preparedStatement.setString(1, product.getProductName());
+        preparedStatement.setString(2, product.getDetails());
+        preparedStatement.setInt(3, product.getQuantity());
+        preparedStatement.setString(4, product.getCategory());
+        preparedStatement.setFloat(5, product.getPrice());
+        preparedStatement.setInt(6, product.getIva());
+        preparedStatement.setInt(7, product.getDiscount());
+        preparedStatement.setString(8, product.getFrame());
+        preparedStatement.setString(9, product.getFrameColor());
+        preparedStatement.setString(10, product.getSize());
+        preparedStatement.setInt(11, product.getCode());
+
+        preparedStatement.executeUpdate();
+
+    } finally {
+        if (preparedStatement != null) preparedStatement.close();
+        if (connection != null) connection.close();
+    }
+}
 
 }

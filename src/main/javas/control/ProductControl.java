@@ -26,11 +26,7 @@ public class ProductControl extends HttpServlet {
     static ProductModel model;
 
     static {
-        if (isDataSource) {
-            model = new ProductModelDS();
-        } else {
-            model = new ProductModelDM();
-        }
+        model = new ProductModelDS();
     }
 
     public ProductControl() {
@@ -61,6 +57,7 @@ public class ProductControl extends HttpServlet {
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
                         code = Integer.parseInt(request.getParameter("code"));
+                        System.out.println("codeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:" + code);
                         model.doDelete(code);
                     }
 
@@ -140,6 +137,69 @@ public class ProductControl extends HttpServlet {
                     bean.setSize(size);
                     bean.setPhoto(photo);
                     model.doSave(bean);
+                } else if(action.equalsIgnoreCase("edit")) {
+                    int code = 0;
+                    String codeParam = request.getParameter("code");
+                    if (codeParam != null && !codeParam.isEmpty()) {
+                        code = Integer.parseInt(request.getParameter("code"));
+                        ProductBean product = model.doRetrieveByKey(code);
+                        if(product != null) {
+                            request.setAttribute("product", product);
+                            dis = "/EditProductPage.jsp";
+                        }
+                    }
+                } else if(action.equalsIgnoreCase("update")) {
+                    int code = 0;
+                    String codeParam = request.getParameter("code");
+                    if (codeParam != null && !codeParam.isEmpty()) {
+                        code = Integer.parseInt(request.getParameter("code"));
+                        ProductBean product = model.doRetrieveByKey(code);
+                        if(product != null) {
+                            // Get all the new product data from the request
+                            String productName = request.getParameter("productName");
+                            String details = request.getParameter("details");
+                            int quantity = Integer.parseInt(request.getParameter("quantity"));
+                            String category = request.getParameter("category");
+                            float price = Float.parseFloat(request.getParameter("price"));
+                            int iva = Integer.parseInt(request.getParameter("iva"));
+                            int discount = Integer.parseInt(request.getParameter("discount"));
+
+                            Part photoPart = request.getPart("photoPath");
+                            Blob photo = null;
+                            if (photoPart != null && photoPart.getSize() > 0) {
+                                InputStream inputStream = photoPart.getInputStream();
+                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                                byte[] buffer = new byte[4096];
+                                int bytesRead;
+                                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                                    outputStream.write(buffer, 0, bytesRead);
+                                }
+                                byte[] photoBytes = outputStream.toByteArray();
+                                photo = new javax.sql.rowset.serial.SerialBlob(photoBytes);
+                            }
+
+                            String frame = request.getParameter("frame");
+                            String frameColor = request.getParameter("frameColor");
+                            String size = request.getParameter("size");
+
+
+                            // Set the new product data in the ProductBean object
+                            product.setProductName(productName);
+                            product.setDetails(details);
+                            product.setQuantity(quantity);
+                            product.setCategory(category);
+                            product.setPrice(price);
+                            product.setIva(iva);
+                            product.setDiscount(discount);
+                            product.setFrame(frame);
+                            product.setFrameColor(frameColor);
+                            product.setSize(size);
+                            product.setPhoto(photo);
+
+                            // Call model.edit with the ProductBean object
+                            model.doUpdate(product);
+                        }
+                    }
                 }
             }
         } catch (SQLException e) {

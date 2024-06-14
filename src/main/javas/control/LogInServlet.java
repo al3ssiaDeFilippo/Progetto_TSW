@@ -125,8 +125,8 @@ public class LogInServlet extends HttpServlet {
 
         if(userBean != null && userBean.getPassword().equals(password) && userBean.getAdmin()) {
             System.out.println("Admin login successful."); // Debug print
-            session.setAttribute("admin", userBean);
-            response.sendRedirect("AdminView.jsp");
+            session.setAttribute("user", userBean);
+            response.sendRedirect("ProductView.jsp");
             return;
         }
 

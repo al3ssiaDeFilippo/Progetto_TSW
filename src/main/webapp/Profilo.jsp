@@ -91,6 +91,26 @@
             <button type="submit">Modifica Dati</button>
         </form>
     </div>
+
+        <style>
+        .button-container form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+
+    <div class="button-container">
+        <form action="CarteUtente.jsp" method="post">
+            <button type="submit">Le mie carte</button>
+        </form>
+        <form action="OrdiniUtente.jsp" method="post">
+            <button type="submit">I miei ordini</button>
+        </form>
+        <form action="IndirizziUtente.jsp" method="post">
+            <button type="submit">Indirizzi</button>
+        </form>
+    </div>
+
     <a href="ProductView.jsp">Torna alla home</a>
 </div>
 </body>
