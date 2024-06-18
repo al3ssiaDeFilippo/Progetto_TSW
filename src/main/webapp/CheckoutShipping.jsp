@@ -8,7 +8,8 @@
 <body>
 
 <form action="ShippingServlet" method="post">
-    <input type="hidden" name="action" value="shipping">
+    <input type="hidden" name="action" value="add">
+    <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
     <input type="hidden" id="idUser" name="idUser">
     <div>
         <label for="recipientName">Nome del Ricevente:</label>

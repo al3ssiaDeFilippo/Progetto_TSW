@@ -17,13 +17,12 @@ CREATE TABLE product (
   photo LONGBLOB
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-CREATE TABLE user(
+CREATE TABLE user (
     idUser INT PRIMARY KEY AUTO_INCREMENT,
     surname VARCHAR(50) NOT NULL,
     name VARCHAR(20) NOT NULL,
     username VARCHAR(30) UNIQUE NOT NULL,
     BirthDate DATE NOT NULL,
-    address VARCHAR(70) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     TelNumber VARCHAR(13) NOT NULL,
@@ -40,7 +39,7 @@ CREATE TABLE cart (
   FOREIGN KEY (productCode) REFERENCES product(code)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-CREATE TABLE card(
+CREATE TABLE card (
                      idCard VARCHAR(16) PRIMARY KEY,
                      ownerCard VARCHAR(50) NOT NULL,
                      expirationDate DATE NOT NULL,
@@ -50,7 +49,7 @@ CREATE TABLE card(
                          ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE shipping(
+CREATE TABLE shipping (
                          idShipping INT PRIMARY KEY AUTO_INCREMENT,
                          recipientName VARCHAR(50) NOT NULL,
                          address VARCHAR(50) NOT NULL,
@@ -61,6 +60,24 @@ CREATE TABLE shipping(
                          ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE orders (
+    idOrder INT PRIMARY KEY AUTO_INCREMENT,
+    idUser INT NOT NULL,
+    idShipping INT NOT NULL,
+    idCreditCard VARCHAR(16),
+    idCart INT,
+    orderDate DATE NOT NULL,
+    totalPrice FLOAT NOT NULL,
+    FOREIGN KEY (idUser) REFERENCES user(idUser)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (idShipping) REFERENCES shipping(idShipping)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (idCreditCard) REFERENCES card(idCard)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (idCart) REFERENCES cart(idCart)
+        ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = latin1;
+
 CREATE VIEW user_view AS
 SELECT
     idUser,
@@ -68,7 +85,6 @@ SELECT
     name,
     surname,
     BirthDate,
-    address,
     email,
     TelNumber
 FROM user;
@@ -79,7 +95,7 @@ INSERT INTO product (productName, details, quantity, category, price, iva, disco
 VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 20, 'PVC', 'white', '91x61', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
 
 
-INSERT INTO user(surname, name, username, BirthDate, address, email, password, TelNumber, admin)  values('a', 'b', 'admin', '2004-01-02', 'ciao', 'a@a.iy', 'admin', '34676424', true);
+INSERT INTO user(surname, name, username, BirthDate, email, password, TelNumber, admin)  values('a', 'b', 'admin', '2004-01-02', 'a@a.iy', 'admin', '34676424', true);
 SELECT * FROM product;
 SELECT COUNT(*) FROM product WHERE code = 2;
 

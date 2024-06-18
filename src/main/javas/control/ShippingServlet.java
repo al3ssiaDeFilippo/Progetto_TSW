@@ -87,8 +87,16 @@ public class ShippingServlet extends HttpServlet {
         // Set the "shippingAddress" attribute in the session
         session.setAttribute("shippingAddress", shipping);
 
-        // Redirect to UserAddresses.jsp
-        response.sendRedirect("UserAddresses.jsp");
+        // Retrieve the nextPage parameter
+        String nextPage = request.getParameter("nextPage");
+
+        if (nextPage != null && !nextPage.isEmpty()) {
+            // Redirect to the specified nextPage
+            response.sendRedirect(nextPage);
+        } else {
+            // Redirect to a default page if nextPage is not specified
+            response.sendRedirect("IndirizziUtente.jsp");
+        }
     }
 
     private void editAddress(HttpServletRequest request, HttpServletResponse response, UserBean user) throws ServletException, IOException {
