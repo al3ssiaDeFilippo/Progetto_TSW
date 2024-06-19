@@ -10,6 +10,14 @@
 <%@ page import="main.javas.model.CreditCardBean" %>
 
 <%
+
+    UserBean user = (UserBean) session.getAttribute("user");
+
+    if (user == null) {
+        // Se l'utente non è loggato, reindirizza alla pagina di login
+        response.sendRedirect("LogIn.jsp");
+        return;
+    }
     Carrello carrello = (Carrello) session.getAttribute("cart");
     ShippingBean shippingAddress = (ShippingBean) session.getAttribute("shippingAddress");
     CreditCardBean cardInfo = (CreditCardBean) session.getAttribute("cardInfo");
@@ -81,6 +89,10 @@
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
 <a href="ProductView.jsp">Continua lo shopping</a>
+<form action="OrderServlet" method="post">
+    <input type="hidden" name="action" value = "add">
+    <input type="submit" value="Ordina">
+</form>
 
 </body>
 </html>
