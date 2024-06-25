@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="DetailProductPage.css" rel="stylesheet" type="text/css">
+    <script src="js/DetailSelection.js"></script>
     <title>Dettagli Prodotto</title>
 </head>
 <body>
@@ -24,40 +25,38 @@
     </div>
     <div class="product-content">
         <div class="product-image">
-            <img src="ImmagineProdottoServlet?code=<%= product.getCode() %>" alt="image not found">
-        </div>
-        <div class="product-info">
+            <img id="productImage" data-product-code="<%= product.getCode() %>" src="ProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
             <p><strong>Dettagli:</strong> <%= product.getDetails() %></p>
             <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
             <p><strong>IVA:</strong> <%= product.getIva() %> %</p>
             <p><strong>Sconto:</strong> <%= product.getDiscount() %> %</p>
-            <p><strong>Materiale Cornice:</strong>
-                <select name="frame">
-                    <option value="selectAframe" disabled selected>Seleziona una tipologia di frame</option>
-                    <option value="no frame">No Frame</option>
-                    <option value="wood">Wood</option>
-                    <option value="PVC">PVC</option>
-                </select>
-            </p>
-            <p><strong>Colore Cornice:</strong>
-                <select name="frameColor">
-                    <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
-                    <option value="black">Black</option>
-                    <option value="brown">Brown</option>
-                    <option value="white">White</option>
-                </select>
-            </p>
-            <p><strong>Dimensioni:</strong>
-                <select name="size">
-                    <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
-                    <option value="21x30">21x30</option>
-                    <option value="85x60">85x60</option>
-                    <option value="91x61">91x61</option>
-                </select>
-            </p>
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
+                <!-- Add select fields for frame, frame color, and size -->
+                <p><strong>Materiale Cornice:</strong>
+                    <select name="frame" id="frameSelect" onchange="checkFrame()">
+                        <option value="no frame" selected>No Frame</option>
+                        <option value="wood">Wood</option>
+                        <option value="PVC">PVC</option>
+                    </select>
+                </p>
+                <p id="frameColorSelectContainer"><strong>Colore Cornice:</strong>
+                    <select name="frameColor" id="frameColorSelect">
+                        <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
+                        <option value="black">Black</option>
+                        <option value="brown">Brown</option>
+                        <option value="white">White</option>
+                    </select>
+                </p>
+                <p><strong>Dimensioni:</strong>
+                    <select name="size">
+                        <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
+                        <option value="21x30">21x30</option>
+                        <option value="85x60">85x60</option>
+                        <option value="91x61">91x61</option>
+                    </select>
+                </p>
                 <input type="submit" value="Aggiungi al Carrello">
             </form>
             <div class="centered-links">

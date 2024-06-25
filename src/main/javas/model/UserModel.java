@@ -77,7 +77,7 @@ public class UserModel {
             preparedStatement.executeUpdate();
         } finally {
             if (preparedStatement != null) {
-            preparedStatement.close();
+                preparedStatement.close();
             }
             if (con != null) {
                 con.close();
@@ -101,6 +101,7 @@ public class UserModel {
 
             if (rs.next()) {
                 user = new UserBean();
+                user.setIdUser(rs.getInt("IDUSER")); // Set the user ID
                 user.setSurname(rs.getString("SURNAME"));
                 user.setName(rs.getString("NAME"));
                 user.setUsername(rs.getString("USERNAME"));
@@ -109,6 +110,7 @@ public class UserModel {
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setAdmin(rs.getBoolean("ADMIN"));
+
             }
         } finally {
             if (preparedStatement != null) {
@@ -132,13 +134,19 @@ public class UserModel {
             System.out.println("Utente non esistente");
             return false;
         } else {
-            String deleteSQL = "DELETE FROM " + UserModel.TABLE_NAME + "WHERE IDUSER = ?";
+            String deleteSQL = "DELETE FROM " + UserModel.TABLE_NAME + " WHERE IDUSER = ?";
             try {
                 con = ds.getConnection();
                 con.setAutoCommit(false);
                 preparedStatement = con.prepareStatement(deleteSQL);
                 preparedStatement.setInt(1, user.getIdUser());
+
+                System.out.println("Executing delete query: " + deleteSQL); // Print before executing the query
+
                 result = preparedStatement.executeUpdate();
+
+                System.out.println("Delete query executed, result: " + result); // Print after executing the query
+
                 con.commit();
                 con.setAutoCommit(true);
             } finally {
@@ -151,6 +159,43 @@ public class UserModel {
             }
         }
         return (result != 0);
+    }
+
+    public synchronized Collection<UserBean> doRetrieveAll() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Collection<UserBean> users = new LinkedList<UserBean>();
+
+        String selectSQL = "SELECT * FROM " + UserModel.TABLE_NAME;
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                UserBean user = new UserBean();
+                user.setIdUser(rs.getInt("IDUSER"));
+                user.setSurname(rs.getString("SURNAME"));
+                user.setName(rs.getString("NAME"));
+                user.setUsername(rs.getString("USERNAME"));
+                user.setBirthDate(rs.getDate("BIRTHDATE"));
+                user.setEmail(rs.getString("EMAIL"));
+                user.setPassword(rs.getString("PASSWORD"));
+                user.setTelNumber(rs.getString("TELNUMBER"));
+                user.setAdmin(rs.getBoolean("ADMIN"));
+                users.add(user);
+            }
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return users;
     }
 
     public synchronized Collection<UserBean> doRetrieveAll(String order) throws SQLException {

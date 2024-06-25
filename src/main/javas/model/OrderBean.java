@@ -7,7 +7,6 @@ public class OrderBean {
     int idUser;
     int idShipping;
     String idCreditCard;
-    int idCart;
     Date orderDate;
     float totalPrice;
 
@@ -16,8 +15,7 @@ public class OrderBean {
     public int getIdUser(){return idUser;}
     public int getIdShipping(){return idShipping;}
     public String getIdCreditCard(){return idCreditCard;}
-    public int getIdCart(){return idCart;}
-    public java.sql.Date getOrderDate(){return (java.sql.Date) orderDate;}
+    public java.sql.Date getOrderDate() {return new java.sql.Date(orderDate.getTime());}
     public float getTotalPrice(){return totalPrice;}
 
     // Setters
@@ -26,7 +24,6 @@ public class OrderBean {
     public void setIdShipping(int idShipping){this.idShipping = idShipping;}
     public void setIdCreditCard(String idCreditCard){this.idCreditCard = idCreditCard;}
     public void setOrderDate(Date orderDate){this.orderDate = orderDate;}
-    public void setIdCart(int idCart){this.idCart = idCart;}
     public void setTotalPrice(float totalPrice){this.totalPrice = totalPrice;}
 
     @Override
@@ -36,7 +33,6 @@ public class OrderBean {
                 ", idUser=" + idUser +
                 ", idShipping=" + idShipping +
                 ", idCreditCard='" + idCreditCard + '\'' +
-                ", idCart=" + idCart +
                 ", orderDate=" + orderDate +
                 ", totalPrice=" + totalPrice +
                 '}';

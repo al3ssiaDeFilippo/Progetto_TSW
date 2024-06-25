@@ -20,6 +20,25 @@ public class DetailControl extends HttpServlet {
                 ProductModelDS productModel = new ProductModelDS();
                 ProductBean product = productModel.doRetrieveByKey(Integer.parseInt(productId));
                 if (product != null) {
+                    // Retrieve product specifications from request parameters
+                    String frame = request.getParameter("frame");
+                    System.out.println("Frame: " + frame);
+                    String frameColor = request.getParameter("frameColor");
+                    System.out.println("Frame color: " + frameColor);
+                    String size = request.getParameter("size");
+                    System.out.println("Size: " + size);
+
+                    // Set product specifications in the ProductBean object
+                    if (frame != null) {
+                        product.setFrame(frame);
+                    }
+                    if (frameColor != null) {
+                        product.setFrameColor(frameColor);
+                    }
+                    if (size != null) {
+                        product.setSize(size);
+                    }
+
                     request.setAttribute("product", product);
                     Collection<?> products = productModel.doRetrieveAll(null);
                     request.setAttribute("products", products);

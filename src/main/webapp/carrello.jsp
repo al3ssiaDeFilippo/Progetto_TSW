@@ -29,6 +29,9 @@
     <tr>
         <th>Code</th>
         <th>Quantity</th>
+        <th>Frame</th>
+        <th>Frame Color</th>
+        <th>Size</th>
         <th>Price</th>
         <th>Action</th>
     </tr>
@@ -43,6 +46,10 @@
                 <input type="submit" value="Update">
             </form>
         </td>
+
+        <td><%= prodotto.getFrame() %></td>
+        <td><%= prodotto.getFrameColor() %></td>
+        <td><%= prodotto.getSize() %></td>
 
         <%
             if(!model.checkDiscount(prodotto)) {
@@ -85,13 +92,13 @@
 
 <%
     if(cart.getProdotti().isEmpty()) { %>
-        <p style="color:red;">Il carrello è vuoto</p>
+<p style="color:red;">Il carrello è vuoto</p>
 <%  } else { %>
 
 <form action="CheckoutServlet" method="get">
     <input type="hidden" name="nextPage" value="CheckoutShipping.jsp">
     <button type="submit">Vai al pagamento</button>
 </form>
-  <%}%>
+<%}%>
 </body>
 </html>

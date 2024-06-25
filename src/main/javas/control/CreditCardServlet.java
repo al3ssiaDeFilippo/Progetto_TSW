@@ -32,10 +32,10 @@ public class CreditCardServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
 
-        /*if (user == null) {
+        if (user == null) {
             response.sendRedirect("LogIn.jsp");
             return;
-        }*/
+        }
 
         System.out.println("Sono in CreditCardServlet");
 
@@ -122,12 +122,15 @@ public class CreditCardServlet extends HttpServlet {
             throw new ServletException("Database error: " + e.getMessage());
         }
 
-        // Imposta l'attributo "cardInfo" nella sessione
+        // Set the "selectedCard" attribute in the session
+        session.setAttribute("selectedCard", creditCard);
+
+        // Set the "cardInfo" attribute in the session
         session.setAttribute("cardInfo", creditCard);
 
-        // Reindirizzamento alla pagina successiva
+        // Redirect to the next page
         if (nextPage == null || nextPage.isEmpty()) {
-            nextPage = "ProductView.jsp"; // Pagina predefinita se nextPage non è impostata
+            nextPage = "ProductView.jsp"; // Default page if nextPage is not set
         }
         System.out.println("Redirecting to " + nextPage);
         response.sendRedirect(response.encodeRedirectURL(nextPage));

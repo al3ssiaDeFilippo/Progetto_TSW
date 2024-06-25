@@ -179,4 +179,37 @@ public class CreditCardModel {
         }
         return cards;
     }
+
+    public synchronized CreditCardBean doRetrieveByUser(int idUser) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        CreditCardBean card = null;
+
+        String selectSQL = "SELECT * FROM " + CreditCardModel.TABLE_NAME + " WHERE idUser = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idUser);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                card = new CreditCardBean();
+                card.setIdCard(rs.getString("idCard"));
+                card.setOwnerCard(rs.getString("ownerCard"));
+                card.setExpirationDate(rs.getDate("expirationDate"));
+                card.setCvv(rs.getInt("cvv"));
+                card.setIdUser(rs.getInt("idUser"));
+            }
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return card;
+    }
 }

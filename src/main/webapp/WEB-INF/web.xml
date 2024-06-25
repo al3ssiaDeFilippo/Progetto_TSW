@@ -37,6 +37,16 @@
     <url-pattern>/product</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>main.javas.control.OrderServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>main.javas.control.LoginFilter</filter-class>

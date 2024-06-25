@@ -8,6 +8,9 @@ public class CartBean {
     int idUser;
     int productCode;
     int quantity;
+    String frame;
+    String frameColor;
+    String size;
     float price;
 
     public CartBean() {
@@ -15,6 +18,9 @@ public class CartBean {
         idUser = -1;
         productCode = -1;
         quantity = 1;
+        frame = "";
+        frameColor = "";
+        size = "";
         price = 0.0f;
     }
 
@@ -28,5 +34,24 @@ public class CartBean {
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public float getPrice() { return price; }
     public void setPrice(float price) { this.price = price; }
+    public String getFrame() { return frame; }
+    public void setFrame(String frame) { this.frame = frame; }
+    public String getFrameColor() { return frameColor; }
+    public void setFrameColor(String frameColor) { this.frameColor = frameColor; }
+    public String getSize() { return size; }
+    public void setSize(String size) { this.size = size; }
+
+    public String toString() {
+        return "CartBean{" +
+                "idCart=" + idCart +
+                ", idUser=" + idUser +
+                ", productCode=" + productCode +
+                ", quantity=" + quantity +
+                ", frame='" + frame + '\'' +
+                ", frameColor='" + frameColor + '\'' +
+                ", size='" + size + '\'' +
+                ", price=" + price +
+                '}';
+    }
 
 }

@@ -24,8 +24,11 @@ public class Carrello {
             product = productModel.doRetrieveByKey(prodotto.getProductCode());
 
             for (CartBean p : prodotti) {
-                if (p.getProductCode() == prodotto.getProductCode()) {
-                    // If the product is already in the cart, increase the quantity up to the available quantity
+                if (p.getProductCode() == prodotto.getProductCode() &&
+                        p.getFrame().equals(prodotto.getFrame()) &&
+                        p.getFrameColor().equals(prodotto.getFrameColor()) &&
+                        p.getSize().equals(prodotto.getSize())) {
+                    // If the product with the same attributes is already in the cart, increase the quantity
                     int newQuantity = p.getQuantity() + prodotto.getQuantity();
                     if (newQuantity > product.getQuantity()) {
                         p.setQuantity(product.getQuantity());
@@ -94,9 +97,17 @@ public class Carrello {
         prodotti.clear();
     }
 
-    /*public boolean isEmpty() {
-        return prodotti.isEmpty();
-    }*/
+    public CartBean getCartItem(CartBean cartItem) {
+        for (CartBean item : this.prodotti) {
+            if (item.getProductCode() == cartItem.getProductCode() &&
+                    item.getFrame().equals(cartItem.getFrame()) &&
+                    item.getFrameColor().equals(cartItem.getFrameColor()) &&
+                    item.getSize().equals(cartItem.getSize())) {
+                return item;
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {

@@ -4,23 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Inserisci Prodotto</title>
-    <script>
-        window.onload = function() {
-            var frameSelect = document.getElementById("frame");
-            var frameColorSelect = document.getElementById("frameColor");
-            var frameColorLabel = document.getElementById("frameColorLabel");
-
-            frameSelect.onchange = function() {
-                if (frameSelect.value === "no frame") {
-                    frameColorSelect.style.display = "none";
-                    frameColorLabel.style.display = "none";
-                } else {
-                    frameColorSelect.style.display = "inline";
-                    frameColorLabel.style.display = "inline";
-                }
-            }
-        }
-    </script>
 </head>
 <body>
 <h2>Inserisci Prodotto</h2>
@@ -60,32 +43,33 @@
 
     <label for="frame">Frame:</label><br>
     <select id="frame" name="frame">
-        <option value="selectAframe" disabled selected>Seleziona una tipologia di frame</option>
-        <option value="no frame">No Frame</option>
-        <option value="wood">Wood</option>
-        <option value="PVC">PVC</option>
+        <option value="default" selected>Default</option>
+        <option value="no frame" disabled>No Frame</option>
+        <option value="wood" disabled>Wood</option>
+        <option value="PVC" disabled>PVC</option>
     </select><br>
 
-    <label for="frameColor" id = "frameColorLabel">Colore Frame:</label><br>
+    <label for="frameColor">Frame Color:</label><br>
     <select id="frameColor" name="frameColor">
-        <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
-        <option value="black">Black</option>
-        <option value="brown">Brown</option>
-        <option value="white">White</option>
+        <option value="default" selected>Default</option>
+        <option value="black" disabled>Black</option>
+        <option value="brown" disabled>Brown</option>
+        <option value="white" disabled>White</option>
     </select><br>
 
-    <label for="size">Dimensione:</label><br>
+    <label for="size">Size:</label><br>
     <select id="size" name="size">
-        <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
-        <option value="21x30">21x30</option>
-        <option value="85x60">85x60</option>
-        <option value="91x61">91x61</option>
+        <option value="default" selected>Default</option>
+        <option value="21x30" disabled>21x30</option>
+        <option value="85x60" disabled>85x60</option>
+        <option value="91x61" disabled>91x61</option>
     </select><br>
 
     <label for="photoPath">Immagine:</label><br>
     <input type="file" id="photoPath" name="photoPath"><br>
 
-    <input type="submit" value="Inserisci Prodotto">
+    <input type="hidden" name="nextPage" value="InsertPhotosPage.jsp">
+    <input type="submit" value="Procedi">
 </form>
 </body>
 </html>

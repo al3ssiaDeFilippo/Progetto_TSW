@@ -23,7 +23,7 @@ public class ProductModelDS implements ProductModel {
             ds = (DataSource) envCtx.lookup("jdbc/storage");
 
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            System.out.println("File ProductModelDS, line 26 - Error:" + e.getMessage());
         }
     }
 
@@ -40,22 +40,34 @@ public class ProductModelDS implements ProductModel {
 
         try {
             connection = ds.getConnection();
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setString(1, product.getProductName());
+            System.out.println("Debug: " + product.getProductName());
             preparedStatement.setString(2, product.getDetails());
+            System.out.println("Debug: " + product.getDetails());
             preparedStatement.setInt(3, product.getQuantity());
+            System.out.println("Debug: " + product.getQuantity());
             preparedStatement.setString(4, product.getCategory());
+            System.out.println("Debug: " + product.getCategory());
             preparedStatement.setFloat(5, product.getPrice());
+            System.out.println("Debug: " + product.getPrice());
             preparedStatement.setInt(6, product.getIva());
+            System.out.println("Debug: " + product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
+            System.out.println("Debug: " + product.getDiscount());
             preparedStatement.setString(8, product.getFrame());
+            System.out.println("Debug: " + product.getFrame());
             preparedStatement.setString(9, product.getFrameColor());
+            System.out.println("Debug: " + product.getFrameColor());
             preparedStatement.setString(10, product.getSize());
+            System.out.println("Debug: " + product.getSize());
             preparedStatement.setBlob(11, product.getPhoto());
-
+            System.out.println("Debug: " + product.getPhoto());
             preparedStatement.executeUpdate();
 
             connection.commit();
+
         } finally {
             try {
                 if (preparedStatement != null)
@@ -202,32 +214,29 @@ public class ProductModelDS implements ProductModel {
     }
 
     public void doUpdate(ProductBean product) throws SQLException {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
-    String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ?, frame = ?, frameColor = ?, size = ? WHERE code = ?";
+        String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ? WHERE code = ?";
 
-    try {
-        connection = ds.getConnection();
-        preparedStatement = connection.prepareStatement(updateSQL);
-        preparedStatement.setString(1, product.getProductName());
-        preparedStatement.setString(2, product.getDetails());
-        preparedStatement.setInt(3, product.getQuantity());
-        preparedStatement.setString(4, product.getCategory());
-        preparedStatement.setFloat(5, product.getPrice());
-        preparedStatement.setInt(6, product.getIva());
-        preparedStatement.setInt(7, product.getDiscount());
-        preparedStatement.setString(8, product.getFrame());
-        preparedStatement.setString(9, product.getFrameColor());
-        preparedStatement.setString(10, product.getSize());
-        preparedStatement.setInt(11, product.getCode());
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(updateSQL);
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setString(2, product.getDetails());
+            preparedStatement.setInt(3, product.getQuantity());
+            preparedStatement.setString(4, product.getCategory());
+            preparedStatement.setFloat(5, product.getPrice());
+            preparedStatement.setInt(6, product.getIva());
+            preparedStatement.setInt(7, product.getDiscount());
+            preparedStatement.setInt(8, product.getCode());
 
-        preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-    } finally {
-        if (preparedStatement != null) preparedStatement.close();
-        if (connection != null) connection.close();
+        } finally {
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+        }
     }
-}
 
 }

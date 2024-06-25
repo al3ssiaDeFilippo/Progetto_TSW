@@ -45,19 +45,8 @@
     %>
     <tr>
         <td><%=bean.getProductName()%></td>
-        <td><img class="product-image" src="ImmagineProdottoServlet?code=<%=bean.getCode()%>" alt="image not found"></td>
-        <td><%=bean.getPrice()%></td>
+        <td><img class="product-image" src="ProductImageServlet?action=get&code=<%=bean.getCode()%>" alt="image not found"></td>        <td><%=bean.getPrice()%></td>
         <td>
-
-            <% if (user == null || !user.getAdmin()) { %>
-
-            <form action="ServletCarrello" method="post">
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="code" value="<%=bean.getCode()%>">
-                <input type="submit" value="Add to Cart">
-            </form>
-
-            <% } %>
 
             <form action="product" method="get">
                 <input type="hidden" name="action" value="read">
@@ -98,6 +87,10 @@
     </form>
 
     <a href="InsertPage.jsp">Inserisci prodotto</a>
+
+    <a href="UserView.jsp">Utenti</a>
+
+    <a href="OrderView.jsp">Ordini</a>
     <% } %>
 
     <!-- Blocco utente: -->
@@ -114,9 +107,10 @@
 
     <!-- Blocco guest: -->
     <% if (user == null) { %>
-        <a href="LogIn.jsp">Log In</a>
-        <a href="carrello.jsp">Visualizza Carrello</a>
+    <a href="LogIn.jsp">Log In</a>
+    <a href="carrello.jsp">Visualizza Carrello</a>
     <% } %>
 </div>
+
 </body>
 </html>

@@ -6,13 +6,11 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileStore;
 import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -119,21 +117,21 @@ public class ProductControl extends HttpServlet {
                     }
 
                     String frame = request.getParameter("frame");
+                    System.out.println("frame: " + frame);
                     String frameColor = request.getParameter("frameColor");
+                    System.out.println("frameColor: " + frameColor);
                     String size = request.getParameter("size");
+                    System.out.println("size: " + size);
 
-                    System.out.println("Debug: productName : " + productName);
-                    System.out.println("Debug: details : " + details);
-                    System.out.println("Debug: quantity : " + quantity);
-                    System.out.println("Debug: category : " + category);
-                    System.out.println("Debug: price : " + price);
-                    System.out.println("Debug: iva : " + iva);
-                    System.out.println("Debug: discount : " + discount);
-                    System.out.println("Debug: frame : " + frame);
-                    System.out.println("Debug: frameColor : " + frameColor);
-                    System.out.println("Debug: size : " + size);
-                    System.out.println("Debug: photo : " + photo);
-
+                    if("default".equals(frame)) {
+                        frame = "default";
+                    }
+                    if("default".equals(frameColor)) {
+                        frameColor = "default";
+                    }
+                    if("default".equals(size)) {
+                        size = "default";
+                    }
 
                     ProductBean bean = new ProductBean();
                     bean.setProductName(productName);
@@ -144,10 +142,28 @@ public class ProductControl extends HttpServlet {
                     bean.setIva(iva);
                     bean.setDiscount(discount);
                     bean.setFrame(frame);
+                    System.out.println("frame: " + frame);
                     bean.setFrameColor(frameColor);
+                    System.out.println("frameColor: " + frameColor);
                     bean.setSize(size);
+                    System.out.println("size: " + size);
                     bean.setPhoto(photo);
                     model.doSave(bean);
+
+                    System.out.println("Debug: action : insert! - Product inserted!");
+
+                    HttpSession session = request.getSession();;
+                    String nextPage = (String) request.getParameter("nextPage");
+
+                    if (nextPage == null || nextPage.isEmpty()) {
+                        nextPage = "ProductView.jsp"; // Pagina predefinita se nextPage non è impostata
+                    } else {
+                        session.setAttribute("nextPage", nextPage);
+                    }
+                    System.out.println("Debug: nextPage : " + nextPage);
+                    response.sendRedirect(response.encodeRedirectURL(nextPage));
+                    return;
+
                 } else if(action.equalsIgnoreCase("edit")) {
                     int code = 0;
                     String codeParam = request.getParameter("code");
@@ -165,7 +181,7 @@ public class ProductControl extends HttpServlet {
                     if (codeParam != null && !codeParam.isEmpty()) {
                         code = Integer.parseInt(request.getParameter("code"));
                         ProductBean product = model.doRetrieveByKey(code);
-                        if(product != null) {
+                        if (product != null) {
                             // Get all the new product data from the request
                             String productName = request.getParameter("productName");
                             String details = request.getParameter("details");
@@ -189,10 +205,6 @@ public class ProductControl extends HttpServlet {
                                 photo = new javax.sql.rowset.serial.SerialBlob(photoBytes);
                             }
 
-                            String frame = request.getParameter("frame");
-                            String frameColor = request.getParameter("frameColor");
-                            String size = request.getParameter("size");
-
 
                             // Set the new product data in the ProductBean object
                             product.setProductName(productName);
@@ -202,9 +214,6 @@ public class ProductControl extends HttpServlet {
                             product.setPrice(price);
                             product.setIva(iva);
                             product.setDiscount(discount);
-                            product.setFrame(frame);
-                            product.setFrameColor(frameColor);
-                            product.setSize(size);
                             product.setPhoto(photo);
 
                             // Call model.edit with the ProductBean object
@@ -214,7 +223,7 @@ public class ProductControl extends HttpServlet {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
+            System.out.println("File ProductControl, line 225 - Error:" + e.getMessage());
         }
 
         String sort = request.getParameter("sort");
@@ -225,7 +234,7 @@ public class ProductControl extends HttpServlet {
             request.setAttribute("products", model.doRetrieveAll(sort));
 
         } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
+            System.out.println("File ProductControl, line 234 - Error:" + e.getMessage());
         }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(dis);

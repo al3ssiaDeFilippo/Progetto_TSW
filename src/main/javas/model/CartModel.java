@@ -36,8 +36,10 @@ public class CartModel {
 
         String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME
                 + " WHERE IDUSER = ? AND PRODUCTCODE = ?";
+
         String insertSQL = "INSERT INTO " + CartModel.TABLE_NAME
-                + " (IDUSER, PRODUCTCODE, QUANTITY, PRICE) VALUES (?, ?, ?, ?)";
+                + " (IDUSER, PRODUCTCODE, QUANTITY, FRAME, FRAMECOLOR, SIZE, PRICE) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         String updateSQL = "UPDATE " + CartModel.TABLE_NAME
                 + " SET QUANTITY = ? WHERE IDUSER = ? AND PRODUCTCODE = ?";
 
@@ -63,7 +65,10 @@ public class CartModel {
                 preparedStatement.setInt(1, cart.getIdUser());
                 preparedStatement.setInt(2, cart.getProductCode());
                 preparedStatement.setInt(3, cart.getQuantity());
-                preparedStatement.setFloat(4, cart.getPrice());
+                preparedStatement.setString(4, cart.getFrame());
+                preparedStatement.setString(5, cart.getFrameColor());
+                preparedStatement.setString(6, cart.getSize());
+                preparedStatement.setFloat(7, cart.getPrice());
             }
 
             preparedStatement.executeUpdate();
@@ -105,6 +110,9 @@ public class CartModel {
                 bean.setIdUser(rs.getInt("idUser"));
                 bean.setProductCode(rs.getInt("productCode"));
                 bean.setQuantity(rs.getInt("quantity"));
+                bean.setFrame(rs.getString("frame"));
+                bean.setFrameColor(rs.getString("frameColor"));
+                bean.setSize(rs.getString("size"));
                 bean.setPrice(rs.getFloat("price"));
 
                 cartItems.add(bean);
@@ -135,6 +143,7 @@ public class CartModel {
 
         try {
             connection = ds.getConnection();
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(deleteSQL);
             preparedStatement.setInt(1, productCode);
 
@@ -261,39 +270,68 @@ public class CartModel {
 
 
     public synchronized List<CartBean> doRetrieveAll(int idUser) throws SQLException {
-    Connection con = null;
-    PreparedStatement preparedStatement = null;
-    List<CartBean> cartItems = new ArrayList<CartBean>();
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        List<CartBean> cartItems = new ArrayList<CartBean>();
 
-    String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE idUser = ?";
+        String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE idUser = ?";
 
-    try {
-        con = ds.getConnection();
-        preparedStatement = con.prepareStatement(selectSQL);
-        preparedStatement.setInt(1, idUser);
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idUser);
 
-        ResultSet rs = preparedStatement.executeQuery();
+            ResultSet rs = preparedStatement.executeQuery();
 
-        while (rs.next()) {
-            CartBean cartItem = new CartBean();
-            cartItem.setIdCart(rs.getInt("idCart"));
-            cartItem.setProductCode(rs.getInt("productCode"));
-            cartItem.setQuantity(rs.getInt("quantity"));
-            cartItem.setPrice(rs.getFloat("price"));
-            cartItem.setIdUser(rs.getInt("idUser")); // Use 'idUser' instead of 'IDUSER'
-            cartItems.add(cartItem);
+            while (rs.next()) {
+                CartBean cartItem = new CartBean();
+                cartItem.setIdCart(rs.getInt("idCart"));
+                cartItem.setProductCode(rs.getInt("productCode"));
+                cartItem.setQuantity(rs.getInt("quantity"));
+                cartItem.setFrame(rs.getString("frame"));
+                cartItem.setFrameColor(rs.getString("frameColor"));
+                cartItem.setSize(rs.getString("size"));
+                cartItem.setPrice(rs.getFloat("price"));
+                cartItem.setIdUser(rs.getInt("idUser")); // Use 'idUser' instead of 'IDUSER'
+                cartItems.add(cartItem);
+            }
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
-    } finally {
-        if (preparedStatement != null) {
-            preparedStatement.close();
-        }
-        if (con != null) {
-            con.close();
+        return cartItems;
+    }
+
+    public synchronized void doDeleteAllByUser(int userId) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String deleteSQL = "DELETE FROM " + CartModel.TABLE_NAME + " WHERE IDUSER = ?";
+
+        try {
+            connection = ds.getConnection();
+            connection.setAutoCommit(false); // disable auto-commit
+            preparedStatement = connection.prepareStatement(deleteSQL);
+            preparedStatement.setInt(1, userId);
+
+            preparedStatement.executeUpdate();
+
+            connection.commit(); // commit the transaction
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null) {
+                    connection.setAutoCommit(true); // re-enable auto-commit
+                    connection.close();
+                }
+            }
         }
     }
-    return cartItems;
-    }
-
-
 
 }

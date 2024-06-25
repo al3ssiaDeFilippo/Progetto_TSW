@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.model.ProductBean" %>
 <%@ page import="main.javas.util.Carrello" %>
@@ -59,14 +59,21 @@
 </table>
 
 <h2>Indirizzo di Spedizione</h2>
-<% if (shippingAddress != null) { %>
-<p><%= shippingAddress.getRecipientName() %></p>
-<p><%= shippingAddress.getAddress() %></p>
-<p><%= shippingAddress.getCity() %></p>
-<p><%= shippingAddress.getCap() %></p>
-<% } else { %>
+<%
+    ShippingBean selectedAddress = (ShippingBean) session.getAttribute("selectedAddress");
+    if (selectedAddress != null) {
+%>
+<p>Nome del Ricevente: <%= selectedAddress.getRecipientName() %></p>
+<p>Indirizzo: <%= selectedAddress.getAddress() %></p>
+<p>Città: <%= selectedAddress.getCity() %></p>
+<p>CAP: <%= selectedAddress.getCap() %></p>
+<%
+} else {
+%>
 <p>Indirizzo di spedizione non disponibile</p>
-<% } %>
+<%
+    }
+%>
 
 <h2>Informazioni sulla Carta</h2>
 <%

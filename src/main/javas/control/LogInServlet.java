@@ -127,9 +127,21 @@ public class LogInServlet extends HttpServlet {
             return;
         }
 
-        if (userBean != null && userBean.getPassword().equals(password)) {
+        if (userBean != null && userBean.getPassword().equals(password) && !userBean.getAdmin()) {
             System.out.println("User login successful."); // Debug print
             session.setAttribute("user", userBean);
+
+            Carrello cart1 = (Carrello) session.getAttribute("cart");
+            if (cart1 != null) {
+                System.out.println("Cart found in session, saving it to the database..."); // Debug print
+                CartModel cartModel = new CartModel();
+                cartModel.doDeleteAllByUser(userBean.getIdUser());
+                for (CartBean item : cart1.getProdotti()) {
+                    item.setIdUser(userBean.getIdUser());
+                    cartModel.doSave(item);
+                }
+            }
+
 
             // Caricamento del carrello dell'utente dal database
             CartModel cartModel = new CartModel();
@@ -138,6 +150,7 @@ public class LogInServlet extends HttpServlet {
             for (CartBean item : cartItems) {
                 cart.aggiungi(item);
             }
+
             session.setAttribute("cart", cart);
 
             // Reindirizzamento alla pagina successiva

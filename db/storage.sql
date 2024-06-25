@@ -11,9 +11,9 @@ CREATE TABLE product (
   price FLOAT DEFAULT 0 NOT NULL,
   iva INT DEFAULT 0 NOT NULL,
   discount INT DEFAULT 0,
-  frame VARCHAR(8) NOT NULL CHECK (frame IN ('no frame', 'wood', 'PVC')),
-  frameColor VARCHAR(5) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white')),
-  size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')),
+  frame VARCHAR(8) CHECK (frame IN ('default', 'no frame', 'wood', 'PVC')),
+  frameColor VARCHAR(8) CHECK (frameColor IN ('default', 'black', 'brown', 'white', 'no color')),
+  size VARCHAR(7) CHECK (size IN ('default', '21x30', '85x60', '91x61')),
   photo LONGBLOB
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -30,14 +30,17 @@ CREATE TABLE user (
  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE cart (
-  idCart INT PRIMARY KEY AUTO_INCREMENT,
-  idUser INT,
-  productCode INT NOT NULL,
-  quantity INT DEFAULT 1,
-  price FLOAT NOT NULL,
-  FOREIGN KEY (idUser) REFERENCES user(idUser),
-  FOREIGN KEY (productCode) REFERENCES product(code)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+	  idCart INT PRIMARY KEY AUTO_INCREMENT,
+	  idUser INT,
+	  productCode INT NOT NULL,
+	  quantity INT DEFAULT 1,
+      frame VARCHAR(8) NOT NULL CHECK (frame IN ('no frame', 'wood', 'PVC')) DEFAULT 'no frame',
+	  frameColor VARCHAR(8) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white', 'no color')) DEFAULT 'no color',
+	  size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')) DEFAULT '21x30',
+	  price FLOAT NOT NULL,
+	  FOREIGN KEY (idUser) REFERENCES user(idUser),
+	  FOREIGN KEY (productCode) REFERENCES product(code)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE card (
                      idCard VARCHAR(16) PRIMARY KEY,
@@ -61,33 +64,42 @@ CREATE TABLE shipping (
 );
 
 CREATE TABLE orders (
-    idOrder INT PRIMARY KEY AUTO_INCREMENT,
-    idUser INT NOT NULL,
-    idShipping INT NOT NULL,
-    idCreditCard VARCHAR(16),
-    idCart INT,
-    orderDate DATE NOT NULL,
-    totalPrice FLOAT NOT NULL,
-    FOREIGN KEY (idUser) REFERENCES user(idUser)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (idShipping) REFERENCES shipping(idShipping)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (idCreditCard) REFERENCES card(idCard)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (idCart) REFERENCES cart(idCart)
-        ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = latin1;
+                        idOrder INT PRIMARY KEY AUTO_INCREMENT,
+                        idUser INT NOT NULL,
+                        idShipping INT NOT NULL,
+                        idCreditCard VARCHAR(16),
+                        orderDate DATE NOT NULL,
+                        totalPrice FLOAT NOT NULL,
+                        FOREIGN KEY (idUser) REFERENCES user(idUser)
+                            ON UPDATE CASCADE ON DELETE CASCADE,
+                        FOREIGN KEY (idShipping) REFERENCES shipping(idShipping)
+                            ON UPDATE CASCADE ON DELETE CASCADE,
+                        FOREIGN KEY (idCreditCard) REFERENCES card(idCard)
+                            ON UPDATE CASCADE ON DELETE CASCADE
+);
 
-CREATE VIEW user_view AS
-SELECT
-    idUser,
-    username,
-    name,
-    surname,
-    BirthDate,
-    email,
-    TelNumber
-FROM user;
+CREATE TABLE orderDetails(
+	  idUser INT PRIMARY KEY,
+	  productCode INT NOT NULL,
+	  quantity INT DEFAULT 1,
+      frame VARCHAR(8) NOT NULL CHECK (frame IN ('no frame', 'wood', 'PVC')),
+	  frameColor VARCHAR(8) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white', 'no color')),
+	  size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')),
+	  price FLOAT NOT NULL,
+      idOrder INT NOT NULL,
+	  FOREIGN KEY (idUser) REFERENCES user(idUser),
+	  FOREIGN KEY (productCode) REFERENCES product(code),
+      FOREIGN KEY (idOrder) REFERENCES orders(idOrder)
+);
+
+CREATE TABLE photo (
+                       idPhoto INT PRIMARY KEY AUTO_INCREMENT,
+                       photo LONGBLOB,
+                       productCode INT NOT NULL,
+                       FOREIGN KEY (productCode) REFERENCES product(code)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+SELECT * FROM ORDERS;
 
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, frame, frameColor, size, photo)
 VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 10, 'wood', 'brown', '85x60', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));

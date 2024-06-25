@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class ShippingModel {
-    private DataSource ds;
+    private static DataSource ds;
 
     public ShippingModel() {
         try {
@@ -21,6 +23,8 @@ public class ShippingModel {
             throw new RuntimeException("Cannot get the data source", e);
         }
     }
+
+    private static final String TABLE_NAME = "shipping";
 
     public void doSave(ShippingBean shipping) throws SQLException {
         Connection con = null;
@@ -79,22 +83,27 @@ public class ShippingModel {
     }
 
     public ShippingBean doRetrieveByKey(int idUser) throws SQLException {
+
         Connection con = null;
         PreparedStatement preparedStatement = null;
         ShippingBean shipping = new ShippingBean();
 
         String selectSQL = "SELECT * FROM shipping WHERE idUser = ?";
-
+        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD " + idUser);
         try {
+            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSS ");
             con = ds.getConnection();
+            con.setAutoCommit(false);
             preparedStatement = con.prepareStatement(selectSQL);
             preparedStatement.setInt(1, idUser);
 
             ResultSet rs = preparedStatement.executeQuery();
+            con.commit();
 
             if (rs.next()) {
                 shipping.setIdShipping(rs.getInt("idShipping"));
                 shipping.setRecipientName(rs.getString("recipientName"));
+                System.out.println("Recipient name: " + rs.getString("recipientName"));
                 shipping.setAddress(rs.getString("address"));
                 shipping.setCity(rs.getString("city"));
                 shipping.setCap(rs.getInt("cap"));
@@ -112,16 +121,17 @@ public class ShippingModel {
         return shipping;
     }
 
-    public void doDelete(int idUser) throws SQLException {
+    public static void doDelete(int idAddress, int idUser) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String deleteSQL = "DELETE FROM shipping WHERE idUser = ?";
+        String deleteSQL = "DELETE FROM shipping WHERE idShipping = ? AND idUser = ?";
 
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, idUser);
+            preparedStatement.setInt(1, idAddress);
+            preparedStatement.setInt(2, idUser);
 
             preparedStatement.executeUpdate();
         } finally {
@@ -133,4 +143,73 @@ public class ShippingModel {
             }
         }
     }
+    public synchronized Collection<ShippingBean> doRetrieveAll(int idUser) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Collection<ShippingBean> addresses = new LinkedList<ShippingBean>();
+
+        String selectSQL = "SELECT * FROM " + ShippingModel.TABLE_NAME + " WHERE idUser = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idUser);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                ShippingBean shipping = new ShippingBean();
+                shipping.setIdShipping(rs.getInt("idShipping"));
+                shipping.setRecipientName(rs.getString("recipientName"));
+                shipping.setAddress(rs.getString("address"));
+                shipping.setCity(rs.getString("city"));
+                shipping.setCap(rs.getInt("cap"));
+                shipping.setIdUser(rs.getInt("idUser"));
+                addresses.add(shipping);
+            }
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return addresses;
+    }
+
+//    public ShippingBean doRetrieveByUser(int idUser) throws SQLException {
+//        Connection con = null;
+//        PreparedStatement preparedStatement = null;
+//        ShippingBean shipping = new ShippingBean();
+//
+//        String selectSQL = "SELECT * FROM shipping WHERE idUser = ?";
+//
+//        try {
+//            con = ds.getConnection();
+//            preparedStatement = con.prepareStatement(selectSQL);
+//            preparedStatement.setInt(1, idUser);
+//
+//            ResultSet rs = preparedStatement.executeQuery();
+//
+//            if (rs.next()) {
+//                shipping.setIdShipping(rs.getInt("idShipping"));
+//                shipping.setRecipientName(rs.getString("recipientName"));
+//                shipping.setAddress(rs.getString("address"));
+//                shipping.setCity(rs.getString("city"));
+//                shipping.setCap(rs.getInt("cap"));
+//                shipping.setIdUser(rs.getInt("idUser"));
+//            }
+//        } finally {
+//            if (preparedStatement != null) {
+//                preparedStatement.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//
+//        return shipping;
+//    }
+
 }

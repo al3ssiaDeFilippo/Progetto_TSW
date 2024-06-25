@@ -34,7 +34,6 @@
 
 <a href="ProductView.jsp">Continua lo shopping</a>
 <br>
-<a href="RiepilogoOrdine.jsp">Acquista ora</a>
 
 </body>
 </html>
