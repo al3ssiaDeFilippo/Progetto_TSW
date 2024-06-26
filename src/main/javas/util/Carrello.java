@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import main.javas.model.CartBean;
-import main.javas.model.CartModel;
-import main.javas.model.ProductBean;
-import main.javas.model.ProductModelDS;
+import main.javas.model.Order.CartBean;
+import main.javas.model.Order.CartModel;
+import main.javas.model.Product.ProductBean;
+import main.javas.model.Product.ProductModelDS;
 
 public class Carrello {
     private List<CartBean> prodotti;

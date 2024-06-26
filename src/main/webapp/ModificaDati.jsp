@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.javas.model.UserBean" %>
+<%@ page import="main.javas.model.User.UserBean" %>
 
 <%
     UserBean user = (UserBean) session.getAttribute("user");

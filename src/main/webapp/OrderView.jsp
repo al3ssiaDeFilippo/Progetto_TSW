@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.UserBean" %>
-<%@ page import="main.javas.model.OrderBean" %>
-<%@ page import="main.javas.model.OrderModel" %>
+<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.model.Order.OrderBean" %>
+<%@ page import="main.javas.model.Order.OrderModel" %>
 
 <%
     UserBean currentUser = (UserBean) session.getAttribute("user");

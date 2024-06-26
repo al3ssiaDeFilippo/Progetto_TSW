@@ -7,8 +7,8 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.UserBean" %>
-<%@ page import="main.javas.model.UserModel" %>
+<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.model.User.UserModel" %>
 
 
 <%

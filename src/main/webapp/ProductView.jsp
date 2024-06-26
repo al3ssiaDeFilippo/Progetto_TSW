@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.ProductBean" %>
-<%@ page import="main.javas.model.UserBean" %>
+<%@ page import="main.javas.model.Product.ProductBean" %>
+<%@ page import="main.javas.model.User.UserBean" %>
 
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");

@@ -9,12 +9,12 @@
 </welcome-file-list>
   <servlet>
     <servlet-name>ProductControl</servlet-name>
-    <servlet-class>main.javas.control.ProductControl</servlet-class>
+    <servlet-class>main.javas.control.Product.ProductControl</servlet-class>
   </servlet>
 
   <servlet>
     <servlet-name>DetailControl</servlet-name>
-    <servlet-class>main.javas.control.DetailControl</servlet-class>
+    <servlet-class>main.javas.control.Product.DetailControl</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -24,7 +24,7 @@
 
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>main.javas.control.LogInServlet</servlet-class>
+    <servlet-class>main.javas.control.User.LogInServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -39,7 +39,7 @@
 
   <servlet>
     <servlet-name>OrderServlet</servlet-name>
-    <servlet-class>main.javas.control.OrderServlet</servlet-class>
+    <servlet-class>main.javas.control.Order.OrderServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -49,7 +49,7 @@
 
   <filter>
     <filter-name>LoginFilter</filter-name>
-    <filter-class>main.javas.control.LoginFilter</filter-class>
+    <filter-class>main.javas.control.User.LoginFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>

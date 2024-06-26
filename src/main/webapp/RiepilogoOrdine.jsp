@@ -1,13 +1,13 @@
         <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.ProductBean" %>
+<%@ page import="main.javas.model.Product.ProductBean" %>
 <%@ page import="main.javas.util.Carrello" %>
-<%@ page import="main.javas.model.CartBean" %>
-<%@ page import="main.javas.model.CartModel" %>
+<%@ page import="main.javas.model.Order.CartBean" %>
+<%@ page import="main.javas.model.Order.CartModel" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="main.javas.model.UserBean" %>
-<%@ page import="main.javas.model.ShippingBean" %>
-<%@ page import="main.javas.model.CreditCardBean" %>
+<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.model.Order.ShippingBean" %>
+<%@ page import="main.javas.model.Order.CreditCardBean" %>
 
 <%
 

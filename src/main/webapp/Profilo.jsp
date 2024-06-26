@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="main.javas.model.UserBean" %>
+<%@ page import="main.javas.model.User.UserBean" %>
 <%
     // Controlla se l'utente è loggato
     UserBean user = (UserBean) session.getAttribute("user");

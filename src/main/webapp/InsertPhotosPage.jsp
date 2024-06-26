@@ -1,7 +1,7 @@
 <%@ page import="java.util.Collection" %>
-<%@ page import="main.javas.model.ProductBean" %>
+<%@ page import="main.javas.model.Product.ProductBean" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="main.javas.model.ProductModelDS" %>
+<%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
