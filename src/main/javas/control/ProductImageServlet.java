@@ -76,7 +76,8 @@ public class ProductImageServlet extends HttpServlet {
                 try {
                     ProductBean product = prMod.doRetrieveByKey(id);
                     if(product != null) {
-                        modelFoto.insertImage(product.getCode(), photoPath);                    } else {
+                        modelFoto.insertImage(product.getCode(), photoPath);
+                    } else {
                         throw new NullPointerException("No product found with ID: " + id);
                     }
                 } catch (SQLException e) {

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.model.ProductBean" %>
+<%@ page import="main.javas.model.UserBean" %>
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
+    UserBean user = (UserBean) session.getAttribute("user"); // Assumi che l'oggetto utente sia salvato in sessione come "user"
 %>
 
 <!DOCTYPE html>
@@ -57,10 +59,14 @@
                         <option value="91x61">91x61</option>
                     </select>
                 </p>
+                <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il pulsante -->
                 <input type="submit" value="Aggiungi al Carrello">
+                <% } %>
             </form>
             <div class="centered-links">
+                <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il link -->
                 <a href="carrello.jsp">Visualizza Carrello</a>
+                <% } %>
                 <a href="ProductView.jsp">Torna alla Home</a>
             </div>
         </div>

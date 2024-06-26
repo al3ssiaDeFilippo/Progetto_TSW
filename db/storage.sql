@@ -18,16 +18,19 @@ CREATE TABLE product (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE user (
-    idUser INT PRIMARY KEY AUTO_INCREMENT,
-    surname VARCHAR(50) NOT NULL,
-    name VARCHAR(20) NOT NULL,
-    username VARCHAR(30) UNIQUE NOT NULL,
-    BirthDate DATE NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    TelNumber VARCHAR(13) NOT NULL,
-	admin BOOLEAN NOT NULL
- ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+   idUser INT PRIMARY KEY AUTO_INCREMENT,
+   surname VARCHAR(50) NOT NULL,
+   name VARCHAR(20) NOT NULL,
+   username VARCHAR(30) UNIQUE NOT NULL,
+   BirthDate DATE NOT NULL,
+   email VARCHAR(50) UNIQUE NOT NULL,
+    /*Inizio Modifiche Qui*/
+   password VARCHAR(64) NOT NULL, -- Password hashata
+   salt VARCHAR(32) NOT NULL, -- Salt per l'hashing della password
+   /*Fine Modifiche Qui*/
+   TelNumber VARCHAR(13) NOT NULL,
+   admin BOOLEAN NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE cart (
 	  idCart INT PRIMARY KEY AUTO_INCREMENT,
@@ -96,18 +99,16 @@ CREATE TABLE photo (
                        idPhoto INT PRIMARY KEY AUTO_INCREMENT,
                        photo LONGBLOB,
                        productCode INT NOT NULL,
+					   frame VARCHAR(8) CHECK (frame IN ('no frame', 'wood', 'PVC')),
+					   frameColor VARCHAR(8) CHECK (frameColor IN ('black', 'brown', 'white', 'no color')),
                        FOREIGN KEY (productCode) REFERENCES product(code)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-SELECT * FROM ORDERS;
-
-INSERT INTO product (productName, details, quantity, category, price, iva, discount, frame, frameColor, size, photo)
-VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 10, 'wood', 'brown', '85x60', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));
-INSERT INTO product (productName, details, quantity, category, price, iva, discount, frame, frameColor, size, photo)
-VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 20, 'PVC', 'white', '91x61', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
+INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
+VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 10, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));
+INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
+VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 20, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
 
 
-INSERT INTO user(surname, name, username, BirthDate, email, password, TelNumber, admin)  values('a', 'b', 'admin', '2004-01-02', 'a@a.iy', 'admin', '34676424', true);
-SELECT * FROM product;
-SELECT COUNT(*) FROM product WHERE code = 2;
+INSERT INTO user(surname, name, username, BirthDate, email, password, salt, TelNumber, admin)  values('a', 'b', 'admin', '2004-01-02', 'a@a.iy', '8c249d06dfaff657ef96429eaa52537cb1f4139994ead43e1fecd9923000277a', 'dd','34676424', true);	/*password: ciao*/
 

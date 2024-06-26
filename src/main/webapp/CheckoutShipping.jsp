@@ -1,12 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="main.javas.model.ShippingBean" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="main.javas.model.UserBean" %>
+<%@ page import="main.javas.model.ShippingModel" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Checkout</title>
+    <title>Indirizzo di spedizione</title>
 </head>
 <body>
 
+<%
+    UserBean user = (UserBean) session.getAttribute("user");
+    String nextPage = (String) session.getAttribute("nextPage");
+    ShippingModel shippingModel = new ShippingModel();
+    Collection<ShippingBean> Addresses = shippingModel.doRetrieveAll(user.getIdUser());
+%>
+
+<%
+    if (!Addresses.isEmpty()) {
+        for (ShippingBean address : Addresses) {
+%>
+
+<div>
+    <h2>Indirizzo di Spedizione</h2>
+    <p>Nome del Ricevente: <%= address.getRecipientName() %></p>
+    <p>Indirizzo: <%= address.getAddress() %></p>
+    <p>Città: <%= address.getCity() %></p>
+    <p>CAP: <%= address.getCap() %></p>
+    <form action="ShippingServlet" method="post">
+        <input type="hidden" name="action" value="select">
+        <input type="hidden" name="selectedAddress" value="<%= address.getIdShipping() %>">
+        <input type="submit" value="Seleziona indirizzo">
+    </form>
+</div>
+<% } %>
+<% } %>
+
+<h2>Inserimento nuovo indirizzo</h2>
 <form action="ShippingServlet" method="post">
     <input type="hidden" name="action" value="add">
     <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
@@ -28,12 +60,19 @@
         <input type="text" id="cap" name="cap" required>
     </div>
     <div>
-        <input type="submit" value="Spedisci">
+        <input type="checkbox" id="saveAddress" name="saveAddress" value="true">
+        <label for="saveAddress">Salva indirizzo (autorizzo PosterWorld a salvare i miei dati)</label>
     </div>
+    <div>
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
+        <input type="submit" value="Prosegui al pagamento">
+    </div>
+
 </form>
 
 <a href="ProductView.jsp">Continua lo shopping</a>
-<br>
+
 
 </body>
 </html>

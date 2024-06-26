@@ -59,6 +59,10 @@ public class ServletCarrello extends HttpServlet {
                         cartItem.setFrameColor(frameColor != null ? frameColor : item.getFrameColor());
                         cartItem.setSize(size != null ? size : item.getSize());
 
+                        cartItem.setPrice(item.getPrice());
+                        System.out.println("Product price: " + item.getPrice());
+                        System.out.println("Cart item price: " + cartItem.getPrice());
+
                         // Always add a new row to the cart
                         cart.aggiungi(cartItem);
 

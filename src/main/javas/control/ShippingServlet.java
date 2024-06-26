@@ -98,8 +98,7 @@ public class ShippingServlet extends HttpServlet {
         }
 
         // Set the "shippingAddress" attribute in the session
-        session.setAttribute("selectAddress", shipping);
-        session.setAttribute("shippingAddress", shipping);
+        session.setAttribute("selectedAddress", shipping);
 
         // Retrieve the nextPage parameter
         String nextPage = request.getParameter("nextPage");

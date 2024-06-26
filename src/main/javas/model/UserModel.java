@@ -1,5 +1,7 @@
 package main.javas.model;
 
+import main.javas.util.PasswordUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 
 public class UserModel {
     private static DataSource ds;
@@ -31,7 +34,7 @@ public class UserModel {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, EMAIL, PASSWORD, TELNUMBER, ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + UserModel.TABLE_NAME + " (SURNAME, NAME, USERNAME, BIRTHDATE, EMAIL, PASSWORD, SALT, TELNUMBER, ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = ds.getConnection();
@@ -42,9 +45,14 @@ public class UserModel {
             preparedStatement.setString(3, user.getUsername());
             preparedStatement.setDate(4, user.getBirthDate());
             preparedStatement.setString(5, user.getEmail());
+
+            //Inizio Modifiche Qui
             preparedStatement.setString(6, user.getPassword());
-            preparedStatement.setString(7, user.getTelNumber());
-            preparedStatement.setBoolean(8, user.getAdmin());
+            preparedStatement.setString(7, user.getSalt());
+            //Fine Modifiche Qui
+
+            preparedStatement.setString(8, user.getTelNumber());
+            preparedStatement.setBoolean(9, user.getAdmin());
 
             preparedStatement.executeUpdate();
             con.commit();
@@ -62,7 +70,7 @@ public class UserModel {
     public synchronized void updateUser(UserBean user) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
-        String updateSQL = "UPDATE " + TABLE_NAME + " SET surname = ?, name = ?, username = ?, BirthDate = ?, email = ?, TelNumber = ?, admin = ? WHERE idUser = ?";
+        String updateSQL = "UPDATE " + TABLE_NAME + " SET surname = ?, name = ?, username = ?, BirthDate = ?, email = ?, password = ?, salt = ?, TelNumber = ?, admin = ? WHERE idUser = ?";
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(updateSQL);
@@ -71,9 +79,17 @@ public class UserModel {
             preparedStatement.setString(3, user.getUsername());
             preparedStatement.setDate(4, user.getBirthDate());
             preparedStatement.setString(5, user.getEmail());
-            preparedStatement.setString(6, user.getTelNumber());
-            preparedStatement.setBoolean(7, user.getAdmin());
-            preparedStatement.setInt(8, user.getIdUser());
+
+            //Inizio Modifiche Qui
+            String newSalt = PasswordUtils.generateSalt();
+            String hashedNewPassword = PasswordUtils.hashPassword(user.getPassword(), newSalt);
+            preparedStatement.setString(6, hashedNewPassword);
+            preparedStatement.setString(7, newSalt);
+            //Fine Modifiche Qui
+
+            preparedStatement.setString(8, user.getTelNumber());
+            preparedStatement.setBoolean(9, user.getAdmin());
+            preparedStatement.setInt(10, user.getIdUser());
             preparedStatement.executeUpdate();
         } finally {
             if (preparedStatement != null) {
@@ -108,6 +124,9 @@ public class UserModel {
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
+                //Inizio Modifiche Qui
+                user.setSalt(rs.getString("SALT"));
+                //Fine Modifiche Qui
                 user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setAdmin(rs.getBoolean("ADMIN"));
 
@@ -183,6 +202,9 @@ public class UserModel {
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
+                //Inizio Modifiche Qui
+                user.setSalt(rs.getString("SALT"));
+                //Fine Modifiche Qui
                 user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setAdmin(rs.getBoolean("ADMIN"));
                 users.add(user);
@@ -224,6 +246,9 @@ public class UserModel {
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
+                //Inizio Modifiche Qui
+                user.setSalt(rs.getString("SALT"));
+                //Fine Modifiche Qui
                 user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setAdmin(rs.getBoolean("ADMIN"));
                 users.add(user);
@@ -265,6 +290,9 @@ public class UserModel {
                 user.setBirthDate(rs.getDate("BIRTHDATE"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPassword(rs.getString("PASSWORD"));
+                //Inizio Modifiche Qui
+                user.setSalt(rs.getString("SALT"));
+                //Fine Modifiche Qui
                 user.setTelNumber(rs.getString("TELNUMBER"));
                 user.setAdmin(rs.getBoolean("ADMIN"));
             }

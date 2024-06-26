@@ -54,12 +54,12 @@
         <%
             if(!model.checkDiscount(prodotto)) {
         %>
-        <td> <%= prodotto.getPrice() * prodotto.getQuantity() %> €</td>
+        <td> <%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity() %> €</td>
         <%
         } else {
-            if(model.getSingleProductDiscountedPrice(prodotto) != prodotto.getPrice()) {
+            if(model.getSingleProductDiscountedPrice(prodotto) != model.getProductTotalPrice(prodotto)){
         %>
-        <td> <del><%= prodotto.getPrice() * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € </td>
+        <td> <del><%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € </td>
         <%
                 }
             }

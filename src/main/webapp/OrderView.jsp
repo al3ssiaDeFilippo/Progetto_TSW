@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Utente
-  Date: 24/06/2024
-  Time: 17:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.model.UserBean" %>

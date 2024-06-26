@@ -19,8 +19,8 @@
         return;
     }
     Carrello carrello = (Carrello) session.getAttribute("cart");
-    ShippingBean shippingAddress = (ShippingBean) session.getAttribute("shippingAddress");
-    CreditCardBean cardInfo = (CreditCardBean) session.getAttribute("cardInfo");
+    //ShippingBean shippingAddress = (ShippingBean) session.getAttribute("shippingAddress");
+    //CreditCardBean cardInfo = (CreditCardBean) session.getAttribute("cardInfo");
     if (carrello == null) {
         carrello = new Carrello();
     }
@@ -49,9 +49,9 @@
         <td><%= prodotto.getQuantity() %></td>
         <td>
             <% if(!model.checkDiscount(prodotto)) { %>
-            <%= prodotto.getPrice() * prodotto.getQuantity()%> €
-            <% } else if(model.getSingleProductDiscountedPrice(prodotto) != prodotto.getPrice()) { %>
-            <del><%= prodotto.getPrice() * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> €
+            <%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity()%> €
+            <% } else if(model.getSingleProductDiscountedPrice(prodotto) != model.getProductTotalPrice(prodotto)) { %>
+            <del><%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> €
             <% } %>
         </td>
     </tr>
@@ -96,10 +96,10 @@
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
 <a href="ProductView.jsp">Continua lo shopping</a>
+<!-- Inizio Modifica Qui -->
 <form action="OrderServlet" method="post">
-    <input type="hidden" name="action" value = "add">
     <input type="submit" value="Ordina">
 </form>
-
+<!-- Fine Modifica Qui -->
 </body>
 </html>

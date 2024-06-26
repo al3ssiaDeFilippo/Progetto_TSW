@@ -1,10 +1,10 @@
 package main.javas.control;
-
 import main.javas.model.CartBean;
 import main.javas.model.CartModel;
 import main.javas.model.UserBean;
 import main.javas.model.UserModel;
 import main.javas.util.Carrello;
+import main.javas.util.PasswordUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -95,11 +95,16 @@ public class LogInServlet extends HttpServlet {
         userBean.setUsername(username);
         userBean.setBirthDate(birthdate);
         userBean.setEmail(email);
-        userBean.setPassword(password);
+
+        //Inizio Modifiche Qui
+        String salt = PasswordUtils.generateSalt();
+        String hashedPassword = PasswordUtils.hashPassword(password, salt);
+        userBean.setPassword(hashedPassword);
+        userBean.setSalt(salt);
+        //Fine Modifiche Qui
+
         userBean.setTelNumber(telNumber);
         userBean.setAdmin(Boolean.parseBoolean(admin));
-
-        System.out.println("Attempting to save user to database..."); // Debug print
 
         // Salvataggio dell'utente nel database
         userModel.doSave(userBean);
@@ -120,14 +125,26 @@ public class LogInServlet extends HttpServlet {
 
         UserBean userBean = userModel.doRetrieveByUsername(username);
 
-        if(userBean != null && userBean.getPassword().equals(password) && userBean.getAdmin()) {
+        // Inizio Modifiche Qui
+        System.out.println("PWD: " + password);
+        System.out.println("Salt: " + userBean.getSalt());
+        String hashedPassword = PasswordUtils.hashPassword(password, userBean.getSalt());
+        // Fine Modifiche Qui
+
+        if(userBean != null && userBean.getPassword().equals(hashedPassword) && userBean.getAdmin()) {
             System.out.println("Admin login successful."); // Debug print
             session.setAttribute("user", userBean);
             response.sendRedirect("ProductView.jsp");
             return;
         }
 
-        if (userBean != null && userBean.getPassword().equals(password) && !userBean.getAdmin()) {
+        System.out.println("Hashed password: " + hashedPassword);
+        System.out.println("Stored password: " + userBean.getPassword());
+        System.out.println("Salt: " + userBean.getSalt());
+
+        System.out.println("UserBean: " + userBean.getPassword().equals(hashedPassword)); // Debug print
+
+        if (userBean != null && userBean.getPassword().equals(hashedPassword) && !userBean.getAdmin()) {
             System.out.println("User login successful."); // Debug print
             session.setAttribute("user", userBean);
 
