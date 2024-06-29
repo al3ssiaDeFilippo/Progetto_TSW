@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.bean.UserBean" %>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="ProductView.css">
+    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <title>Login</title>
 </head>
 <body>

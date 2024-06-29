@@ -1,5 +1,6 @@
 package main.javas.model.User;
 
+import main.javas.bean.UserBean;
 import main.javas.util.PasswordUtils;
 
 import java.sql.Connection;

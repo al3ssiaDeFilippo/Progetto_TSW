@@ -1,4 +1,4 @@
-package main.javas.model.Order;
+package main.javas.bean;
 
 import java.io.Serializable;
 

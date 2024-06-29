@@ -1,6 +1,6 @@
-<%@ page import="main.javas.model.Order.ShippingBean" %>
+<%@ page import="main.javas.bean.ShippingBean" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.bean.UserBean" %>
 <%@ page import="main.javas.model.Order.ShippingModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 

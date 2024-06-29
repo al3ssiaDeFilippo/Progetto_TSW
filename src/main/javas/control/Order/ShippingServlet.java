@@ -1,9 +1,8 @@
 package main.javas.control.Order;
 
-import main.javas.model.Order.CreditCardBean;
-import main.javas.model.Order.ShippingBean;
+import main.javas.bean.ShippingBean;
 import main.javas.model.Order.ShippingModel;
-import main.javas.model.User.UserBean;
+import main.javas.bean.UserBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

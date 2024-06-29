@@ -1,4 +1,4 @@
-package main.javas.model.Order;
+package main.javas.bean;
 
 //Oggetto che rappresenta un prodotto all'interno del carrello
 public class CartBean {

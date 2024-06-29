@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.Product.ProductBean" %>
+<%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.util.Carrello" %>
-<%@ page import="main.javas.model.Order.CartBean" %>
+<%@ page import="main.javas.bean.CartBean" %>
 <%@ page import="main.javas.model.Order.CartModel" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.bean.UserBean" %>
 
 <%
     Carrello cart = (Carrello) session.getAttribute("cart");

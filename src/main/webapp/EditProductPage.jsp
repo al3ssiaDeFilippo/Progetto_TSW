@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="ProductView.css">
+    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <script src="js/DetailSelection.js"></script>
     <title>Modifica Prodotto</title>
 </head>

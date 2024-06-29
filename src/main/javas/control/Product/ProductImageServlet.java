@@ -1,8 +1,7 @@
 package main.javas.control.Product;
 
-import main.javas.model.Product.PhotoBean;
 import main.javas.model.Product.PhotoModel;
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
 
 import javax.servlet.ServletException;

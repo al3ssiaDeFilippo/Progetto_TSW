@@ -1,5 +1,5 @@
 package main.javas.control.User;
-import main.javas.model.User.UserBean;
+import main.javas.bean.UserBean;
 import main.javas.model.User.UserModel;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;import javax.servlet.http.HttpServlet;

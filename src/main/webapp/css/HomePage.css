@@ -1,0 +1,30 @@
+.box {
+    border: 2px solid black;    /* Aggiungi un bordo nero al box */
+    padding: 20px;  /* Aggiungi del padding (spazio tra il contenuto del box e il suo bordo) al box */
+    margin-top: 50px; /* Sposta il box più in basso sulla pagina di 50px rispetto alla sua posizione originale */
+}
+
+.box-discounts {
+    height: 300px;  /* Imposta l'altezza del box a 300px */
+    margin-left: 20px; /* Aggiunge uno spazio di 20 pixel a sinistra dell'elemento */
+    margin-right: 10px; /* Aggiunge uno spazio di 10 pixel a destra dell'elemento */
+}
+
+.box-container {
+    display: flex; /* Posiziona i box sulla stessa riga */
+    margin-top: 20px; /* Aggiungi uno spazio tra l'header e i box */
+}
+
+.box-new {
+    height: 300px;  /* Imposta l'altezza del box a 300px */
+    margin-left: 10px;
+    margin-right: 20px;
+    width: 65%;
+}
+
+.box-catalogue {
+    height: 300px;  /* Imposta l'altezza del box a 300px */
+    margin-left: 10px;
+    margin-right: 20px;
+    width: 35%;
+}

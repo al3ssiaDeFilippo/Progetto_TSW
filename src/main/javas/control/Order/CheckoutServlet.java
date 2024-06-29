@@ -1,6 +1,6 @@
 package main.javas.control.Order;
 
-import main.javas.model.User.UserBean;
+import main.javas.bean.UserBean;
 import main.javas.model.User.UserModel;
 
 import javax.servlet.ServletException;

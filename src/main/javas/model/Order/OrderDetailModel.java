@@ -1,6 +1,8 @@
 package main.javas.model.Order;
 
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.CartBean;
+import main.javas.bean.OrderDetailBean;
+import main.javas.bean.ProductBean;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -162,22 +164,39 @@ public class OrderDetailModel {
         return bean;
     }
 
-    public synchronized void doUpdateQuantity(ProductBean productBean) throws SQLException {
+    public synchronized void doUpdateQuantity(ProductBean productBean, CartBean cart) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
-
-        OrderDetailBean ODB = new OrderDetailBean();
-        ODB = doRetrieveByKey(ODB.getIdUser(), ODB.getProductCode());
 
         String updateSQL = "UPDATE product SET quantity = quantity - ? WHERE code = ?";
 
         try {
             con = ds.getConnection();
+            con.setAutoCommit(false); // Start transaction
+
             preparedStatement = con.prepareStatement(updateSQL);
-            preparedStatement.setInt(1, productBean.getQuantity()); // Set the quantity to subtract
+            preparedStatement.setInt(1, cart.getQuantity()); // Set the quantity to subtract
             preparedStatement.setInt(2, productBean.getCode()); // Set the product code
 
-            preparedStatement.executeUpdate();
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            // Check if the update was successful
+            if (rowsUpdated > 0) {
+                System.out.println("Product quantity updated successfully.");
+            } else {
+                System.out.println("Product quantity update failed. Product might not exist.");
+            }
+
+            con.commit(); // Commit transaction
+        } catch (SQLException e) {
+            if (con != null) {
+                try {
+                    con.rollback(); // Rollback transaction in case of error
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw e;
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();

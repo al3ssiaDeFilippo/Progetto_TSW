@@ -1,5 +1,7 @@
 package main.javas.model.Product;
 
+import main.javas.bean.ProductBean;
+
 import java.sql.SQLException;
 import java.util.Collection;
 

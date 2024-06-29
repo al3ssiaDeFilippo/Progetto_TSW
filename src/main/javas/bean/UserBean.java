@@ -1,4 +1,4 @@
-package main.javas.model.User;
+package main.javas.bean;
 
 import java.sql.Date;
 

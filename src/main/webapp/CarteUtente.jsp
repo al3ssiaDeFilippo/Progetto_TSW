@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.bean.UserBean" %>
 <%@ page import="main.javas.model.Order.CreditCardModel" %>
-<%@ page import="main.javas.model.Order.CreditCardBean" %>
+<%@ page import="main.javas.bean.CreditCardBean" %>
 <%@ page import="java.util.Collection" %>
 
 <%

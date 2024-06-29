@@ -1,15 +1,13 @@
 package main.javas.model.Product;
 
 import main.javas.DriverManagerConnectionPool;
+import main.javas.bean.ProductBean;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;

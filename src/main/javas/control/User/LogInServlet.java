@@ -1,7 +1,7 @@
 package main.javas.control.User;
-import main.javas.model.Order.CartBean;
+import main.javas.bean.CartBean;
 import main.javas.model.Order.CartModel;
-import main.javas.model.User.UserBean;
+import main.javas.bean.UserBean;
 import main.javas.model.User.UserModel;
 import main.javas.util.Carrello;
 import main.javas.util.PasswordUtils;

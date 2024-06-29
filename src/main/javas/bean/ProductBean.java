@@ -1,4 +1,4 @@
-package main.javas.model.Product;
+package main.javas.bean;
 
 import java.io.Serializable;
 import java.sql.Blob;

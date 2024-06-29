@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.Product.ProductBean" %>
-<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.bean.ProductBean" %>
+<%@ page import="main.javas.bean.UserBean" %>
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="DetailProductPage.css" rel="stylesheet" type="text/css">
+    <link href="css/DetailProductPage.css" rel="stylesheet" type="text/css">
     <script src="js/DetailSelection.js"></script>
     <title>Dettagli Prodotto</title>
 </head>
@@ -45,6 +45,7 @@
                 </p>
                 <p id="frameColorSelectContainer"><strong>Colore Cornice:</strong>
                     <select name="frameColor" id="frameColorSelect">
+                        <option value="no color" style="display:none;">No Color</option>
                         <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
                         <option value="black">Black</option>
                         <option value="brown">Brown</option>

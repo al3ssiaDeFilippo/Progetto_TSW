@@ -1,5 +1,5 @@
 <%@ page import="java.util.Collection" %>
-<%@ page import="main.javas.model.Product.ProductBean" %>
+<%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>

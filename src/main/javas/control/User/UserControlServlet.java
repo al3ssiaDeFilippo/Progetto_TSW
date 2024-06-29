@@ -1,6 +1,6 @@
 package main.javas.control.User;
 
-import main.javas.model.User.UserBean;
+import main.javas.bean.UserBean;
 import main.javas.model.User.UserModel;
 
 import javax.servlet.ServletException;
@@ -10,12 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.List;
 
 @WebServlet("/UserControlServlet")
 public class UserControlServlet extends HttpServlet {

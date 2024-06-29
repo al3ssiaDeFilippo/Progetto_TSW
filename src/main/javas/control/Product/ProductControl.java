@@ -1,6 +1,6 @@
 package main.javas.control.Product;
 
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModel;
 import main.javas.model.Product.ProductModelDS;
 

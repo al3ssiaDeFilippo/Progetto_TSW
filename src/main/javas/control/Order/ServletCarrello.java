@@ -1,10 +1,10 @@
 package main.javas.control.Order;
 
-import main.javas.model.Order.CartBean;
+import main.javas.bean.CartBean;
 import main.javas.model.Order.CartModel;
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
-import main.javas.model.User.UserBean;
+import main.javas.bean.UserBean;
 import main.javas.util.Carrello;
 
 import javax.servlet.ServletException;
@@ -60,7 +60,13 @@ public class ServletCarrello extends HttpServlet {
                         String size = request.getParameter("size");
 
                         cartItem.setFrame(frame != null ? frame : item.getFrame());
-                        cartItem.setFrameColor(frameColor != null ? frameColor : item.getFrameColor());
+
+                        if(frameColor == null) {
+                            cartItem.setFrameColor("no color");
+                        } else {
+                            cartItem.setFrameColor(frameColor);
+                        }
+
                         cartItem.setSize(size != null ? size : item.getSize());
 
                         cartItem.setPrice(item.getPrice());

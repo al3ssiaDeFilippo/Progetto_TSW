@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import main.javas.model.Order.CartBean;
+import main.javas.bean.CartBean;
 import main.javas.model.Order.CartModel;
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
 
 public class Carrello {

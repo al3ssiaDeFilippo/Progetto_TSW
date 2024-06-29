@@ -1,9 +1,8 @@
 package main.javas.model.Order;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import main.javas.bean.OrderBean;
+
+import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
 import javax.naming.Context;
@@ -26,7 +25,7 @@ public class OrderModel {
         }
     }
 
-    public synchronized void doSave(OrderBean order) throws SQLException {
+    public synchronized int doSave(OrderBean order) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
@@ -34,7 +33,7 @@ public class OrderModel {
 
         try {
             con = ds.getConnection();
-            preparedStatement = con.prepareStatement(insertSQL);
+            preparedStatement = con.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,order.getIdUser());
             preparedStatement.setInt(2,order.getIdShipping());
             preparedStatement.setString(3,order.getIdCreditCard());
@@ -43,6 +42,14 @@ public class OrderModel {
 
             // Use executeUpdate() instead of executeQuery()
             preparedStatement.executeUpdate();
+
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if(rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("Creating order failed, no ID obtained");
+            }
+
         } finally {
             if (preparedStatement != null){
                 preparedStatement.close();

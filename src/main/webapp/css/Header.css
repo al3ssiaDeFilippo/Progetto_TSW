@@ -1,0 +1,170 @@
+/* Importa il font Roboto */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+}
+
+/* Contenitore dell'header principale */
+.header-container {
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 0 20px;
+      border-bottom: 1px solid #ccc;
+}
+
+/* Contenitore del logo */
+.logo-link {
+      display: flex;
+      align-items: center;
+}
+
+/* Logo */
+.logo-img {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+}
+
+/* Barra di ricerca */
+.search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+}
+
+/* Form di ricerca */
+.search-container form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 300px; /* Ridotta la larghezza massima a 300px */
+}
+
+.search-container input[type="search"] {
+      width: 100%;
+      height: 40px;
+      padding: 0 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+      font-size: 16px;
+}
+
+/* Pulsante della barra di ricerca */
+.search-container button {
+      width: 35px;
+      height: 40px;
+      border: none;
+      background: #4b6cb7;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+/* Hover del pulsante della barra di ricerca */
+.search-container button:hover {
+      background: #365492;
+}
+
+/* Contenitore dei bottoni */
+.src-img {
+      width: 20px;
+      height: 20px;
+}
+
+.button-container {
+      display: flex;
+      align-items: center;
+}
+
+/* Bottone del carrello, login, info */
+.footer-button, .cart-button, .login-button {
+      width: 30px;
+      height: 30px;
+      margin-right: 15px;
+      transition: transform 0.3s;
+}
+
+/* Hover del bottone del carrello, login, info */
+.footer-button:hover, .cart-button:hover, .login-button:hover {
+      transform: scale(1.1);
+}
+
+/* Rimuovi il primo margine a sinistra del bottone di login */
+.button-container a:first-child img {
+      margin-left: 15px;
+}
+
+/* Rimuovi l'ultimo margine a destra del bottone di login */
+.button-container a:last-child img {
+      margin-right: 0;
+}
+
+/* Contenitore dell'header sottostante all'header principale */
+.sub-header-container {
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #4b6cb7;
+      padding: 0 20px;
+      border-bottom: 1px solid #365492;
+      margin-bottom: 15px;
+}
+
+.sub-header-container a {
+      color: white;
+      text-decoration: none;
+      margin-right: 90px;
+}
+
+.sub-header-container a:hover {
+      text-decoration: underline;
+}
+
+/* Dropdown */
+.dropdown {
+      position: relative;
+      display: inline-block;
+}
+
+.dropdown-content {
+      position: absolute;
+      background-color: #f1f1f1;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 0 0 5px 5px;
+      border-top: 3px solid #4b6cb7;
+      overflow: hidden; /* Ensure the content can expand */
+      max-height: 0; /* Initially hidden */
+      transition: none; /* No transition when the dropdown is not in hover */
+      width: auto;
+      min-width: 100px;
+}
+
+.dropdown:hover .dropdown-content {
+      max-height: 500px; /* Expand the dropdown vertically */
+      transition: max-height 0.5s ease-in; /* Smooth transition on max-height */
+}
+.dropdown-content a {
+      color: black;
+      padding: 12px 12px;
+      text-decoration: none;
+      display: block;
+}
+
+.dropdown-content a:hover {
+      background-color: #ddd;
+}
+
+

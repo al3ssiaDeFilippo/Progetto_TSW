@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
 
 @WebServlet("/DetailControl")
@@ -45,14 +45,14 @@ public class DetailControl extends HttpServlet {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("DetailProductPage.jsp");
                     dispatcher.forward(request, response);
                 } else {
-                    response.sendRedirect("error.jsp?message=Product+not+found");
+                    response.sendRedirect("errorpage.jsp?message=Product+not+found");
                 }
             } catch(Exception e) {
                 e.printStackTrace();
-                response.sendRedirect("error.jsp?message=Error+occurred");
+                response.sendRedirect("errorpage.jsp?message=Error+occurred");
             }
         } else {
-            response.sendRedirect("error.jsp?message=Product+ID+not+found");
+            response.sendRedirect("errorpage.jsp?message=Product+ID+not+found");
         }
     }
 }

@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="main.javas.model.Product.ProductBean" %>
-<%@ page import="main.javas.model.User.UserBean" %>
+<%@ page import="main.javas.bean.ProductBean" %>
+<%@ page import="main.javas.bean.UserBean" %>
 
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");
@@ -18,12 +17,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="ProductView.css">
+    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <title>PosterWorld</title>
 </head>
 <body>
 
-<h2>Products</h2>
+<%@ include file="Header.jsp" %>
 <table class="product-table" border="1">
     <tr>
         <th>Nome_Prodotto</th>
@@ -76,6 +75,8 @@
 </table>
 
 <div class="centered-links">
+
+    <a href="HomePage.jsp">Home</a>
 
     <!-- Blocco admin: -->
     <% if (user != null && user.getAdmin()) { %>

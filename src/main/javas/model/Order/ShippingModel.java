@@ -1,6 +1,7 @@
 package main.javas.model.Order;
 
-import main.javas.model.User.UserBean;
+import main.javas.bean.ShippingBean;
+import main.javas.bean.UserBean;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

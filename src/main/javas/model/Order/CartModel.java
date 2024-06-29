@@ -1,6 +1,7 @@
 package main.javas.model.Order;
 
-import main.javas.model.Product.ProductBean;
+import main.javas.bean.CartBean;
+import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
 
 import javax.naming.Context;

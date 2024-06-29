@@ -1,4 +1,4 @@
-package main.javas.model.Order;
+package main.javas.bean;
 
 public class OrderDetailBean {
     private int idUser;

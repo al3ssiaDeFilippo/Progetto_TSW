@@ -1,0 +1,58 @@
+/* Importa il font Roboto */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Contenitore del footer */
+.footer-container {
+    background-color: #4b6cb7;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid #365492;
+}
+
+/* Contenitore della presentazione */
+.presentation-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100px;
+}
+
+/* Stili comuni per le box */
+.footer-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+    text-align: center;
+}
+
+/* Immagini delle box */
+.footer-box img {
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+}
+
+/* Testi delle box */
+.footer-box p {
+    font-size: 16px;
+    max-width: 200px;
+    margin: 0 0 0 0;
+    text-align: left;
+}
+
+/* Box specifiche */
+.shipping-box, .shopping-box, .transaction-box, .assistence-box {
+    flex: 1 1 200px;
+    max-width: 250px;
+}
+
