@@ -12,11 +12,14 @@
     // Use the implicit session object
     UserBean user = (UserBean) session.getAttribute("user");
 %>
-
+<%@ include file="Header.jsp" %>
 <h2>Login</h2>
 <% if (user == null) { %>
 <form action="LogInServlet" method="post">
     <input type="hidden" name="action" value="login">
+    <!-- modifica -->
+    <input type="hidden" name="nextPage" value="ProductView.jsp">
+    <!-- fine modifica -->
     <div>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -26,11 +29,11 @@
         <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <form action="LogInServlet" method="get">
+        <!--<form action="LogInServlet" method="get">
             <input type="hidden" name="action" value="login">
-            <input type="hidden" name="nextPage" value="ProductView.jsp">
+            <input type="hidden" name="nextPage" value="ProductView.jsp">-->
             <input type="submit" value="Login">
-        </form>
+        <!--</form>-->
     </div>
 </form>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
@@ -46,5 +49,6 @@
 </form>
 <% } %>
 <a href="ProductView.jsp">Torna al catalogo</a>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

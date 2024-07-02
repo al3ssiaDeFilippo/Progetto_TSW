@@ -1,58 +1,160 @@
-/* Importa il font Roboto */
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-
-body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Contenitore del footer */
+/* Stili per il footer principale */
 .footer-container {
-    background-color: #4b6cb7;
-    color: white;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-top: 1px solid #365492;
+    background-color: #365492;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px; /* Aggiunge spazio sotto il footer */
+    margin-top: 20px; /* Aggiunge spazio sopra il footer */
+    min-height: 350px; /* Altezza minima per il footer principale */
+    display: flex; /* Usiamo flexbox per allineare le sezioni */
+    align-items: flex-start; /* Allineamento inizio per le sezioni */
+    justify-content: space-between; /* Spazio tra le sezioni */
+    flex-wrap: wrap; /* Per gestire il wrap su dispositivi piccoli */
 }
 
-/* Contenitore della presentazione */
+/* Stili per il sub footer (presentation box) */
 .presentation-box {
+    background-color: white;
+    padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 100px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: -20px; /* Sposta il presentation box più in alto */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
 }
 
-/* Stili comuni per le box */
-.footer-box {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 20px;
+/* Stili per i singoli box all'interno del sub footer */
+.presentation-box .footer-box {
+    width: 200px;
+    margin: 15px;
     text-align: center;
 }
 
-/* Immagini delle box */
-.footer-box img {
-    width: 50px;
-    height: 50px;
-    margin-right: 0;
+/* Stili per le immagini all'interno del sub footer */
+.presentation-box img {
+    width: 40px; /* Ridimensiona le immagini a 40x40px */
+    height: 40px;
+    display: block; /* Assicura che l'immagine sia centrata */
+    margin: 0 auto;
 }
 
-/* Testi delle box */
-.footer-box p {
-    font-size: 16px;
-    max-width: 200px;
-    margin: 0 0 0 0;
+/* Stili per il testo all'interno del sub footer */
+.presentation-box p {
+    font-size: 12px; /* Riduce la dimensione del testo a 12px */
+    color: black;
+    margin-top: 8px; /* Riduce lo spazio superiore */
+}
+
+/* Stili per le nuove sezioni Contatti, Dove Trovarci */
+.contacts-box, .find-us-box {
+    width: calc(33.33% - 30px); /* Calcola la larghezza per occupare 1/3 dello spazio */
+    height: 180px;
+    margin: 15px 15px; /* Margini a sinistra e a destra */
     text-align: left;
+    display: flex;
+    flex-direction: column; /* Colonne per allineare i contenuti verticalmente */
+    align-items: center; /* Allineamento inizio per i contenuti */
 }
 
-/* Box specifiche */
-.shipping-box, .shopping-box, .transaction-box, .assistence-box {
-    flex: 1 1 200px;
-    max-width: 250px;
+/* Stili per la sezione Social */
+.social-box {
+    width: calc(33.33% - 30px); /* Calcola la larghezza per occupare 1/3 dello spazio */
+    height: 180px;
+    margin: 15px 15px; /* Margini a sinistra e a destra */
+    text-align: center; /* Centro il testo e i contenuti */
+    display: flex;
+    flex-direction: column; /* Colonne per allineare i contenuti verticalmente */
+    align-items: center; /* Allinea i contenuti al centro */
 }
 
+.social-box h3 {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+/* Stili per la lista dei social */
+.social-list {
+    display: flex; /* Usa flexbox per allineare i loghi dei social in orizzontale */
+    justify-content: space-around; /* Spazia uniformemente i loghi */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    padding: 0;
+    margin: 0;
+    list-style-type: none; /* Rimuove i punti elenco */
+}
+
+/* Stili per i loghi dei social */
+.social-list li {
+    display: inline-block; /* Disposizione in linea per i loghi */
+    margin5: 0 5px;
+}
+
+.social-img {
+    width: 40px; /* Ridimensiona i loghi a 40x40px */
+    height: 40px;
+    transition: transform 0.3s; /* Aggiunge una transizione per l'hover */
+}
+
+.social-img:hover {
+    transform: scale(1.1); /* Ingrandisce leggermente il logo al passaggio del mouse */
+}
+
+.contacts-box h3, .find-us-box h3 {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.contacts-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contacts-list li, .find-us-list li {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.contacts-list li a, .find-us-list li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.contacts-list li a:hover, .find-us-list li a:hover {
+    text-decoration: underline;
+}
+
+.maps-box {
+    width: 300px; /* Imposta la larghezza del box */
+    height: 225px; /* Imposta l'altezza del box */
+}
+
+/* Media query per la responsività */
+@media (max-width: 768px) {
+    .presentation-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .presentation-box .footer-box {
+        width: 100%;
+    }
+
+    .presentation-box img {
+        width: 30px; /* Adatta le immagini per dispositivi più piccoli */
+        height: 30px;
+    }
+
+    .presentation-box p {
+        font-size: 14px; /* Aumenta leggermente il testo per la leggibilità su dispositivi più piccoli */
+        margin-top: 10px;
+    }
+
+    .contacts-box, .find-us-box {
+        width: 100%; /* Imposta larghezza al 100% su dispositivi più piccoli */
+        margin: 20px 0; /* Margini per dispositivi più piccoli */
+    }
+}

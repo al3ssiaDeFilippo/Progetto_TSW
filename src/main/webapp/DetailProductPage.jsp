@@ -17,7 +17,7 @@
     <title>Dettagli Prodotto</title>
 </head>
 <body>
-
+<%@ include file="Header.jsp" %>
 <div class="product-details-container">
     <%
         if (product != null) {
@@ -80,6 +80,6 @@
         }
     %>
 </div>
-
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

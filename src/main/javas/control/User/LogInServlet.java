@@ -121,13 +121,12 @@ public class LogInServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
-        String nextPage = (String) session.getAttribute("nextPage");
+        String nextPage = (String) request.getParameter("nextPage");
+        System.out.println("Next page riga 125 LogInServlet: " + nextPage); // Debug print
 
         UserBean userBean = userModel.doRetrieveByUsername(username);
 
         // Inizio Modifiche Qui
-        System.out.println("PWD: " + password);
-        System.out.println("Salt: " + userBean.getSalt());
         String hashedPassword = PasswordUtils.hashPassword(password, userBean.getSalt());
         // Fine Modifiche Qui
 
@@ -159,7 +158,6 @@ public class LogInServlet extends HttpServlet {
                 }
             }
 
-
             // Caricamento del carrello dell'utente dal database
             CartModel cartModel = new CartModel();
             List<CartBean> cartItems = cartModel.doRetrieveAll(userBean.getIdUser());
@@ -181,7 +179,6 @@ public class LogInServlet extends HttpServlet {
             request.getRequestDispatcher("LogIn.jsp").forward(request, response);
         }
     }
-
 
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();

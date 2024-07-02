@@ -43,6 +43,7 @@
     <title>Utenti</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 
 <h2>Utenti</h2>
 <!-- Controlla se ci sono utenti nel database -->
@@ -115,6 +116,6 @@
         <% } %>
     </table>
 <% } %>
-
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

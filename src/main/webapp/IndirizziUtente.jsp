@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<%@ include file="Header.jsp" %>
 <%
     // Controlla se l'utente è loggato
     UserBean user = (UserBean) session.getAttribute("user");
@@ -37,5 +37,6 @@
         <input type="submit" value="Salva indirizzo">
     </div>
 </form>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

@@ -10,10 +10,10 @@
     <title>Indirizzo di spedizione</title>
 </head>
 <body>
-
+<%@ include file="Header.jsp" %>
 <%
     UserBean user = (UserBean) session.getAttribute("user");
-    String nextPage = (String) session.getAttribute("nextPage");
+    String nextPage = (String) request.getParameter("nextPage");
     ShippingModel shippingModel = new ShippingModel();
     Collection<ShippingBean> Addresses = shippingModel.doRetrieveAll(user.getIdUser());
 %>
@@ -72,7 +72,6 @@
 </form>
 
 <a href="ProductView.jsp">Continua lo shopping</a>
-
-
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

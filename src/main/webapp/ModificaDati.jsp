@@ -16,7 +16,7 @@
     <title>Modifica Dati Profilo</title>
 </head>
 <body>
-
+<%@ include file="Header.jsp" %>
 <h2>Modifica Dati Profilo</h2>
 
 <form action="UpdateProfileServlet" method="post">
@@ -42,6 +42,6 @@
 </form>
 
 <a href="Profilo.jsp">Torna al Profilo</a>
-
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

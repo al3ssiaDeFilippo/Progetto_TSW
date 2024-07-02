@@ -8,9 +8,10 @@
     <title>Inserimento Carta</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <%
     UserBean user = (UserBean) session.getAttribute("user");
-    String nextPage = (String) session.getAttribute("nextPage");
+    String nextPage = (String) request.getParameter("nextPage");
     CreditCardModel creditCardModel = new CreditCardModel();
     Collection<CreditCardBean> cards = creditCardModel.doRetrieveAll(user.getIdUser());
 %>
@@ -58,5 +59,6 @@
         <input type="submit" value="Prosegui al pagamento">
     </div>
 </form>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

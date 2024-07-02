@@ -20,6 +20,7 @@
     <title>PosterWorld</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 
 <h2>Products</h2>
 <table class="product-table" border="1">
@@ -63,5 +64,7 @@
         }
     %>
 </table>
+
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

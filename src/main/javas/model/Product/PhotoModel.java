@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -171,22 +172,124 @@ public class PhotoModel {
     }
 
     public void insertImage(int code, String imagePath) {
-    try (Connection con = DriverManagerConnectionPool.getConnection()) {
-        PreparedStatement ps = con.prepareStatement("UPDATE product SET photo = ? WHERE code = ?");
+        try (Connection con = DriverManagerConnectionPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("UPDATE product SET photo = ? WHERE code = ?");
 
-        // Convert image path to InputStream
-        InputStream imageStream = new FileInputStream(imagePath);
+            // Convert image path to InputStream
+            InputStream imageStream = new FileInputStream(imagePath);
 
-        ps.setBlob(1, imageStream);
-        ps.setInt(2, code);
-        int result = ps.executeUpdate();
-        if (result == 0) {
-            System.out.println("Image not updated");
-        } else {
-            System.out.println("Image updated successfully");
+            ps.setBlob(1, imageStream);
+            ps.setInt(2, code);
+            int result = ps.executeUpdate();
+            if (result == 0) {
+                System.out.println("Image not updated");
+            } else {
+                System.out.println("Image updated successfully");
+            }
+        } catch (SQLException | FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
-    } catch (SQLException | FileNotFoundException e) {
-        throw new RuntimeException(e);
     }
-}
+
+    public void addProductAndSaveImages(int productCode, String directoryPath) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertPhotoSQL = "INSERT INTO photo (photo, productCode, frame, frameColor) VALUES (?, ?, ?, ?)";
+
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            con.setAutoCommit(false);
+
+            ProductModelDS PM = new ProductModelDS();
+            ProductBean product = PM.doRetrieveByKey(productCode);
+
+            // Ottieni le immagini dalla directory e inseriscile nel database
+            List<String> images = getImagesFromDirectory(directoryPath, product.getProductName());
+
+            preparedStatement = con.prepareStatement(insertPhotoSQL);
+
+            for (String imagePath : images) {
+
+                String result = extractDetailFromProductName(imagePath);
+
+                //divide la stringa sugli spazi
+                String[] parti = result.split(" ");
+
+                String frame = "";
+                String frameColor = "";
+
+                //controlla se l'array risultante ha esattamente due elementi
+                if(parti.length == 2) {
+                    frame = parti[0];
+                    frameColor = parti[1];
+                } else {
+                    System.out.println("La stringa non contiene esattamente uno spazio");
+                }
+
+                InputStream imageStream = new FileInputStream(imagePath);
+
+                preparedStatement.setBlob(1, imageStream);
+                preparedStatement.setInt(2, productCode);
+                preparedStatement.setString(3, frame);
+                preparedStatement.setString(4, frameColor);
+                preparedStatement.executeUpdate();
+            }
+
+            System.out.println("riga 218 in PhotoModel");
+
+            con.commit();
+        } catch (SQLException | FileNotFoundException e) {
+            if (con != null) {
+                con.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    // Restituisce tutte le immagini di un certo Prodotto (in base al nome del prodotto)
+    private List<String> getImagesFromDirectory(String directoryPath, String productName) {
+        List<String> images = new ArrayList<>();
+        File directory = new File(directoryPath);
+
+        for (File file : directory.listFiles()) {
+            if (file.isFile() && file.getName().startsWith(productName) && isValidImageFile(file.getName())) {
+                images.add(file.getAbsolutePath());
+            }
+        }
+
+        return images;
+    }
+
+    private String extractDetailFromProductName(String filePath) {
+        File file = new File(filePath);
+        String fileName = file.getName();
+
+        if (fileName.contains("pvc")) {
+            if (fileName.contains("black")) {
+                return "pvc black";
+            } else if (fileName.contains("white")) {
+                return "pvc white";
+            } else if (fileName.contains("brown")) {
+                return "pvc brown";
+            }
+        } else if (fileName.contains("wood")) {
+            if (fileName.contains("black")) {
+                return "wood black";
+            } else if (fileName.contains("white")) {
+                return "wood white";
+            } else if (fileName.contains("brown")) {
+                return "wood brown";
+            }
+        }
+
+        return null; // Restituisci null se nessuna corrispondenza viene trovata
+    }
 }

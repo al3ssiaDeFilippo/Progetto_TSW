@@ -132,39 +132,3 @@ body {
       text-decoration: underline;
 }
 
-/* Dropdown */
-.dropdown {
-      position: relative;
-      display: inline-block;
-}
-
-.dropdown-content {
-      position: absolute;
-      background-color: #f1f1f1;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 0 0 5px 5px;
-      border-top: 3px solid #4b6cb7;
-      overflow: hidden; /* Ensure the content can expand */
-      max-height: 0; /* Initially hidden */
-      transition: none; /* No transition when the dropdown is not in hover */
-      width: auto;
-      min-width: 100px;
-}
-
-.dropdown:hover .dropdown-content {
-      max-height: 500px; /* Expand the dropdown vertically */
-      transition: max-height 0.5s ease-in; /* Smooth transition on max-height */
-}
-.dropdown-content a {
-      color: black;
-      padding: 12px 12px;
-      text-decoration: none;
-      display: block;
-}
-
-.dropdown-content a:hover {
-      background-color: #ddd;
-}
-
-

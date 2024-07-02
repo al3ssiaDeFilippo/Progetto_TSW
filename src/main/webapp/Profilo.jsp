@@ -54,6 +54,7 @@
     </style>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <div class="profile-container">
     <h1>Profilo Utente</h1>
     <table>
@@ -78,6 +79,10 @@
             <td><%= user.getEmail() %></td>
         </tr>
         <tr>
+            <th>Password</th>
+            <td><input type="password" value="<%= user.getPassword() %>" readonly></td>
+        </tr>
+        <tr>
             <th>Numero di Telefono</th>
             <td><%= user.getTelNumber() %></td>
         </tr>
@@ -86,6 +91,7 @@
         <form action="ModificaDati.jsp" method="post">
             <button type="submit">Modifica Dati</button>
         </form>
+        <a href="ModificaPassword.jsp">Modifica Password</a>
     </div>
 
         <style>
@@ -109,5 +115,6 @@
 
     <a href="ProductView.jsp">Torna alla home</a>
 </div>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

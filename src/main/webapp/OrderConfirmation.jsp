@@ -21,10 +21,12 @@
     </style>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <div class="container">
     <h1>Grazie per il tuo ordine!</h1>
     <p>Il tuo ordine è stato inviato con successo.</p>
 
 </div>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

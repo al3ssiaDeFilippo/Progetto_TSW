@@ -102,6 +102,7 @@ CREATE TABLE photo (
     frame VARCHAR(8) CHECK (frame IN ('no frame', 'wood', 'PVC')),
     frameColor VARCHAR(8) CHECK (frameColor IN ('black', 'brown', 'white', 'no color')),
     FOREIGN KEY (productCode) REFERENCES product(code)
+    ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)

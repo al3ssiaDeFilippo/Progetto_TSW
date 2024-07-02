@@ -4,6 +4,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <h2>Login</h2>
 <form action="LogInServlet" method="post">
     <input type="hidden" name="action" value="register">
@@ -45,5 +46,6 @@
 <p>Hai già un account? <a href="LogIn.jsp">Accedi</a></p>
 <a href="ProductView.jsp">Torna al catalogo</a>
 
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

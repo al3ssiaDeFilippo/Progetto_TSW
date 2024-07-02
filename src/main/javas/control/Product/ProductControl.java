@@ -1,6 +1,7 @@
 package main.javas.control.Product;
 
 import main.javas.bean.ProductBean;
+import main.javas.model.Product.PhotoModel;
 import main.javas.model.Product.ProductModel;
 import main.javas.model.Product.ProductModelDS;
 
@@ -118,11 +119,8 @@ public class ProductControl extends HttpServlet {
                     }
 
                     String frame = request.getParameter("frame");
-                    System.out.println("frame: " + frame);
                     String frameColor = request.getParameter("frameColor");
-                    System.out.println("frameColor: " + frameColor);
                     String size = request.getParameter("size");
-                    System.out.println("size: " + size);
 
                     if("default".equals(frame)) {
                         frame = "default";
@@ -149,7 +147,19 @@ public class ProductControl extends HttpServlet {
                     bean.setSize(size);
                     System.out.println("size: " + size);
                     bean.setPhoto(photo);
-                    model.doSave(bean);
+                    int productCode = model.doSave(bean);
+
+                    /*modifiche*/
+
+                    String directoryPath = "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads";
+                    try{
+                        PhotoModel PM = new PhotoModel();
+                        PM.addProductAndSaveImages(productCode,directoryPath);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    /*modifiche*/
 
                     System.out.println("Debug: action : insert! - Product inserted!");
 

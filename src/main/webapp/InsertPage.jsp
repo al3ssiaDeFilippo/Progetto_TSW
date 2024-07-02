@@ -68,7 +68,6 @@
     <label for="photoPath">Immagine:</label><br>
     <input type="file" id="photoPath" name="photoPath"><br>
 
-    <input type="hidden" name="nextPage" value="InsertPhotosPage.jsp">
     <input type="submit" value="Procedi">
 </form>
 </body>

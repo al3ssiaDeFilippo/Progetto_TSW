@@ -6,7 +6,7 @@
 
 <%
     UserBean user = (UserBean) session.getAttribute("user");
-    String nextPage = (String) session.getAttribute("nextPage");
+    String nextPage = (String) request.getParameter("nextPage");
     CreditCardModel creditCardModel = new CreditCardModel();
     Collection<CreditCardBean> cards = creditCardModel.doRetrieveAll(user.getIdUser());
 %>
@@ -15,6 +15,7 @@
     <title>Carte di Credito</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
     <% if (!cards.isEmpty()) { %>
         <% for (CreditCardBean card : cards) { %>
         <div>
@@ -68,5 +69,6 @@
     </div>
     </body>
     </html>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

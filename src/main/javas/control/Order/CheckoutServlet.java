@@ -28,7 +28,7 @@ public class CheckoutServlet extends HttpServlet {
 
         if (user == null) {
             // L'utente non è loggato, imposta la pagina di destinazione dopo il login
-            request.getSession().setAttribute("nextPage", nextPage);
+            request.getSession().setAttribute("nextPage", "ProductView.jsp");
             response.sendRedirect("LogIn.jsp");
         } else {
             // L'utente è già loggato, procedi con il checkout
@@ -50,7 +50,7 @@ public class CheckoutServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", userBean);
                 // Reindirizza alla pagina di destinazione
-                String nextPage = (String) session.getAttribute("nextPage");
+                String nextPage = (String) request.getParameter("nextPage");
                 if (nextPage == null || nextPage.isEmpty()) {
                     nextPage = "ProductView.jsp"; // Pagina di de// fault se non è stato impostato un nextPage
                 }

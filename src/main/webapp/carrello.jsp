@@ -24,6 +24,7 @@
     <title>Carrello</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <h1>Carrello</h1>
 <table border="1">
     <tr>
@@ -100,5 +101,6 @@
     <button type="submit">Vai al pagamento</button>
 </form>
 <%}%>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

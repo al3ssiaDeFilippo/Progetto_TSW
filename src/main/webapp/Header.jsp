@@ -1,3 +1,5 @@
+<%@ page import="main.javas.bean.UserBean" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,15 +32,29 @@
 
     <!-- Aggiunta dei bottoni -->
     <div class="button-container">
-        <a href="Footer.jsp">
+        <a href="#footer">
             <img class="footer-button" src="Images/infoIcon.png" alt="Image not found">
         </a>
         <a href="carrello.jsp">
             <img class="cart-button" src="Images/cartIcon.png" alt="Image not found">
         </a>
+        <%
+            // Recupera l'utente dalla sessione
+            UserBean loggedInUser = (UserBean) session.getAttribute("user");
+            if (loggedInUser != null) {
+        %>
+        <a href="Profilo.jsp">
+            <img class="login-button" src="Images/userIcon.png" alt="Image not found">
+        </a>
+        <%
+        } else {
+        %>
         <a href="LogIn.jsp">
             <img class="login-button" src="Images/userIcon.png" alt="Image not found">
         </a>
+        <%
+            }
+        %>
     </div>
 
 </header>
@@ -47,46 +63,11 @@
 
     <!-- Aggiunta della barra di navigazione -->
     <div class="nav-bar">
-        <div class="dropdown">
             <a class="film-button" href="Film.jsp">Film</a>
-            <div class="dropdown-content">
-                <a href="#">Sottocategoria 1</a>
-                <a href="#">Sottocategoria 2</a>
-                <a href="#">Other</a>
-            </div>
-        </div>
-        <div class="dropdown">
             <a class="serieTV-button" href="SerieTV.jsp">Serie TV</a>
-            <div class="dropdown-content">
-                <a href="#">Best from Netflix</a>
-                <a href="#">Marvel</a>
-                <a href="#">Other</a>
-            </div>
-        </div>
-        <div class="dropdown">
             <a class="anime-button" href="Anime.jsp">Anime</a>
-            <div class="dropdown-content">
-                <a href="#">Sottocategoria 1</a>
-                <a href="#">Sottocategoria 2</a>
-                <a href="#">Other</a>
-            </div>
-        </div>
-        <div class="dropdown">
             <a class="fumetti-button" href="Fumetti.jsp">Fumetti</a>
-            <div class="dropdown-content">
-                <a href="#">Marvel</a>
-                <a href="#">Sottocategoria 2</a>
-                <a href="#">Other</a>
-            </div>
-        </div>
-        <div class="dropdown">
             <a class="giochi-button" href="Giochi.jsp">Videogiochi</a>
-            <div class="dropdown-content">
-                <a href="#">Sottocategoria 1</a>
-                <a href="#">Sottocategoria 2</a>
-                <a href="#">Other</a>
-            </div>
-        </div>
     </div>
 </header>
 

@@ -24,6 +24,7 @@
     <title>Ordini</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
     <h2>Ordini</h2>
     <!-- Controlla se ci sono ordini nel database -->
     <% if (!orders.isEmpty()) { %>
@@ -58,5 +59,6 @@
     <% } else { %>
         <p>Non ci sono ordini.</p>
     <% } %>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

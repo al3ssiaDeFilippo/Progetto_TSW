@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.javas.model.Product." %>
+<%@ page import="main.javas.model.Product.*" %>
+<%@ page import="main.javas.bean.ProductBean" %>
 
 
 <%
@@ -65,25 +66,25 @@
 
         <label for="frame">Frame:</label><br>
         <select id="frame" name="frame">
-            <option value="no frame" <%=product.getFrame().equals("no frame") ? "selected" : ""%>>No Frame</option>
-            <option value="wood" <%=product.getFrame().equals("wood") ? "selected" : ""%>>Wood</option>
-            <option value="PVC" <%=product.getFrame().equals("PVC") ? "selected" : ""%>>PVC</option>
+            <option value="no frame" <%=product.getFrame() != null && product.getFrame().equals("no frame") ? "selected" : ""%>>No Frame</option>
+            <option value="wood" <%=product.getFrame() != null && product.getFrame().equals("wood") ? "selected" : ""%>>Wood</option>
+            <option value="PVC" <%=product.getFrame() != null && product.getFrame().equals("PVC") ? "selected" : ""%>>PVC</option>
         </select><br>
 
         <label for="frameColor">Colore Cornice:</label><br>
         <select id="frameColor" name="frameColor">
             <option value="selectAframeColor" disabled selected>Seleziona un colore per il frame</option>
-            <option value="black" <%=product.getFrameColor().equals("black") ? "selected" : ""%>>Black</option>
-            <option value="brown" <%=product.getFrameColor().equals("brown") ? "selected" : ""%>>Brown</option>
-            <option value="white" <%=product.getFrameColor().equals("white") ? "selected" : ""%>>White</option>
+            <option value="black" <%=product.getFrameColor() != null && product.getFrameColor().equals("black") ? "selected" : ""%>>Black</option>
+            <option value="brown" <%=product.getFrameColor() != null && product.getFrameColor().equals("brown") ? "selected" : ""%>>Brown</option>
+            <option value="white" <%=product.getFrameColor() != null && product.getFrameColor().equals("white") ? "selected" : ""%>>White</option>
         </select><br>
 
         <label for="size">Dimensioni:</label><br>
         <select id="size" name="size">
             <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
-            <option value="21x30" <%=product.getSize().equals("21x30") ? "selected" : ""%>>21x30</option>
-            <option value="85x60" <%=product.getSize().equals("85x60") ? "selected" : ""%>>85x60</option>
-            <option value="91x61" <%=product.getSize().equals("91x61") ? "selected" : ""%>>91x61</option>
+            <option value="21x30" <%=product.getSize() != null && product.getSize().equals("21x30") ? "selected" : ""%>>21x30</option>
+            <option value="85x60" <%=product.getSize() != null && product.getSize().equals("85x60") ? "selected" : ""%>>85x60</option>
+            <option value="91x61" <%=product.getSize() != null && product.getSize().equals("91x61") ? "selected" : ""%>>91x61</option>
         </select><br>
 
         <label for="customPhoto">Nuova foto:</label><br>

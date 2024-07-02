@@ -22,5 +22,6 @@
             <h2>Catalogo</h2>
         </div>
     </div>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

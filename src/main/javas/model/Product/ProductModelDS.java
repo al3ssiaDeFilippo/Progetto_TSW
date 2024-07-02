@@ -6,10 +6,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -32,7 +29,7 @@ public class ProductModelDS implements ProductModel {
     private static final String TABLE_NAME = "product";
 
     @Override
-    public synchronized void doSave(ProductBean product) throws SQLException {
+    public synchronized int doSave(ProductBean product) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -43,7 +40,7 @@ public class ProductModelDS implements ProductModel {
         try {
             connection = ds.getConnection();
             connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getProductName());
             System.out.println("Debug: " + product.getProductName());
             preparedStatement.setString(2, product.getDetails());
@@ -67,8 +64,14 @@ public class ProductModelDS implements ProductModel {
             preparedStatement.setBlob(11, product.getPhoto());
             System.out.println("Debug: " + product.getPhoto());
             preparedStatement.executeUpdate();
-
             connection.commit();
+
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if(rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("Creating order failed, no ID obtained");
+            }
 
         } finally {
             try {

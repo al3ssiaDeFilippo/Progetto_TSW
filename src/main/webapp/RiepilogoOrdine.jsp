@@ -34,6 +34,7 @@
     <title>Riepilogo Ordine</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <h1>Riepilogo Ordine</h1>
 
 <h2>Prodotti Acquistati</h2>
@@ -101,5 +102,6 @@
     <input type="submit" value="Ordina">
 </form>
 <!-- Fine Modifica Qui -->
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

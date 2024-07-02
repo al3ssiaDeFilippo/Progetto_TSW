@@ -10,7 +10,7 @@
     <title>Insert Photos Page</title>
 </head>
 <body>
-
+<%@ include file="Header.jsp" %>
 <%
     ProductModelDS model = new ProductModelDS();
     Collection<?> products = null;
@@ -107,5 +107,6 @@
     </div>
 
     <a href="ProductView.jsp">Torna al catalogo</a>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>
