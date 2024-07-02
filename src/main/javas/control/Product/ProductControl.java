@@ -34,11 +34,12 @@ public class ProductControl extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String dis = "/ProductView.jsp";
 
         String action = request.getParameter("action");
+        System.out.println("action: " + action);
 
         try {
             if (action != null) {
@@ -189,12 +190,16 @@ public class ProductControl extends HttpServlet {
                 } else if(action.equalsIgnoreCase("update")) {
                     int code = 0;
                     String codeParam = request.getParameter("code");
+
+                    System.out.println("code: " + codeParam);
+
                     if (codeParam != null && !codeParam.isEmpty()) {
                         code = Integer.parseInt(request.getParameter("code"));
                         ProductBean product = model.doRetrieveByKey(code);
                         if (product != null) {
                             // Get all the new product data from the request
                             String productName = request.getParameter("productName");
+                            System.out.println("productname: " + productName);
                             String details = request.getParameter("details");
                             int quantity = Integer.parseInt(request.getParameter("quantity"));
                             String category = request.getParameter("category");
@@ -203,7 +208,10 @@ public class ProductControl extends HttpServlet {
                             int discount = Integer.parseInt(request.getParameter("discount"));
 
                             Part photoPart = request.getPart("photoPath");
+
+                            System.out.println("photoPath productcontrol: " + photoPart);
                             Blob photo = null;
+
                             if (photoPart != null && photoPart.getSize() > 0) {
                                 InputStream inputStream = photoPart.getInputStream();
                                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -226,6 +234,7 @@ public class ProductControl extends HttpServlet {
                             product.setIva(iva);
                             product.setDiscount(discount);
                             product.setPhoto(photo);
+                            System.out.println("photo riga 237:" + photo);
 
                             // Call model.edit with the ProductBean object
                             model.doUpdate(product);
@@ -252,8 +261,8 @@ public class ProductControl extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+        doPost(request, response);
     }
 }

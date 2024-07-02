@@ -222,7 +222,7 @@ public class ProductModelDS implements ProductModel {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ? WHERE code = ?";
+        String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ?, photo = ? WHERE code = ?";
 
         try {
             connection = ds.getConnection();
@@ -234,7 +234,9 @@ public class ProductModelDS implements ProductModel {
             preparedStatement.setFloat(5, product.getPrice());
             preparedStatement.setInt(6, product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
-            preparedStatement.setInt(8, product.getCode());
+            preparedStatement.setBlob(8, product.getPhoto());
+            preparedStatement.setInt(9, product.getCode());
+
 
             preparedStatement.executeUpdate();
 
