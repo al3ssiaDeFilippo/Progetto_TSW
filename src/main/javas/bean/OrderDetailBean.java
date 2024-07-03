@@ -8,6 +8,9 @@ public class OrderDetailBean {
     private String frameColor;
     private String size;
     private float price;
+    /*Inizio modifiche qui*/
+    private int iva;
+    /*Fine modifiche qui*/
     private int idOrder;
 
     public OrderDetailBean(){
@@ -18,6 +21,9 @@ public class OrderDetailBean {
         frameColor = "";
         size = "";
         price = 0;
+        /*Inizio modifiche qui*/
+        iva = 0;
+        /*Fine modifiche qui*/
         idOrder = 0;
     }
 
@@ -28,6 +34,9 @@ public class OrderDetailBean {
     public String getFrameColor() {return frameColor;}
     public String getSize() {return size;}
     public float getPrice() {return price;}
+    /*Inizio modifiche qui*/
+    public int getIva() {return iva;}
+    /*Fine modifiche qui*/
     public int getIdOrder() {return idOrder;}
 
     public void setIdUser(int idUser) {this.idUser = idUser;}
@@ -37,9 +46,8 @@ public class OrderDetailBean {
     public void setFrameColor(String frameColor) {this.frameColor = frameColor;}
     public void setSize(String size) {this.size = size;}
     public void setPrice(float price) {this.price = price;}
+    /*Inizio modifiche qui*/
+    public void setIva(int iva) {this.iva = iva;}
+    /*Fine modifiche qui*/
     public void setIdOrder(int idOrder) {this.idOrder = idOrder;}
-
-    /*EFFETTURE UN CONTROLLO SULLA CORNICE CHE STA SEMPRE IMPOSTATA A BIANCO ANCHE SE NON è PRESENTE*/
-
-
 }

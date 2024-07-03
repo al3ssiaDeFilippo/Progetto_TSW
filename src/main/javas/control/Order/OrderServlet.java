@@ -8,6 +8,7 @@ import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
 import main.javas.bean.UserBean;
 import main.javas.model.User.UserModel;
+import main.javas.util.Carrello;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,6 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-/*MODIFICHE*/
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,13 +30,13 @@ public class OrderServlet extends HttpServlet {
         ShippingModel shippingModel = new ShippingModel();
         CreditCardModel cardModel = new CreditCardModel();
         OrderModel orderModel = new OrderModel();
-        OrderDetailModel orderDetailModel = new OrderDetailModel(); // Aggiunto
+        OrderDetailModel orderDetailModel = new OrderDetailModel();
 
         try {
-            // Get the cart items
             List<CartBean> cartItems = cartModel.doRetrieveAll(user.getIdUser());
 
-            // Create an order
+            System.out.println("Cart items retrieved: " + cartItems.size());
+
             OrderBean order = new OrderBean();
             order.setIdUser(user.getIdUser());
             order.setIdShipping(shippingModel.doRetrieveByKey(user.getIdUser()).getIdShipping());
@@ -44,22 +44,20 @@ public class OrderServlet extends HttpServlet {
             order.setOrderDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             order.setTotalPrice(cartModel.getTotalPriceWithDiscount(cartItems));
 
-            // Save the order
+            System.out.println("Order created: " + order);
+
             int idOrder = orderModel.doSave(order);
 
+            System.out.println("Order saved with ID: " + idOrder);
 
-            // Update product quantities and save order details
             for (CartBean cartItem : cartItems) {
-
-                ProductBean product = new ProductBean();
-
                 ProductModelDS PM = new ProductModelDS();
-                product = PM.doRetrieveByKey(cartItem.getProductCode());
+                ProductBean product = PM.doRetrieveByKey(cartItem.getProductCode());
 
-                // Update the product quantity in the database
-                orderDetailModel.doUpdateQuantity(product,cartItem);
+                System.out.println("Product retrieved: " + product);
 
-                // CreateOrderServlet an order detail for each cart item
+                orderDetailModel.doUpdateQuantity(product, cartItem);
+
                 OrderDetailBean orderDetail = new OrderDetailBean();
                 orderDetail.setIdUser(user.getIdUser());
                 orderDetail.setProductCode(cartItem.getProductCode());
@@ -68,24 +66,28 @@ public class OrderServlet extends HttpServlet {
                 orderDetail.setFrameColor(cartItem.getFrameColor());
                 orderDetail.setSize(cartItem.getSize());
                 orderDetail.setPrice(cartItem.getPrice() * cartItem.getQuantity());
+                orderDetail.setIva(product.getIva());
                 orderDetail.setIdOrder(idOrder);
 
-                // Save order detail
+                System.out.println("Order detail created: " + orderDetail);
+
                 orderDetailModel.doSave(orderDetail);
+
+                System.out.println("Order detail saved");
             }
 
-            // Clear the cart
-            for (CartBean cartItem : cartItems) {
-                cartModel.doDelete(cartItem.getProductCode());
-            }
+            Carrello sessionCart = (Carrello) session.getAttribute("cart");
+            cartModel.doDeleteAllByUser(user.getIdUser());
+            sessionCart.svuota();
+            System.out.println("Cart cleared");
 
-            // Redirect the user to a success page
             response.sendRedirect("OrderConfirmation.jsp");
         } catch (SQLException e) {
-            throw new ServletException(e);
+            response.sendRedirect("../errorPages/SQLException.jsp");
+            System.out.println("SQLException occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
-    /*MODIFICHE*/
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);

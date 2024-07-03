@@ -21,24 +21,32 @@ public class ServletCarrello extends HttpServlet {
     private final CartModel cartModel = new CartModel();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Entering doPost method");
 
         HttpSession session = request.getSession();
         Carrello cart = (Carrello) session.getAttribute("cart");
 
         if (cart == null) {
-            System.out.println("Cart is null, creating a new cart");
             cart = new Carrello();
             session.setAttribute("cart", cart);
         }
 
         String action = request.getParameter("action");
-        System.out.println("Action: " + action);
 
+        /*Modifiche iniziano qui*/
         if ("clear".equals(action)) {
-            System.out.println("Clearing the cart");
+            System.out.println("Received request to clear cart");
             cart.svuota();
+            if(session.getAttribute("user") != null) {
+                System.out.println("User is logged in, deleting all cart items from database");
+                try {
+                    cartModel.doDeleteAllByUser(((UserBean) session.getAttribute("user")).getIdUser());
+                } catch (Exception e) {
+                    System.out.println("Error deleting all cart items from database, adding them back to the cart");
+                    response.sendRedirect("../errorPages/error500.jsp");
+                }
+            }
             response.sendRedirect("carrello.jsp");
+        /*Modifiche finiscono qui*/
         } else {
             String codeStr = request.getParameter("code");
             System.out.println("Product code: " + codeStr);
@@ -50,7 +58,6 @@ public class ServletCarrello extends HttpServlet {
                     ProductBean item = productModel.doRetrieveByKey(code);
 
                     if ("add".equals(action) && item != null) {
-                        System.out.println("Adding product to cart");
                         CartBean cartItem = new CartBean();
                         cartItem.setProductCode(item.getCode());
                         cartItem.setQuantity(1);
@@ -96,7 +103,7 @@ public class ServletCarrello extends HttpServlet {
                             } catch (Exception e) {
                                 System.out.println("Error deleting cart item from database, adding it back to the cart");
                                 cart.aggiungi(cartItem);
-                                throw e;
+                                response.sendRedirect("../errorPages/error500.jsp");
                             }
                         }
 
@@ -121,16 +128,13 @@ public class ServletCarrello extends HttpServlet {
                         response.sendRedirect("carrello.jsp");
                     }
                 } catch (Exception e) {
-                    System.out.println("Exception caught: " + e.getMessage());
                     e.printStackTrace();
-                    response.sendRedirect("errorpage.jsp");
+                    response.sendRedirect("../errorPages/error500.jsp");
                 }
             } else {
                 System.out.println("Product code is null or empty");
-                response.sendRedirect("errorpage.jsp");
+                response.sendRedirect("../errorPages/error500.jsp");
             }
         }
-
-        System.out.println("Exiting doPost method");
     }
 }

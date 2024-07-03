@@ -233,11 +233,13 @@ public class CartModel {
         return totalPrice;
     }
 
+    //restituisce il prezzo totale di un prodotto
     public float getProductTotalPrice(CartBean cartItem) throws SQLException {
         ProductModelDS productModel = new ProductModelDS();
         ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
         return product.getPrice() * cartItem.getQuantity();
     }
+
 
     public boolean checkDiscount(CartBean cartItem) throws SQLException {
         ProductModelDS productModel = new ProductModelDS();
@@ -283,7 +285,6 @@ public class CartModel {
         int productQuantity = product.getQuantity();
         return productQuantity;
     }
-
 
     public synchronized List<CartBean> doRetrieveAll(int idUser) throws SQLException {
         Connection con = null;

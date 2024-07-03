@@ -40,9 +40,8 @@ public class LogInServlet extends HttpServlet {
                 System.out.println("Attempting to logout..."); // Debug print
                 logout(request, response);
             }
-        } catch (SQLException e) {
-            System.out.println("SQLException caught: " + e.getMessage()); // Debug print
-            throw new ServletException("Database error in LogInServlet", e);
+        } catch (Exception e) {
+            response.sendRedirect("../errorPages/error500.jsp");
         }
     }
 
@@ -57,16 +56,6 @@ public class LogInServlet extends HttpServlet {
         String telNumber = request.getParameter("telNumber");
         String admin = request.getParameter("admin");
 
-        System.out.println("Username: " + username); // Debug print
-        System.out.println("Name: " + name); // Debug print
-        System.out.println("Surname: " + surname); // Debug print
-        System.out.println("Birthdate: " + birthdateString); // Debug print
-        System.out.println("Email: " + email); // Debug print
-        System.out.println("Password: " + password); // Debug print
-        System.out.println("TelNumber: " + telNumber); // Debug print
-        System.out.println("Admin: " + admin); // Debug print
-
-
         // Validazione dei campi obbligatori
         if (username == null || name == null || surname == null || birthdateString == null || email == null || password == null || telNumber == null || admin == null) {
             request.setAttribute("errorMessage", "Tutti i campi sono obbligatori");
@@ -80,11 +69,9 @@ public class LogInServlet extends HttpServlet {
             SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date dataNascitaUtil = formatoData.parse(birthdateString);
             birthdate = new Date(dataNascitaUtil.getTime());
-            System.out.println("Parsed birthdate: " + birthdate.toString()); // Debug print
         } catch (ParseException e) {
             request.setAttribute("errorMessage", "La data di nascita non è nel formato corretto (yyyy-MM-dd)");
             request.getRequestDispatcher("LogIn.jsp").forward(request, response);
-            System.out.println("Error parsing birthdate: " + e.getMessage()); // Debug print
             return;
         }
 
@@ -122,16 +109,18 @@ public class LogInServlet extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         String nextPage = (String) request.getParameter("nextPage");
-        System.out.println("Next page riga 125 LogInServlet: " + nextPage); // Debug print
 
         UserBean userBean = userModel.doRetrieveByUsername(username);
 
-        // Inizio Modifiche Qui
-        String hashedPassword = PasswordUtils.hashPassword(password, userBean.getSalt());
-        // Fine Modifiche Qui
+        if (userBean == null) {
+            request.setAttribute("errorMessage", "Username o password non validi");
+            request.getRequestDispatcher("LogIn.jsp").forward(request, response);
+            return;
+        }
 
-        if(userBean != null && userBean.getPassword().equals(hashedPassword) && userBean.getAdmin()) {
-            System.out.println("Admin login successful."); // Debug print
+        String hashedPassword = PasswordUtils.hashPassword(password, userBean.getSalt());
+
+        if(userBean.getPassword().equals(hashedPassword) && userBean.getAdmin()) {
             session.setAttribute("user", userBean);
             response.sendRedirect("ProductView.jsp");
             return;
@@ -141,9 +130,7 @@ public class LogInServlet extends HttpServlet {
         System.out.println("Stored password: " + userBean.getPassword());
         System.out.println("Salt: " + userBean.getSalt());
 
-        System.out.println("UserBean: " + userBean.getPassword().equals(hashedPassword)); // Debug print
-
-        if (userBean != null && userBean.getPassword().equals(hashedPassword) && !userBean.getAdmin()) {
+        if (userBean.getPassword().equals(hashedPassword) && !userBean.getAdmin()) {
             System.out.println("User login successful."); // Debug print
             session.setAttribute("user", userBean);
 

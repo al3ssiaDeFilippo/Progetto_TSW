@@ -55,12 +55,14 @@
         <%
             if(!model.checkDiscount(prodotto)) {
         %>
-        <td> <%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity() %> €</td>
+        <!-- Modifica qui (togliere * getQuantity) -->
+        <td> <%= model.getProductTotalPrice(prodotto)%> €</td>
         <%
         } else {
             if(model.getSingleProductDiscountedPrice(prodotto) != model.getProductTotalPrice(prodotto)){
         %>
-        <td> <del><%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € </td>
+        <!-- Modifica qui (togliere * getQuantity) -->
+        <td> <del><%= model.getProductTotalPrice(prodotto)%> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € </td>
         <%
                 }
             }
@@ -76,11 +78,11 @@
     </tr>
     <% } %>
     <tr>
-        <td colspan="2">Total Price</td>
+        <td colspan="5">Total Price</td>
         <% if(model.getTotalPriceWithDiscount(prodotti) == totalPrice) { %>
         <td><%=model.getTotalPriceWithDiscount(prodotti)%> €</td>
         <% } else { %>
-        <td colspan="2"> <del><%=model.getTotalPriceWithDiscount(prodotti)%> € </del> <span style="color: red;"><%=totalPrice%></span> €</td>
+        <td colspan="1"> <del><%=model.getTotalPriceWithDiscount(prodotti)%> € </del> <span style="color: red;"><%=totalPrice%></span> €</td>
         <% } %>
     </tr>
 </table>
@@ -90,6 +92,12 @@
 <% } %>
 
 <a href="ProductView.jsp">Torna alla home</a>
+<!-- Modifica inizia qui-->
+<form action="ServletCarrello" method="post">
+    <input type="hidden" name="action" value="clear">
+    <input type="submit" value="Svuota carrello">
+</form>
+<!-- Modifica finisce qui-->
 
 <%
     if(cart.getProdotti().isEmpty()) { %>

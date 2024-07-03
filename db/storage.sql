@@ -43,6 +43,7 @@ CREATE TABLE cart (
     price FLOAT NOT NULL,
     FOREIGN KEY (idUser) REFERENCES user(idUser),
     FOREIGN KEY (productCode) REFERENCES product(code)
+    ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE card (
@@ -74,25 +75,29 @@ CREATE TABLE orders (
     orderDate DATE NOT NULL,
     totalPrice FLOAT NOT NULL,
     FOREIGN KEY (idUser) REFERENCES user(idUser)
-    ON UPDATE CASCADE ON DELETE CASCADE,
+    ON UPDATE NO ACTION ON DELETE NO ACTION,
     FOREIGN KEY (idShipping) REFERENCES shipping(idShipping)
-    ON UPDATE CASCADE ON DELETE CASCADE,
+    ON UPDATE NO ACTION ON DELETE NO ACTION,
     FOREIGN KEY (idCreditCard) REFERENCES card(idCard)
-    ON UPDATE CASCADE ON DELETE CASCADE
+    ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE orderDetails(
-    idUser INT PRIMARY KEY,
-    productCode INT NOT NULL,
-    quantity INT DEFAULT 1,
-    frame VARCHAR(8) NOT NULL CHECK (frame IN ('no frame', 'wood', 'PVC')),
-    frameColor VARCHAR(8) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white', 'no color')),
-    size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')),
-    price FLOAT NOT NULL,
-    idOrder INT NOT NULL,
-    FOREIGN KEY (idUser) REFERENCES user(idUser),
-    FOREIGN KEY (productCode) REFERENCES product(code),
-    FOREIGN KEY (idOrder) REFERENCES orders(idOrder)
+CREATE TABLE orderDetails (
+      idOrder INT NOT NULL,
+      productCode INT NOT NULL,
+      quantity INT DEFAULT 1,
+      frame VARCHAR(8) NOT NULL CHECK (frame IN ('no frame', 'wood', 'PVC')),
+      frameColor VARCHAR(8) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white', 'no color')),
+      size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')),
+      price FLOAT NOT NULL,
+      /*Modifiche inziiano qui*/
+      iva INT NOT NULL,
+      /*Modifiche finiscono qui*/
+      idUser INT,
+      PRIMARY KEY (idOrder, productCode),  -- Chiave primaria composta
+      FOREIGN KEY (idUser) REFERENCES user(idUser),
+      FOREIGN KEY (productCode) REFERENCES product(code),
+      FOREIGN KEY (idOrder) REFERENCES orders(idOrder)
 );
 
 CREATE TABLE photo (

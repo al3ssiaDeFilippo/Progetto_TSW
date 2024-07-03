@@ -32,6 +32,7 @@
             <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
             <p><strong>IVA:</strong> <%= product.getIva() %> %</p>
             <p><strong>Sconto:</strong> <%= product.getDiscount() %> %</p>
+
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
@@ -60,10 +61,19 @@
                         <option value="91x61">91x61</option>
                     </select>
                 </p>
+
+                <!-- Modifiche iniziano qui -->
+                <% if(product.getQuantity() > 0) { %> <!-- Controlla se il prodotto è disponibile -->
+                <!-- Modifiche finiscono qui -->
+
                 <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il pulsante -->
                 <input type="submit" value="Aggiungi al Carrello">
                 <% } %>
             </form>
+                <% } else { %>
+                <p class="unavailable-product">Prodotto non disponibile al momento</p>
+                <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
+
             <div class="centered-links">
                 <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il link -->
                 <a href="carrello.jsp">Visualizza Carrello</a>
@@ -72,6 +82,7 @@
             </div>
         </div>
     </div>
+    <!-- Modifiche iniziano qui -->
     <%
     } else {
     %>
@@ -79,6 +90,8 @@
     <%
         }
     %>
+
+    <!-- Modifiche finiscono qui -->
 </div>
 <%@ include file="Footer.jsp" %>
 </body>

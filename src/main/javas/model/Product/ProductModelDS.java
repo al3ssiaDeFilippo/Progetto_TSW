@@ -222,7 +222,7 @@ public class ProductModelDS implements ProductModel {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ? WHERE code = ?";
+        String updateSQL = "UPDATE product SET productName = ?, details = ?, quantity = ?, category = ?, price = ?, iva = ?, discount = ?, photo = ? WHERE code = ?";
 
         try {
             connection = ds.getConnection();
@@ -234,7 +234,9 @@ public class ProductModelDS implements ProductModel {
             preparedStatement.setFloat(5, product.getPrice());
             preparedStatement.setInt(6, product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
-            preparedStatement.setInt(8, product.getCode());
+            preparedStatement.setBlob(8, product.getPhoto());
+            preparedStatement.setInt(9, product.getCode());
+
 
             preparedStatement.executeUpdate();
 
@@ -244,4 +246,37 @@ public class ProductModelDS implements ProductModel {
         }
     }
 
+    /*Modifiche iniziano qui*/
+    public void disableForeignKeyCheck() throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = ds.getConnection();
+            statement = connection.createStatement();
+            statement.execute("SET FOREIGN_KEY_CHECKS = 0;");
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } finally {
+                if (connection != null) connection.close();
+            }
+        }
+    }
+
+    public void enableForeignKeyCheck() throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = ds.getConnection();
+            statement = connection.createStatement();
+            statement.execute("SET FOREIGN_KEY_CHECKS = 1;");
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } finally {
+                if (connection != null) connection.close();
+            }
+        }
+    }
+    /*Modifiche finiscono qui*/
 }

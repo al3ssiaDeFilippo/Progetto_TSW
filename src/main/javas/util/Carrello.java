@@ -47,7 +47,6 @@ public class Carrello {
             prodotti.add(prodotto);
         } catch (SQLException e) {
             e.printStackTrace();
-            return;
         }
     }
 

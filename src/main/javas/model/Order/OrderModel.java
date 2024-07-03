@@ -127,25 +127,64 @@ public class OrderModel {
     }
 
     public synchronized void doDelete(int idOrder) throws SQLException {
-    Connection con = null;
-    PreparedStatement preparedStatement = null;
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
 
-    String deleteSQL = "DELETE FROM orders WHERE idOrder = ?";
+        String deleteSQL = "DELETE FROM orders WHERE idOrder = ?";
 
-    try {
-        con = ds.getConnection();
-        preparedStatement = con.prepareStatement(deleteSQL);
-        preparedStatement.setInt(1, idOrder);
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(deleteSQL);
+            preparedStatement.setInt(1, idOrder);
 
-        preparedStatement.executeUpdate();
-    } finally {
-        if (preparedStatement != null) {
-            preparedStatement.close();
-        }
-        if (con != null) {
-            con.close();
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
     }
-}
-}
 
+    public synchronized Collection<OrderBean> doRetrieveByUserId(int userId) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        Collection<OrderBean> orders = new LinkedList<>();
+
+        String selectSQL = "SELECT * FROM orders WHERE idUser = ?";
+
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, userId);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                OrderBean bean = new OrderBean();
+                bean.setIdOrder(rs.getInt("idOrder"));
+                bean.setIdUser(rs.getInt("idUser"));
+                bean.setIdShipping(rs.getInt("idShipping"));
+                bean.setIdCreditCard(rs.getString("idCreditCard"));
+                bean.setOrderDate(rs.getDate("orderDate"));
+                bean.setTotalPrice(rs.getFloat("totalPrice"));
+                orders.add(bean);
+            }
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return orders;
+    }
+
+
+
+
+
+}

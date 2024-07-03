@@ -18,7 +18,7 @@ public class OrderControlServlet extends HttpServlet {
             orderModel.doDelete(idOrder);
             response.sendRedirect("OrderView.jsp");
         } catch (SQLException e) {
-            throw new ServletException(e);
+            response.sendRedirect("../errorPages/SQLException.jsp");
         }
     }
 

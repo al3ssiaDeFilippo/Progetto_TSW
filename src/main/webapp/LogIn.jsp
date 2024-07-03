@@ -41,13 +41,7 @@
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
 <p>Non hai un account? <a href="SignIn.jsp">Registrati</a></p>
-<% } else { %>
-<p>Benvenuto, <%= user.getUsername() %>!</p>
-<form action="LogInServlet" method="post">
-    <input type="hidden" name="action" value="logout">
-    <input type="submit" value="Logout">
-</form>
-<% } %>
+<% }%>
 <a href="ProductView.jsp">Torna al catalogo</a>
 <%@ include file="Footer.jsp" %>
 </body>

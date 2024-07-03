@@ -15,4 +15,10 @@ public interface ProductModel {
     public Collection<ProductBean> doRetrieveAll(String order) throws SQLException;
 
     public void doUpdate(ProductBean product) throws SQLException;
+
+    /*Modifiche Iniziano qui*/
+    public void enableForeignKeyCheck() throws SQLException;
+
+    public void disableForeignKeyCheck() throws SQLException;
+    /*Modifiche finiscono qui*/
 }

@@ -34,11 +34,12 @@ public class ProductControl extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String dis = "/ProductView.jsp";
 
         String action = request.getParameter("action");
+        System.out.println("action: " + action);
 
         try {
             if (action != null) {
@@ -53,16 +54,33 @@ public class ProductControl extends HttpServlet {
                     request.setAttribute("product", model.doRetrieveByKey(code));
                     dis = "/DetailProductPage.jsp";
 
-                } else if (action.equalsIgnoreCase("delete")) {
+                /*Modifiche iniziano qui*/
+                }else if (action.equalsIgnoreCase("delete")) {
                     int code = 0;
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
                         code = Integer.parseInt(request.getParameter("code"));
-                        System.out.println("codeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:" + code);
-                        model.doDelete(code);
-                    }
 
-                } else if (action.equalsIgnoreCase("insert")) {
+                        // Disattiva temporaneamente il vincolo di chiave esterna
+                        model.disableForeignKeyCheck(); // Metodo da implementare nel ProductModelDS
+
+                        // Elimina fisicamente il prodotto
+                        try {
+                            model.doDelete(code); // Elimina fisicamente il prodotto
+                        } catch (SQLException e) {
+                            System.out.println("Error deleting product: " + e.getMessage());
+                            request.setAttribute("errorMessage", "Errore nell'eliminazione del prodotto.");
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+                            dispatcher.forward(request, response);
+                            return;
+                        } finally {
+                            // Riattiva il vincolo di chiave esterna dopo l'eliminazione
+                            model.enableForeignKeyCheck(); // Metodo da implementare nel ProductModelDS
+                        }
+                    }
+                }
+                /*Modifiche finiscono qui*/
+                else if (action.equalsIgnoreCase("insert")) {
 
                     System.out.println("Debug: action : insert!");
 
@@ -186,15 +204,19 @@ public class ProductControl extends HttpServlet {
                             dis = "/EditProductPage.jsp";
                         }
                     }
-                } else if(action.equalsIgnoreCase("update")) {
+                } else if (action.equalsIgnoreCase("update")) {
                     int code = 0;
                     String codeParam = request.getParameter("code");
+
+                    System.out.println("code: " + codeParam);
+
                     if (codeParam != null && !codeParam.isEmpty()) {
                         code = Integer.parseInt(request.getParameter("code"));
                         ProductBean product = model.doRetrieveByKey(code);
                         if (product != null) {
                             // Get all the new product data from the request
                             String productName = request.getParameter("productName");
+                            System.out.println("productname: " + productName);
                             String details = request.getParameter("details");
                             int quantity = Integer.parseInt(request.getParameter("quantity"));
                             String category = request.getParameter("category");
@@ -203,7 +225,11 @@ public class ProductControl extends HttpServlet {
                             int discount = Integer.parseInt(request.getParameter("discount"));
 
                             Part photoPart = request.getPart("photoPath");
+
+                            System.out.println("photoPath productcontrol: " + photoPart);
                             Blob photo = null;
+
+                            // Check if a new photo is uploaded
                             if (photoPart != null && photoPart.getSize() > 0) {
                                 InputStream inputStream = photoPart.getInputStream();
                                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -214,8 +240,13 @@ public class ProductControl extends HttpServlet {
                                 }
                                 byte[] photoBytes = outputStream.toByteArray();
                                 photo = new javax.sql.rowset.serial.SerialBlob(photoBytes);
+                            } else {
+                                // Maintain the current photo if no new photo is uploaded
+                                String currentPhoto = request.getParameter("currentPhoto");
+                                if (currentPhoto != null && currentPhoto.equals("true")) {
+                                    photo = product.getPhoto();
+                                }
                             }
-
 
                             // Set the new product data in the ProductBean object
                             product.setProductName(productName);
@@ -226,6 +257,7 @@ public class ProductControl extends HttpServlet {
                             product.setIva(iva);
                             product.setDiscount(discount);
                             product.setPhoto(photo);
+                            System.out.println("photo riga 237:" + photo);
 
                             // Call model.edit with the ProductBean object
                             model.doUpdate(product);
@@ -252,8 +284,8 @@ public class ProductControl extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+        doPost(request, response);
     }
 }

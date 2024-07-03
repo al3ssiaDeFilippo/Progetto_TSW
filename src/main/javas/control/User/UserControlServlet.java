@@ -28,7 +28,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 
     String action = request.getParameter("action");
     if (action == null) {
-        throw new ServletException("Missing action parameter.");
+        response.sendRedirect("errorPages/error500.jsp");
+        return;
     }
 
     switch (action) {
@@ -39,7 +40,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
                 addAdmin(request, response);
                 break;
             default:
-                throw new ServletException("Invalid action parameter.");
+                response.sendRedirect("errorPages/error500.jsp");
+                break;
     }
 }
 
@@ -47,8 +49,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
     protected void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // Get the id of the user to be deleted
     int idToDelete = Integer.parseInt(request.getParameter("id"));
-
-    System.out.println("ID DA ELIMARE: " + idToDelete);
 
     // Retrieve the UserBean object for the user to be deleted
     UserModel userModel = new UserModel();
@@ -62,7 +62,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         userModel.doDelete(userToDelete);
         response.sendRedirect("UserView.jsp"); // Redirect to a success page
     } catch (SQLException e) {
-        throw new ServletException("Error deleting user", e);
+        response.sendRedirect("errorPages/SQLException.jsp");
     }
 }
 
@@ -77,7 +77,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
     try {
         userToMakeAdmin = userModel.doRetreiveByKey(idToMakeAdmin);
         if (userToMakeAdmin == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found.");
+            response.sendRedirect("errorPages/error404.jsp");
             return;
         }
 
@@ -89,7 +89,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 
         response.sendRedirect("UserView.jsp"); // Redirect to a success page
     } catch (SQLException e) {
-        throw new ServletException("Error making user admin", e);
+        response.sendRedirect("errorPages/SQLException.jsp");
     }
 }
 

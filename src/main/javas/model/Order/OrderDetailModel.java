@@ -35,22 +35,30 @@ public class OrderDetailModel {
         Connection con = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (idUser, productCode, quantity, frame, frameColor, size, price, idOrder) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
+        /*Inizio modifiche qui*/
+        String insertSQL = "INSERT INTO orderDetails "
+                + "(idOrder, productCode, quantity, frame, frameColor, size, price, iva, idUser) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        /*Fine modifiche qui*/
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, orderDetail.getIdUser());
+            preparedStatement.setInt(1, orderDetail.getIdOrder());
             preparedStatement.setInt(2, orderDetail.getProductCode());
             preparedStatement.setInt(3, orderDetail.getQuantity());
             preparedStatement.setString(4, orderDetail.getFrame());
             preparedStatement.setString(5, orderDetail.getFrameColor());
             preparedStatement.setString(6, orderDetail.getSize());
             preparedStatement.setFloat(7, orderDetail.getPrice());
-            preparedStatement.setInt(8, orderDetail.getIdOrder());
+            /*Inizio modifiche qui*/
+            preparedStatement.setInt(8, orderDetail.getIva());
+            /*Fine modifiche qui*/
+            preparedStatement.setInt(9, orderDetail.getIdUser());
 
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -60,6 +68,7 @@ public class OrderDetailModel {
             }
         }
     }
+
 
     public synchronized List<OrderDetailBean> doRetrieveAll() throws SQLException {
         Connection con = null;
@@ -84,6 +93,9 @@ public class OrderDetailModel {
                 bean.setFrameColor(rs.getString("frameColor"));
                 bean.setSize(rs.getString("size"));
                 bean.setPrice(rs.getFloat("price"));
+                /*Inizio modifiche qui*/
+                bean.setIva(rs.getInt("iva"));
+                /*Fine modifiche qui*/
                 bean.setIdOrder(rs.getInt("idOrder"));
 
                 orderDetails.add(bean);
@@ -149,6 +161,9 @@ public class OrderDetailModel {
                 bean.setFrameColor(rs.getString("frameColor"));
                 bean.setSize(rs.getString("size"));
                 bean.setPrice(rs.getFloat("price"));
+                /*Inizio modifiche qui*/
+                bean.setIva(rs.getInt("iva"));
+                /*Fine modifiche qui*/
                 bean.setIdOrder(rs.getInt("idOrder"));
             }
 
@@ -206,7 +221,5 @@ public class OrderDetailModel {
             }
         }
     }
-
     /*FINE MODIFICHE*/
-
 }
