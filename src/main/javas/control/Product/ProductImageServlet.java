@@ -32,6 +32,7 @@ public class ProductImageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
+        System.out.println("action productimageservlet: " + action);
 
         if ("get".equals(action)) {
             int code = Integer.parseInt(req.getParameter("code"));
@@ -65,7 +66,9 @@ public class ProductImageServlet extends HttpServlet {
 
         } else if ("update".equals(action)) {
             String StringId = req.getParameter("id");
-            String photoPath = req.getServletContext().getRealPath("/") + "Gallery/Giochi/" + req.getParameter("photoPath");
+            System.out.println("id productimageservlet riga 68: " + StringId);
+            String photoPath = req.getParameter("photoPath");
+            System.out.println("photoPath productimageservlet riga 70: " + photoPath);
 
             if(StringId != null && photoPath != null) {
                 int id = Integer.parseInt(StringId);
@@ -81,53 +84,6 @@ public class ProductImageServlet extends HttpServlet {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                }
-            }
-        } else if(action.equalsIgnoreCase("updateCustomPhotos")) {
-            int code = 0;
-            String codeParam = req.getParameter("code");
-            if (codeParam != null && !codeParam.isEmpty()) {
-                code = Integer.parseInt(req.getParameter("code"));
-                ProductBean product = null;
-                try {
-                    product = prMod.doRetrieveByKey(code);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                if(product != null) {
-                    String[] frames = {"frame1", "frame2", "frame3"}; // sostituisci con i tuoi frame
-                    String[] frameColors = {"color1", "color2", "color3"}; // sostituisci con i tuoi colori del frame
-
-                    for (String frame : frames) {
-                        for (String frameColor : frameColors) {
-                            // Ottieni la foto per la combinazione corrente di frame e colore del frame
-                            Part photoPart = req.getPart(frame + "_" + frameColor);
-                            Blob photo = null;
-                            if (photoPart != null && photoPart.getSize() > 0) {
-                                InputStream inputStream = photoPart.getInputStream();
-                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                byte[] buffer = new byte[4096];
-                                int bytesRead;
-                                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                                    outputStream.write(buffer, 0, bytesRead);
-                                }
-                                byte[] photoBytes = outputStream.toByteArray();
-                                try {
-                                    photo = new javax.sql.rowset.serial.SerialBlob(photoBytes);
-                                } catch (SQLException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            }
-
-                            // Aggiorna la foto per la combinazione corrente di frame e colore del frame
-                            PhotoModel photoModel = new PhotoModel();
-                            try {
-                                photoModel.updateCustomPhoto(product, frame, frameColor, photo);
-                            } catch (SQLException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    }
                 }
             }
         }
