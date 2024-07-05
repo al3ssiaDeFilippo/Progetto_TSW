@@ -22,6 +22,7 @@
 <html>
 <head>
     <title>Carrello</title>
+    <script src="<c:url value='/js/cart.js'/>"></script>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -40,34 +41,16 @@
     <tr>
         <td><%= prodotto.getProductCode() %></td>
         <td>
-            <form action="ServletCarrello" method="post">
-                <input type="hidden" name="action" value="updateQuantity">
-                <input type="hidden" name="code" value="<%= prodotto.getProductCode() %>">
-                <input type="number" name="quantity" value="<%= prodotto.getQuantity() %>" min="1" max="<%= model.ProductMaxQuantity(prodotto) %>">
-                <input type="submit" value="Update">
-            </form>
+            <input type="number" name="quantity" value="<%= prodotto.getQuantity() %>" min="1" max="<%= model.ProductMaxQuantity(prodotto) %>" onchange="updateQuantity('<%= prodotto.getProductCode() %>', this.value)">
         </td>
-
         <td><%= prodotto.getFrame() %></td>
         <td><%= prodotto.getFrameColor() %></td>
         <td><%= prodotto.getSize() %></td>
-
-        <%
-            if(!model.checkDiscount(prodotto)) {
-        %>
-        <!-- Modifica qui (togliere * getQuantity) -->
-        <td> <%= model.getProductTotalPrice(prodotto)%> €</td>
-        <%
-        } else {
-            if(model.getSingleProductDiscountedPrice(prodotto) != model.getProductTotalPrice(prodotto)){
-        %>
-        <!-- Modifica qui (togliere * getQuantity) -->
-        <td> <del><%= model.getProductTotalPrice(prodotto)%> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> € </td>
-        <%
-                }
-            }
-        %>
-
+        <% if(!model.checkDiscount(prodotto)) { %>
+        <td> <%= model.getProductTotalPrice(prodotto) %> €</td>
+        <% } else { %>
+        <td> <del><%= model.getProductTotalPrice(prodotto) %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %> </span> €</td>
+        <% } %>
         <td>
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="remove">
@@ -79,11 +62,7 @@
     <% } %>
     <tr>
         <td colspan="5">Total Price</td>
-        <% if(model.getTotalPriceWithDiscount(prodotti) == totalPrice) { %>
-        <td><%=model.getTotalPriceWithDiscount(prodotti)%> €</td>
-        <% } else { %>
-        <td colspan="1"> <del><%=model.getTotalPriceWithDiscount(prodotti)%> € </del> <span style="color: red;"><%=totalPrice%></span> €</td>
-        <% } %>
+        <td id="totalPrice"><%= totalPrice %> €</td>
     </tr>
 </table>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
@@ -92,18 +71,15 @@
 <% } %>
 
 <a href="ProductView.jsp">Torna alla home</a>
-<!-- Modifica inizia qui-->
 <form action="ServletCarrello" method="post">
     <input type="hidden" name="action" value="clear">
     <input type="submit" value="Svuota carrello">
 </form>
-<!-- Modifica finisce qui-->
 
 <%
     if(cart.getProdotti().isEmpty()) { %>
 <p style="color:red;">Il carrello è vuoto</p>
 <%  } else { %>
-
 <form action="CheckoutServlet" method="get">
     <input type="hidden" name="nextPage" value="CheckoutShipping.jsp">
     <button type="submit">Vai al pagamento</button>

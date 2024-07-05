@@ -279,4 +279,50 @@ public class ProductModelDS implements ProductModel {
         }
     }
     /*Modifiche finiscono qui*/
+
+    public synchronized Collection<ProductBean> doRetrieveByCategory(String category) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Collection<ProductBean> products = new LinkedList<ProductBean>();
+
+        String selectSQL = "SELECT * FROM product WHERE category = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, category); // Imposta il parametro della categoria
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                ProductBean bean = new ProductBean();
+
+                bean.setCode(rs.getInt("CODE"));
+                bean.setProductName(rs.getString("PRODUCTNAME"));
+                bean.setDetails(rs.getString("DETAILS"));
+                bean.setQuantity(rs.getInt("QUANTITY"));
+                bean.setCategory(rs.getString("CATEGORY"));
+                bean.setPrice(rs.getFloat("PRICE"));
+                bean.setIva(rs.getInt("IVA"));
+                bean.setDiscount(rs.getInt("DISCOUNT"));
+                bean.setFrame(rs.getString("FRAME"));
+                bean.setFrameColor(rs.getString("FRAMECOLOR"));
+                bean.setSize(rs.getString("SIZE"));
+                bean.setPhoto(rs.getBlob("PHOTO"));
+                products.add(bean);
+            }
+
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        return products;
+    }
+
 }

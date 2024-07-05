@@ -5,9 +5,19 @@
 }
 
 .box-discounts {
-    height: 300px;  /* Imposta l'altezza del box a 300px */
+    height: 400px;  /* Imposta l'altezza del box a 300px */
     margin-left: 20px; /* Aggiunge uno spazio di 20 pixel a sinistra dell'elemento */
-    margin-right: 10px; /* Aggiunge uno spazio di 10 pixel a destra dell'elemento */
+    margin-right: 20px; /* Aggiunge uno spazio di 20 pixel a destra dell'elemento */
+    position: relative; /* Necessario per posizionare il video al suo interno */
+}
+
+.box-discounts video {
+    width: 100%; /* Imposta la larghezza del video al 100% del box */
+    height: 100%; /* Imposta l'altezza del video al 100% del box */
+    object-fit: cover; /* Adatta il video all'interno del box, ritagliando se necessario */
+    position: absolute; /* Posiziona il video assolutamente rispetto al box */
+    top: 0;
+    left: 0;
 }
 
 .box-container {

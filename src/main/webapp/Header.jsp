@@ -63,11 +63,11 @@
 
     <!-- Aggiunta della barra di navigazione -->
     <div class="nav-bar">
-            <a class="film-button" href="Film.jsp">Film</a>
-            <a class="serieTV-button" href="SerieTV.jsp">Serie TV</a>
-            <a class="anime-button" href="Anime.jsp">Anime</a>
-            <a class="fumetti-button" href="Fumetti.jsp">Fumetti</a>
-            <a class="giochi-button" href="Giochi.jsp">Videogiochi</a>
+        <a class="film-button" href="Categories.jsp?category=Film">Film</a>
+        <a class="serieTV-button" href="Categories.jsp?category=SerieTV">Serie TV</a>
+        <a class="anime-button" href="Categories.jsp?category=Anime">Anime</a>
+        <a class="fumetti-button" href="Categories.jsp?category=Fumetti">Fumetti</a>
+        <a class="giochi-button" href="Categories.jsp?category=Giochi">Videogiochi</a>
     </div>
 </header>
 

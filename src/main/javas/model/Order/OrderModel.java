@@ -60,10 +60,11 @@ public class OrderModel {
         }
     }
 
-    public synchronized OrderBean doRetrieveByUser(int idUser) throws SQLException{
+    public synchronized Collection<OrderBean> doRetrieveByUser(int idUser) throws SQLException{
         Connection con = null;
         PreparedStatement preparedStatement = null;
-        OrderBean orderBean = new OrderBean();
+        Collection<OrderBean> orders = new LinkedList<>();
+
 
         String selectSQL = "SELECT * FROM orders WHERE idUser = ?";
         try{
@@ -72,12 +73,15 @@ public class OrderModel {
             preparedStatement.setInt(1,idUser);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()){
+                OrderBean orderBean = new OrderBean();
                 orderBean.setIdOrder(rs.getInt("idOrder"));
                 orderBean.setIdUser(rs.getInt("idUser"));
                 orderBean.setIdShipping(rs.getInt("idShipping"));
                 orderBean.setIdCreditCard(rs.getString("idCreditCard"));
                 orderBean.setOrderDate(rs.getDate("orderDate"));
                 orderBean.setTotalPrice(rs.getFloat("totalPrice"));
+
+                orders.add(orderBean);
             }
         }finally {
             if(con != null){
@@ -87,15 +91,15 @@ public class OrderModel {
                 preparedStatement.close();
             }
         }
-        return orderBean;
+        return orders;
     }
 
-    public synchronized Collection<OrderBean> getOrdersByDate() throws SQLException {
+    public synchronized Collection<OrderBean> doRetrieveAll() throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         Collection<OrderBean> orders = new LinkedList<>();
 
-        String selectSQL = "SELECT * FROM orders ORDER BY orderDate DESC";
+        String selectSQL = "SELECT * FROM orders ";
 
         try {
             con = ds.getConnection();
@@ -147,44 +151,4 @@ public class OrderModel {
             }
         }
     }
-
-    public synchronized Collection<OrderBean> doRetrieveByUserId(int userId) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-        Collection<OrderBean> orders = new LinkedList<>();
-
-        String selectSQL = "SELECT * FROM orders WHERE idUser = ?";
-
-        try {
-            con = ds.getConnection();
-            preparedStatement = con.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, userId);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                OrderBean bean = new OrderBean();
-                bean.setIdOrder(rs.getInt("idOrder"));
-                bean.setIdUser(rs.getInt("idUser"));
-                bean.setIdShipping(rs.getInt("idShipping"));
-                bean.setIdCreditCard(rs.getString("idCreditCard"));
-                bean.setOrderDate(rs.getDate("orderDate"));
-                bean.setTotalPrice(rs.getFloat("totalPrice"));
-                orders.add(bean);
-            }
-        } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return orders;
-    }
-
-
-
-
-
 }

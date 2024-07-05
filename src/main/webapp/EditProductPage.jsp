@@ -2,7 +2,6 @@
 <%@ page import="main.javas.model.Product.*" %>
 <%@ page import="main.javas.bean.ProductBean" %>
 
-
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
     System.out.println("prodotto: " + product.toString());
@@ -11,15 +10,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="js/FormValidation.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
-    <link rel="stylesheet" type="text/css" href="css/ConfirmationPopUp.css">
     <script src="js/DetailSelection.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <title>Modifica Prodotto</title>
 </head>
 <body>
 <h2>Modifica Prodotto</h2>
-<form action="ProductControl" method="post" enctype="multipart/form-data">
+<form id="orderForm" action="ProductControl" method="post" enctype="multipart/form-data">
     <input type="hidden" name="action" value="update">
     <input type="hidden" name="code" value="<%=product.getCode()%>">
     <label for="productName">Nome:</label><br>
@@ -53,26 +50,13 @@
     <!-- Mostra l'immagine attuale del prodotto -->
     <img class="product-image" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" alt="Immagine attuale del prodotto"><br>
 
-    <!-- Modifiche iniziano qui -->
     <input type="hidden" name="currentPhoto" value="<%=product.getPhoto() != null ? "true" : "false"%>">
-    <!-- Modifiche finiscono qui -->
 
     <!-- Fornisci la possibilità di caricare una nuova immagine -->
     <label for="photoPath">Foto:</label><br>
     <input type="file" id="photoPath" name="photoPath" value="<%=product.getPhoto()%>"><br>
 
-    <input id="modifyButton" type="submit" value="Modifica Prodotto">
-
-    <div id="dialog" class="dialog">
-        <div class="dialog-content">
-            <p>Sei sicuro di voler modificare questo prodotto?</p>
-            <div class="dialog-buttons">
-                <button id="confirmButton">Conferma</button>
-                <button id="cancelButton">Annulla</button>
-            </div>
-        </div>
-    </div>
-
+    <input type="button" value="Modifica Prodotto">
 </form>
 </body>
 </html>

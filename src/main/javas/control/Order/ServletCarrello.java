@@ -21,7 +21,6 @@ public class ServletCarrello extends HttpServlet {
     private final CartModel cartModel = new CartModel();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         Carrello cart = (Carrello) session.getAttribute("cart");
 
@@ -32,24 +31,19 @@ public class ServletCarrello extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        /*Modifiche iniziano qui*/
         if ("clear".equals(action)) {
-            System.out.println("Received request to clear cart");
             cart.svuota();
             if(session.getAttribute("user") != null) {
-                System.out.println("User is logged in, deleting all cart items from database");
                 try {
                     cartModel.doDeleteAllByUser(((UserBean) session.getAttribute("user")).getIdUser());
                 } catch (Exception e) {
-                    System.out.println("Error deleting all cart items from database, adding them back to the cart");
                     response.sendRedirect("../errorPages/error500.jsp");
+                    return;
                 }
             }
             response.sendRedirect("carrello.jsp");
-        /*Modifiche finiscono qui*/
         } else {
             String codeStr = request.getParameter("code");
-            System.out.println("Product code: " + codeStr);
 
             if (codeStr != null && !codeStr.trim().isEmpty()) {
                 try {
@@ -61,55 +55,35 @@ public class ServletCarrello extends HttpServlet {
                         CartBean cartItem = new CartBean();
                         cartItem.setProductCode(item.getCode());
                         cartItem.setQuantity(1);
-
-                        String frame = request.getParameter("frame");
-                        String frameColor = request.getParameter("frameColor");
-                        String size = request.getParameter("size");
-
-                        cartItem.setFrame(frame != null ? frame : item.getFrame());
-
-                        if(frameColor == null) {
-                            cartItem.setFrameColor("no color");
-                        } else {
-                            cartItem.setFrameColor(frameColor);
-                        }
-
-                        cartItem.setSize(size != null ? size : item.getSize());
-
+                        cartItem.setFrame(request.getParameter("frame"));
+                        cartItem.setFrameColor(request.getParameter("frameColor"));
+                        cartItem.setSize(request.getParameter("size"));
                         cartItem.setPrice(item.getPrice());
-                        System.out.println("Product price: " + item.getPrice());
-                        System.out.println("Cart item price: " + cartItem.getPrice());
-
-                        // Always add a new row to the cart
                         cart.aggiungi(cartItem);
 
                         if (session.getAttribute("user") != null) {
-                            System.out.println("User is logged in, saving cart item to database");
                             cartItem.setIdUser(((UserBean) session.getAttribute("user")).getIdUser());
                             cartModel.doSave(cartItem);
                         }
 
                         response.sendRedirect("ProductView.jsp");
                     } else if ("remove".equals(action) && item != null) {
-                        System.out.println("Removing product from cart");
                         CartBean cartItem = new CartBean();
                         cartItem.setProductCode(item.getCode());
                         cart.rimuovi(cartItem);
 
                         if (session.getAttribute("user") != null) {
-                            System.out.println("User is logged in, deleting cart item from database");
                             try {
                                 cartModel.doDelete(item.getCode());
                             } catch (Exception e) {
-                                System.out.println("Error deleting cart item from database, adding it back to the cart");
                                 cart.aggiungi(cartItem);
                                 response.sendRedirect("../errorPages/error500.jsp");
+                                return;
                             }
                         }
 
                         response.sendRedirect("carrello.jsp");
                     } else if ("updateQuantity".equals(action) && item != null) {
-                        System.out.println("Updating product quantity in cart");
                         int quantity = Integer.parseInt(request.getParameter("quantity"));
                         if(quantity > item.getQuantity()) {
                             quantity = item.getQuantity();
@@ -117,7 +91,6 @@ public class ServletCarrello extends HttpServlet {
                         cart.aggiornaQuantita(item.getCode(), quantity);
 
                         if (session.getAttribute("user") != null) {
-                            System.out.println("User is logged in, saving updated cart item to database");
                             CartBean cartItem = new CartBean();
                             cartItem.setProductCode(item.getCode());
                             cartItem.setQuantity(quantity);
@@ -125,16 +98,19 @@ public class ServletCarrello extends HttpServlet {
                             cartModel.doSave(cartItem);
                         }
 
-                        response.sendRedirect("carrello.jsp");
+                        float totalPrice = cartModel.getDiscountedTotalPrice(cart.getProdotti());
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        response.getWriter().write("{\"success\":true, \"totalPrice\":\"" + totalPrice + "\"}");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                     response.sendRedirect("../errorPages/error500.jsp");
                 }
             } else {
-                System.out.println("Product code is null or empty");
                 response.sendRedirect("../errorPages/error500.jsp");
             }
         }
     }
 }
+

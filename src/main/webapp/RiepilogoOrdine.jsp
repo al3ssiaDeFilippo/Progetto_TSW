@@ -50,9 +50,9 @@
         <td><%= prodotto.getQuantity() %></td>
         <td>
             <% if(!model.checkDiscount(prodotto)) { %>
-            <%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity()%> €
+            <%= model.getProductTotalPrice(prodotto) %> €
             <% } else if(model.getSingleProductDiscountedPrice(prodotto) != model.getProductTotalPrice(prodotto)) { %>
-            <del><%= model.getProductTotalPrice(prodotto) * prodotto.getQuantity() %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> €
+            <del><%= model.getProductTotalPrice(prodotto) %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> €
             <% } %>
         </td>
     </tr>

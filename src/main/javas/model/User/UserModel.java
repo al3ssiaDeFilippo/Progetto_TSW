@@ -160,21 +160,33 @@ public class UserModel {
                 con.setAutoCommit(false);
                 preparedStatement = con.prepareStatement(deleteSQL);
                 preparedStatement.setInt(1, user.getIdUser());
+                System.out.println("User Id: " + user.getIdUser());
 
                 System.out.println("Executing delete query: " + deleteSQL); // Print before executing the query
 
                 result = preparedStatement.executeUpdate();
+                con.commit();
 
                 System.out.println("Delete query executed, result: " + result); // Print after executing the query
-
-                con.commit();
-                con.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.println("SQLException occurred while deleting user: " + e.getMessage());
+                e.printStackTrace();
             } finally {
-                if(preparedStatement != null) {
-                    preparedStatement.close();
+                try {
+                    if(preparedStatement != null) {
+                        preparedStatement.close();
+                        System.out.println("PreparedStatement closed successfully");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("SQLException occurred while closing PreparedStatement: " + e.getMessage());
                 }
-                if(con != null) {
-                    con.close();
+                try {
+                    if(con != null) {
+                        con.close();
+                        System.out.println("Connection closed successfully");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("SQLException occurred while closing Connection: " + e.getMessage());
                 }
             }
         }

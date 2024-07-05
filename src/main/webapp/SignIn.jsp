@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Registrazione</title>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -43,6 +43,7 @@
         <input type="submit" value="Sign In">
     </div>
 </form>
+
 <p>Hai già un account? <a href="LogIn.jsp">Accedi</a></p>
 <a href="ProductView.jsp">Torna al catalogo</a>
 
