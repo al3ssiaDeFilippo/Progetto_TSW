@@ -1,0 +1,74 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto; /* Centra il contenuto principale */
+    margin-top: 30px;
+}
+
+h1 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Product Container */
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Centra i prodotti nel contenitore */
+}
+
+.product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    flex: 0 1 calc(33.333% - 20px); /* Imposta la larghezza per 3 prodotti per riga, considerando 20px di margine */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px; /* Usa margini simmetrici */
+}
+
+.product img {
+    max-width: 90%; /* Mantiene la larghezza massima dell'immagine */
+    display: block;
+    margin: auto; /* Centra l'immagine all'interno del contenitore */
+}
+
+.product h2 {
+    margin: 0;
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+}
+
+.product p {
+    padding: 0 15px 15px;
+}
+
+/* Price styling */
+.product p:last-child {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .products-container {
+        justify-content: center; /* Centra gli elementi su schermi piccoli */
+    }
+    .product {
+        flex: 1 1 100%; /* Un prodotto per riga su schermi piccoli */
+        margin: 10px; /* Mantiene margini simmetrici */
+    }
+}

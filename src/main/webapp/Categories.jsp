@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/Categories.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
@@ -35,9 +36,9 @@
             for (ProductBean product : products) {
         %>
         <div class="product">
+            <img class="product-image" id="<%= product.getProductName()%>" class="product" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" ><br>
             <h2><%= product.getProductName() %></h2>
-            <p><%= product.getDetails() %></p>
-            <p>Prezzo: <%= product.getPrice() %> €</p>
+            <p>Prezzo: <%= product.getPrice() %> euro</p>
         </div>
         <%
                 }

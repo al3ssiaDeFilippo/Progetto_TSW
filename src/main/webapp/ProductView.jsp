@@ -2,6 +2,7 @@
 <%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.bean.UserBean" %>
 
+
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");
     if (products == null) {
