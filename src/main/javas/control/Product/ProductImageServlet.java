@@ -40,6 +40,8 @@ public class ProductImageServlet extends HttpServlet {
             resp.setContentType("image/jpg");
             out = resp.getOutputStream();
 
+            System.out.println("efinpfwkfenpfneofenpfnfpfnenfenflfne");
+
             byte[] imageBytes = null;
 
             // Check if we should get custom photos
@@ -51,11 +53,11 @@ public class ProductImageServlet extends HttpServlet {
                 String frame = req.getParameter("frame");
                 String frameColor = req.getParameter("frameColor");
 
-                // Get custom photos
+                // Prende le foto customizzate dal db
                 imageBytes = modelFoto.getCustomPhotos(code, frame, frameColor);
 
             } else {
-                // Get product photo
+                // Prende la foto standard dal db
                 imageBytes = modelFoto.getImageByNumeroSerie(code);
             }
 
@@ -64,28 +66,9 @@ public class ProductImageServlet extends HttpServlet {
             out.flush();
             out.close();
 
-        } else if ("update".equals(action)) {
-            String StringId = req.getParameter("id");
-            System.out.println("id productimageservlet riga 68: " + StringId);
-            String photoPath = req.getParameter("photoPath");
-            System.out.println("photoPath productimageservlet riga 70: " + photoPath);
+            System.out.println("FINEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
-            if(StringId != null && photoPath != null) {
-                int id = Integer.parseInt(StringId);
-                if (id <= 0) {
-                    throw new IllegalArgumentException("Invalid product ID: " + id);
-                }
-                try {
-                    ProductBean product = prMod.doRetrieveByKey(id);
-                    if(product != null) {
-                        modelFoto.insertImage(product.getCode(), photoPath);
-                    } else {
-                        throw new NullPointerException("No product found with ID: " + id);
-                    }
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+
         }
     }
 

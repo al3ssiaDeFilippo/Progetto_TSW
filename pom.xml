@@ -8,6 +8,7 @@
   <name>Task1_WebApp Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
     <!-- Dipendenza per le Servlet API -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -15,6 +16,7 @@
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
+
 
     <!-- Dipendenza per JUnit -->
     <dependency>

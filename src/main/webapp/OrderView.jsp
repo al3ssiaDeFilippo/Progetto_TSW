@@ -14,7 +14,7 @@
 
 <%
     OrderModel orderModel = new OrderModel();
-    Collection<OrderBean> allOrders = orderModel.getOrdersByDate();
+    Collection<OrderBean> allOrders = orderModel.doRetrieveAll();
 
     List<OrderBean> orders = new ArrayList<>(allOrders);
 %>

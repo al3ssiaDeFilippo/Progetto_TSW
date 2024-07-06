@@ -1,6 +1,5 @@
 package main.javas.model.Product;
 
-import main.javas.DriverManagerConnectionPool;
 import main.javas.bean.ProductBean;
 
 import javax.naming.Context;
@@ -62,7 +61,7 @@ public class PhotoModel {
                 System.out.println(e);
             } finally {
                 if(connection != null) {
-                    DriverManagerConnectionPool.releaseConnection(connection);
+                    connection.close();
                 }
             }
         }
@@ -91,26 +90,52 @@ public class PhotoModel {
         }
     }
 
-    public static byte[] getCustomPhotos(int code, String frame, String frameColor) {
-        try(Connection con = DriverManagerConnectionPool.getConnection()) {
-            System.out.println("getCustomPhotos started");
-            PreparedStatement ps = con.prepareStatement("SELECT photo FROM photo WHERE productCode = ? AND frame = ? AND frameColor = ?");
-            ps.setInt(1, code);
-            ps.setString(2, frame);
-            ps.setString(3, frameColor);
 
-            ResultSet rs = ps.executeQuery();
-            byte[] imageByte = null;
+    public static byte[] getCustomPhotos(int code, String frame, String frameColor) {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+
+        String selectSQL = "SELECT photo FROM photo WHERE productCode = ? AND frame = ? AND frameColor = ?";
+
+        byte[] imageByte = null;
+
+        System.out.println("Sto in getcustomphotoooooooooooooooooooooooooooo");
+
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, code);
+            preparedStatement.setString(2, frame);
+            preparedStatement.setString(3, frameColor);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
             if(rs.next()) {
                 Blob imageBlob = rs.getBlob("photo");
                 imageByte = imageBlob.getBytes(1, (int) imageBlob.length());
-
             }
-            System.out.println("Retrieved image of size: " + (imageByte != null ? imageByte.length : 0));
-            return imageByte;
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
+        } finally {
+            try {
+                if(preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch(SQLException e) {
+                System.out.println(e);
+            } finally {
+                if(con != null) {
+                    try {
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e);
+                    }
+                }
+            }
         }
+
+        return imageByte;
     }
 
     public void updateCustomPhoto(ProductBean product, String frame, String frameColor, Blob photo) throws SQLException {
@@ -118,7 +143,7 @@ public class PhotoModel {
         PreparedStatement preparedStatement = null;
 
         try {
-            con = DriverManagerConnectionPool.getConnection();
+            con = ds.getConnection();
             con.setAutoCommit(false);
             String sql = "UPDATE photo SET photo = ? WHERE productCode = ? AND frame = ? AND frameColor = ?";
 
@@ -154,7 +179,10 @@ public class PhotoModel {
     }
 
     public static byte[] getImageByNumeroSerie(int code) {
-        try(Connection con = DriverManagerConnectionPool.getConnection()) {
+
+        System.out.println("Sto in getcustomphotoooooooooooooooooooooooooooo");
+
+        try(Connection con = ds.getConnection()) {
             System.out.println("getImageByNumeroSerie avviato");
             PreparedStatement ps = con.prepareStatement("SELECT photo FROM product WHERE code = ?");
             ps.setInt(1, code);
@@ -172,7 +200,9 @@ public class PhotoModel {
     }
 
     public void insertImage(int code, String imagePath) {
-        try (Connection con = DriverManagerConnectionPool.getConnection()) {
+
+        System.out.println("Sto in insertImage");
+        try (Connection con = ds.getConnection()) {
             PreparedStatement ps = con.prepareStatement("UPDATE product SET photo = ? WHERE code = ?");
 
             // Convert image path to InputStream
@@ -198,7 +228,7 @@ public class PhotoModel {
         String insertPhotoSQL = "INSERT INTO photo (photo, productCode, frame, frameColor) VALUES (?, ?, ?, ?)";
 
         try {
-            con = DriverManagerConnectionPool.getConnection();
+            con = ds.getConnection();
             con.setAutoCommit(false);
 
             ProductModelDS PM = new ProductModelDS();

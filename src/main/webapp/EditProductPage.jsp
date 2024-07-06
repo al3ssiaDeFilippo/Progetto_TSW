@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.javas.model.Product.*" %>
 <%@ page import="main.javas.bean.ProductBean" %>
+<%@ page import="main.javas.model.Product.ProductModel" %>
+<%@ page import="main.javas.model.Product.ProductModelDS" %>
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
@@ -10,15 +11,25 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="js/DetailSelection.js"></script>
     <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <title>Modifica Prodotto</title>
+    <script src="js/UpdateQuantity.js" defer></script>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('productImage');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </head>
 <body>
 <h2>Modifica Prodotto</h2>
-<form id="orderForm" action="ProductControl" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="update">
-    <input type="hidden" name="code" value="<%=product.getCode()%>">
+<form action="ProductControl" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="productCode" name="code" value="<%=product.getCode()%>">
+
     <label for="productName">Nome:</label><br>
     <input type="text" id="productName" name="productName" value="<%=product.getProductName()%>"><br>
 
@@ -30,7 +41,7 @@
 
     <label for="category">Categoria:</label><br>
     <select id="category" name="category">
-        <option value="selectACategory" disabled selected>Seleziona una categoria</option>
+        <option value="selectACategory" disabled>Seleziona una categoria</option>
         <option value="Film" <%=product.getCategory().equals("Film") ? "selected" : ""%>>Film</option>
         <option value="Anime" <%=product.getCategory().equals("Anime") ? "selected" : ""%>>Anime</option>
         <option value="Giochi" <%=product.getCategory().equals("Giochi") ? "selected" : ""%>>Giochi</option>
@@ -47,16 +58,17 @@
     <label for="discount">Sconto:</label><br>
     <input type="number" id="discount" name="discount" value="<%=product.getDiscount()%>" step="0.01"><br>
 
+    <!-- Caricamento nuova immagine -->
+    <label for="photoPath">Foto:</label><br>
+    <input type="file" id="photoPath" name="photoPath" accept=".jpg" onchange="previewImage(event)"><br>
+
     <!-- Mostra l'immagine attuale del prodotto -->
-    <img class="product-image" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" alt="Immagine attuale del prodotto"><br>
+    <img id="productImage" class="product-image" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" alt="Immagine attuale del prodotto"><br>
 
     <input type="hidden" name="currentPhoto" value="<%=product.getPhoto() != null ? "true" : "false"%>">
 
-    <!-- Fornisci la possibilità di caricare una nuova immagine -->
-    <label for="photoPath">Foto:</label><br>
-    <input type="file" id="photoPath" name="photoPath" value="<%=product.getPhoto()%>"><br>
-
-    <input type="button" value="Modifica Prodotto">
+    <input type="hidden" name="action" value="update">
+    <input type="submit" value="Modifica Prodotto">
 </form>
 </body>
 </html>

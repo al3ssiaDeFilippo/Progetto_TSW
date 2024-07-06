@@ -43,7 +43,10 @@ public class ProductControl extends HttpServlet {
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("read")) {
+                if (action.equalsIgnoreCase("uploadImage")) {
+                    handleImageUpload(request, response);
+                    return;
+                } else if (action.equalsIgnoreCase("read")) {
                     int code = 0;
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
@@ -54,8 +57,7 @@ public class ProductControl extends HttpServlet {
                     request.setAttribute("product", model.doRetrieveByKey(code));
                     dis = "/DetailProductPage.jsp";
 
-                /*Modifiche iniziano qui*/
-                }else if (action.equalsIgnoreCase("delete")) {
+                } else if (action.equalsIgnoreCase("delete")) {
                     int code = 0;
                     String codeParam = request.getParameter("code");
                     if (codeParam != null && !codeParam.isEmpty()) {
@@ -78,10 +80,7 @@ public class ProductControl extends HttpServlet {
                             model.enableForeignKeyCheck(); // Metodo da implementare nel ProductModelDS
                         }
                     }
-                }
-                /*Modifiche finiscono qui*/
-                else if (action.equalsIgnoreCase("insert")) {
-
+                } else if (action.equalsIgnoreCase("insert")) {
                     System.out.println("Debug: action : insert!");
 
                     String productName = request.getParameter("productName");
@@ -90,14 +89,14 @@ public class ProductControl extends HttpServlet {
                     int quantity = 0;
                     String quantityParam = request.getParameter("quantity");
                     if (quantityParam != null && !quantityParam.isEmpty()) {
-                        quantity = Integer.parseInt(request.getParameter("quantity"));
+                        quantity = Integer.parseInt(quantityParam);
                     }
                     String category = request.getParameter("category");
 
                     float price = 0;
                     String priceParam = request.getParameter("price");
                     if (priceParam != null && !priceParam.isEmpty()) {
-                        price = Float.parseFloat(request.getParameter("price"));
+                        price = Float.parseFloat(priceParam);
                     }
 
                     String ivaParam = request.getParameter("iva");
@@ -109,7 +108,7 @@ public class ProductControl extends HttpServlet {
                     int discount = 0;
                     String discountParam = request.getParameter("discount");
                     if (discountParam != null && !discountParam.isEmpty()) {
-                        discount = Integer.parseInt(request.getParameter("discount"));
+                        discount = Integer.parseInt(discountParam);
                     }
 
                     Part photoPart = request.getPart("photoPath");
@@ -159,15 +158,10 @@ public class ProductControl extends HttpServlet {
                     bean.setIva(iva);
                     bean.setDiscount(discount);
                     bean.setFrame(frame);
-                    System.out.println("frame: " + frame);
                     bean.setFrameColor(frameColor);
-                    System.out.println("frameColor: " + frameColor);
                     bean.setSize(size);
-                    System.out.println("size: " + size);
                     bean.setPhoto(photo);
                     int productCode = model.doSave(bean);
-
-                    /*modifiche*/
 
                     String directoryPath = "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads";
                     try{
@@ -176,8 +170,6 @@ public class ProductControl extends HttpServlet {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-
-                    /*modifiche*/
 
                     System.out.println("Debug: action : insert! - Product inserted!");
 
@@ -205,6 +197,7 @@ public class ProductControl extends HttpServlet {
                         }
                     }
                 } else if (action.equalsIgnoreCase("update")) {
+                    System.out.println("Debug: action : update!");
                     int code = 0;
                     String codeParam = request.getParameter("code");
 
@@ -257,10 +250,13 @@ public class ProductControl extends HttpServlet {
                             product.setIva(iva);
                             product.setDiscount(discount);
                             product.setPhoto(photo);
-                            System.out.println("photo riga 237:" + photo);
 
-                            // Call model.edit with the ProductBean object
+                            // Update the product in the database
                             model.doUpdate(product);
+
+                            // Redirect to the ProductView page
+                            response.sendRedirect("ProductView.jsp");
+                            return;
                         }
                     }
                 }
@@ -287,5 +283,35 @@ public class ProductControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
+    }
+
+    private void handleImageUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int code = Integer.parseInt(request.getParameter("code"));
+        Part photoPart = request.getPart("photoPath");
+        Blob photo = null;
+
+        if (photoPart != null && photoPart.getSize() > 0) {
+            String fileName = Paths.get(photoPart.getSubmittedFileName()).getFileName().toString();
+            InputStream inputStream = photoPart.getInputStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            byte[] photoBytes = outputStream.toByteArray();
+            photo = new javax.sql.rowset.serial.SerialBlob(photoBytes);
+
+            // Update the photo in the database
+            ProductBean product = model.doRetrieveByKey(code);
+            product.setPhoto(photo);
+            model.doUpdate(product);
+
+            // Return the new image URL in the response
+            String newImageUrl = "ProductImageServlet?action=get&code=" + code;
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"newImageUrl\": \"" + newImageUrl + "\"}");
+        }
     }
 }
