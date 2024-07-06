@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <title>Modifica Prodotto</title>
-    <script src="js/UpdateQuantity.js" defer></script>
+    <script src="js/UpdateImage.js" defer></script>
     <script>
         function previewImage(event) {
             const reader = new FileReader();
