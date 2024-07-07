@@ -2,10 +2,7 @@
 <%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="main.javas.model.Product.ProductModelDS" %>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +13,7 @@
     <title>Prodotti per Categoria</title>
 </head>
 <body>
-<%@ include file="Header.jsp" %> <!-- Includi l'header -->
+<%@ include file="Header.jsp" %> <!-- Include the header -->
 
 <main>
     <h1>Prodotti in <%= request.getParameter("category") %></h1>
@@ -36,7 +33,10 @@
             for (ProductBean product : products) {
         %>
         <div class="product">
-            <img class="product-image" id="<%= product.getProductName()%>" class="product" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" ><br>
+            <!-- Link to DetailProductPage.jsp with product code as a query parameter -->
+            <a href="ProductControl?action=read&code=<%=product.getCode()%>">
+                <img class="product-image" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">
+            </a><br>
             <h2><%= product.getProductName() %></h2>
             <p>Prezzo: <%= product.getPrice() %> euro</p>
         </div>
@@ -56,6 +56,8 @@
             }
         %>
     </div>
+
+    <%@ include file="Footer.jsp" %> <!-- Include the footer -->
 </main>
 
 </body>
