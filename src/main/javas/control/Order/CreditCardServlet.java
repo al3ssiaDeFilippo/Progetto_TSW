@@ -42,7 +42,7 @@ public class CreditCardServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            response.sendRedirect("../errorPages/error500.jsp");
+            throw new ServletException("Missing action parameter");
         }
 
         switch (action) {
@@ -63,8 +63,7 @@ public class CreditCardServlet extends HttpServlet {
                 selectCard(request, response, user);
                 break;
             default:
-                response.sendRedirect("../errorPages/error500.jsp");
-                return;
+                throw new ServletException("Invalid action");
         }
     }
 
@@ -91,8 +90,7 @@ public class CreditCardServlet extends HttpServlet {
             calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Set to the last day of the month
             expiryDate = new Date(calendar.getTimeInMillis());
         } catch (ParseException e) {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Invalid expiry date format");
         }
 
         // Convert the cvv string to an integer
@@ -100,8 +98,7 @@ public class CreditCardServlet extends HttpServlet {
         try {
             cvv = Integer.parseInt(cvvString);
         } catch (NumberFormatException e) {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Invalid CVV format");
         }
 
         // Get the idUser from the user object in the session
@@ -121,7 +118,7 @@ public class CreditCardServlet extends HttpServlet {
                 creditCardModel.doSave(creditCard);
             }
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
+            throw new ServletException("Error saving the credit card");
         }
 
         // Set the "selectedCard" attribute in the session
@@ -143,14 +140,14 @@ public class CreditCardServlet extends HttpServlet {
         String cardId = request.getParameter("cardId");
 
         if (cardId == null) {
-            response.sendRedirect("../errorPages/error500.jsp");
+            throw new ServletException("Missing cardId parameter");
         }
 
         try {
             creditCardModel.doDelete(cardId);
             response.sendRedirect("CarteUtente.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
+            throw new ServletException("Error deleting the credit card");
         }
     }
 
@@ -164,7 +161,7 @@ public class CreditCardServlet extends HttpServlet {
             session.setAttribute("cards", cards);
             response.sendRedirect("CarteUtente.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/error500.jsp");
+            throw new ServletException("Error reading the credit cards");
         }
     }
 
@@ -173,21 +170,20 @@ public class CreditCardServlet extends HttpServlet {
         String selectedCardId = request.getParameter("selectedCard");
 
         if (selectedCardId == null) {
-            response.sendRedirect("../errorPages/error500.jsp");
+            throw new ServletException("Missing selectedCard parameter");
         }
 
         try {
             CreditCardBean selectedCard = creditCardModel.doRetrieveByKey(selectedCardId);
             if (selectedCard == null) {
-                response.sendRedirect("../errorPages/error404.jsp");
-                return;
+                throw new ServletException("Invalid card ID");
             }
 
             HttpSession session = request.getSession();
             session.setAttribute("selectedCard", selectedCard);
             response.sendRedirect("RiepilogoOrdine.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
+            throw new ServletException("Error selecting the credit card");
         }
     }
 

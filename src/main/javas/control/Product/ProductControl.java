@@ -262,7 +262,7 @@ public class ProductControl extends HttpServlet {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("File ProductControl, line 225 - Error:" + e.getMessage());
+            throw new RuntimeException(e);
         }
 
         String sort = request.getParameter("sort");
@@ -273,7 +273,7 @@ public class ProductControl extends HttpServlet {
             request.setAttribute("products", model.doRetrieveAll(sort));
 
         } catch (SQLException e) {
-            System.out.println("File ProductControl, line 234 - Error:" + e.getMessage());
+            throw new RuntimeException(e);
         }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(dis);

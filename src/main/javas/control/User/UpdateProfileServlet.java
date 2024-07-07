@@ -50,9 +50,7 @@ public class UpdateProfileServlet extends HttpServlet {
             userModel.updateUser(user);
             request.getSession().setAttribute("user", user); // Aggiorna l'oggetto user nella sessione
         } catch (SQLException e) {
-            e.printStackTrace();            // Gestione dell'errore nel salvataggio dei dati nel database
-            response.sendRedirect("errorPages/error500.jsp");
-            return;
+            throw new IOException(e); // Gestione dell'errore nel salvataggio dei dati nel database
         }
 
         // Reindirizza l'utente alla pagina del profilo
@@ -77,9 +75,7 @@ public class UpdateProfileServlet extends HttpServlet {
             userModel.updateUser(user);
             request.getSession().setAttribute("user", user); // Aggiorna l'oggetto user nella sessione
         } catch (SQLException e) {
-            e.printStackTrace();            // Gestione dell'errore nel salvataggio dei dati nel database
-            response.sendRedirect("errorPages/error500.jsp");
-            return;
+            throw new IOException(e); // Gestione dell'errore nel salvataggio dei dati nel database
         }
 
         // Reindirizza l'utente alla pagina del profilo

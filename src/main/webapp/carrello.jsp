@@ -7,15 +7,31 @@
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 
 <%
-    Carrello cart = (Carrello) session.getAttribute("cart");
-    if (cart == null) {
-        cart = new Carrello();
-        session.setAttribute("cart", cart);
-    }
-    List<CartBean> prodotti = cart.getProdotti();
+    // Check if the user is logged in
+    Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
+    Carrello cart;
     CartModel model = new CartModel();
-    float totalPrice = model.getDiscountedTotalPrice(prodotti);
     ProductModelDS productModel = new ProductModelDS();
+    float totalPriceWithDiscount = 0;
+
+    if (isLoggedIn != null && isLoggedIn) {
+        cart = (Carrello) session.getAttribute("loggedInCart");
+        if (cart == null) {
+            cart = new Carrello();
+            session.setAttribute("loggedInCart", cart);
+        }
+    } else {
+        cart = (Carrello) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new Carrello();
+            session.setAttribute("cart", cart);
+        }
+    }
+
+    List<CartBean> prodotti = cart.getProdotti();
+    float totalPriceWithoutDiscount = cart.getCartTotalPriceWithoutDiscount(model);
+    totalPriceWithDiscount = cart.getCartTotalPriceWithDiscount(model);
+
 %>
 
 <!DOCTYPE html>
@@ -32,56 +48,55 @@
 <div class="product-container-horizontal">
     <% for (CartBean prodotto : prodotti) {
         ProductBean product = productModel.doRetrieveByKey(prodotto.getProductCode());
+        boolean hasDiscount = model.checkDiscount(prodotto);
     %>
     <div class="product-item-horizontal">
 
         <div class="product-image">
-
-            <img src="ProductImageServlet?action=get&code=<%=product.getCode()%>&frame=<%=prodotto.getFrame()%>&frameColor=<%=prodotto.getFrameColor()%>&size=<%=prodotto.getSize()%>&custom=true" alt="Immagine attuale del prodotto">
+            <img src="ProductImageServlet?action=get&code=<%= product.getCode() %>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>" alt="Immagine attuale del prodotto">
         </div>
 
         <div class="product-details">
-
             <div class="product-name"><%= product.getProductName() %></div>
 
             <div class="product-quantity">
-
                 <p>Quantità:</p>
                 <input type="number" name="quantity" value="<%= prodotto.getQuantity() %>" min="1" max="<%= model.ProductMaxQuantity(prodotto) %>" onchange="updateQuantity('<%= prodotto.getProductCode() %>', this.value)">
-
             </div>
 
             <div class="product-frame">Cornice: <%= prodotto.getFrame() %></div>
-
             <div class="product-frame-color">Colore del frame: <%= prodotto.getFrameColor() %></div>
-
             <div class="product-size">Dimensioni: <%= prodotto.getSize() %></div>
 
             <div class="product-price">
-
-                <% if(!model.checkDiscount(prodotto)) { %>
+                <% if (!hasDiscount) { %>
+                <!-- Prezzo totale di un prodotto senza sconto-->
                 Prezzo: <%= model.getProductTotalPrice(prodotto) %> €
                 <% } else { %>
+                <!-- Prezzo totale di un prodotto con sconto-->
                 Prezzo: <del><%= model.getProductTotalPrice(prodotto) %> €</del> <span><%= model.getSingleProductDiscountedPrice(prodotto) %> €</span>
                 <% } %>
-
             </div>
+
             <form action="ServletCarrello" method="post">
                 <input type="hidden" name="action" value="remove">
                 <input type="hidden" name="code" value="<%= prodotto.getProductCode() %>">
                 <input type="submit" value="Remove">
             </form>
-
         </div>
-
     </div>
     <% } %>
-
 </div>
 
 <div class="cart-summary">
-
-    <div class="total-price">Totale: <%= totalPrice %> €</div>
+    <div class="total-price" id="totalPrice">
+        <% if (totalPriceWithoutDiscount == totalPriceWithDiscount) { %>
+        Totale: <%= totalPriceWithDiscount %> €
+        <% } else { %>
+        Totale: <span class="total-price-without-discount" id="totalPriceWithoutDiscount"><%= totalPriceWithoutDiscount %> €</span>
+        <span class="total-price"><%= totalPriceWithDiscount %> €</span>
+        <% } %>
+    </div>
 
     <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
     <% if (errorMessage != null) { %>
@@ -94,7 +109,7 @@
         <input type="submit" value="Svuota carrello">
     </form>
 
-    <% if(cart.getProdotti().isEmpty()) { %>
+    <% if (cart.getProdotti().isEmpty()) { %>
     <p>Il carrello è vuoto</p>
     <% } else { %>
     <form action="CheckoutServlet" method="get">
@@ -102,7 +117,6 @@
         <button type="submit">Vai al pagamento</button>
     </form>
     <% } %>
-
 </div>
 
 <%@ include file="Footer.jsp" %>

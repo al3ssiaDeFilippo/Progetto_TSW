@@ -24,7 +24,7 @@ public class PhotoModel {
             ds = (DataSource) envCtx.lookup("jdbc/storage");
 
         } catch (NamingException e) {
-            System.out.println("File: PhotoModel, line 28 - Error: " + e.getMessage());
+            throw new RuntimeException("Error in database connection");
         }
     }
 
@@ -99,14 +99,15 @@ public class PhotoModel {
 
         byte[] imageByte = null;
 
-        System.out.println("Sto in getcustomphotoooooooooooooooooooooooooooo");
-
         try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(selectSQL);
             preparedStatement.setInt(1, code);
+            System.out.println("code: " + code);
             preparedStatement.setString(2, frame);
+            System.out.println("frame: " + frame);
             preparedStatement.setString(3, frameColor);
+            System.out.println("frameColor: " + frameColor);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -116,14 +117,14 @@ public class PhotoModel {
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         } finally {
             try {
                 if(preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch(SQLException e) {
-                System.out.println(e);
+                throw new RuntimeException(e);
             } finally {
                 if(con != null) {
                     try {
@@ -224,8 +225,11 @@ public class PhotoModel {
     public void addProductAndSaveImages(int productCode, String directoryPath) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
-
         String insertPhotoSQL = "INSERT INTO photo (photo, productCode, frame, frameColor) VALUES (?, ?, ?, ?)";
+
+        System.out.println("Sto in addProductAndSaveImages");
+        System.out.println("productCode: " + productCode);
+        System.out.println("directoryPath: " + directoryPath);
 
         try {
             con = ds.getConnection();
@@ -233,43 +237,50 @@ public class PhotoModel {
 
             ProductModelDS PM = new ProductModelDS();
             ProductBean product = PM.doRetrieveByKey(productCode);
+            System.out.println("product: " + product);
 
-            // Ottieni le immagini dalla directory e inseriscile nel database
             List<String> images = getImagesFromDirectory(directoryPath, product.getProductName());
+            for(String image : images) {
+                System.out.println("Image: " + image);
+            }
 
             preparedStatement = con.prepareStatement(insertPhotoSQL);
 
             for (String imagePath : images) {
-
+                System.out.println("imagePath: " + imagePath);
                 String result = extractDetailFromProductName(imagePath);
+                System.out.println("result: " + result);
 
-                //divide la stringa sugli spazi
+                if (result == null) {
+                    System.out.println("La stringa non contiene i dettagli necessari");
+                    continue; // Salta questa immagine se non ha i dettagli necessari
+                }
+
                 String[] parti = result.split(" ");
-
                 String frame = "";
                 String frameColor = "";
 
-                //controlla se l'array risultante ha esattamente due elementi
                 if(parti.length == 2) {
                     frame = parti[0];
+                    System.out.println("frame: " + frame);
                     frameColor = parti[1];
+                    System.out.println("frameColor: " + frameColor);
                 } else {
                     System.out.println("La stringa non contiene esattamente uno spazio");
+                    continue; // Salta questa immagine se il formato dei dettagli non è corretto
                 }
 
-                InputStream imageStream = new FileInputStream(imagePath);
-
-                preparedStatement.setBlob(1, imageStream);
-                preparedStatement.setInt(2, productCode);
-                preparedStatement.setString(3, frame);
-                preparedStatement.setString(4, frameColor);
-                preparedStatement.executeUpdate();
+                try (InputStream imageStream = new FileInputStream(imagePath)) {
+                    preparedStatement.setBlob(1, imageStream);
+                    preparedStatement.setInt(2, productCode);
+                    preparedStatement.setString(3, frame);
+                    preparedStatement.setString(4, frameColor);
+                    preparedStatement.executeUpdate();
+                }
             }
 
-            System.out.println("riga 218 in PhotoModel");
-
             con.commit();
-        } catch (SQLException | FileNotFoundException e) {
+        } catch (SQLException | IOException e) {
             if (con != null) {
                 con.rollback();
             }
@@ -284,23 +295,28 @@ public class PhotoModel {
         }
     }
 
-    // Restituisce tutte le immagini di un certo Prodotto (in base al nome del prodotto)
     private List<String> getImagesFromDirectory(String directoryPath, String productName) {
         List<String> images = new ArrayList<>();
         File directory = new File(directoryPath);
 
-        for (File file : directory.listFiles()) {
+        File[] files = directory.listFiles();
+        if (files == null) {
+            System.out.println("La directory è vuota o non esiste");
+            return images;
+        }
+
+        for (File file : files) {
             if (file.isFile() && file.getName().startsWith(productName) && isValidImageFile(file.getName())) {
                 images.add(file.getAbsolutePath());
             }
         }
-
         return images;
     }
 
     private String extractDetailFromProductName(String filePath) {
         File file = new File(filePath);
         String fileName = file.getName();
+        System.out.println("fileName: " + fileName);
 
         if (fileName.contains("pvc")) {
             if (fileName.contains("black")) {
@@ -322,4 +338,5 @@ public class PhotoModel {
 
         return null; // Restituisci null se nessuna corrispondenza viene trovata
     }
+
 }

@@ -40,35 +40,26 @@ public class ProductImageServlet extends HttpServlet {
             resp.setContentType("image/jpg");
             out = resp.getOutputStream();
 
-            System.out.println("efinpfwkfenpfneofenpfnfpfnenfenflfne");
-
             byte[] imageBytes = null;
 
-            // Check if we should get custom photos
-            String customParam = req.getParameter("custom");
-            boolean custom = customParam != null && customParam.equals("true");
 
-            if (custom) {
-                // Get frame and frameColor from the request
-                String frame = req.getParameter("frame");
-                String frameColor = req.getParameter("frameColor");
+            // Get frame and frameColor from the request
+            String frame = req.getParameter("frame");
+            String frameColor = req.getParameter("frameColor");
 
-                // Prende le foto customizzate dal db
-                imageBytes = modelFoto.getCustomPhotos(code, frame, frameColor);
+            // Prende le foto customizzate dal db
+            imageBytes = PhotoModel.getCustomPhotos(code, frame, frameColor);
 
-            } else {
-                // Prende la foto standard dal db
-                imageBytes = modelFoto.getImageByNumeroSerie(code);
-            }
+
+
+            // Prende la foto standard dal db
+            imageBytes = PhotoModel.getImageByNumeroSerie(code);
+
 
             out.write(imageBytes);
 
             out.flush();
             out.close();
-
-            System.out.println("FINEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
-
         }
     }
 

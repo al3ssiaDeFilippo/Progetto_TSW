@@ -166,30 +166,32 @@ public class CartModel {
         return (result != 0);
     }
 
-    //restituisce il prezzo totale del carrello, considerando lo sconto
+    //restituisce il prezzo totale del carrello, considerando lo sconto e la quantità
     public float getDiscountedTotalPrice(List<CartBean> cartItems) throws SQLException {
         float totalPrice = 0.0f;
         ProductModelDS productModel = new ProductModelDS();
 
+        //prendo tutti i prodotti del carrello
         for (CartBean cartItem : cartItems) {
-            // Retrieve the associated product for each cart item
+            // cerco nel catalogo il prodotto associato al carrello
             ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
 
-            // Calculate the discounted price
+            // calcolo lo sconto come percentuale
             float discount = product.getDiscount() / 100.0f;
             float discountedPrice = product.getPrice() * (1 - discount);
 
-            // Add the total price for this product to the total price for all products
+            // calcolo il prezzo totale per il prodotto del carrello (prezzo scontato * quantità)
             totalPrice += discountedPrice * cartItem.getQuantity();
         }
 
         // Round the total price to two decimal places
         totalPrice = Math.round(totalPrice * 100.0f) / 100.0f;
 
+        //ottengo il prezzo totale del carrello considerando anche lo sconto e la quantità
         return totalPrice;
     }
 
-    //restituisce il prezzo scontato di un prodotto
+    //restituisce il prezzo scontato di un prodotto del carrello
     public float getSingleProductDiscountedPrice(CartBean cartItem) throws SQLException {
         float totalPrice = 0.0f;
         ProductModelDS productModel = new ProductModelDS();
@@ -203,7 +205,7 @@ public class CartModel {
         // Calculate the discounted price for one unit of the product
         float discountedPrice = product.getPrice() * (1 - discount);
 
-        // Calculate the total price for the cart item (discounted price * quantity)
+        // Calculate the total price for the cart item
         totalPrice = discountedPrice * cartItem.getQuantity();
 
         // Round the total price to two decimal places
@@ -213,7 +215,7 @@ public class CartModel {
     }
 
     //restituisce il prezzo totale del carrello senza considerare lo sconto
-    public float getTotalPriceWithDiscount(List<CartBean> cartItems) throws SQLException {
+    public float getTotalPriceWithoutDiscount(List<CartBean> cartItems) throws SQLException {
         float totalPrice = 0.0f;
         ProductModelDS productModel = new ProductModelDS();
 
@@ -233,7 +235,7 @@ public class CartModel {
         return totalPrice;
     }
 
-    //restituisce il prezzo totale di un prodotto
+    //restituisce il prezzo totale di un prodotto senza considerare lo sconto
     public float getProductTotalPrice(CartBean cartItem) throws SQLException {
         ProductModelDS productModel = new ProductModelDS();
         ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());

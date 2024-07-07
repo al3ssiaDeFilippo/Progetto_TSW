@@ -41,7 +41,7 @@ public class LogInServlet extends HttpServlet {
                 logout(request, response);
             }
         } catch (Exception e) {
-            response.sendRedirect("../errorPages/error500.jsp");
+            throw new ServletException(e);
         }
     }
 

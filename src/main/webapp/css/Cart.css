@@ -67,6 +67,11 @@ body {
     font-weight: bold;
 }
 
+.product-price .total-price-without-discount {
+    font-size: 0.9em;
+    color: #666; /* Colore per il prezzo senza sconto */
+}
+
 form {
     margin-top: 10px;
 }

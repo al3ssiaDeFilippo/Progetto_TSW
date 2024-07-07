@@ -7,6 +7,7 @@
 <welcome-file-list>
   <welcome-file>ProductView.jsp</welcome-file>
 </welcome-file-list>
+
   <servlet>
     <servlet-name>ProductControl</servlet-name>
     <servlet-class>main.javas.control.Product.ProductControl</servlet-class>
@@ -49,7 +50,7 @@
 
   <error-page>
     <error-code>404</error-code>
-    <location>/main/webapp/errorPages/error404.jsp</location>
+    <location>/errorPages/error404.jsp</location>
   </error-page>
 
   <error-page>
@@ -61,4 +62,5 @@
     <exception-type>java.sql.SQLException</exception-type>
     <location>/errorPages/SQLException.jsp</location>
   </error-page>
+
 </web-app>

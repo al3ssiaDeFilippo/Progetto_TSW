@@ -28,8 +28,7 @@ public class UserControlServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         if (action == null) {
-            response.sendRedirect("errorPages/error500.jsp");
-            return;
+            throw new ServletException("No action specified.");
         }
 
         switch (action) {
@@ -40,8 +39,7 @@ public class UserControlServlet extends HttpServlet {
                 addAdmin(request, response);
                 break;
             default:
-                response.sendRedirect("errorPages/error500.jsp");
-                break;
+                throw new ServletException("Invalid action.");
         }
     }
 
@@ -64,7 +62,7 @@ public class UserControlServlet extends HttpServlet {
                 response.sendRedirect("UserView.jsp"); // Redirect to a success page
             }
         } catch (SQLException e) {
-            response.sendRedirect("errorPages/SQLException.jsp");
+            throw new ServletException(e);
         }
     }
 
@@ -79,8 +77,7 @@ public class UserControlServlet extends HttpServlet {
         try {
             userToMakeAdmin = userModel.doRetreiveByKey(idToMakeAdmin);
             if (userToMakeAdmin == null) {
-                response.sendRedirect("errorPages/error404.jsp");
-                return;
+                throw new ServletException("User not found.");
             }
 
             // Make the user admin
@@ -91,7 +88,7 @@ public class UserControlServlet extends HttpServlet {
 
             response.sendRedirect("UserView.jsp"); // Redirect to a success page
         } catch (SQLException e) {
-            response.sendRedirect("errorPages/SQLException.jsp");
+            throw new ServletException(e);
         }
     }
 

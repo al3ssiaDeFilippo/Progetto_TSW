@@ -45,14 +45,13 @@ public class DetailControl extends HttpServlet {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("DetailProductPage.jsp");
                     dispatcher.forward(request, response);
                 } else {
-                    response.sendRedirect("errorPages/error404.jsp");
+                    throw new ServletException("Product not found");
                 }
             } catch(Exception e) {
-                e.printStackTrace();
-                response.sendRedirect("errorPages/error500.jsp");
+                throw new ServletException(e);
             }
         } else {
-            response.sendRedirect("errorPages/error404.jsp");
+            throw new ServletException("Missing parameter");
         }
     }
 }

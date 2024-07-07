@@ -42,7 +42,7 @@ public class OrderServlet extends HttpServlet {
             order.setIdShipping(shippingModel.doRetrieveByKey(user.getIdUser()).getIdShipping());
             order.setIdCreditCard(cardModel.doRetrieveByUser(user.getIdUser()).getIdCard());
             order.setOrderDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            order.setTotalPrice(cartModel.getTotalPriceWithDiscount(cartItems));
+            order.setTotalPrice(cartModel.getDiscountedTotalPrice(cartItems));
 
             System.out.println("Order created: " + order);
 
@@ -83,9 +83,7 @@ public class OrderServlet extends HttpServlet {
 
             response.sendRedirect("OrderConfirmation.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
-            System.out.println("SQLException occurred: " + e.getMessage());
-            e.printStackTrace();
+            throw new ServletException(e);
         }
     }
 

@@ -22,23 +22,32 @@ public class ServletCarrello extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Carrello cart = (Carrello) session.getAttribute("cart");
+        Carrello cart;
+        UserBean user = (UserBean) session.getAttribute("user");
 
-        if (cart == null) {
-            cart = new Carrello();
-            session.setAttribute("cart", cart);
+        if (user != null) {
+            cart = (Carrello) session.getAttribute("loggedInCart");
+            if (cart == null) {
+                cart = new Carrello();
+                session.setAttribute("loggedInCart", cart);
+            }
+        } else {
+            cart = (Carrello) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new Carrello();
+                session.setAttribute("cart", cart);
+            }
         }
 
         String action = request.getParameter("action");
 
         if ("clear".equals(action)) {
             cart.svuota();
-            if(session.getAttribute("user") != null) {
+            if (user != null) {
                 try {
-                    cartModel.doDeleteAllByUser(((UserBean) session.getAttribute("user")).getIdUser());
+                    cartModel.doDeleteAllByUser(user.getIdUser());
                 } catch (Exception e) {
-                    response.sendRedirect("../errorPages/error500.jsp");
-                    return;
+                    throw new ServletException(e);
                 }
             }
             response.sendRedirect("carrello.jsp");
@@ -61,8 +70,8 @@ public class ServletCarrello extends HttpServlet {
                         cartItem.setPrice(item.getPrice());
                         cart.aggiungi(cartItem);
 
-                        if (session.getAttribute("user") != null) {
-                            cartItem.setIdUser(((UserBean) session.getAttribute("user")).getIdUser());
+                        if (user != null) {
+                            cartItem.setIdUser(user.getIdUser());
                             cartModel.doSave(cartItem);
                         }
 
@@ -72,43 +81,45 @@ public class ServletCarrello extends HttpServlet {
                         cartItem.setProductCode(item.getCode());
                         cart.rimuovi(cartItem);
 
-                        if (session.getAttribute("user") != null) {
+                        if (user != null) {
                             try {
                                 cartModel.doDelete(item.getCode());
                             } catch (Exception e) {
                                 cart.aggiungi(cartItem);
-                                response.sendRedirect("../errorPages/error500.jsp");
-                                return;
+                                throw new ServletException(e);
                             }
                         }
 
                         response.sendRedirect("carrello.jsp");
                     } else if ("updateQuantity".equals(action) && item != null) {
                         int quantity = Integer.parseInt(request.getParameter("quantity"));
-                        if(quantity > item.getQuantity()) {
+                        if (quantity > item.getQuantity()) {
                             quantity = item.getQuantity();
                         }
                         cart.aggiornaQuantita(item.getCode(), quantity);
 
-                        if (session.getAttribute("user") != null) {
+                        if (user != null) {
                             CartBean cartItem = new CartBean();
                             cartItem.setProductCode(item.getCode());
                             cartItem.setQuantity(quantity);
-                            cartItem.setIdUser(((UserBean) session.getAttribute("user")).getIdUser());
+                            cartItem.setIdUser(user.getIdUser());
                             cartModel.doSave(cartItem);
                         }
 
-                        float totalPrice = cartModel.getDiscountedTotalPrice(cart.getProdotti());
+                        // Calcola i prezzi totali con e senza sconto
+                        float totalPrice = cart.getCartTotalPriceWithDiscount(cartModel);
+                        float totalPriceWithoutDiscount = cart.getCartTotalPriceWithoutDiscount(cartModel);
+
+                        // Prepara la risposta JSON
                         response.setContentType("application/json");
                         response.setCharacterEncoding("UTF-8");
-                        response.getWriter().write("{\"success\":true, \"totalPrice\":\"" + totalPrice + "\"}");
+                        response.getWriter().write("{\"success\":true, \"totalPrice\":\"" + totalPrice + "\", \"totalPriceWithoutDiscount\":\"" + totalPriceWithoutDiscount + "\"}");
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    response.sendRedirect("../errorPages/error500.jsp");
+                    throw new ServletException(e);
                 }
             } else {
-                response.sendRedirect("../errorPages/error500.jsp");
+                response.sendRedirect("carrello.jsp");
             }
         }
     }

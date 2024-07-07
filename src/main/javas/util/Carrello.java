@@ -70,11 +70,21 @@ public class Carrello {
         }
     }
 
-    public float calcolaPrezzoTotale(CartModel model) throws SQLException {
+    // Restituisce il prezzo totale del carrello considerando lo sconto
+    public float getCartTotalPriceWithDiscount(CartModel model) throws SQLException {
         float totalPrice = 0;
-        for(CartBean prodotto : prodotti) {
-            float discountedPrice = model.getDiscountedTotalPrice(prodotti);
-            totalPrice += discountedPrice * prodotto.getQuantity();
+        for (CartBean prodotto : prodotti) {
+            float discountedPrice = model.getSingleProductDiscountedPrice(prodotto);
+            totalPrice += discountedPrice;
+        }
+        return totalPrice;
+    }
+
+    // Restituisce il prezzo totale del carrello senza considerare lo sconto
+    public float getCartTotalPriceWithoutDiscount(CartModel cart) {
+        float totalPrice = 0;
+        for (CartBean prodotto : prodotti) {
+            totalPrice += prodotto.getPrice() * prodotto.getQuantity();
         }
         return totalPrice;
     }

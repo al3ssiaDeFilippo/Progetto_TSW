@@ -35,8 +35,7 @@ public class ShippingServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         if (action == null) {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Missing action parameter");
         }
 
         switch (action) {
@@ -56,7 +55,7 @@ public class ShippingServlet extends HttpServlet {
                 selectAddress(request, response, user);
                 break;
             default:
-                response.sendRedirect("../errorPages/error500.jsp");
+                throw new ServletException("Invalid action");
         }
     }
 
@@ -72,8 +71,7 @@ public class ShippingServlet extends HttpServlet {
         if (capString != null && !capString.isEmpty()) {
             cap = Integer.parseInt(capString);
         } else {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Invalid CAP");
         }
 
         boolean saveAddress = request.getParameter("saveAddress") != null;
@@ -95,8 +93,7 @@ public class ShippingServlet extends HttpServlet {
                 shippingModel.doSave(shipping);
             }
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
-            return;
+            throw new ServletException(e);
         }
 
         // Set the "shippingAddress" attribute in the session
@@ -122,8 +119,7 @@ public class ShippingServlet extends HttpServlet {
         if (capString != null && !capString.isEmpty()) {
             cap = Integer.parseInt(capString);
         } else {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Invalid CAP");
         }
 
         // Use the user's ID from the session instead of getting it from the form
@@ -142,8 +138,7 @@ public class ShippingServlet extends HttpServlet {
             shippingModel.doUpdate(user);
             response.sendRedirect("IndirizziUtente.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
-            return;
+            throw new ServletException(e);
         }
     }
 
@@ -154,8 +149,7 @@ public class ShippingServlet extends HttpServlet {
         if (idAddressString != null && !idAddressString.isEmpty()) {
             idAddress = Integer.parseInt(idAddressString);
         } else {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Invalid address ID");
         }
 
         // Use the user's ID from the session instead of getting it from the form
@@ -166,8 +160,7 @@ public class ShippingServlet extends HttpServlet {
             shippingModel.doDelete(idAddress, idUser);
             response.sendRedirect("IndirizziUtente.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
-            return;
+            throw new ServletException(e);
         }
     }
 
@@ -179,8 +172,7 @@ public class ShippingServlet extends HttpServlet {
             session.setAttribute("addresses", addresses);
             response.sendRedirect("IndirizziUtente.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/SQLException.jsp");
-            return;
+            throw new ServletException(e);
         }
     }
 
@@ -188,8 +180,7 @@ public class ShippingServlet extends HttpServlet {
         String selectedAddressId = request.getParameter("selectedAddress");
 
         if (selectedAddressId == null) {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException("Missing selectedAddress parameter");
         }
 
         try {
@@ -197,16 +188,14 @@ public class ShippingServlet extends HttpServlet {
             System.out.println("Selected address ID: " + idAddress);
             ShippingBean selectedAddress = shippingModel.doRetrieveByKey(user.getIdUser());
             if (selectedAddress == null) {
-                response.sendRedirect("../errorPages/error500.jsp");
-                return;
+                throw new ServletException("Invalid address ID");
             }
 
             HttpSession session = request.getSession();
             session.setAttribute("selectedAddress", selectedAddress);
             response.sendRedirect("CheckoutCard.jsp");
         } catch (SQLException e) {
-            response.sendRedirect("../errorPages/error500.jsp");
-            return;
+            throw new ServletException(e);
         }
     }
 

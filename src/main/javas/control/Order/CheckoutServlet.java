@@ -61,10 +61,8 @@ public class CheckoutServlet extends HttpServlet {
                 request.getRequestDispatcher("LogIn.jsp").forward(request, response);
             }
         } catch (SQLException e) {
-            // Gestione dell'errore nel salvataggio dei dati nel database
-            e.printStackTrace();
-            response.sendRedirect("../errorPages/SQLException.jsp");
-            return;        }
+            throw new ServletException(e);
+       }
     }
 
     private void processCheckout(HttpServletRequest request, HttpServletResponse response) throws IOException {
