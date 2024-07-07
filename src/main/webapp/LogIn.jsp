@@ -4,12 +4,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
+    <link rel="stylesheet" type="text/css" href="css/LogInStyle.css">
     <title>Login</title>
 </head>
 <body>
 <%
-    // Use the implicit session object
     UserBean user = (UserBean) session.getAttribute("user");
 %>
 <%@ include file="Header.jsp" %>
@@ -17,9 +16,7 @@
 <% if (user == null) { %>
 <form action="LogInServlet" method="post">
     <input type="hidden" name="action" value="login">
-    <!-- modifica -->
     <input type="hidden" name="nextPage" value="ProductView.jsp">
-    <!-- fine modifica -->
     <div>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -28,21 +25,16 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
     </div>
+    <p>Non hai un account? <a href="SignIn.jsp">Registrati</a></p>
     <div>
-        <!--<form action="LogInServlet" method="get">
-            <input type="hidden" name="action" value="login">
-            <input type="hidden" name="nextPage" value="ProductView.jsp">-->
-            <input type="submit" value="Login">
-        <!--</form>-->
+        <input type="submit" value="Login">
     </div>
 </form>
 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
 <% if (errorMessage != null) { %>
 <p style="color:red;"><%= errorMessage %></p>
 <% } %>
-<p>Non hai un account? <a href="SignIn.jsp">Registrati</a></p>
 <% }%>
-<a href="ProductView.jsp">Torna al catalogo</a>
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

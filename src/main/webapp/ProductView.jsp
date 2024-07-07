@@ -24,6 +24,25 @@
 <body>
 
 <%@ include file="Header.jsp" %>
+
+<!-- Contenitore per i pulsanti in alto -->
+<div class="top-buttons">
+    <div class="left-buttons">
+        <a href="HomePage.jsp">Home</a>
+        <a href="carrello.jsp">Visualizza Carrello</a>
+    </div>
+    <div class="right-buttons">
+        <% if (user == null) { %>
+        <a href="LogIn.jsp">Log In</a>
+        <% } else { %>
+        <form action="LogInServlet" method="post">
+            <input type="hidden" name="action" value="logout">
+            <input type="submit" value="Logout">
+        </form>
+        <% } %>
+    </div>
+</div>
+
 <table class="product-table" border="1">
     <tr>
         <th>Nome_Prodotto</th>
@@ -45,22 +64,23 @@
     %>
     <tr>
         <td><%=bean.getProductName()%></td>
-        <td><img class="product-image" src="ProductImageServlet?action=get&code=<%=bean.getCode()%>" alt="image not found"></td>        <td><%=bean.getPrice()%></td>
+        <td><img class="product-image" src="ProductImageServlet?action=get&code=<%=bean.getCode()%>" alt="image not found"></td>
+        <td><%=bean.getPrice()%></td>
         <td>
 
-            <form action="product" method="get">
+            <form action="ProductControl" method="get">
                 <input type="hidden" name="action" value="read">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Details">
             </form>
 
             <% if (user != null && user.getAdmin()) { %>
-            <form action="product" method="post">
+            <form action="ProductControl" method="post">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Delete">
             </form>
-            <form action="product" method="post">
+            <form action="ProductControl" method="post">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
                 <input type="submit" value="Edit">
@@ -77,40 +97,14 @@
 
 <div class="centered-links">
 
-    <a href="HomePage.jsp">Home</a>
-
-    <!-- Blocco admin: -->
+    <!-- Contenitore per i pulsanti centrati -->
     <% if (user != null && user.getAdmin()) { %>
     <a href="Profilo.jsp">Profilo</a>
-
-    <form action="LogInServlet" method="post">
-        <input type="hidden" name="action" value="logout">
-        <input type="submit" value="Logout">
-    </form>
-
     <a href="InsertPage.jsp">Inserisci prodotto</a>
-
     <a href="UserView.jsp">Utenti</a>
-
     <a href="OrderView.jsp">Ordini</a>
-    <% } %>
-
-    <!-- Blocco utente: -->
-    <% if (user != null && !user.getAdmin()) { %>
+    <% } else if (user != null) { %>
     <a href="Profilo.jsp">Profilo</a>
-
-    <form action="LogInServlet" method="post">
-        <input type="hidden" name="action" value="logout">
-        <input type="submit" value="Logout">
-    </form>
-
-    <a href="carrello.jsp">Visualizza Carrello</a>
-    <% } %>
-
-    <!-- Blocco guest: -->
-    <% if (user == null) { %>
-    <a href="LogIn.jsp">Log In</a>
-    <a href="carrello.jsp">Visualizza Carrello</a>
     <% } %>
 </div>
 
