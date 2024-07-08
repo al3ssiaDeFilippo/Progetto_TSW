@@ -280,6 +280,44 @@ public class ProductModelDS implements ProductModel {
     }
     /*Modifiche finiscono qui*/
 
+    public synchronized float getPriceWithoutIVA(int productId) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+
+        String selectSQL = "SELECT price, iva FROM product WHERE code = ?";
+
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, productId);
+
+            rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                float priceWithIVA = rs.getFloat("price");
+                int ivaPercentage = rs.getInt("iva");
+                // Calcola il prezzo senza IVA
+                return priceWithIVA / (1 + (ivaPercentage / 100.0f));
+            } else {
+                throw new SQLException("Errore nel recupero del prezzo senza IVA del prodotto");
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Errore nel recupero del prezzo senza IVA del prodotto", e);
+        } finally {
+            // Assicurati di chiudere le risorse in un blocco finally per evitare perdite di memoria
+            if (rs != null) {
+                rs.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+
     public synchronized Collection<ProductBean> doRetrieveByCategory(String category) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

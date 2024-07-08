@@ -1,13 +1,16 @@
-/* css/Cart.css */
-
 body {
     font-family: Arial, sans-serif;
 }
 
-.product-container-horizontal {
+.cart-container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     margin: 20px;
+}
+
+.products-list {
+    flex: 2;
+    margin-right: 20px;
 }
 
 .product-item-horizontal {
@@ -77,42 +80,107 @@ form {
 }
 
 .cart-summary {
-    margin: 20px;
+    flex: 1;
     padding: 20px;
     border: 1px solid #ddd;
+    border-radius: 5px;
     background-color: #f9f9f9;
+    max-width: 300px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.total-price {
-    font-size: 1.2em;
-    font-weight: bold;
+.cart-summary h2 {
     margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
-a {
+.summary-item,
+.summary-discount,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.summary-total {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.btn,
+.btn-checkout {
+    display: block;
+    width: 100%;
+    text-align: center;
     text-decoration: none;
-    color: #007BFF;
-    margin-right: 20px;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-button, input[type="submit"] {
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
+    padding: 10px;
+    margin-top: 10px;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 10px;
 }
 
-button:hover, input[type="submit"]:hover {
+.btn:hover,
+.btn-checkout:hover {
     background-color: #0056b3;
 }
 
 p {
     color: red;
 }
+
+.icon-button {
+    padding: 5px;
+    width: 30px; /* Larghezza del pulsante */
+    height: 30px; /* Altezza del pulsante */
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative; /* Posizione relativa per l'animazione */
+    overflow: hidden; /* Nasconde gli elementi fuoriusciti dal pulsante */
+}
+
+.icon-button img {
+    transition: transform 0.3s ease;
+    width: 100%; /* L'immagine occupa tutta la larghezza del pulsante */
+    height: auto; /* Altezza automatica per mantenere il rapporto */
+}
+
+.payment-modes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    justify-content: space-around;
+}
+
+.payment-accepted {
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.payment-accepted p {
+    text-align: center; /* Allinea il testo al centro */
+    color: #333; /* Imposta il colore del testo a un grigio scuro */
+    font-size: 16px; /* Imposta la dimensione del carattere a 16px */
+    margin-top: 15px;
+    margin-bottom: 15px; /* Aggiunge un margine inferiore di 10px */
+}
+
+.payment-modes img {
+    width: 50px; /* Imposta la larghezza dell'immagine */
+    height: auto; /* Mantiene il rapporto di aspetto dell'immagine */
+    border: 1px solid #ddd;
+    padding-left: 4px; /* Aggiunge padding intorno all'immagine */
+    padding-right: 4px;
+    border-radius: 5px;
+}
+
+

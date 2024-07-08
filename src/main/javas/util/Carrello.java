@@ -1,5 +1,7 @@
 package main.javas.util;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -74,7 +76,7 @@ public class Carrello {
     public float getCartTotalPriceWithDiscount(CartModel model) throws SQLException {
         float totalPrice = 0;
         for (CartBean prodotto : prodotti) {
-            float discountedPrice = model.getSingleProductDiscountedPrice(prodotto);
+            float discountedPrice = model.getSingleProductDiscountedPrice(prodotto) * prodotto.getQuantity();
             totalPrice += discountedPrice;
         }
         return totalPrice;
@@ -98,6 +100,7 @@ public class Carrello {
         return false;
     }
 
+
     public List<CartBean> getProdotti() {
         return prodotti;
     }
@@ -116,6 +119,13 @@ public class Carrello {
             }
         }
         return null;
+    }
+
+    public float getTotalDiscount(CartModel model) throws SQLException {
+        float totalDiscount = getCartTotalPriceWithoutDiscount(model) - getCartTotalPriceWithDiscount(model);
+        BigDecimal bd = new BigDecimal(Float.toString(totalDiscount));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.floatValue();
     }
 
     @Override

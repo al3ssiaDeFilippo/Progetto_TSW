@@ -191,29 +191,6 @@ public class CartModel {
         return totalPrice;
     }
 
-    //restituisce il prezzo scontato di un prodotto del carrello
-    public float getSingleProductDiscountedPrice(CartBean cartItem) throws SQLException {
-        float totalPrice = 0.0f;
-        ProductModelDS productModel = new ProductModelDS();
-
-        // Retrieve the associated product for the cart item
-        ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
-
-        // Calculate the discount as a percentage
-        float discount = product.getDiscount() / 100.0f;
-
-        // Calculate the discounted price for one unit of the product
-        float discountedPrice = product.getPrice() * (1 - discount);
-
-        // Calculate the total price for the cart item
-        totalPrice = discountedPrice * cartItem.getQuantity();
-
-        // Round the total price to two decimal places
-        totalPrice = Math.round(totalPrice * 100.0f) / 100.0f;
-
-        return totalPrice;
-    }
-
     //restituisce il prezzo totale del carrello senza considerare lo sconto
     public float getTotalPriceWithoutDiscount(List<CartBean> cartItems) throws SQLException {
         float totalPrice = 0.0f;
@@ -239,9 +216,31 @@ public class CartModel {
     public float getProductTotalPrice(CartBean cartItem) throws SQLException {
         ProductModelDS productModel = new ProductModelDS();
         ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
-        return product.getPrice() * cartItem.getQuantity();
+        return product.getPrice();
     }
 
+    //restituisce il prezzo scontato di un prodotto del carrello
+    public float getSingleProductDiscountedPrice(CartBean cartItem) throws SQLException {
+        float totalPrice = 0.0f;
+        ProductModelDS productModel = new ProductModelDS();
+
+        // Retrieve the associated product for the cart item
+        ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
+
+        // Calculate the discount as a percentage
+        float discount = product.getDiscount() / 100.0f;
+
+        // Calculate the discounted price for one unit of the product
+        float discountedPrice = product.getPrice() * (1 - discount);
+
+        // Calculate the total price for the cart item
+        totalPrice = discountedPrice;
+
+        // Round the total price to two decimal places
+        totalPrice = Math.round(totalPrice * 100.0f) / 100.0f;
+
+        return totalPrice;
+    }
 
     public boolean checkDiscount(CartBean cartItem) throws SQLException {
         ProductModelDS productModel = new ProductModelDS();
