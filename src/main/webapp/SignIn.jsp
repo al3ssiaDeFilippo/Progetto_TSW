@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>Registrazione</title>
+    <link rel="stylesheet" type="text/css" href="css/SignIn.css">
 </head>
 <body>
 <%@ include file="Header.jsp" %>
-<h2>Login</h2>
-<form action="LogInServlet" method="post">
+<h2>Registrazione</h2>
+<form action="LogInServlet" method="post" class="registration-form">
     <input type="hidden" name="action" value="register">
     <div>
         <label for="username">Username:</label>
@@ -33,19 +34,19 @@
         <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <label for="telNumber">telNumber:</label>
+        <label for="telNumber">Telefono:</label>
         <input type="tel" id="telNumber" name="telNumber" required>
     </div>
     <div>
         <input type="hidden" name="admin" value="false">
     </div>
+    <div class="center-align">
+        <p>Hai già un account? <a href="LogIn.jsp">Accedi</a></p>
+    </div>
     <div>
         <input type="submit" value="Sign In">
     </div>
 </form>
-
-<p>Hai già un account? <a href="LogIn.jsp">Accedi</a></p>
-<a href="ProductView.jsp">Torna al catalogo</a>
 
 <%@ include file="Footer.jsp" %>
 </body>

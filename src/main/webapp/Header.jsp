@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/Header.css">
+    <link rel="stylesheet" type="text/css" href="css/Header.css"> <!-- Percorso corretto al file CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <title>Header Example</title>
 </head>
 <body>
 <!-- Header -->
 <header class="header-container">
-
     <!-- Aggiunta del logo -->
     <a href="HomePage.jsp" class="logo-link">
         <img class="logo-img" src="Images/PosterWorldLogo.png" alt="Image not found">
@@ -22,7 +22,6 @@
     <div class="search-container">
         <form action="/search" method="get">
             <input type="search" name="q" placeholder="Cerca...">
-
             <!-- Aggiunta del bottone di ricerca -->
             <button type="submit">
                 <img class="src-img" src="Images/searchIcon.png" alt="Image not found">
@@ -56,11 +55,10 @@
             }
         %>
     </div>
-
 </header>
 
+<!-- Sub Header -->
 <header class="sub-header-container">
-
     <!-- Aggiunta della barra di navigazione -->
     <div class="nav-bar">
         <a class="film-button" href="Categories.jsp?category=Film">Film</a>

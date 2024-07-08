@@ -6,7 +6,7 @@
     text-align: center;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 20px; /* Aggiunge spazio sotto il footer */
-    margin-top: 20px; /* Aggiunge spazio sopra il footer */
+    margin-top: 60px; /* Aggiunge spazio sopra il footer */
     min-height: 350px; /* Altezza minima per il footer principale */
     display: flex; /* Usiamo flexbox per allineare le sezioni */
     align-items: flex-start; /* Allineamento inizio per le sezioni */
@@ -132,29 +132,64 @@
     height: 225px; /* Imposta l'altezza del box */
 }
 
-/* Media query per la responsività */
-@media (max-width: 768px) {
-    .presentation-box {
+
+/* Media query per dispositivi con larghezza fino a 1024px */
+@media (max-width: 1024px) {
+    .footer-container {
         flex-direction: column;
         align-items: center;
     }
+    .contacts-box, .social-box, .find-us-box {
+        width: 80%;
+        margin: 10px 0;
+    }
+    .maps-box {
+        width: 80%;
+    }
+}
 
+/* Media query per dispositivi con larghezza fino a 768px */
+@media (max-width: 768px) {
     .presentation-box .footer-box {
         width: 100%;
+        margin: 10px 0;
     }
+    .contacts-box, .social-box, .find-us-box {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .maps-box {
+        width: 100%;
+    }
+}
 
+/* Media query per dispositivi con larghezza fino a 480px */
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 10px 0;
+    }
+    .presentation-box {
+        margin-top: -10px;
+    }
+    .presentation-box .footer-box {
+        margin: 5px 0;
+    }
     .presentation-box img {
-        width: 30px; /* Adatta le immagini per dispositivi più piccoli */
+        width: 30px;
         height: 30px;
     }
-
     .presentation-box p {
-        font-size: 14px; /* Aumenta leggermente il testo per la leggibilità su dispositivi più piccoli */
-        margin-top: 10px;
+        font-size: 10px;
     }
-
-    .contacts-box, .find-us-box {
-        width: 100%; /* Imposta larghezza al 100% su dispositivi più piccoli */
-        margin: 20px 0; /* Margini per dispositivi più piccoli */
+    .contacts-box, .social-box, .find-us-box {
+        width: 100%;
+        margin: 5px 0;
+        height: auto;
+    }
+    .contacts-list li, .find-us-list li {
+        font-size: 16px;
+    }
+    .social-box h3, .contacts-box h3, .find-us-box h3 {
+        font-size: 20px;
     }
 }

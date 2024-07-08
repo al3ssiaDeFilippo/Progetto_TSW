@@ -1,0 +1,94 @@
+/* Apply global font and color scheme */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* Enhance link styling for consistency */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+h2{
+    text-align: center;
+}
+
+.registration-form{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+/* Stilizzazione dei campi di input */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%; /* Assicura che tutti gli input si estendano alla stessa larghezza */
+    max-width: 400px; /* Imposta una larghezza massima per tutti gli input */
+    height: 40px; /* Uniforma l'altezza degli input */
+    padding: 8px; /* Applica lo stesso padding interno per tutti gli input */
+    margin-bottom: 20px; /* Mantiene uno spazio uniforme tra gli input */
+    border: 1px solid #ccc; /* Applica lo stesso stile di bordo per coerenza */
+    border-radius: 4px; /* Arrotonda i bordi per un aspetto uniforme */
+    box-sizing: border-box; /* Include padding e bordo nel calcolo delle dimensioni dell'elemento */
+    display: block; /* Assicura che ogni input occupi la propria riga */
+}
+
+/* Stilizzazione del pulsante di registrazione */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #004494;
+}
+
+/* Media query per schermi medi (tablet) */
+@media (min-width: 768px) {
+    .registration-form {
+        padding: 30px;
+        margin: 40px auto;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"] {
+        padding: 12px;
+        margin-bottom: 24px;
+    }
+
+    input[type="submit"] {
+        padding: 12px;
+        font-size: 18px;
+    }
+}
+
+/* Media query per schermi grandi (desktop) */
+@media (min-width: 1024px) {
+    .registration-form {
+        max-width: 600px; /* Limita la larghezza massima per desktop */
+    }
+}

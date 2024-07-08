@@ -9,7 +9,7 @@ body {
 }
 
 /* Stilizzazione del form di login */
-form {
+.registration-form {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -19,14 +19,6 @@ form {
     margin: 20px auto;
 }
 
-/* Form di ricerca */
-.search-container form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 300px; /* Ridotta la larghezza massima a 300px */
-}
 
 /* Stilizzazione dei campi di input */
 input[type="text"],

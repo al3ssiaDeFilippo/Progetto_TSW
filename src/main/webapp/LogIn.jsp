@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/LogInStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/LogIn.css">
     <title>Login</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
 <%@ include file="Header.jsp" %>
 <h2>Login</h2>
 <% if (user == null) { %>
-<form action="LogInServlet" method="post">
+<form action="LogInServlet" method="post" class="registration-form">
     <input type="hidden" name="action" value="login">
     <input type="hidden" name="nextPage" value="ProductView.jsp">
     <div>
