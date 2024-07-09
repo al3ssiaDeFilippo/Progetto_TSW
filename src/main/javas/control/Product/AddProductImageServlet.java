@@ -1,8 +1,7 @@
 package main.javas.control.Product;
 
-import main.javas.model.Product.PhotoModel;
 import main.javas.bean.ProductBean;
-import main.javas.model.Product.ProductModelDS;
+import main.javas.model.Product.PhotoModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,54 +13,11 @@ import javax.servlet.http.Part;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 
-@WebServlet("/ProductImageServlet")
 @MultipartConfig
-public class ProductImageServlet extends HttpServlet {
-
-    static ProductModelDS prMod = new ProductModelDS();
-    static PhotoModel modelFoto = new PhotoModel();
-
-    public ProductImageServlet() {
-        super();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
-        System.out.println("action productimageservlet: " + action);
-
-        if ("get".equals(action)) {
-            int code = Integer.parseInt(req.getParameter("code"));
-            OutputStream out = null;
-            resp.setContentType("image/jpg");
-            out = resp.getOutputStream();
-
-            byte[] imageBytes = null;
-
-
-            // Get frame and frameColor from the request
-            String frame = req.getParameter("frame");
-            String frameColor = req.getParameter("frameColor");
-
-            // Prende le foto customizzate dal db
-            imageBytes = PhotoModel.getCustomPhotos(code, frame, frameColor);
-
-
-
-            // Prende la foto standard dal db
-            imageBytes = PhotoModel.getImageByNumeroSerie(code);
-
-
-            out.write(imageBytes);
-
-            out.flush();
-            out.close();
-        }
-    }
+public class AddProductImageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -85,7 +41,7 @@ public class ProductImageServlet extends HttpServlet {
             byte[] byteArray = buffer.toByteArray();
 
             // Create a Blob using the byte array
-            Blob blob = null;
+            Blob blob;
             try {
                 blob = new javax.sql.rowset.serial.SerialBlob(byteArray);
             } catch (SQLException e) {
@@ -119,7 +75,7 @@ public class ProductImageServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
 
-            System.out.println("Debug: Redirecting to ProductView.jsp");
+            System.out.println("Debug: Redirecting to InsertPhotosPage.jsp");
             resp.sendRedirect("InsertPhotosPage.jsp");
         }
     }

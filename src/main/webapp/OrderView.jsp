@@ -46,13 +46,6 @@
                 <td><%= order.getIdCreditCard() %></td>
                 <td><%= order.getOrderDate()%></td>
                 <td><%= order.getTotalPrice()%></td>
-                <td>
-                    <form action="OrderControlServlet" method="post">
-                        <input type="hidden" name="idOrder" value="<%= order.getIdOrder() %>">
-                        <input type="hidden" name="action" value="delete">
-                        <input type="submit" value="Elimina">
-                    </form>
-                </td>
             </tr>
             <% } %>
         </table>

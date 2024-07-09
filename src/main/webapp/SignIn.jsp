@@ -7,8 +7,7 @@
 <body>
 <%@ include file="Header.jsp" %>
 <h2>Registrazione</h2>
-<form action="LogInServlet" method="post" class="registration-form">
-    <input type="hidden" name="action" value="register">
+<form action="<%= request.getContextPath() %>/RegisterServlet" method="post" class="registration-form">
     <div>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>

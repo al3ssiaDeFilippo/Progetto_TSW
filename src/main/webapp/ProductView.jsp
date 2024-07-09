@@ -6,7 +6,7 @@
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");
     if (products == null) {
-        response.sendRedirect("./ProductControl");
+        response.sendRedirect("./RetrieveProductServlet");
         return; // Stop further processing of the page
     }
 
@@ -45,25 +45,25 @@
     %>
     <tr>
         <td><%=bean.getProductName()%></td>
-        <td><img class="product-image" src="ProductImageServlet?action=get&code=<%=bean.getCode()%>" alt="image not found"></td>        <td><%=bean.getPrice()%></td>
+        <td><img class="product-image" src="<%= request.getContextPath()%>/GetProductImageServlet?action=get&code=<%=bean.getCode()%>" alt="image not found"></td>
+        <td><%=bean.getPrice()%></td>
         <td>
 
-            <form action="ProductControl" method="get">
+            <form action="<%= request.getContextPath() %>/RetrieveProductServlet" method="get">
                 <input type="hidden" name="action" value="read">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
-                <input type="submit" value="Details">
+                <input type="submit" value="Mostra dettagli">
             </form>
 
             <% if (user != null && user.getAdmin()) { %>
-            <form action="ProductControl" method="post">
-                <input type="hidden" name="action" value="delete">
+            <form action="<%= request.getContextPath() %>/DeleteProductServlet" method="post">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
-                <input type="submit" value="Delete">
+                <input type="submit" value="Elimina">
             </form>
-            <form action="ProductControl" method="post">
-                <input type="hidden" name="action" value="edit">
+            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="code" value="<%=bean.getCode()%>">
-                <input type="submit" value="Edit">
+                <input type="hidden" name="action" value="edit">
+                <input type="submit" value="Modifica">
             </form>
             <% } %>
 
@@ -83,8 +83,7 @@
     <% if (user != null && user.getAdmin()) { %>
     <a href="Profilo.jsp">Profilo</a>
 
-    <form action="LogInServlet" method="post">
-        <input type="hidden" name="action" value="logout">
+    <form action="<%= request.getContextPath() %>/LogOutServlet" method="post">
         <input type="submit" value="Logout">
     </form>
 
@@ -99,8 +98,7 @@
     <% if (user != null && !user.getAdmin()) { %>
     <a href="Profilo.jsp">Profilo</a>
 
-    <form action="LogInServlet" method="post">
-        <input type="hidden" name="action" value="logout">
+    <form action="<%= request.getContextPath() %>/LogOutServlet" method="post">
         <input type="submit" value="Logout">
     </form>
 

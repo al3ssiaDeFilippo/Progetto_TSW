@@ -6,7 +6,7 @@
 <body>
 <%@ include file="Header.jsp" %>
     <h2>Modifica Password</h2>
-    <form action="UpdateProfileServlet" method="post">
+    <form action="<%= request.getContextPath() %>/UpdateProfileServlet" method="post">
         <input type="hidden" name="action" value="updatePassword">
         <div>
             <label for="oldPassword">Vecchia Password:</label>

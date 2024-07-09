@@ -29,8 +29,7 @@
     <p>Indirizzo: <%= address.getAddress() %></p>
     <p>Città: <%= address.getCity() %></p>
     <p>CAP: <%= address.getCap() %></p>
-    <form action="ShippingServlet" method="post">
-        <input type="hidden" name="action" value="select">
+    <form action="<%= request.getContextPath() %>/SelectAddressServlet" method="post">
         <input type="hidden" name="selectedAddress" value="<%= address.getIdShipping() %>">
         <input type="submit" value="Seleziona indirizzo">
     </form>
@@ -39,8 +38,7 @@
 <% } %>
 
 <h2>Inserimento nuovo indirizzo</h2>
-<form action="ShippingServlet" method="post">
-    <input type="hidden" name="action" value="add">
+<form action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
     <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
     <input type="hidden" id="idUser" name="idUser">
     <div>

@@ -23,8 +23,7 @@
             <p>Numero Carta: <%= card.getIdCard() %></p>
             <p>Nome Titolare: <%= card.getOwnerCard() %></p>
             <p>Data di Scadenza: <%= card.getExpirationDate() %></p>
-            <form action="CreditCardServlet" method="post">
-                <input type="hidden" name="action" value="delete">
+            <form action="<%= request.getContextPath() %>/DeleteCardServlet" method="post">
                 <input type="hidden" name="cardId" value="<%= card.getIdCard() %>">
                 <input type="submit" value="Elimina">
             </form>
@@ -38,7 +37,7 @@
         <title>Inserimento Carta</title>
     </head>
     <body>
-    <form action="CreditCardServlet" method="post">
+    <form action="<%= request.getContextPath() %>/AddCardServlet" method="post">
         <div>
             <label for="cardNumber">Numero Carta:</label>
             <input type="text" id="cardNumber" name="cardNumber" required>
@@ -57,6 +56,7 @@
         </div>
         <div>
             <input type="hidden" id="saveCard" name="saveCard" value="true">
+        </div>
         <div>
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="nextPage" value="CarteUtente.jsp">

@@ -1,6 +1,6 @@
 function updateQuantity(productCode, quantity) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ServletCarrello", true);
+    xhr.open("POST", "UpdateCartQuantityServlet", true); // Modifica l'URL per inviare la richiesta a UpdateCartQuantityServlet
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
@@ -58,5 +58,5 @@ function updateQuantity(productCode, quantity) {
         }
     };
 
-    xhr.send("action=updateQuantity&code=" + productCode + "&quantity=" + quantity);
+    xhr.send("code=" + productCode + "&quantity=" + quantity); // Rimuovi 'action=updateQuantity' perché non è necessario con il metodo POST
 }

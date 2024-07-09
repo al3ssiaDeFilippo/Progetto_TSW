@@ -4,38 +4,189 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-<welcome-file-list>
-  <welcome-file>ProductView.jsp</welcome-file>
-</welcome-file-list>
+  <welcome-file-list>
+    <welcome-file>ProductView.jsp</welcome-file>
+  </welcome-file-list>
 
   <servlet>
-    <servlet-name>ProductControl</servlet-name>
-    <servlet-class>main.javas.control.Product.ProductControl</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>DetailControl</servlet-name>
-    <servlet-class>main.javas.control.Product.DetailControl</servlet-class>
+    <servlet-name>AddAddressServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.AddAddressServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>DetailControl</servlet-name>
-    <url-pattern>/detail</url-pattern>
+    <servlet-name>AddAddressServlet</servlet-name>
+    <url-pattern>/AddAddressServlet</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>main.javas.control.User.LogInServlet</servlet-class>
+    <servlet-name>AddCardServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.AddCardServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
+    <servlet-name>AddCardServlet</servlet-name>
+    <url-pattern>/AddCardServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.AddToCartServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
-    <servlet-name>ProductControl</servlet-name>
-    <url-pattern>/product</url-pattern>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <url-pattern>/AddToCardServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.CheckoutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <url-pattern>/CheckoutServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ClearCartServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.ClearCartServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ClearCartServlet</servlet-name>
+    <url-pattern>/ClearCartServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CreditCardServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.CreditCardServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CreditCardServlet</servlet-name>
+    <url-pattern>/CreditCardServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteAddressServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.DeleteAddressServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteAddressServlet</servlet-name>
+    <url-pattern>/DeleteAddressServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteCardServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.DeleteCardServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteCardServlet</servlet-name>
+    <url-pattern>/DeleteCardServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EditAddressServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.EditAddressServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EditAddressServlet</servlet-name>
+    <url-pattern>/EditAddressServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.OrderServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReadCardServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.ReadCardServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReadCardServlet</servlet-name>
+    <url-pattern>/ReadCardServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RemoveFromCartServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.RemoveFromCartServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RemoveFromCartServlet</servlet-name>
+    <url-pattern>/RemoveFromCartServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RetrieveAddressesServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.RetrieveAddressesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RetrieveAddressesServlet</servlet-name>
+    <url-pattern>/RetrieveAddressesServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SelectAddressServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.SelectAddressServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SelectAddressServlet</servlet-name>
+    <url-pattern>/SelectAddressServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>SelectCardServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.SelectCardServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SelectCardServlet</servlet-name>
+    <url-pattern>/SelectCardServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateCartQuantityServlet</servlet-name>
+    <servlet-class>main.javas.control.Order.UpdateCartQuantityServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateCartQuantityServlet</servlet-name>
+    <url-pattern>/UpdateCartQuantityServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddAdminServlet</servlet-name>
+    <servlet-class>main.javas.control.User.AddAdminServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddAdminServlet</servlet-name>
+    <url-pattern>/AddAdminServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <servlet-class>main.javas.control.User.DeleteUserServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <url-pattern>/DeleteUserServlet</url-pattern>
   </servlet-mapping>
 
   <filter>
@@ -48,19 +199,127 @@
     <url-pattern>/LogIn.jsp</url-pattern>
   </filter-mapping>
 
-  <error-page>
-    <error-code>404</error-code>
-    <location>/errorPages/error404.jsp</location>
-  </error-page>
+  <servlet>
+    <servlet-name>LogInServlet</servlet-name>
+    <servlet-class>main.javas.control.User.LogInServlet</servlet-class>
+  </servlet>
 
-  <error-page>
-    <error-code>500</error-code>
-    <location>/errorPages/error500.jsp</location>
-  </error-page>
+  <servlet-mapping>
+    <servlet-name>LogInServlet</servlet-name>
+    <url-pattern>/LogInServlet</url-pattern>
+  </servlet-mapping>
 
-  <error-page>
-    <exception-type>java.sql.SQLException</exception-type>
-    <location>/errorPages/SQLException.jsp</location>
-  </error-page>
+  <servlet>
+    <servlet-name>LogOutServlet</servlet-name>
+    <servlet-class>main.javas.control.User.LogOutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LogOutServlet</servlet-name>
+    <url-pattern>/LogOutServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>main.javas.control.User.RegisterServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdatePasswordServlet</servlet-name>
+    <servlet-class>main.javas.control.User.UpdatePasswordServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdatePasswordServlet</servlet-name>
+    <url-pattern>/UpdatePasswordServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateProfileServlet</servlet-name>
+    <servlet-class>main.javas.control.User.UpdateProfileServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateProfileServlet</servlet-name>
+    <url-pattern>/UpdateProfileServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddProductImageServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.AddProductImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddProductImageServlet</servlet-name>
+    <url-pattern>/AddProductImageServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteProductServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.DeleteProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteProductServlet</servlet-name>
+    <url-pattern>/DeleteProductServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DetailControl</servlet-name>
+    <servlet-class>main.javas.control.Product.DetailControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailControl</servlet-name>
+    <url-pattern>/DetailControl</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GetProductImageServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.GetProductImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProductImageServlet</servlet-name>
+    <url-pattern>/GetProductImageServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>InsertProductServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.InsertProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertProductServlet</servlet-name>
+    <url-pattern>/InsertProductServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RetrieveProductServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.RetrieveProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RetrieveProductServlet</servlet-name>
+    <url-pattern>/RetrieveProductServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateProductServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.UpdateProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProductServlet</servlet-name>
+    <url-pattern>/UpdateProductServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>UploadImageServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.UploadImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadImageServlet</servlet-name>
+    <url-pattern>/UploadImageServlet</url-pattern>
+  </servlet-mapping>
 
 </web-app>

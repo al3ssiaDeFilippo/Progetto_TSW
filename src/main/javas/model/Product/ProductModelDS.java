@@ -228,14 +228,23 @@ public class ProductModelDS implements ProductModel {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(updateSQL);
             preparedStatement.setString(1, product.getProductName());
+            System.out.println("Debug: " + product.getProductName());
             preparedStatement.setString(2, product.getDetails());
+            System.out.println("Debug: " + product.getDetails());
             preparedStatement.setInt(3, product.getQuantity());
+            System.out.println("Debug: " + product.getQuantity());
             preparedStatement.setString(4, product.getCategory());
+            System.out.println("Debug: " + product.getCategory());
             preparedStatement.setFloat(5, product.getPrice());
+            System.out.println("Debug: " + product.getPrice());
             preparedStatement.setInt(6, product.getIva());
+            System.out.println("Debug: " + product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
+            System.out.println("Debug: " + product.getDiscount());
             preparedStatement.setBlob(8, product.getPhoto());
+            System.out.println("Debug: " + product.getPhoto());
             preparedStatement.setInt(9, product.getCode());
+            System.out.println("Debug: " + product.getCode());
 
 
             preparedStatement.executeUpdate();

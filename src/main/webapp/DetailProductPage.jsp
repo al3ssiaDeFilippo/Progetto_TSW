@@ -27,14 +27,13 @@
     </div>
     <div class="product-content">
         <div class="product-image">
-            <img id="productImage" data-product-code="<%= product.getCode() %>" src="ProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
+            <img id="productImage" data-product-code="<%= product.getCode() %>" src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
             <p><strong>Dettagli:</strong> <%= product.getDetails() %></p>
             <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
             <p><strong>IVA:</strong> <%= product.getIva() %> %</p>
             <p><strong>Sconto:</strong> <%= product.getDiscount() %> %</p>
 
-            <form action="ServletCarrello" method="post">
-                <input type="hidden" name="action" value="add">
+            <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post">
                 <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
                 <!-- Add select fields for frame, frame color, and size -->
                 <p><strong>Materiale Cornice:</strong>

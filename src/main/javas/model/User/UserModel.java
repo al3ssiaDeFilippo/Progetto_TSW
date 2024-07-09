@@ -102,7 +102,7 @@ public class UserModel {
         }
     }
 
-    public synchronized UserBean doRetreiveByKey(int idUser) throws SQLException {
+    public synchronized UserBean doRetrieveByKey(int idUser) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         UserBean user = null;
@@ -149,7 +149,7 @@ public class UserModel {
         PreparedStatement preparedStatement = null;
 
         int result = 0;
-        UserBean existingUser = doRetreiveByKey(user.getIdUser());
+        UserBean existingUser = doRetrieveByKey(user.getIdUser());
         if(existingUser == null) {
             System.out.println("Utente non esistente");
             return false;

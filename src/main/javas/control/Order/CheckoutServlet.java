@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/CheckoutServlet")
 public class CheckoutServlet extends HttpServlet {
     private UserModel userModel;
 

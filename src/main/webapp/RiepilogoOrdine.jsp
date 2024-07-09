@@ -98,7 +98,7 @@
 <% } %>
 <a href="ProductView.jsp">Continua lo shopping</a>
 <!-- Inizio Modifica Qui -->
-<form action="OrderServlet" method="post">
+<form action="<%= request.getContextPath() %>/OrderServlet" method="post">
     <input type="submit" value="Ordina">
 </form>
 <!-- Fine Modifica Qui -->

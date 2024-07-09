@@ -20,7 +20,6 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-@WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

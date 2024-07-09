@@ -67,13 +67,11 @@
             <td><%= user.getTelNumber() %></td>
             <td><%= user.getBirthDate()%></td>
             <td>
-                <form action="UserControlServlet" method="post">
-                    <input type="hidden" name="action" value="delete">
+                <form action="<%= request.getContextPath() %>/DeleteUserServlet" method="post">
                     <input type="hidden" name="id" value="<%=user.getIdUser()%>">
                     <input type="submit" value="Elimina">
                 </form>
-                <form action="UserControlServlet" method="post">
-                    <input type="hidden" name="action" value="add">
+                <form action="<%= request.getContextPath() %>/AddAdminServlet" method="post">
                     <input type="hidden" name="id" value="<%=user.getIdUser()%>">
                     <input type="submit" value="Admin">
                 </form>
@@ -106,8 +104,7 @@
             <td><%= admin.getTelNumber() %></td>
             <td><%= admin.getBirthDate()%></td>
             <td>
-                <form action="UserControlServlet" method="post">
-                    <input type="hidden" name="action" value="delete">
+                <form action="<%= request.getContextPath() %>/DeleteUserServlet" method="post">
                     <input type="hidden" name="id" value="<%=admin.getIdUser()%>">
                     <input type="submit" value="Elimina">
                 </form>

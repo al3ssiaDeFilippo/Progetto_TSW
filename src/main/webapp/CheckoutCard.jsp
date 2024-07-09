@@ -17,23 +17,21 @@
 %>
 
 <% if (!cards.isEmpty()) { %>
-<% for (CreditCardBean card : cards) { %>
-<div>
-    <h2>Carta di Credito</h2>
-    <p>Numero Carta: <%= card.getIdCard() %></p>
-    <p>Nome Titolare: <%= card.getOwnerCard() %></p>
-    <p>Data di Scadenza: <%= card.getExpirationDate() %></p>
-    <form action="CreditCardServlet" method="post">
-        <input type="hidden" name="action" value="select">
-        <input type="hidden" name="selectedCard" value="<%= card.getIdCard() %>">
-        <input type="submit" value="Seleziona carta">
-    </form>
-</div>
-<% } %>
+    <% for (CreditCardBean card : cards) { %>
+        <div>
+            <h2>Carta di Credito</h2>
+            <p>Numero Carta: <%= card.getIdCard() %></p>
+            <p>Nome Titolare: <%= card.getOwnerCard() %></p>
+            <p>Data di Scadenza: <%= card.getExpirationDate() %></p>
+            <form action="<%= request.getContextPath() %>/SelectCardServlet" method="post">
+                <input type="hidden" name="selectedCard" value="<%= card.getIdCard() %>">
+                <input type="submit" value="Seleziona carta">
+            </form>
+        </div>
+    <% } %>
 <% } %>
 <h1>Inserimento nuova carta</h1>
-<form action="CreditCardServlet" method="post">
-    <input type="hidden" name="action" value="add">
+<form action="<%= request.getContextPath() %>/AddCardServlet" method="post">
     <div>
         <label for="cardNumber">Numero Carta:</label>
         <input type="text" id="cardNumber" name="cardNumber" required>

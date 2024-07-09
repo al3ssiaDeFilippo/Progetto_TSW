@@ -11,7 +11,6 @@ import javax.servlet.RequestDispatcher;
 import main.javas.bean.ProductBean;
 import main.javas.model.Product.ProductModelDS;
 
-@WebServlet("/DetailControl")
 public class DetailControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId = request.getParameter("productId");

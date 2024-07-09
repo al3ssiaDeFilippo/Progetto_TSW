@@ -34,8 +34,8 @@
         %>
         <div class="product">
             <!-- Link to DetailProductPage.jsp with product code as a query parameter -->
-            <a href="ProductControl?action=read&code=<%=product.getCode()%>">
-                <img class="product-image" src="ProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">
+            <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>">
+                <img class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">
             </a><br>
             <h2><%= product.getProductName() %></h2>
             <p>Prezzo: <%= product.getPrice() %> euro</p>

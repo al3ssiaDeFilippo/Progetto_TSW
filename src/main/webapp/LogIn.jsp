@@ -14,8 +14,7 @@
 <%@ include file="Header.jsp" %>
 <h2>Login</h2>
 <% if (user == null) { %>
-<form action="LogInServlet" method="post" class="registration-form">
-    <input type="hidden" name="action" value="login">
+<form action="<%= request.getContextPath() %>/LogInServlet" method="post" class="registration-form">
     <input type="hidden" name="nextPage" value="ProductView.jsp">
     <div>
         <label for="username">Username:</label>

@@ -105,7 +105,7 @@
         <form action="CarteUtente.jsp" method="post">
             <button type="submit">Le mie carte</button>
         </form>
-        <form action="OrdiniUtente.jsp" method="post">
+        <form action="OrderHistory.jsp" method="post">
             <button type="submit">I miei ordini</button>
         </form>
         <form action="IndirizziUtente.jsp" method="post">

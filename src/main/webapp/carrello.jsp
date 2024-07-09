@@ -7,36 +7,24 @@
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 
 <%
-    // Check if the user is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
-    Carrello cart;
+    Carrello cart = (Carrello) session.getAttribute("cart");
     CartModel model = new CartModel();
     ProductModelDS productModel = new ProductModelDS();
     float totalPriceWithDiscount = 0;
 
-    if (isLoggedIn != null && isLoggedIn) {
-        cart = (Carrello) session.getAttribute("loggedInCart");
-        if (cart == null) {
-            cart = new Carrello();
-            session.setAttribute("loggedInCart", cart);
-        }
-    } else {
-        cart = (Carrello) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new Carrello();
-            session.setAttribute("cart", cart);
-        }
+    // Se il carrello è nullo, crea un nuovo carrello
+    if (cart == null) {
+        cart = new Carrello();
+        session.setAttribute("cart", cart);
     }
 
+    // Recupera la lista dei prodotti nel carrello e calcola i totali
     List<CartBean> prodotti = cart.getProdotti();
     float totalPriceWithoutDiscount = cart.getCartTotalPriceWithoutDiscount(model);
     totalPriceWithDiscount = cart.getCartTotalPriceWithDiscount(model);
-
-    float totalDiscount = 0.0f;
-    totalDiscount = cart.getTotalDiscount(model);
+    float totalDiscount = cart.getTotalDiscount(model);
 
     System.out.println("Total discount: " + totalDiscount);
-
 %>
 
 <!DOCTYPE html>
@@ -58,7 +46,7 @@
         %>
         <div class="product-item-horizontal">
             <div class="product-image">
-                <img src="ProductImageServlet?action=get&code=<%= product.getCode() %>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>" alt="Immagine attuale del prodotto">
+                <img src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>" alt="Immagine attuale del prodotto">
             </div>
 
             <div class="product-details">
@@ -83,8 +71,7 @@
                     <% } %>
                 </div>
 
-                <form action="ServletCarrello" method="post">
-                    <input type="hidden" name="action" value="remove">
+                <form action="RemoveFromCartServlet" method="post">
                     <input type="hidden" name="code" value="<%= prodotto.getProductCode() %>">
                     <button type="submit" class="icon-button">
                         <img src="Images/binIcon.png" alt="Rimuovi">

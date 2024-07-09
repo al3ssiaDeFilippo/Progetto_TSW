@@ -19,7 +19,7 @@
 <%@ include file="Header.jsp" %>
 <h2>Modifica Dati Profilo</h2>
 
-<form action="UpdateProfileServlet" method="post">
+<form action="<%= request.getContextPath() %>/UpdateProfileServlet" method="post">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" value="<%= user.getName() %>" required><br>
 
