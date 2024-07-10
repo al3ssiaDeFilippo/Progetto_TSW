@@ -39,7 +39,9 @@
                 <img class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">
             </a><br>
             <h2><%= product.getProductName() %></h2>
-            <p>Prezzo: <%= product.getPrice() %> euro</p>
+            <div class="price-p">
+                <p>Prezzo: <%= product.getPrice() %> euro</p>
+            </div>
         </div>
         <%
                 }
@@ -57,7 +59,7 @@
             }
         %>
     </div>
-<!--sdad-->
+
     <%@ include file="Footer.jsp" %> <!-- Include the footer -->
 
 </body>

@@ -111,9 +111,13 @@ CREATE TABLE photo (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
-VALUES ('Crash Bandicoot', 'Crash Bandicoot', 3, 'Giochi', 15.8, 22, 10, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Crash.jpg'));
+VALUES ('Harley & Ivy ', 'DC', 3, 'Fumetti', 150, 22, 10, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\DC Comics Art Print Harley & Ivy 41 x 61 cm.jpg'));
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
-VALUES ('Spiderman VS Goblin', 'Spiderman VS Goblin', 6, 'Fumetti', 47, 22, 20, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print SpiderMan vs Green Goblin 41 x 61 cm.jpg'));
+VALUES ('Wonder Woman Black & Gold ', 'DC', 120, 'Fumetti', 47, 22, 20, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\DC Comics Art Print Wonder Woman Black & Gold 46 x 61 cm.jpg'));
+INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
+VALUES ('The Amazing SpiderMan', 'Marvel', 120, 'Fumetti', 47, 22, 25, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print The Amazing SpiderMan 46 x 61 cm.jpg'));
+INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
+VALUES ('Sue Storm Fantastic 4 Invisible Woman', 'Marvel', 120, 'Fumetti', 47, 22, 15, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\Marvel Art Print Sue Storm Fantastic 4 Invisible Woman 46 x 61 cm.jpg'));
 
 
 INSERT INTO user(surname, name, username, BirthDate, email, password, salt, TelNumber, admin)  values('a', 'b', 'admin', '2004-01-02', 'a@a.iy', '8c249d06dfaff657ef96429eaa52537cb1f4139994ead43e1fecd9923000277a', 'dd','34676424', true);	/*password: ciao*/
