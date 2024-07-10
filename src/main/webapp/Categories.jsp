@@ -57,7 +57,7 @@
             }
         %>
     </div>
-
+<!--sdad-->
     <%@ include file="Footer.jsp" %> <!-- Include the footer -->
 
 </body>
