@@ -3,6 +3,8 @@
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
 
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +17,6 @@
 <body>
 <%@ include file="Header.jsp" %> <!-- Include the header -->
 
-<main>
     <h1>Prodotti in <%= request.getParameter("category") %></h1>
     <div class="products-container">
         <%
@@ -58,7 +59,6 @@
     </div>
 
     <%@ include file="Footer.jsp" %> <!-- Include the footer -->
-</main>
 
 </body>
 </html>
