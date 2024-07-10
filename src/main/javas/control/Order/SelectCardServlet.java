@@ -38,7 +38,7 @@ public class SelectCardServlet extends HttpServlet {
             }
 
             session.setAttribute("selectedCard", selectedCard);
-            response.sendRedirect("CheckoutShipping.jsp");
+            response.sendRedirect("RiepilogoOrdine.jsp");
         } catch (SQLException e) {
             throw new ServletException("Error selecting the credit card");
         }

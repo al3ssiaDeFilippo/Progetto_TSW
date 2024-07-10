@@ -8,6 +8,8 @@
 <%@ page import="main.javas.bean.UserBean" %>
 <%@ page import="main.javas.bean.ShippingBean" %>
 <%@ page import="main.javas.bean.CreditCardBean" %>
+<%@ page import="main.javas.model.Product.ProductModelDS" %>
+<%@ page import="main.javas.util.GeneralUtils" %>
 
 <%
 
@@ -18,14 +20,19 @@
         response.sendRedirect("LogIn.jsp");
         return;
     }
+
+    CartModel model = new CartModel();
+
+    ProductModelDS productModel = new ProductModelDS();
+
     Carrello carrello = (Carrello) session.getAttribute("cart");
-    //ShippingBean shippingAddress = (ShippingBean) session.getAttribute("shippingAddress");
-    //CreditCardBean cardInfo = (CreditCardBean) session.getAttribute("cardInfo");
+
     if (carrello == null) {
         carrello = new Carrello();
     }
     List<CartBean> arrayArticoli = carrello.getProdotti();
-    CartModel model = new CartModel();
+
+    GeneralUtils utils = new GeneralUtils();
 %>
 
 <!DOCTYPE html>
@@ -40,13 +47,21 @@
 <h2>Prodotti Acquistati</h2>
 <table border="1">
     <tr>
-        <th>Code</th>
-        <th>Quantity</th>
-        <th>Price</th>
+        <th>Immagine</th>
+        <th>Nome Prodotto</th>
+        <th>Quantità</th>
+        <th>Prezzo</th>
+        <th>IVA</th>
+        <th>Sconto</th>
+        <th>Dettagli</th>
     </tr>
-    <% for (CartBean prodotto : arrayArticoli) { %>
+    <% for (CartBean prodotto : arrayArticoli) {
+        ProductBean product = productModel.doRetrieveByKey(prodotto.getProductCode());
+        boolean hasDiscount = model.checkDiscount(prodotto);
+    %>
     <tr>
-        <td><%= prodotto.getProductCode() %></td>
+        <td><img src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>" alt="Immagine attuale del prodotto"></td>
+        <td><%= product.getProductName() %></td>
         <td><%= prodotto.getQuantity() %></td>
         <td>
             <% if(!model.checkDiscount(prodotto)) { %>
@@ -54,6 +69,19 @@
             <% } else if(model.getSingleProductDiscountedPrice(prodotto) != model.getProductTotalPrice(prodotto)) { %>
             <del><%= model.getProductTotalPrice(prodotto) %> €</del> <span style="color: red;"><%= model.getSingleProductDiscountedPrice(prodotto) %>  </span> €
             <% } %>
+        </td>
+        <td><%=product.getIva()%></td>
+        <td><%=product.getDiscount()%></td>
+        <td>
+            <div>
+                Cornice: <%=prodotto.getFrame()%>
+            </div>
+            <div>
+                Colore cornice: <%=prodotto.getFrameColor()%>
+            </div>
+            <div>
+                Dimensioni: <%=prodotto.getSize()%>
+            </div>
         </td>
     </tr>
     <% } %>
@@ -81,7 +109,7 @@
     CreditCardBean selectedCard = (CreditCardBean) session.getAttribute("selectedCard");
     if (selectedCard != null) {
 %>
-<p>Numero Carta: <%= selectedCard.getIdCard() %></p>
+<p>Numero Carta: <%= utils.zippedIDcard(selectedCard.getIdCard()) %></p>
 <p>Nome Titolare: <%= selectedCard.getOwnerCard() %></p>
 <p>Data di Scadenza: <%= selectedCard.getExpirationDate() %></p>
 <%

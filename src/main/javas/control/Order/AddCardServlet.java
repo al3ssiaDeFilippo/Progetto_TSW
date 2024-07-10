@@ -5,7 +5,6 @@ import main.javas.model.Order.CreditCardModel;
 import main.javas.bean.UserBean;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,7 +34,7 @@ public class AddCardServlet extends HttpServlet {
             return;
         }
 
-        String nextPage = (String) request.getParameter("nextPage");
+        String nextPage = request.getParameter("nextPage");
         String cardNumber = request.getParameter("cardNumber");
         String cardHolder = request.getParameter("cardHolder");
         String expiryDateString = request.getParameter("expiryDate");
@@ -91,7 +90,6 @@ public class AddCardServlet extends HttpServlet {
             nextPage = "ProductView.jsp"; // Default page if nextPage is not set
         }
 
-        System.out.println("Redirecting to " + nextPage);
         response.sendRedirect(response.encodeRedirectURL(nextPage));
     }
 

@@ -46,8 +46,11 @@
         %>
         <div class="product-item-horizontal">
             <div class="product-image">
-                <img src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>" alt="Immagine attuale del prodotto">
+                <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>">
+                    <img src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&frame=<%= prodotto.getFrame() %>&frameColor=<%= prodotto.getFrameColor() %>" alt="Immagine attuale del prodotto">
+                </a>
             </div>
+
 
             <div class="product-details">
                 <div class="product-name"><%= product.getProductName() %></div>
