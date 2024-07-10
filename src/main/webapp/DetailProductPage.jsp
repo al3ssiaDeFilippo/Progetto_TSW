@@ -33,9 +33,8 @@
             <p><strong>IVA:</strong> <%= product.getIva() %> %</p>
             <p><strong>Sconto:</strong> <%= product.getDiscount() %> %</p>
 
-            <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post">
+            <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post" onsubmit="return validateForm()">
                 <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
-                <!-- Add select fields for frame, frame color, and size -->
                 <p><strong>Materiale Cornice:</strong>
                     <select name="frame" id="frameSelect" onchange="checkFrame()">
                         <option value="no frame" selected>No Frame</option>
@@ -53,25 +52,22 @@
                     </select>
                 </p>
                 <p><strong>Dimensioni:</strong>
-                    <select name="size">
+                    <select name="size" id="sizeSelect">
                         <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
                         <option value="21x30">21x30</option>
                         <option value="85x60">85x60</option>
                         <option value="91x61">91x61</option>
                     </select>
                 </p>
-
-                <!-- Modifiche iniziano qui -->
-                <% if(product.getQuantity() > 0) { %> <!-- Controlla se il prodotto è disponibile -->
-                <!-- Modifiche finiscono qui -->
-
-                <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il pulsante -->
+                <p id="errorMessage" style="color:red; display:none;"></p>
+                <% if(product.getQuantity() > 0) { %>
+                <% if (user == null || !user.getAdmin()) { %>
                 <input type="submit" value="Aggiungi al Carrello">
                 <% } %>
             </form>
-                <% } else { %>
-                <p class="unavailable-product">Prodotto non disponibile al momento</p>
-                <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
+            <% } else { %>
+            <p class="unavailable-product">Prodotto non disponibile al momento</p>
+            <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
 
             <div class="centered-links">
                 <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il link -->
@@ -81,16 +77,9 @@
             </div>
         </div>
     </div>
-    <!-- Modifiche iniziano qui -->
-    <%
-    } else {
-    %>
+    <% } else { %>
     <p>Nessun prodotto selezionato</p>
-    <%
-        }
-    %>
-
-    <!-- Modifiche finiscono qui -->
+    <% } %>
 </div>
 <%@ include file="Footer.jsp" %>
 </body>
