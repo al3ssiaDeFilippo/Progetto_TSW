@@ -319,4 +319,40 @@ public class UserModel {
         }
         return user;
     }
+
+    public boolean doesUsernameExist(String username) throws SQLException {
+        Connection con = null;
+        PreparedStatement prep = null;
+
+        String selectSQL = "SELECT COUNT(*) FROM users WHERE username = ?";
+
+        try {
+            con = ds.getConnection();
+            prep = con.prepareStatement(selectSQL);
+            prep.setString(1, username);
+
+            ResultSet rs = prep.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // If count is greater than 0, the username exists
+            }
+
+            return false;
+        } finally {
+            if (prep != null) {
+                try {
+                    prep.close();
+                } catch (SQLException e) {
+                    // Log or handle the exception
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    // Log or handle the exception
+                }
+            }
+        }
+    }
 }

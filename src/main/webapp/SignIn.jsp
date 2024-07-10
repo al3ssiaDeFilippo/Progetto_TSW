@@ -3,38 +3,46 @@
 <head>
     <title>Registrazione</title>
     <link rel="stylesheet" type="text/css" href="css/SignIn.css">
+    <script src="js/SignInFormValidation.js" defer></script>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
 <h2>Registrazione</h2>
-<form action="<%= request.getContextPath() %>/RegisterServlet" method="post" class="registration-form">
+<form id="registrationForm" action="<%= request.getContextPath() %>/RegisterServlet" method="post" class="registration-form">
     <div>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
+        <span id="usernameError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
+        <span id="nameError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <label for="surname">Surname:</label>
         <input type="text" id="surname" name="surname" required>
+        <span id="surnameError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <label for="birthdate">Birth Date:</label>
         <input type="date" id="birthdate" name="birthdate" required>
+        <span id="BirthDateError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
+        <span id="emailError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
+        <span id="passwordError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <label for="telNumber">Telefono:</label>
         <input type="tel" id="telNumber" name="telNumber" required>
+        <span id="telNumberError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
     <div>
         <input type="hidden" name="admin" value="false">
