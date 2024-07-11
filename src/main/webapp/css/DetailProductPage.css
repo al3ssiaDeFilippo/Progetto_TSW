@@ -9,7 +9,7 @@ body {
 
 /* Stile per il titolo */
 h2 {
-    color: #444;
+    color: #000000;
     margin: 10px 0;
     text-align: center; /* Centra il testo del titolo */
 }
@@ -42,7 +42,7 @@ h2 {
     width: 100%;     /* Mantiene l'immagine responsive */
     height: auto;    /* Mantiene l'altezza proporzionale alla nuova larghezza */
     border-radius: 10px;
-    border: 2px solid #ddd;
+    margin-left: 45px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -56,6 +56,7 @@ h2 {
 /* Stile per i paragrafi delle informazioni del prodotto */
 .product-info p {
     margin: 10px 0;
+    color: #000000;
 }
 
 /* Stile per i campi input nelle informazioni del prodotto */
