@@ -63,16 +63,23 @@ body {
 .product-price del {
     color: red;
     margin-right: 10px;
+    font-size: 18px;
+
 }
 
 .product-price span {
     color: green;
     font-weight: bold;
+    font-size: 22px;
 }
 
 .product-price .total-price-without-discount {
     font-size: 0.9em;
     color: #666; /* Colore per il prezzo senza sconto */
+}
+
+.price-label {
+    color: #000; /* Cambia il colore del testo a nero */
 }
 
 form {

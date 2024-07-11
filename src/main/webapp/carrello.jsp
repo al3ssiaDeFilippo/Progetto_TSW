@@ -67,10 +67,10 @@
                 <div class="product-price" data-discount="<%= hasDiscount %>" data-price="<%= product.getPrice() %>" data-discounted-price="<%= model.getSingleProductDiscountedPrice(prodotto) %>">
                     <% if (!hasDiscount) { %>
                     <!-- Prezzo totale di un prodotto senza sconto-->
-                    Prezzo unitario: <span class="product-total-price"><%= model.getProductTotalPrice(prodotto) %></span> €
+                    <p class="price-label">Prezzo unitario: <span class="product-total-price"><%= model.getProductTotalPrice(prodotto) %>€</span></p>
                     <% } else { %>
                     <!-- Prezzo totale di un prodotto con sconto-->
-                    Prezzo unitario: <del><%= model.getProductTotalPrice(prodotto) %> €</del> <span class="product-total-price"><%= model.getSingleProductDiscountedPrice(prodotto) %></span> €
+                    <p class="price-label">Prezzo unitario: <del class="original-price"><%= model.getProductTotalPrice(prodotto) %> €</del> <span class="discounted-price"><%= model.getSingleProductDiscountedPrice(prodotto) %> €</span> </p>
                     <% } %>
                 </div>
 

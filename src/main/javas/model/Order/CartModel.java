@@ -191,27 +191,6 @@ public class CartModel {
         return totalPrice;
     }
 
-    //restituisce il prezzo totale del carrello senza considerare lo sconto
-    public float getTotalPriceWithoutDiscount(List<CartBean> cartItems) throws SQLException {
-        float totalPrice = 0.0f;
-        ProductModelDS productModel = new ProductModelDS();
-
-        for (CartBean cartItem : cartItems) {
-            // Retrieve the associated product for each cart item
-            ProductBean product = productModel.doRetrieveByKey(cartItem.getProductCode());
-
-            // Use the product's price instead of the cart item's price
-            totalPrice += product.getPrice() * cartItem.getQuantity();
-
-            System.out.println("Product code: " + product.getCode() + ",Product price: " + product.getPrice());
-        }
-
-        // Round the total price to two decimal places
-        totalPrice = Math.round(totalPrice * 100.0f) / 100.0f;
-
-        return totalPrice;
-    }
-
     //restituisce il prezzo totale di un prodotto senza considerare lo sconto
     public float getProductTotalPrice(CartBean cartItem) throws SQLException {
         ProductModelDS productModel = new ProductModelDS();

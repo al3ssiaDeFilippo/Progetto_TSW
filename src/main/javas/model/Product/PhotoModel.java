@@ -139,40 +139,6 @@ public class PhotoModel {
         return imageByte;
     }
 
-    public void updateCustomPhoto(ProductBean product, String frame, String frameColor, Blob photo) throws SQLException {
-        Connection con = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-            con = ds.getConnection();
-            con.setAutoCommit(false);
-            String sql = "UPDATE photo SET photo = ? WHERE productCode = ? AND frame = ? AND frameColor = ?";
-
-            preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setBlob(1, photo);
-            preparedStatement.setInt(2, product.getCode());
-            preparedStatement.setString(3, frame);
-            preparedStatement.setString(4, frameColor);
-
-            System.out.println("Updating photo for product with ID: " + product.getCode());
-
-            int rowsUpdated = preparedStatement.executeUpdate();
-
-            if (rowsUpdated == 0) {
-                throw new SQLException("No product found with ID: " + product.getCode());
-            }
-
-            con.commit();
-        } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-    }
-
     public static boolean isValidImageFile(String filePath) {
         List<String> validExtensions = Arrays.asList(".jpg", ".jpeg"); // aggiungi altre estensioni valide se necessario
         String fileExtension = filePath.substring(filePath.lastIndexOf('.')).toLowerCase();
@@ -200,27 +166,6 @@ public class PhotoModel {
         }
     }
 
-    public void insertImage(int code, String imagePath) {
-
-        System.out.println("Sto in insertImage");
-        try (Connection con = ds.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE product SET photo = ? WHERE code = ?");
-
-            // Convert image path to InputStream
-            InputStream imageStream = new FileInputStream(imagePath);
-
-            ps.setBlob(1, imageStream);
-            ps.setInt(2, code);
-            int result = ps.executeUpdate();
-            if (result == 0) {
-                System.out.println("Image not updated");
-            } else {
-                System.out.println("Image updated successfully");
-            }
-        } catch (SQLException | FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public void addProductAndSaveImages(int productCode, String directoryPath) throws SQLException {
         Connection con = null;

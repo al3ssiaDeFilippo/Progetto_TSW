@@ -2,7 +2,7 @@
 <%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 
 <head>
@@ -15,6 +15,11 @@
     <title>Prodotti per Categoria</title>
 </head>
 <body>
+
+<%
+    ProductModelDS productModel = new ProductModelDS();
+%>
+
 <%@ include file="Header.jsp" %> <!-- Include the header -->
 
     <h1>Prodotti in <%= request.getParameter("category") %></h1>
@@ -34,14 +39,23 @@
             for (ProductBean product : products) {
         %>
         <div class="product">
+            <!-- Aggiungi il simbolo dello sconto se il prodotto è scontato -->
+            <% if (product.getDiscount() > 0) { %>
+            <div class="discount-badge">Sconto</div>
+            <% } %>
             <!-- Link to DetailProductPage.jsp with product code as a query parameter -->
             <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>">
                 <img class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">
-            </a><br>
+            <br>
             <h2><%= product.getProductName() %></h2>
             <div class="price-p">
-                <p>Prezzo: <%= product.getPrice() %> euro</p>
+                <% if (product.getDiscount() > 0) { %>
+                    <p class="price-label">Prezzo: <del class="original-price"><%= product.getPrice() %> €  &nbsp;</del> <span class="discounted-price"><%= productModel.calculateDiscountedPrice(product.getCode())%> €</span></p>
+                <% } else { %>
+                    <p>Prezzo: <%= product.getPrice() %> €</p>
+                <% } %>
             </div>
+            </a>
         </div>
         <%
                 }

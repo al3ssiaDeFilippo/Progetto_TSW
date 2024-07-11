@@ -15,16 +15,7 @@ h2 {
 }
 
 /* Contenitore principale per i dettagli del prodotto */
-.product-details-container {
-    display: flex;
-    flex-direction: column; /* Dispone gli elementi in colonna */
-    align-items: center;    /* Centra gli elementi orizzontalmente */
-    margin: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+
 
 /* Contenitore per il titolo e la categoria del prodotto */
 .product-header {

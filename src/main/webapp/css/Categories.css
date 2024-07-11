@@ -32,10 +32,26 @@ h1 {
     column-gap: 20px; /*Spazio tra le colonne*/
 }
 
+/* Badge for discount */
+.discount-badge {
+    position: absolute;
+    top: 10px; /* Sposta il badge in alto */
+    left: 10px; /* Sposta il badge a sinistra */
+    background-color: red; /* Colore di sfondo del badge */
+    color: white; /* Colore del testo del badge */
+    padding: 5px 10px; /* Padding interno del badge */
+    border-radius: 5px; /* Arrotonda gli angoli del badge */
+    font-size: 14px; /* Dimensione del testo del badge */
+    font-weight: bold; /* Grassetto per il testo del badge */
+    z-index: 1; /* Assicura che il badge si sovrapponga all'immagine */
+}
+
 .product {
+    position: relative;
     align-items: center;
     align-content: center;
     margin: auto;
+    padding-top: 30px;
     place-items: center;
     width: 300px;
     height: fit-content;
@@ -44,6 +60,8 @@ h1 {
     overflow: hidden;
     flex: 0 1 calc(33.333% - 20px); /* Imposta la larghezza per 3 prodotti per riga, considerando 20px di margine */
     background-color: #fff;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Aggiungi l'ombra nera alle immagini */
+
 }
 
 .product img {
@@ -55,6 +73,7 @@ h1 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiungi l'ombra nera alle immagini */
     transition: box-shadow 0.3s ease;
 }
+
 
 .product a:hover img {
     box-shadow: 0 4px 8px rgb(158, 158, 158); /* Applica l'ombra solo all'immagine all'interno dell'ancora */
@@ -68,7 +87,7 @@ h1 {
 .product h2 {
     align-content: center;
     align-items: center;
-    height: 100px;
+    height: 70px;
     margin: 0;
     padding: 15px;
     background-color: #f7f7f7;
@@ -78,11 +97,31 @@ h1 {
 
 .product p {
     padding: 0 15px 15px;
+    font-size: 22px;
+}
+
+.original-price {
+    color: #ff0000; /* Cambia il colore del testo */
+    font-size: 18px; /* Riduci la dimensione del testo se necessario */
+    text-decoration: line-through; /* Assicurati che il prezzo originale sia barrato */
+}
+
+.discounted-price {
+    color: #008000; /* Imposta il colore del testo per il prezzo scontato a verde */
+}
+
+.price-label {
+    color: #490808; /* Cambia il colore del testo a blu */
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none; /* Rimuove l'effetto sottolineato */
+    color: #0056b3; /* Sostituisci con il colore desiderato */
 }
 
 /* Price styling */
 .product p:last-child {
-    color: #28a745;
+    color: #050505;
     font-weight: bold;
     padding: 0 15px 0; /* Imposta il padding solo per i lati sinistro e destro */
 }

@@ -372,4 +372,12 @@ public class ProductModelDS implements ProductModel {
         return products;
     }
 
+    public float calculateDiscountedPrice(int productCode) throws SQLException {
+        ProductBean PB = new ProductBean();
+        PB = doRetrieveByKey(productCode);
+        float price = PB.getPrice();
+        float discount = PB.getDiscount();
+        return price - (price * (discount / 100));
+    }
+
 }
