@@ -2,30 +2,51 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("registrationForm");
 
     const usernameInput = document.getElementById("username");
+    const emailInput = document.getElementById("email");
+    const surnameInput = document.getElementById("surname");
+    const nameInput = document.getElementById("name");
+    const birthdateInput = document.getElementById("birthdate");
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+    const telNumberInput = document.getElementById("telNumber");
+    const confirmPasswordGroup = document.getElementById("confirmPasswordGroup");
 
-    // Aggiungi un event listener per l'evento change sull'input dell'username
-    usernameInput.addEventListener("change", async function() {
-        const username = usernameInput.value;
-        clearUsernameError();
+    const inputFields = [
+        { input: usernameInput, validator: validateUsername, errorField: "usernameError" },
+        { input: emailInput, validator: validateEmail, errorField: "emailError" },
+        { input: surnameInput, validator: validateSurname, errorField: "surnameError" },
+        { input: nameInput, validator: validateName, errorField: "nameError" },
+        { input: birthdateInput, validator: validateBirthDate, errorField: "BirthDateError" },
+        { input: passwordInput, validator: validatePassword, errorField: "passwordError" },
+        { input: telNumberInput, validator: validateTelNumber, errorField: "telNumberError" }
+    ];
 
-        if (username.trim().length === 0) {
-            showUsernameError("L'username deve essere di almeno un carattere");
-            return;
-        }
+    inputFields.forEach(({ input, validator, errorField }) => {
+        input.addEventListener("input", async function() {
+            const value = input.value;
+            clearError(errorField);
 
-        if (username.length > 30) {
-            showUsernameError("L'username deve essere di massimo 30 caratteri");
-            return;
-        }
-
-        try {
-            const response = await checkUsernameAvailability(username);
-            if (!response.available) {
-                showUsernameError("L'username è già in uso");
+            const error = await validator(value);
+            if (error) {
+                showError(errorField, error);
+                if (input === passwordInput) {
+                    confirmPasswordGroup.style.display = 'none';
+                    confirmPasswordInput.value = '';
+                }
+            } else {
+                if (input === passwordInput) {
+                    confirmPasswordGroup.style.display = 'block';
+                }
             }
-        } catch (error) {
-            console.error('Errore durante la verifica dell\'username:', error);
-            showUsernameError("Errore durante la verifica dell'username");
+        });
+    });
+
+    confirmPasswordInput.addEventListener("input", function() {
+        clearError("confirmPasswordError");
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        if (password !== confirmPassword) {
+            showError("confirmPasswordError", "Le password non coincidono");
         }
     });
 
@@ -37,61 +58,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let valid = true;
 
-        const surname = document.getElementById("surname").value;
-        const name = document.getElementById("name").value;
-        const username = document.getElementById("username").value;
-        const BirthDate = document.getElementById("birthdate").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const telNumber = document.getElementById("telNumber").value;
+        for (const { input, validator, errorField } of inputFields) {
+            const value = input.value;
+            const error = await validator(value);
+            if (error) {
+                showError(errorField, error);
+                valid = false;
+            }
+        }
 
-        // Validazione username
-        const usernameError = await validateUsername(username);
-        if (usernameError) {
-            showUsernameError(usernameError);
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            showError("confirmPasswordError", "Le password non coincidono");
             valid = false;
         }
 
-        // Altri controlli di validazione come prima...
-
         if (valid) {
-            // Invia il form se tutti i campi sono validati correttamente
             form.submit();
         }
     });
 
     function clearErrors() {
-        document.getElementById("surnameError").textContent = "";
-        document.getElementById("nameError").textContent = "";
-        document.getElementById("usernameError").textContent = "";
-        document.getElementById("BirthDateError").textContent = "";
-        document.getElementById("emailError").textContent = "";
-        document.getElementById("passwordError").textContent = "";
-        document.getElementById("telNumberError").textContent = "";
+        const errorFields = ["surnameError", "nameError", "usernameError", "BirthDateError", "emailError", "passwordError", "telNumberError", "confirmPasswordError"];
+        errorFields.forEach(clearError);
     }
 
-    function clearUsernameError() {
-        document.getElementById("usernameError").textContent = "";
+    function clearError(errorField) {
+        document.getElementById(errorField).textContent = "";
     }
 
-    function showUsernameError(errorMessage) {
-        document.getElementById("usernameError").textContent = errorMessage;
+    function showError(errorField, errorMessage) {
+        document.getElementById(errorField).textContent = errorMessage;
     }
 
-    // Validazione asincrona dell'username
     async function validateUsername(username) {
         if (username.trim().length === 0) {
-            return "L'username deve essere di almeno un carattere";
+            return "Username non valido";
         }
 
         if (username.length > 30) {
-            return "L'username deve essere di massimo 30 caratteri";
+            return "Superato limite massimo dei caratteri (30)";
         }
 
         try {
             const response = await checkUsernameAvailability(username);
+            if (response.error) {
+                return response.error;
+            }
             if (!response.available) {
-                return "L'username è già in uso";
+                return "Username già in uso";
             }
         } catch (error) {
             console.error('Errore durante la verifica dell\'username:', error);
@@ -101,102 +115,153 @@ document.addEventListener("DOMContentLoaded", function() {
         return ""; // Nessun errore trovato
     }
 
-    //cognome: almeno un carattere, massimo 20 caratteri
+    async function validateEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+        if (!emailPattern.test(email)) {
+            return "Email non valida";
+        }
+
+        if (email.length > 50) {
+            return "L'email deve essere di massimo 50 caratteri";
+        }
+
+        try {
+            const response = await checkEmailAvailability(email);
+            if (response.error) {
+                return response.error;
+            }
+            if (!response.available) {
+                return "Email già in uso";
+            }
+        } catch (error) {
+            console.error('Errore durante la verifica dell\'email:', error);
+            return "Errore durante la verifica dell'email";
+        }
+
+        return ""; // Nessun errore trovato
+    }
+
+    async function checkUsernameAvailability(username) {
+        const response = await fetch(`CheckUsernameServlet?username=${encodeURIComponent(username)}`);
+        return await response.json();
+    }
+
+    async function checkEmailAvailability(email) {
+        const response = await fetch(`CheckEmailServlet?email=${encodeURIComponent(email)}`);
+        return await response.json();
+    }
+
     function validateSurname(surname) {
-        if(surname.length <= 0) {
-            return "Il cognome deve essere di almeno un carattere"
+        if (surname.length === 0) {
+            return "Cognome non valido";
         }
 
-        if(surname.length > 20) {
-            return "Il cognome deve essere di masssimo 20 caratteri"
+        if (surname.length > 20) {
+            return "Superato limite massimo dei caratteri (20)";
         }
+
+        return "";
     }
 
-    //nome: almeno un carattere, massimo 20 caratteri
     function validateName(name) {
-        if(name.length <= 0) {
-            return "Il nome deve essere di almeno un carattere"
+        if (name.length === 0) {
+            return "Nome non valido";
         }
 
-        if(name.length > 20) {
-            return "Il nome deve essere di masssimo 20 caratteri"
+        if (name.length > 20) {
+            return "Superato limite massimo dei caratteri (20)";
         }
+
+        return "";
     }
 
-    //data di nascita: deve essere una data valida e l'utente deve avere almeno 18 anni
-    function validateBirthDate(BirthDate) {
+    function validateBirthDate(birthdate) {
         const today = new Date();
-        const birthDate = new Date(BirthDate);
+        const birthDate = new Date(birthdate);
 
-        const birthYear = birthDate.getFullYear();
-        if(birthYear < 1900 || birthYear >= today.getFullYear()) {
-            return "La data di nascita non è valida";
+        if (isNaN(birthDate)) {
+            return "Data di nascita non valida";
         }
 
-        let age = today.getFullYear() - birthDate.getFullYear();
+        const age = today.getFullYear() - birthDate.getFullYear();
         const monthDifference = today.getMonth() - birthDate.getMonth();
         const dayDifference = today.getDate() - birthDate.getDate();
 
-        if(monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-            age--;
+        if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+            if (age - 1 < 18) {
+                return "Devi avere almeno 18 anni per registrarti";
+            }
+        } else {
+            if (age < 18) {
+                return "Devi avere almeno 18 anni per registrarti";
+            }
         }
 
-        if(age <= 18) {
-            return "Devi avere almeno 18 anni per registrarti";
-        }
-    }
-
-    //email: deve essere una email valida e non deve essere già in uso
-    function validateEmail(email) {
-        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        const isNotUsed = email !== document.getElementById("email").value;
-        if(isNotUsed) {
-            return "L'email è già in uso";
-        }
-        if(emailPattern.test(email) <= 50) {
-            return "L'email non è valida";
-        }
         return "";
     }
 
-    //controlli sulla password
     function validatePassword(password) {
-        const hasLowerCase = /[a-z]/.test(password);
-        if(hasLowerCase) {
-            return "La password deve contenere almeno una lettera minuscola"
-        }
-        const hasUpperCase = /[A-Z]/.test(password)
-        if(hasUpperCase) {
-            return "La password deve contenere almeno una lettera maiuscola"
-        }
-        const hasNumber = /[0-9]/.test(password);
-        if(hasNumber) {
-            return "La password deve contenere almeno un numero"
-        }
-        const hasSpecialCharacter = /[!@#$%^&*]/.test(password);
-        if(hasSpecialCharacter) {
-            return "La password deve contenere almeno un carattere speciale"
-        }
-        const isNotUsername = password !== document.getElementById("username").value;
-        if(isNotUsername) {
-            return "La password non può essere uguale all'username"
-        }
-        const isTooShort = password.length >= 8;
-        if(isTooShort) {
-            return "La password deve essere di almeno 8 caratteri"
-        }
-        const isLongEnough = password.length <= 20;
-        if(isLongEnough) {
-            return "La password deve essere di massimo 20 caratteri"
+        const strengthBar = document.getElementById("strengthBar");
+        const passwordLength = password.length;
+        let strength = 0;
+
+        // Valutazione della forza della password
+        if (passwordLength >= 5) {
+            strength += 1;
         }
 
-        return "";
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) {
+            strength += 1;
+        }
+
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password) && passwordLength >= 6 && passwordLength <= 9) {
+            strength += 1;
+        }
+
+        if (/[!@#$%^&*]/.test(password) && passwordLength >= 10 && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password)) {
+            strength += 1;
+        }
+
+        // Assegnazione della larghezza in base alla forza
+        switch (strength) {
+            case 0:
+            case 1:
+                strengthBar.style.width = "33%"; // Larghezza per password debole
+                strengthBar.className = "strength-bar weak";
+                break;
+            case 2:
+                strengthBar.style.width = "66%"; // Larghezza per password normale
+                strengthBar.className = "strength-bar normal";
+                break;
+            case 3:
+            case 4:
+                strengthBar.style.width = "100%"; // Larghezza per password forte
+                strengthBar.className = "strength-bar strong";
+                break;
+            default:
+                break;
+        }
+
+        // Valutazione aggiuntiva (es. password non può essere uguale all'username)
+        if (password === document.getElementById("username").value) {
+            return "La password non può essere uguale all'username";
+        }
+
+        // Controllo finale della forza della password
+        if (strength < 3) {
+            return "Password troppo debole";
+        }
+
+        return ""; // Nessun errore trovato
     }
 
     function validateTelNumber(telNumber) {
         const telNumberPattern = /^[0-9]{10}$/;
-        if(telNumberPattern || telNumber.length !== 10) {
-            return "Numero di telefono non valido"
+        if (!telNumberPattern.test(telNumber)) {
+            return "Numero di telefono non valido";
         }
+
+        return "";
     }
 });

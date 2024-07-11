@@ -324,7 +324,7 @@ public class UserModel {
         Connection con = null;
         PreparedStatement prep = null;
 
-        String selectSQL = "SELECT COUNT(*) FROM users WHERE username = ?";
+        String selectSQL = "SELECT COUNT(*) FROM user WHERE username = ?";
 
         try {
             con = ds.getConnection();
@@ -335,6 +335,42 @@ public class UserModel {
 
             if (rs.next()) {
                 return rs.getInt(1) > 0; // If count is greater than 0, the username exists
+            }
+
+            return false;
+        } finally {
+            if (prep != null) {
+                try {
+                    prep.close();
+                } catch (SQLException e) {
+                    // Log or handle the exception
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    // Log or handle the exception
+                }
+            }
+        }
+    }
+
+    public boolean doesEmailExist(String email) throws SQLException {
+        Connection con = null;
+        PreparedStatement prep = null;
+
+        String selectSQL = "SELECT COUNT(*) FROM user WHERE email = ?";
+
+        try {
+            con = ds.getConnection();
+            prep = con.prepareStatement(selectSQL);
+            prep.setString(1, email);
+
+            ResultSet rs = prep.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // If count is greater than 0, the email exists
             }
 
             return false;

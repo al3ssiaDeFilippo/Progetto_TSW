@@ -1,9 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Registrazione</title>
     <link rel="stylesheet" type="text/css" href="css/SignIn.css">
     <script src="js/SignInFormValidation.js" defer></script>
+
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -38,9 +41,17 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <span id="passwordError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
+        <div class="strength-bar-container">
+            <div id="strengthBar" class="strength-bar"></div>
+        </div>
     </div>
     <div>
-        <label for="telNumber">Telefono:</label>
+        <label for="confirmPassword">Conferma Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <span id="confirmPasswordError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
+    </div>
+    <div>
+    <label for="telNumber">Telefono:</label>
         <input type="tel" id="telNumber" name="telNumber" required>
         <span id="telNumberError" class="error"></span> <!-- Elemento per visualizzare l'errore -->
     </div>
@@ -54,7 +65,6 @@
         <input type="submit" value="Sign In">
     </div>
 </form>
-
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

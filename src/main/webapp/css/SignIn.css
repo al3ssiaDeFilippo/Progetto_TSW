@@ -16,11 +16,11 @@ a:hover {
     text-decoration: underline;
 }
 
-h2{
+h2 {
     text-align: center;
 }
 
-.registration-form{
+.registration-form {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -95,9 +95,47 @@ input[type="submit"]:hover {
     }
 }
 
+.strength-bar-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    top: -10px; /* Sposta la barra di forza verso l'alto di 7px */
+    left: 60%;
+    width: 50px; /* Larghezza del rettangolo contenitore */
+    height: 5px; /* Altezza del rettangolo */
+    background-color: #ccc; /* Colore di sfondo del rettangolo */
+    border-radius: 4px; /* Arrotondamento bordi */
+}
+
+.strength-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #f44336; /* Colore rosso per il segmento "debole" */
+    border-radius: 4px; /* Arrotondamento bordi */
+    transition: width 0.3s ease-in-out; /* Transizione animata */
+}
+
+.strength-bar.normal {
+    background-color: #ffeb3b; /* Colore giallo per il segmento "normale" */
+}
+
+.strength-bar.strong {
+    background-color: #4caf50; /* Colore verde per il segmento "forte" */
+}
+
+
 /* Media query per schermi grandi (desktop) */
 @media (min-width: 1024px) {
     .registration-form {
         max-width: 600px; /* Limita la larghezza massima per desktop */
     }
 }
+
+/* Nascondi il campo Conferma Password di default */
+#confirmPasswordGroup {
+    display: none;
+}
+
+
