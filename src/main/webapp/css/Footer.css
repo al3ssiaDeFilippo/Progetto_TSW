@@ -6,7 +6,7 @@
     text-align: center;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 20px; /* Aggiunge spazio sotto il footer */
-    margin-top: 60px; /* Aggiunge spazio sopra il footer */
+    margin-top: 10px; /* Aggiunge spazio sopra il footer */
     min-height: 350px; /* Altezza minima per il footer principale */
     display: flex; /* Usiamo flexbox per allineare le sezioni */
     align-items: flex-start; /* Allineamento inizio per le sezioni */
