@@ -18,17 +18,18 @@
 </head>
 <body>
 <%@ include file="Header.jsp" %>
-<div class="product-details-container">
     <%
         if (product != null) {
     %>
     <div class="product-header">
-        <h2><%= product.getCategory() %> - <%= product.getProductName() %></h2>
+        <h2><%= product.getProductName() %></h2>
     </div>
     <div class="product-content">
         <div class="product-image">
             <img id="productImage" data-product-code="<%= product.getCode() %>" src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
-            <p><strong>Dettagli:</strong> <%= product.getDetails() %></p>
+        </div>
+        <div class="product-info">
+        <p><strong>Dettagli:</strong> <%= product.getDetails() %></p>
             <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
             <p><strong>IVA:</strong> <%= product.getIva() %> %</p>
             <p><strong>Sconto:</strong> <%= product.getDiscount() %> %</p>
@@ -68,19 +69,11 @@
             <% } else { %>
             <p class="unavailable-product">Prodotto non disponibile al momento</p>
             <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
-
-            <div class="centered-links">
-                <% if (user == null || !user.getAdmin()) { %> <!-- Se l'utente non è loggato o non è un admin, mostra il link -->
-                <a href="carrello.jsp">Visualizza Carrello</a>
-                <% } %>
-                <a href="ProductView.jsp">Torna alla Home</a>
-            </div>
         </div>
     </div>
     <% } else { %>
     <p>Nessun prodotto selezionato</p>
     <% } %>
-</div>
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

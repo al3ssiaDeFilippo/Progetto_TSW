@@ -14,8 +14,12 @@ h2 {
     text-align: center; /* Centra il testo del titolo */
 }
 
-/* Contenitore principale per i dettagli del prodotto */
-
+/* Contenitore per l'immagine del prodotto */
+.product-image {
+    flex: 1;
+    text-align: left;
+    margin-right: 20px;
+}
 
 /* Contenitore per il titolo e la categoria del prodotto */
 .product-header {
@@ -31,26 +35,21 @@ h2 {
     margin-top: 20px;
 }
 
-/* Contenitore per l'immagine del prodotto */
-.product-image {
-    flex: 1;
-    text-align: center;
-    margin-right: 20px;
-}
 
 /* Stile per l'immagine del prodotto */
 .product-image img {
-    max-width: 300px; /* Imposta la larghezza massima dell'immagine a 300px */
-    width: 100%;     /* Rende l'immagine responsive */
-    height: auto;
+    max-width: 350px; /* Aumenta la larghezza massima dell'immagine */
+    width: 100%;     /* Mantiene l'immagine responsive */
+    height: auto;    /* Mantiene l'altezza proporzionale alla nuova larghezza */
     border-radius: 10px;
-    border: 2px solid #ddd; /* Aggiunge un bordo all'immagine */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra all'immagine */
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenitore per le informazioni del prodotto */
 .product-info {
     flex: 2;
+    font-size: 25px; /* Dimensione base del font */
     max-width: 500px;
 }
 
@@ -63,10 +62,10 @@ h2 {
 .product-info p input, .product-info p select {
     width: calc(100% - 120px);
     padding: 10px;
+    font-size: 15px;
     margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 14px;
     background-color: #f9f9f9; /* Colore di sfondo */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
     transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
@@ -96,29 +95,6 @@ h2 {
 }
 
 
-/* Contenitore per i link centrati */
-.centered-links {
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Stile per il form dei link centrati */
-.centered-links form {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-/* Stile per i link */
-.centered-links a {
-    margin: 0 10px;
-    color: #0066cc;
-    text-decoration: none;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
 /* Stile per i link al passaggio del mouse */
 .centered-links a:hover {
     background-color: #0066cc;
@@ -140,4 +116,4 @@ input[type="submit"] {
 /* Stile per il pulsante di invio al passaggio del mouse */
 input[type="submit"]:hover {
     background-color: #218838;
-}
+}voglio
