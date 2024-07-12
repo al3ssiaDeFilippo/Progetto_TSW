@@ -63,30 +63,29 @@
 
     </div>
 
-
     <div class="click-container">
 
-        <div class="click-containers-modifica">
+        <div>
             <form action="ModificaDati.jsp" method="post">
-                <button type="submit">Modifica Dati</button>
+                <button class="change-btn" type="submit">Modifica Dati</button>
             </form>
         </div>
 
-        <div class="click-containers-password">
+        <div class="pwd-btn">
             <a href="ModificaPassword.jsp">Modifica Password</a>
         </div>
 
         <div class="click-containers-secondary">
             <form action="CarteUtente.jsp" method="post">
-                <button type="submit">Le mie carte</button>
+                <button class="cards-btn" type="submit">Le mie carte</button>
             </form>
 
             <form action="OrderHistory.jsp" method="post">
-                <button type="submit">I miei ordini</button>
+                <button class="order-btn" type="submit">I miei ordini</button>
             </form>
 
             <form action="IndirizziUtente.jsp" method="post">
-                <button type="submit">Indirizzi</button>
+                <button class="shipping-btn" type="submit">Indirizzi</button>
             </form>
 
         </div>

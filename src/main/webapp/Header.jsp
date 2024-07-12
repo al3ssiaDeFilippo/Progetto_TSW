@@ -42,7 +42,7 @@
             UserBean loggedInUser = (UserBean) session.getAttribute("user");
             if (loggedInUser != null) {
         %>
-        <a href="Profilo.jsp">
+        <a href="ProfileOverview.jsp">
             <img class="login-button" src="Images/userIcon.png" alt="Image not found">
         </a>
         <%

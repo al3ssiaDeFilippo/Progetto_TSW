@@ -1,0 +1,107 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.overview-container {
+    display: grid;
+    grid-template-columns: 50vh 50vh 50vh;
+    flex-wrap: wrap;
+    column-count: 3;
+    justify-content: space-between; /* Centra i prodotti nel contenitore */
+    place-items: center;
+    row-gap: 10vh; /*Spazio tra le righe*/
+    column-gap: 50px; /*Spazio tra le colonne*/
+    margin: 40px;
+    padding: 5%;
+}
+
+.profile-box,
+.favorites-box,
+.info-box,
+.order-box,
+.card-box,
+.address-box {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    align-items: center;
+    align-content: center;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 30px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid #b5b2b2;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Aggiungi l'ombra nera alle immagini */
+    transition: box-shadow 0.5s ease; /* Aggiungi transizione all'ombra */
+    overflow: hidden;
+    flex: 1; /* Aggiungi questa linea */
+}
+
+.box-text {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.profile-box:hover,
+.favorites-box:hover,
+.info-box:hover,
+.order-box:hover,
+.card-box:hover,
+.address-box:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Cambia l'ombra al passaggio del mouse */
+}
+
+.myGif {
+    padding: 7px;
+    height: 70px;
+    width: 70px;
+    margin-left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiungi l'ombra nera alle immagini */
+    transition: box-shadow 0.3s ease;
+    border-radius: 50px;
+
+}
+
+/* Media query per schermi fino a 1200px */
+@media (max-width: 1200px) {
+    .overview-container {
+        grid-template-columns: repeat(2, 50vh); /* 2 colonne */
+    }
+}
+
+/* Media query per schermi fino a 800px */
+@media (max-width: 800px) {
+    .overview-container {
+        grid-template-columns: 50vh; /* 1 colonna */
+        justify-content: center; /* Centra i riquadri */
+    }
+}
+
+/* Media query per schermi fino a 600px */
+@media (max-width: 600px) {
+    .profile-box,
+    .favorites-box,
+    .info-box,
+    .order-box,
+    .card-box,
+    .address-box {
+        width: 90%; /* Larghezza flessibile */
+        margin-right: auto; /* Margini automatici per centrare */
+        margin-left: auto;
+    }
+}
