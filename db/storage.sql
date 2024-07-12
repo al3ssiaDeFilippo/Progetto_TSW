@@ -90,14 +90,22 @@ CREATE TABLE orderDetails (
       frameColor VARCHAR(8) NOT NULL CHECK (frameColor IN ('black', 'brown', 'white', 'no color')),
       size VARCHAR(5) NOT NULL CHECK (size IN ('21x30', '85x60', '91x61')),
       price FLOAT NOT NULL,
-      /*Modifiche inziiano qui*/
       iva INT NOT NULL,
-      /*Modifiche finiscono qui*/
       idUser INT,
       PRIMARY KEY (idOrder, productCode),  -- Chiave primaria composta
       FOREIGN KEY (idUser) REFERENCES user(idUser),
       FOREIGN KEY (productCode) REFERENCES product(code),
       FOREIGN KEY (idOrder) REFERENCES orders(idOrder)
+);
+
+CREATE TABLE favorites (
+	favId INT PRIMARY KEY AUTO_INCREMENT,
+    idUser INT,
+    productCode INT,
+    FOREIGN KEY (idUser) REFERENCES user(idUser)
+    ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (productCode) REFERENCES product(code)
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE photo (

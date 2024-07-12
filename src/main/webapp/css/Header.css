@@ -123,6 +123,32 @@
       z-index: 1;
 }
 
+.profile-box {
+      background-image: linear-gradient(to right, #7DCFB6, #E0F7FA); /* Verde acqua scuro a azzurro molto chiaro */
+}
+
+.order-box {
+      background-image: linear-gradient(to right, #4A90E2, #B3E5FC); /* Blu vivace a azzurro chiaro */
+}
+
+.favorites-box {
+      background-image: linear-gradient(to right, #E57373, #FFCDD2); /* Rosa scuro a rosa chiaro */
+}
+
+.card-box {
+      background-image: linear-gradient(to right, #BA68C8, #E1BEE7); /* Viola chiaro a viola molto chiaro */
+}
+
+.info-box {
+      background-image: linear-gradient(to right, #7986CB, #C5CAE9); /* Blu grigio scuro a blu grigio chiaro */
+}
+
+.address-box {
+      background-image: linear-gradient(to right, #FFB74D, #FFE0B2); /* Arancione scuro a arancione chiaro */
+}
+
+
+
 .sub-header-container .nav-bar {
       display: flex;
       justify-content: space-around;

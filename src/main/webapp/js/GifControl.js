@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Store the jQuery object in a variable
-    var boxes = $('.profile-box, .favorites-box, .info-box, .order-box, .card-box, .address-box');
+    var boxes = $('.profile-box, .favorites-box, .info-box, .order-box, .card-box, .address-box, .favorites-heart');
 
     // On mouse hover on the box, change the GIF from static to animated
     boxes.mouseenter(function() {
