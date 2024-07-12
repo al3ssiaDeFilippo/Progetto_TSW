@@ -111,7 +111,7 @@ CREATE TABLE photo (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
-VALUES ('Harley & Ivy ', 'DC', 3, 'Fumetti', 150, 22, 10, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\DC Comics Art Print Harley & Ivy 41 x 61 cm.jpg'));
+VALUES ('Harley & Ivy ', 'DCHFADSHJFADHDSFHOFHJSDAL dio  KJGSDòLKJGòLAKSJGòLKSDAJGòLKSDAJGLòK pentagono SDJòLKGASJLòKDSJAòLKGJASòLKGJAòLKASDGJ òLKASDJGòLKGDSAJ', 3, 'Fumetti', 150, 22, 10, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\DC Comics Art Print Harley & Ivy 41 x 61 cm.jpg'));
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)
 VALUES ('Wonder Woman Black & Gold ', 'DC', 120, 'Fumetti', 47, 22, 20, LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\DC Comics Art Print Wonder Woman Black & Gold 46 x 61 cm.jpg'));
 INSERT INTO product (productName, details, quantity, category, price, iva, discount, photo)

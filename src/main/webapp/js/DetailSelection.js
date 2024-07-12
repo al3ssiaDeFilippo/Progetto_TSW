@@ -1,99 +1,76 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const frameSelect = document.getElementById("frameSelect");
-    const frameColorSelect = document.getElementById("frameColorSelect");
-    const frameColorSelectContainer = document.getElementById("frameColorSelectContainer");
-    const productImage = document.getElementById("productImage");
     const sizeSelect = document.getElementById("sizeSelect");
+    const frameSelect = document.getElementById("frameSelect");
+    const frameSelectContainer = document.getElementById("frameSelectContainer");
+    const frameColorSelectContainer = document.getElementById("frameColorSelectContainer");
+    const frameColorSelect = document.getElementById("frameColorSelect");
+    const productImage = document.getElementById("productImage");
     const errorMessage = document.getElementById("errorMessage");
+    const submitButton = document.querySelector("input[type='submit']");
 
-    // Initially hide the frame color select container
+    // Initially hide the frame color select container and frame select container
+    frameSelectContainer.style.display = 'none';
     frameColorSelectContainer.style.display = 'none';
 
+    // Function to update the product image
     function updateImage() {
-        const frame = frameSelect.value;
-        const frameColor = frameColorSelect.value;
-        const productCode = productImage.getAttribute("data-product-code");
-        let imageUrl = `GetProductImageServlet?action=get&code=${productCode}&custom=true`;
-
-        if (frame !== "no frame") {
-            imageUrl += `&frame=${frame}`;
-            frameColorSelectContainer.style.display = ''; // Show frame color select when frame is selected
+        let imageUrl = `GetProductImageServlet?action=get&code=${productImage.getAttribute("data-product-code")}&custom=true`;
+        if (frameSelect.value !== "no frame") {
+            imageUrl += `&frame=${frameSelect.value}`;
+            frameColorSelectContainer.style.display = ''; // Show the frame color select container
         } else {
-            frameColorSelectContainer.style.display = 'none'; // Hide frame color select when 'no frame' is selected
+            frameColorSelectContainer.style.display = 'none'; // Hide the frame color select container
         }
-
-        if (frameColor !== "no color" && frameColor !== "selectAframeColor") {
-            imageUrl += `&frameColor=${frameColor}`;
+        if (frameColorSelect.value !== "no color" && frameColorSelect.value !== "selectAframeColor") {
+            imageUrl += `&frameColor=${frameColorSelect.value}`;
         }
-
         productImage.src = imageUrl;
     }
 
+    // Function to validate the form
     function validateForm() {
-        const frame = frameSelect.value;
-        const frameColor = frameColorSelect.value;
-        const size = sizeSelect.value;
-
-        // Resetta il messaggio di errore
-        errorMessage.textContent = "";
         errorMessage.style.display = 'none';
-
-        // Controllo dimensione
-        if (size === "selectAsize") {
+        errorMessage.textContent = "";
+        if (sizeSelect.value === "selectAsize") {
             errorMessage.textContent = "Per favore, seleziona una dimensione.";
             errorMessage.style.display = 'block';
             return false;
         }
-
-        // Controllo frame e colore del frame
-        if (frame !== "no frame" && (frameColor === "selectAframeColor" || frameColor === "no color")) {
+        if (frameSelect.value !== "no frame" && (frameColorSelect.value === "selectAframeColor" || frameColorSelect.value === "no color")) {
             errorMessage.textContent = "Seleziona un colore per la cornice.";
             errorMessage.style.display = 'block';
             return false;
         }
-
-        return true; // Tutte le validazioni sono passate
+        return true;
     }
 
-    function checkForm() {
-        if(frameSelect.value === 'no frame') {
-            frameColorSelect.value = 'no color';
-            if(sizeSelect.value !== 'selectAsize') {
-                submitButton.disabled = false;
-            } else {
-                submitButton.disabled = true;
-            }
+    // Function to toggle the frame select container
+    function toggleFrameSelect() {
+        if (sizeSelect.value !== "selectAsize") {
+            frameSelectContainer.style.display = '';
         } else {
-            if(frameSelect.value !== 'no frame' && frameColorSelect.value !== 'selectAframeColor' && frameColorSelect.value !== 'no color' && sizeSelect.value !== 'selectAsize') {
-                submitButton.disabled = false;
-            } else {
-                submitButton.disabled = true;
-            }
+            frameSelectContainer.style.display = 'none';
+            frameColorSelectContainer.style.display = 'none';
         }
     }
 
-    function hideErrorMessageIfFrameChanged() {
-        if (frameSelect.value !== "wood" || frameColorSelect.value !== "selectAframeColor" && frameColorSelect.value !== "no color") {
-            errorMessage.style.display = 'none'; // Nasconde il messaggio di errore
-        }
-    }
-
+    // Event listeners
+    sizeSelect.addEventListener("change", function() {
+        toggleFrameSelect();
+        updateImage();
+    });
     frameSelect.addEventListener("change", function() {
         updateImage();
-        checkForm(); // Richiama checkForm quando frameSelect cambia
-        hideErrorMessageIfFrameChanged(); // Nasconde il messaggio di errore
+        if (frameSelect.value === "no frame") {
+            frameColorSelectContainer.style.display = 'none';
+        }
     });
-    frameColorSelect.addEventListener("change", function() {
-        updateImage();
-        checkForm(); // Richiama checkForm quando frameColorSelect cambia
-    });
-    sizeSelect.addEventListener("change", checkForm); // Richiama checkForm quando sizeSelect cambia
+    frameColorSelect.addEventListener("change", updateImage);
 
-    // Esponi checkForm e validateForm a livello globale
-    window.checkForm = checkForm;
-    window.validateForm = validateForm;
-
-    // Inizializza lo stato iniziale
+    // Initialize the initial state
+    toggleFrameSelect();
     updateImage();
-    checkForm();
+
+    // Expose validateForm globally
+    window.validateForm = validateForm;
 });

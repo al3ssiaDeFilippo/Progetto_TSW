@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="css/Cart.css">
 </head>
 <body>
-<%@ include file="Header.jsp" %>
+    <%@ include file="Header.jsp" %>
 <h1>Carrello</h1>
 
 <div class="cart-container">

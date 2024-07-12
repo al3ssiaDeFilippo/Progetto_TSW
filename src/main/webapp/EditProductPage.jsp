@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta enctype="multipart/form-data">
-    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
+    <link rel="stylesheet" type="text/css" href="css/EditProductPage.css">
     <title>Modifica Prodotto</title>
     <script src="js/UploadImage.js" defer></script>
     <script>
@@ -21,50 +21,57 @@
     </script>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <h2>Modifica Prodotto</h2>
-<form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="update">
+<div class="product-content">
+    <div class="product-image">
+        <!-- Mostra l'immagine attuale del prodotto -->
+        <img id="productImage" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getCode() : "" %>" alt="Immagine attuale del prodotto"><br>
+        <!-- Caricamento nuova immagine -->
+        <div class="photo-insert">
+            <label for="photoPath">Foto:</label><br>
+            <input type="file" id="photoPath" name="photoPath" accept=".jpg" onchange="previewImage(event)" class="photo-input"><br>
+        </div>
+         </div>
+    <div class="product-info">
+        <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="update">
+            <input type="hidden" id="productCode" name="code" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getCode() : "" %>">
 
-    <input type="hidden" id="productCode" name="code" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getCode() : "" %>">
+            <p><label for="productName">Nome:</label><br>
+                <input type="text" id="productName" name="productName" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getProductName() : "" %>"></p>
 
-    <label for="productName">Nome:</label><br>
-    <input type="text" id="productName" name="productName" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getProductName() : "" %>"><br>
+            <p><label for="details">Dettagli:</label><br>
+                <input type="text" id="details" name="details" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getDetails() : "" %>"></p>
 
-    <label for="details">Dettagli:</label><br>
-    <input type="text" id="details" name="details" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getDetails() : "" %>"><br>
+            <p><label for="quantity">Quantità:</label><br>
+                <input type="number" id="quantity" name="quantity" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getQuantity() : "" %>"></p>
 
-    <label for="quantity">Quantità:</label><br>
-    <input type="number" id="quantity" name="quantity" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getQuantity() : "" %>"><br>
+            <p><label for="category">Categoria:</label><br>
+                <select id="category" name="category">
+                    <option value="selectACategory" disabled>Seleziona una categoria</option>
+                    <option value="Film" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Film") ? "selected" : ""%>>Film</option>
+                    <option value="Anime" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Anime") ? "selected" : ""%>>Anime</option>
+                    <option value="Giochi" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Giochi") ? "selected" : ""%>>Giochi</option>
+                    <option value="Serie TV" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Serie TV") ? "selected" : ""%>>Serie TV</option>
+                    <option value="Fumetti" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Fumetti") ? "selected" : ""%>>Fumetti</option>
+                </select></p>
 
-    <label for="category">Categoria:</label><br>
-    <select id="category" name="category">
-        <option value="selectACategory" disabled>Seleziona una categoria</option>
-        <option value="Film" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Film") ? "selected" : ""%>>Film</option>
-        <option value="Anime" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Anime") ? "selected" : ""%>>Anime</option>
-        <option value="Giochi" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Giochi") ? "selected" : ""%>>Giochi</option>
-        <option value="Serie TV" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Serie TV") ? "selected" : ""%>>Serie TV</option>
-        <option value="Fumetti" <%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getCategory().equals("Fumetti") ? "selected" : ""%>>Fumetti</option>
-    </select><br>
+            <p><label for="price">Prezzo:</label><br>
+                <input type="number" id="price" name="price" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getPrice() : "" %>" step="0.01"></p>
 
-    <label for="price">Prezzo:</label><br>
-    <input type="number" id="price" name="price" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getPrice() : "" %>" step="0.01"><br>
+            <p><label for="iva">IVA:</label><br>
+                <input type="number" id="iva" name="iva" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getIva() : "" %>"></p>
 
-    <label for="iva">IVA:</label><br>
-    <input type="number" id="iva" name="iva" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getIva() : "" %>"><br>
+            <p><label for="discount">Sconto:</label><br>
+                <input type="number" id="discount" name="discount" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getDiscount() : "" %>" step="0.01"></p>
 
-    <label for="discount">Sconto:</label><br>
-    <input type="number" id="discount" name="discount" value="<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getDiscount() : "" %>" step="0.01"><br>
+            <input type="hidden" name="currentPhoto" value="<%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getPhoto() != null ? "true" : "false"%>">
 
-    <!-- Caricamento nuova immagine -->
-    <label for="photoPath">Foto:</label><br>
-    <input type="file" id="photoPath" name="photoPath" accept=".jpg" onchange="previewImage(event)"><br>
-
-    <!-- Mostra l'immagine attuale del prodotto -->
-    <img id="productImage" class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getCode() : "" %>" alt="Immagine attuale del prodotto"><br>
-
-    <input type="hidden" name="currentPhoto" value="<%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getPhoto() != null ? "true" : "false"%>">
-
-    <input type="submit" value="Modifica Prodotto">
-</form>
+            <input type="submit" value="Modifica Prodotto">
+        </form>
+    </div>
+</div>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

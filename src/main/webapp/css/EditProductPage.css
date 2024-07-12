@@ -14,44 +14,39 @@ h2 {
     text-align: center; /* Centra il testo del titolo */
 }
 
+/* Contenitore per il contenuto del prodotto */
+.product-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
 /* Contenitore per l'immagine del prodotto */
 .product-image {
     flex: 1;
+    margin-left: 250px;
     text-align: left;
     margin-right: 20px;
 }
 
-/* Contenitore per il titolo e la categoria del prodotto */
-.product-header {
-    width: 100%;
-}
-
-/* Contenitore per il contenuto del prodotto */
-.product-content {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-
 /* Stile per l'immagine del prodotto */
 .product-image img {
-    max-width: 350px; /* Aumenta la larghezza massima dell'immagine */
+    max-width: 400px; /* Aumenta la larghezza massima dell'immagine */
     width: 100%;     /* Mantiene l'immagine responsive */
     height: auto;    /* Mantiene l'altezza proporzionale alla nuova larghezza */
     border-radius: 10px;
-    margin-left: 150px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenitore per le informazioni del prodotto */
 .product-info {
     flex: 2;
-    font-size: 25px; /* Dimensione base del font */
+    font-size: 15px; /* Dimensione base del font */
     max-width: 500px;
-    margin-right: 150px;
+    margin-left: 20px;
+    margin-right: 200px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -59,51 +54,36 @@ h2 {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.product-details {
-    align-self: flex-start; /* Allinea i dettagli del prodotto a sinistra */
-    text-align: left; /* Assicura che il testo all'interno sia allineato a sinistra */
-    margin-top: 50px; /* Rimuovi il margine superiore se precedentemente impostato */
-    margin-left: -50px;
-    font-size: 30px;
-    width: 90%; /* Sostituisci con la larghezza che corrisponde al numero di caratteri `n` che desideri */
-    word-wrap: break-word;
-}
-
-.discount-percentage {
-    font-size: 25px;
-    color: red; /* Colore rosso per la percentuale di sconto */
-}
-
-.original-price {
-    margin-left: 50px;
-    font-size: 15px;
-    color: #000000; /* Colore per il prezzo originale, se desideri differenziarlo */
-    text-decoration: line-through; /* Aggiunge l'effetto barrato */
-}
-
-.discounted-price {
-    font-size: 25px;
-    color: #00a800; /* Colore verde per il prezzo scontato */
-}
-
-
 /* Stile per i paragrafi delle informazioni del prodotto */
 .product-info p {
-    margin: 10px 0;
+    margin: 5px 0;
     color: #000000;
+    font-size: 25px;
 }
 
 /* Stile per i campi input nelle informazioni del prodotto */
 .product-info p input, .product-info p select {
-    width: calc(100% - 120px);
+    width: calc(100% - 20px);
     padding: 10px;
-    font-size: 15px;
-    margin-left: 10px;
+    font-size: 20px;
+    margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9; /* Colore di sfondo */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
     transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
+}
+
+.photo-label {
+    font-size: 20px; /* Increase font size */
+    margin-bottom: 5px;
+}
+
+.photo-input {
+    margin-left: -15px;
+    font-size: 25px; /* Makes the text inside the button larger */
+    padding: 15px 15px; /* Increase padding for a larger button */
+    cursor: pointer;
 }
 
 /* Stile per i campi input al passaggio del mouse */
@@ -119,21 +99,9 @@ h2 {
     cursor: pointer;
 }
 
-/* Stile per le opzioni all'interno del select */
-.product-info p select option {
-    padding: 10px;
-    background-color: #fff;
-    color: #333;
-    border-radius: 8px; /* Rendi i bordi più arrotondati */
-    display: block; /* Rende le opzioni come blocchi separati */
-    margin-bottom: 8px; /* Spazio tra le opzioni */
-}
-
-
-/* Stile per i link al passaggio del mouse */
-.centered-links a:hover {
-    background-color: #0066cc;
-    color: #fff;
+.photo-insert {
+    margin-left: 10px;
+    font-size: 25px;
 }
 
 /* Stile per il pulsante di invio */
@@ -144,7 +112,7 @@ input[type="submit"] {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     transition: background-color 0.3s; /* Transizione */
 }
 
@@ -164,9 +132,9 @@ input[type="submit"]:hover {
         margin-left: 0; /* Assicura che l'immagine sia centrata */
     }
 
-    .product-info, .product-details {
+    .product-info {
         text-align: left; /* Allinea il testo a sinistra */
-        margin-right: 20px; /* Aggiunge un margine destro */
+        margin-left: 20px; /* Aggiunge un margine sinistro */
     }
 }
 
@@ -177,18 +145,16 @@ input[type="submit"]:hover {
     }
 
     .product-image img {
-        margin-left: 150px; /* Ripristina il margine sinistro per l'immagine */
+        margin-left: 0; /* Ripristina il margine sinistro per l'immagine */
     }
 
     .product-info {
         max-width: 500px; /* Limita la larghezza delle informazioni del prodotto */
-        margin-right: 150px; /* Aumenta il margine destro */
-    }
-
-    .product-details {
-        margin-left: -50px; /* Ajusta il margine sinistro per i dettagli del prodotto */
+        margin-left: 20px; /* Aumenta il margine sinistro */
     }
 }
+
+/* Media query per dispositivi mobili */
 @media (max-width: 616px) {
     body {
         font-size: 14px; /* Riduce la dimensione del font */
@@ -198,15 +164,24 @@ input[type="submit"]:hover {
         font-size: 18px; /* Riduce la dimensione del font del titolo */
     }
 
+    .product-content {
+        padding: 10px;
+    }
+
+    .product-image {
+        margin-left: 0;
+        text-align: center;
+    }
+
     .product-image img {
         max-width: 100%; /* Permette all'immagine di espandersi fino al 100% della larghezza del contenitore */
         margin: 0 auto; /* Centra l'immagine */
     }
 
-    .product-info, .product-details {
+    .product-info {
         font-size: 16px; /* Ajusta la dimensione del font per le informazioni e i dettagli del prodotto */
         padding: 10px; /* Aggiunge un padding per evitare che il testo tocchi i bordi dello schermo */
-        margin-right: 0; /* Rimuove il margine destro */
+        margin-left: 0; /* Rimuove il margine sinistro */
     }
 
     .product-info p input, .product-info p select {
@@ -216,5 +191,26 @@ input[type="submit"]:hover {
 
     input[type="submit"] {
         width: 100%; /* Espande il pulsante di invio per occupare tutta la larghezza disponibile */
+    }
+}
+
+/* Media query per dispositivi mobili molto piccoli */
+@media (max-width: 375px) {
+    .product-info {
+        font-size: 14px; /* Ajusta la dimensione del font per schermi molto piccoli */
+    }
+
+    .product-info p {
+        font-size: 20px; /* Ajusta la dimensione del font per i paragrafi */
+    }
+
+    .product-info p input, .product-info p select {
+        font-size: 18px; /* Ajusta la dimensione del font per i campi di input */
+        padding: 8px; /* Riduce il padding per i campi di input */
+    }
+
+    .photo-input {
+        font-size: 20px; /* Ajusta la dimensione del font per il bottone di caricamento foto */
+        padding: 10px 15px; /* Riduce il padding per il bottone */
     }
 }
