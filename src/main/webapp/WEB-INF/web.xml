@@ -59,16 +59,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>CreditCardServlet</servlet-name>
-    <servlet-class>main.javas.control.Order.CreditCardServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>CreditCardServlet</servlet-name>
-    <url-pattern>/CreditCardServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>DeleteAddressServlet</servlet-name>
     <servlet-class>main.javas.control.Order.DeleteAddressServlet</servlet-class>
   </servlet>
@@ -227,6 +217,16 @@
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>main.javas.control.Product.SearchServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/SearchServlet</url-pattern>
   </servlet-mapping>
 
   <servlet>

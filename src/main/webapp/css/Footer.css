@@ -1,11 +1,27 @@
-/* Stili per il footer principale */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex: 1; /* Espande il contenuto principale per occupare tutto lo spazio disponibile */
+}
+
 .footer-container {
     background-color: #365492;
     color: #fff;
     padding: 20px 0;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 20px; /* Aggiunge spazio sotto il footer */
+    margin-bottom: 0; /* Rimuove lo spazio sotto il footer */
     margin-top: 10px; /* Aggiunge spazio sopra il footer */
     min-height: 350px; /* Altezza minima per il footer principale */
     display: flex; /* Usiamo flexbox per allineare le sezioni */
@@ -131,7 +147,6 @@
     width: 300px; /* Imposta la larghezza del box */
     height: 225px; /* Imposta l'altezza del box */
 }
-
 
 /* Media query per dispositivi con larghezza fino a 1024px */
 @media (max-width: 1024px) {

@@ -8,13 +8,16 @@
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
-    UserBean user = (UserBean) session.getAttribute("user"); // Assumi che l'oggetto utente sia salvato in sessione come "user"
-    ProductModelDS PMDS = new ProductModelDS();
-    float discounted = 0;
-    try {
-        discounted = PMDS.calculateDiscountedPrice(product.getCode());
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
+    UserBean user = (UserBean) session.getAttribute("user"); // Retrieve the user object from the session
+    float discounted = 0; // Declare the discounted variable
+    if (product != null) {
+        // Assuming ProductModelDS has a method to calculate discounted price
+        ProductModelDS PMDS = new ProductModelDS();
+        try {
+            discounted = PMDS.calculateDiscountedPrice(product.getCode()); // Calculate the discounted price
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 %>
 

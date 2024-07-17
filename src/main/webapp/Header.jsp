@@ -1,5 +1,4 @@
 <%@ page import="main.javas.bean.UserBean" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +19,10 @@
 
     <!-- Aggiunta della barra di ricerca -->
     <div class="search-container">
-        <form action="/search" method="get">
+        <form action="SearchServlet" method="get">
             <input type="search" name="q" placeholder="Cerca...">
-            <!-- Aggiunta del bottone di ricerca -->
             <button type="submit">
-                <img class="src-img" src="Images/searchIcon.png" alt="Image not found">
+                <img class="src-img" src="Images/searchIcon.png" alt="Cerca">
             </button>
         </form>
     </div>
