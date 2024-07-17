@@ -1,39 +1,109 @@
+/* Global Styles */
 body {
-    /* Imposta il colore di sfondo a nero */
-    background-color: #ffffff;
-    /* Imposta il colore del testo a bianco per garantire la leggibilità sullo sfondo nero */
-    color: #000;
-}
-
-#product-view {
-    /* Centra il contenuto orizzontalmente */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Imposta lo stile per l'elemento con ID 'product-view' */
-    width: 10%;
-    padding: 20px;
-    background-color: #f8f8f8;
-}
-
-.product-details {
-    /* Imposta lo stile per gli elementi con la classe 'product-details' all'interno dell'elemento con ID 'product-view' */
-    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
     color: #333;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
-.product-image {
-    /* Imposta lo stile per gli elementi con la classe 'product-image' all'interno dell'elemento con ID 'product-view' */
-    width: 100%;
-    max-width: 100px;
-    max-height: 200px; /* Aggiunto per limitare l'altezza massima dell'immagine a 300px */
-}
-
+/* Table Styles */
 .product-table {
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
 }
 
-.centered-links {
-    text-align: center;
+.product-table th, .product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f7f7f7;
+}
+/* Posizionamento dei link in alto a destra */
+.top-right-links {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+
+
+/* Product Image */
+.product-image {
+    width: 80px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+/* Buttons and Links */
+input[type="submit"], .centered-links a {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover, .centered-links a:hover {
+    background-color: #003d7a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Riduci la dimensione del testo per migliorare la leggibilità */
+    body, input[type="submit"], .centered-links a {
+        font-size: 14px;
+    }
+
+    /* Riduci la dimensione delle immagini dei prodotti */
+    .product-image {
+        width: 80px; /* Riduci la larghezza dell'immagine */
+    }
+
+    /* Riduci il padding e il margine per risparmiare spazio */
+    .product-table th, .product-table td {
+        padding: 4px;
+    }
+
+    .top-right-links {
+        padding: 5px;
+    }
+
+    /* Aumenta lo spazio tra i link quando sono visualizzati come blocco */
+    .centered-links a, .top-right-links a {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Per dispositivi molto piccoli, apporta ulteriori regolazioni */
+    body, input[type="submit"], .centered-links a {
+        font-size: 12px;
+    }
+
+    .product-table {
+        max-width: 100%; /* Permetti alla tabella di espandersi fino al 100% della larghezza dello schermo */
+    }
+
+    .product-image {
+        width: 60px; /* Riduci ulteriormente la larghezza dell'immagine */
+    }
+
+    .top-right-links, .centered-links {
+        text-align: center; /* Centra i link per una migliore visualizzazione */
+    }
+
+    .top-right-links {
+        position: static; /* Rimuovi il posizionamento assoluto per evitare problemi di sovrapposizione */
+    }
 }

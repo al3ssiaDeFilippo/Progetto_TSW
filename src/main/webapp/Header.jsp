@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/Header.css"> <!-- Percorso corretto al file CSS -->
+    <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <title>Header Example</title>
+    <style>
+        /* Ensure the suggestion box is as wide as the search bar */
+        .ui-autocomplete {
+            max-width: 100%;
+            box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+        }
+    </style>
 </head>
 <body>
 <!-- Header -->
@@ -19,8 +27,8 @@
 
     <!-- Aggiunta della barra di ricerca -->
     <div class="search-container">
-        <form action="SearchServlet" method="get">
-            <input type="search" name="q" placeholder="Cerca...">
+        <form id="searchForm" action="SearchServlet" method="get">
+            <input type="search" name="q" id="searchBar" placeholder="Cerca...">
             <button type="submit">
                 <img class="src-img" src="Images/searchIcon.png" alt="Cerca">
             </button>
@@ -67,5 +75,38 @@
     </div>
 </header>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        $("#searchBar").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "SearchServlet?action=autocomplete",
+                    type: "GET",
+                    data: {
+                        term: request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function(event, ui) {
+                $("#searchBar").val(ui.item.label);
+                $("#searchForm").submit(); // Invia il form quando viene selezionato un suggerimento
+                return false;
+            },
+            open: function() {
+                var $input = $(this),
+                    $autocomplete = $input.autocomplete("widget"),
+                    inputWidth = $input.outerWidth();
+
+                $autocomplete.css("width", inputWidth + "px");
+            }
+        });
+    });
+</script>
 </body>
 </html>
