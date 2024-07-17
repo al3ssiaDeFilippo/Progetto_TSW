@@ -1,0 +1,114 @@
+/* Info.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.info-content {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.info-content h2 {
+    color: #4b6cb7;
+    border-bottom: 2px solid #4b6cb7;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+.info-content p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.info-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-content ul li {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.team-section {
+    margin-top: 40px;
+}
+
+.team-member {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.team-img {
+    border-radius: 50%;
+    margin: auto;
+    width: 150px; /* Dimensione ideale */
+    height: 150px; /* Dimensione ideale */
+    object-fit: cover;
+    object-position: center;
+}
+
+.materials-section {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.material {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.material-info {
+    max-width: 250px; /* Larghezza massima per il contenuto informativo */
+    margin: auto; /* Centra il contenuto orizzontalmente */
+    font-size: 14px;
+}
+
+
+.material-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 250px; /* Aggiorna la larghezza massima per adattarsi alle immagini più grandi */
+    margin: auto;
+    text-align: center; /* Centra le immagini orizzontalmente */
+}
+
+
+.mySlides {
+    display: none;
+}
+
+.fade {
+    animation: fade 1.5s ease-in-out;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+.contact-ref {
+    color: #4b6cb7;
+    text-decoration: none;
+}
+
+.contact-ref:hover {
+    text-decoration: underline;
+}
+
+.team-member h3, .material h3 {
+    margin-top: 10px;
+}
