@@ -27,6 +27,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="css/DetailProductPage.css" rel="stylesheet" type="text/css">
     <script src="js/DetailSelection.js"></script>
+    <script src="js/ModalImage.js"></script>
     <title>Dettagli Prodotto</title>
 </head>
 <body>
@@ -38,14 +39,14 @@
     <h2><%= product.getProductName() %></h2>
 </div>
 <div class="product-content">
-    <div class="product-image">
+    <div class="product-image" id="product-image">
         <img id="productImage" data-product-code="<%= product.getCode() %>" src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
     </div>
 
     <div class="product-info">
         <% if(product.getDiscount() > 0) { %>
-        <p><strong>Prezzo: </strong> <strong> -<span class="discount-percentage"><%=product.getDiscount() %>% &nbsp;</strong> <span class="discounted-price"><%= discounted%> €</span></p>
-        <p><span class="original-price"><%= product.getPrice()%> €</span></p>
+        <p><strong>Prezzo: </strong> <strong><span class="discount-percentage">-<%=product.getDiscount() %>% &nbsp;</span></strong> <span class="discounted-price"><%= discounted %> €</span></p>
+        <p><span class="original-price"><%= product.getPrice() %> €</span></p>
         <% } else { %>
         <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
         <% } %>
@@ -76,14 +77,14 @@
                 </select>
             </p>
             <p id="errorMessage" style="color:red; display:none;"></p>
-            <input type="submit" value="Aggiungi al Carrello">
             <% if(product.getQuantity() > 0) { %>
             <% if (user == null || !user.getAdmin()) { %>
+            <input type="submit" value="Aggiungi al Carrello">
             <% } %>
+            <% } else { %>
+            <p class="unavailable-product">Prodotto non disponibile al momento</p>
+            <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
         </form>
-        <% } else { %>
-        <p class="unavailable-product">Prodotto non disponibile al momento</p>
-        <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
     </div>
     <div class="product-details">
         <p><strong>Dettagli: <br></strong> <%= product.getDetails() %></p>
@@ -92,6 +93,15 @@
 <% } else { %>
 <p>Nessun prodotto selezionato</p>
 <% } %>
+
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <img id="img01" class="modal-image">
+    </div>
+    <div id="caption"></div>
+</div>
+
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

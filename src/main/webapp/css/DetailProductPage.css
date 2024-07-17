@@ -136,6 +136,12 @@ h2 {
     color: #fff;
 }
 
+.unavailable-product {
+    color: red !important;
+    font-size: 20px;
+    text-align: left;
+}
+
 /* Stile per il pulsante di invio */
 input[type="submit"] {
     background-color: #28a745;
@@ -146,6 +152,64 @@ input[type="submit"] {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s; /* Transizione */
+}
+
+#product-image {
+    position: relative;
+    overflow: hidden;
+}
+
+#product-image img {
+    transition: transform .5s ease;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 100px; /* Aggiungi un padding-top per spostare il contenuto del modale verso il basso */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    max-width: 50%;
+    margin: auto;
+}
+
+.modal-content img {
+    max-width: 50%;
+    max-height: 50%;
+    display: block;
+    margin: auto;
+    transition: transform 0.5s ease; /* Transizione per lo zoom */
+}
+
+.modal-content img:hover {
+    cursor: zoom-in; /* Cambia il cursore al passaggio del mouse per indicare che l'immagine è cliccabile */
+}
+
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Stile per il pulsante di invio al passaggio del mouse */
