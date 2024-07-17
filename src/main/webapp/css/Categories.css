@@ -64,7 +64,7 @@ h1 {
 
 }
 
-.product img {
+.product-image {
     /* Mantiene la larghezza massima dell'immagine */
     height: 45vh;
     width: auto;
@@ -118,6 +118,46 @@ a:link, a:visited, a:hover, a:active {
     text-decoration: none; /* Rimuove l'effetto sottolineato */
     color: #0056b3; /* Sostituisci con il colore desiderato */
 }
+
+.favorite-form {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    height: 40px;
+    justify-content: flex-end; /* Allinea l'immagine del cuore alla fine del contenitore */
+    align-items: center;
+    margin: 1px;
+}
+
+/* Stile base per l'icona del cuore */
+.favorite-icon {
+    width: 32px; /* Dimensioni dell'icona del cuore */
+    height: auto;
+    cursor: pointer; /* Cambia il cursore al passaggio sopra */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Effetto di zoom e dissolvenza al passaggio del mouse */
+.favorite-icon:hover {
+    transform: scale(1.2); /* Effetto di zoom */
+}
+
+/* Stile quando l'utente ha aggiunto il prodotto ai preferiti */
+.favorite-icon.added {
+    opacity: 0; /* Opacità a 0 per dissolvere l'icona */
+    transition: none; /* Rimuove la transizione quando l'icona scompare */
+    transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
+}
+
+/* Stile quando l'utente ha rimosso il prodotto dai preferiti */
+.favorite-icon.removed {
+    opacity: 0; /* Opacità a 0 per dissolvere l'icona */
+    transition: none; /* Rimuove la transizione quando l'icona scompare */
+    transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
+}
+
+
 
 /* Price styling */
 .product p:last-child {

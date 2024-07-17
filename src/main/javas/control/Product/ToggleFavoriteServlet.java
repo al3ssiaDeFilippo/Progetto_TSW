@@ -14,41 +14,38 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/RemoveFromFavoriteServlet")
-public class RemoveFromFavoriteServlet extends HttpServlet {
-
+@WebServlet("/ToggleFavoriteServlet")
+public class ToggleFavoriteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
 
         if (user == null) {
-            // Se l'utente non è loggato, reindirizza alla pagina di login
+            // Gestire il caso in cui l'utente non è loggato
             response.sendRedirect(request.getContextPath() + "/LogIn.jsp");
             return;
         }
 
         String productCode = request.getParameter("productCode");
-        ProductBean product = null;
-        ProductModelDS productModel = new ProductModelDS();
-        FavoritesModel favoritesModel = new FavoritesModel();
-
+        ProductBean product;
+        ProductModelDS prodMod = new ProductModelDS();
         try {
-            product = productModel.doRetrieveByKey(Integer.parseInt(productCode));
-        } catch (NumberFormatException | SQLException e) {
-            throw new ServletException("Errore durante il recupero del prodotto", e);
-        }
-
-        if (product == null) {
-            throw new ServletException("Prodotto non trovato con il codice: " + productCode);
-        }
-
-        try {
-            favoritesModel.doDelete(product, user);
+            product = prodMod.doRetrieveByKey(Integer.parseInt(productCode));
         } catch (SQLException e) {
-            throw new ServletException("Errore durante la rimozione dai preferiti", e);
+            throw new RuntimeException(e);
         }
 
-        // Reindirizzamento alla pagina dei preferiti dopo la rimozione
-        response.sendRedirect(request.getContextPath() + "/Favorites.jsp");
+        FavoritesModel favMod = new FavoritesModel();
+        try {
+            if (favMod.isFavorite(product, user)) {
+                favMod.doDelete(product, user);
+                response.getWriter().write("removed");
+            } else {
+                favMod.doSave(product, user);
+                response.getWriter().write("added");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

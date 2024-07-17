@@ -1,0 +1,100 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Stili per ciascun elemento preferito */
+.favorite-item {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: row; /* Posiziona i dettagli a destra dell'immagine */
+    align-items: center; /* Centra verticalmente l'elemento */
+    margin: 20px 60px;
+}
+
+.product-image {
+    width: 100px; /* Larghezza fissa per l'immagine */
+    height: auto; /* Altezza automatica proporzionata */
+    margin-right: 10px; /* Margine a destra per separare dall'elemento successivo */
+    flex-shrink: 0; /* Evita che l'immagine si restringa */
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.product-details {
+    flex-grow: 1; /* Espande i dettagli per occupare lo spazio rimanente */
+    text-align: left; /* Allinea il testo a sinistra */
+}
+
+.page-title {
+    text-align: center;
+    margin: 20px;
+}
+
+.product-details h3 {
+    margin-left: 20px;
+    color: #555;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.product-details p {
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+/* Stili per il prezzo */
+.product-details .price-label {
+    font-weight: bold;
+}
+
+.product-details .original-price {
+    font-weight: bold;
+    color: red; /* Colore del prezzo originale */
+    text-decoration: line-through;
+}
+
+.product-details .discounted-price {
+    font-weight: bold;
+    color: green; /* Colore del prezzo scontato */
+}
+
+.remove-favorite-form {
+    align-items: center;
+    margin-left: 20px;
+}
+
+.remove-favorite-form button {
+    padding: 5px 10px;
+    background-color: #ff6347;
+    color: white;
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-favorite-form button:hover {
+    background-color: #e74c3c;
+}
+
+/* Rimuove il sottolineato dai link */
+a {
+    text-decoration: none; /* Rimuove il sottolineato */
+    color: #333; /* Cambia il colore del testo del link, se necessario */
+}

@@ -23,17 +23,25 @@ public class AddToFavoriteServlet extends HttpServlet {
 
         String productCode = request.getParameter("productCode");
 
-        ProductBean product = new ProductBean();
-        product.setCode(Integer.parseInt(productCode));
-
-        FavoritesModel favoritesModel = new FavoritesModel();
-
-        try {
-            favoritesModel.doSave(product, user);
-        } catch (SQLException e) {
-            throw new ServletException(e);
+        if (user == null) {
+            // Gestire il caso in cui l'utente non è loggato
+            response.sendRedirect(request.getContextPath() + "/LogIn.jsp");
+            return;
         }
 
-        response.sendRedirect("ProductView.jsp");
+        ProductBean product;
+        ProductModelDS prodMod = new ProductModelDS();
+        try {
+            product = prodMod.doRetrieveByKey(Integer.parseInt(productCode));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        FavoritesModel favMod = new FavoritesModel();
+        try {
+            favMod.doSave(product, user);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
