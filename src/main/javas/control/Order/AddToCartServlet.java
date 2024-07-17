@@ -39,7 +39,9 @@ public class AddToCartServlet extends HttpServlet {
                     cartItem.setProductCode(item.getCode());
                     cartItem.setQuantity(1);
                     cartItem.setFrame(request.getParameter("frame"));
-                    cartItem.setFrameColor(request.getParameter("frameColor"));
+                    // Utilizza il valore di frameColor direttamente nell'istruzione set
+                    String frameColor = request.getParameter("frameColor");
+                    cartItem.setFrameColor(frameColor == null || frameColor.trim().isEmpty() ? "no color" : frameColor);
                     cartItem.setSize(request.getParameter("size"));
                     cartItem.setPrice(item.getPrice());
                     cart.aggiungi(cartItem);

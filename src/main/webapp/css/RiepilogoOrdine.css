@@ -1,0 +1,140 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.order-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: #fff; /* Ensure the background color is white */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.order-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff; /* Ensure the background color is white */
+}
+
+.order-table th, .order-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #fff; /* Ensure the background color is white */
+}
+
+.order-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+img {
+    max-width: 100px;
+    border-radius: 4px;
+}
+
+p {
+    text-align: left;
+    color: #000;
+    margin: 10px 0;
+}
+
+.discount-price {
+    color: red;
+    font-weight: bold;
+}
+
+.card-detail, .address-detail {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    text-align: left;
+}
+
+.errorMessage {
+    color: red;
+    text-align: center;
+    margin: 20px 0;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.shopping-link-container {
+    text-align: center;
+    background-color: #007bff; /* Blue background */
+    margin: 20px 0; /* Add some space around the container */
+}
+
+.continue-shopping {
+    display: block; /* Makes the link a block element */
+    width: 100%; /* Ensures the link takes up the full width */
+    color: #ffffff; /* White text */
+    padding: 10px 0; /* Add some padding around the text */
+    text-decoration: none; /* Remove underline from link */
+    background-color: #007bff; /* Blue background */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.continue-shopping:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container, .order-table, form {
+        width: 100%;
+    }
+
+    .order-table th, .order-table td {
+        padding: 8px;
+    }
+}

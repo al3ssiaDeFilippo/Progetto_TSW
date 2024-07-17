@@ -151,6 +151,9 @@
 
 .sub-header-container .nav-bar {
       display: flex;
+      /*modifiche di biagio*/
+      flex-direction: row-reverse;
+      /**/
       justify-content: space-around;
       width: 100%;
       max-width: 1000px;

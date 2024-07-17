@@ -27,6 +27,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/OrderHistory.css">
     <title>Ordini</title>
 </head>
 <body>
@@ -34,27 +35,29 @@
 <h2>Ordini</h2>
 <!-- Controlla se ci sono ordini nel database -->
 <% if (!orders.isEmpty()) { %>
-<table>
-    <tr>
-        <th>ID Ordine</th>
-        <th>ID Utente</th>
-        <th>ID Spedizione</th>
-        <th>ID Carta di Credito</th>
-        <th>Data Ordine</th>
-        <th>Prezzo Totale</th>
+<div>
+    <table class="spazio">
+        <tr>
+            <th>ID Ordine</th>
+            <th>ID Utente</th>
+            <th>ID Spedizione</th>
+            <th>ID Carta di Credito</th>
+            <th>Data Ordine</th>
+            <th>Prezzo Totale</th>
 
-    </tr>
-    <% for (OrderBean order : orders) { %>
-    <tr>
-        <td><%= order.getIdOrder() %></td>
-        <td><%= order.getIdUser() %></td>
-        <td><%= order.getIdShipping() %></td>
-        <td><%= order.getIdCreditCard() %></td>
-        <td><%= order.getOrderDate()%></td>
-        <td><%= order.getTotalPrice()%></td>
-    </tr>
-    <% } %>
-</table>
+        </tr>
+        <% for (OrderBean order : orders) { %>
+        <tr>
+            <td><%= order.getIdOrder() %></td>
+            <td><%= order.getIdUser() %></td>
+            <td><%= order.getIdShipping() %></td>
+            <td><%= order.getIdCreditCard() %></td>
+            <td><%= order.getOrderDate()%></td>
+            <td><%= order.getTotalPrice()%></td>
+        </tr>
+        <% } %>
+    </table>
+</div>
 <% } else { %>
 <p>Non ci sono ordini.</p>
 <% } %>

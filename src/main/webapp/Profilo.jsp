@@ -24,77 +24,66 @@
 </head>
 <body>
 <%@ include file="Header.jsp" %>
+<div class="profile-wrapper">
+    <div class="profile-container">
+        <h2>Profilo Utente</h2>
 
-<div class="profile-container">
-    <h1>Profilo Utente</h1>
-
-    <div class="profile-table">
-
-        <div class="profile-row">
-            <div class="profile-cell">
-                <p class="profile-label">Nome</p>
-                <p class="profile-value"><%= user.getName() %></p>
+            <div class="profile-row">
+                <div class="profile-cell">
+                    <p class="profile-label">Nome</p>
+                    <p class="profile-value"><%= user.getName() %></p>
+                </div>
+                <div class="profile-cell">
+                    <p class="profile-label">Cognome</p>
+                    <p class="profile-value"><%= user.getSurname() %></p>
+                </div>
+                <div class="profile-cell">
+                    <p class="profile-label">Username</p>
+                    <p class="profile-value"><%= user.getUsername() %></p>
+                </div>
+                <div class="profile-cell">
+                    <p class="profile-label">Data di Nascita</p>
+                    <p class="profile-value"><%= user.getBirthDate() %></p>
+                </div>
+                <div class="profile-cell">
+                    <p class="profile-label">Email</p>
+                    <p class="profile-value"><%= user.getEmail() %></p>
+                </div>
+                <div class="profile-cell">
+                    <p class="profile-label">Password</p>
+                    <p class="profile-value"><%= utils.zippedPassword(user.getPassword())%></p>
+                </div>
+                <div class="profile-cell">
+                    <p class="profile-label">Numero di Telefono</p>
+                    <p class="profile-value"><%= user.getTelNumber() %></p>
+                </div>
             </div>
-            <div class="profile-cell">
-                <p class="profile-label">Cognome</p>
-                <p class="profile-value"><%= user.getSurname() %></p>
-            </div>
-            <div class="profile-cell">
-                <p class="profile-label">Username</p>
-                <p class="profile-value"><%= user.getUsername() %></p>
-            </div>
-            <div class="profile-cell">
-                <p class="profile-label">Data di Nascita</p>
-                <p class="profile-value"><%= user.getBirthDate() %></p>
-            </div>
-            <div class="profile-cell">
-                <p class="profile-label">Email</p>
-                <p class="profile-value"><%= user.getEmail() %></p>
-            </div>
-            <div class="profile-cell">
-                <p class="profile-label">Password</p>
-                <p class="profile-value"><%= utils.zippedPassword(user.getPassword())%></p>
-            </div>
-            <div class="profile-cell">
-                <p class="profile-label">Numero di Telefono</p>
-                <p class="profile-value"><%= user.getTelNumber() %></p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="click-container">
 
         <div>
-            <form action="ModificaDati.jsp" method="post">
-                <button class="change-btn" type="submit">Modifica Dati</button>
-            </form>
+            <div>
+                <form action="ModificaDati.jsp" method="post">
+                    <button class="change-btn" type="submit">Modifica Dati</button>
+                </form>
+            </div>
+            <div>
+                <form action="ModificaPassword.jsp" method="post">
+                    <button class="change-btn" type="submit">Modifica password</button>
+                </form>
+            </div>
         </div>
-
-        <div class="pwd-btn">
-            <a href="ModificaPassword.jsp">Modifica Password</a>
-        </div>
-
-        <div class="click-containers-secondary">
-            <form action="CarteUtente.jsp" method="post">
-                <button class="cards-btn" type="submit">Le mie carte</button>
-            </form>
-
-            <form action="OrderHistory.jsp" method="post">
-                <button class="order-btn" type="submit">I miei ordini</button>
-            </form>
-
-            <form action="IndirizziUtente.jsp" method="post">
-                <button class="shipping-btn" type="submit">Indirizzi</button>
-            </form>
-
-        </div>
-
     </div>
-
-
+    <div class="click-containers-secondary">
+        <form action="CarteUtente.jsp" method="post">
+            <button class="cards-btn" type="submit">Le mie carte</button>
+        </form>
+        <form action="OrderHistory.jsp" method="post">
+            <button class="order-btn" type="submit">I miei ordini</button>
+        </form>
+        <form action="IndirizziUtente.jsp" method="post">
+            <button class="shipping-btn" type="submit">Indirizzi</button>
+        </form>
+    </div>
 </div>
-
 
 <%@ include file="Footer.jsp" %>
 </body>

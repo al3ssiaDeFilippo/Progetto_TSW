@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Indirizzo di spedizione</title>
+    <link rel="stylesheet" type="text/css" href="css/CheckoutShipping.css">
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -23,7 +24,7 @@
         for (ShippingBean address : Addresses) {
 %>
 
-<div>
+<div class="addresses-detail">
     <h2>Indirizzo di Spedizione</h2>
     <p>Nome del Ricevente: <%= address.getRecipientName() %></p>
     <p>Indirizzo: <%= address.getAddress() %></p>
@@ -31,45 +32,50 @@
     <p>CAP: <%= address.getCap() %></p>
     <form action="<%= request.getContextPath() %>/SelectAddressServlet" method="post">
         <input type="hidden" name="selectedAddress" value="<%= address.getIdShipping() %>">
-        <input type="submit" value="Seleziona indirizzo">
+        <div class="btn-add">
+            <input type="submit" value="Seleziona indirizzo">
+        </div>
     </form>
 </div>
 <% } %>
 <% } %>
 
-<h2>Inserimento nuovo indirizzo</h2>
-<form action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
-    <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
-    <input type="hidden" id="idUser" name="idUser">
-    <div>
-        <label for="recipientName">Nome del Ricevente:</label>
-        <input type="text" id="recipientName" name="recipientName" required>
-    </div>
-    <div>
-        <label for="address">Indirizzo:</label>
-        <input type="text" id="address" name="address" required>
-    </div>
-    <div>
-        <label for="city">Città:</label>
-        <input type="text" id="city" name="city" required>
-    </div>
-    <div>
-        <label for="cap">CAP:</label>
-        <input type="text" id="cap" name="cap" required>
-    </div>
-    <div>
-        <input type="checkbox" id="saveAddress" name="saveAddress" value="true">
-        <label for="saveAddress">Salva indirizzo (autorizzo PosterWorld a salvare i miei dati)</label>
-    </div>
-    <div>
-        <input type="hidden" name="action" value="add">
+<div class="addresses-detail">
+    <h2>Inserimento nuovo indirizzo</h2>
+    <form action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
         <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
-        <input type="submit" value="Prosegui al pagamento">
-    </div>
+        <input type="hidden" id="idUser" name="idUser">
+        <div>
+            <label for="recipientName">Nome del Ricevente:</label>
+            <input type="text" id="recipientName" name="recipientName" required>
+        </div>
+        <div>
+            <label for="address">Indirizzo:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div>
+            <label for="city">Città:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+        <div>
+            <label for="cap">CAP:</label>
+            <input type="text" id="cap" name="cap" required>
+        </div>
+        <div>
+            <input type="checkbox" id="saveAddress" name="saveAddress" value="true">
+            <label for="saveAddress">Salva indirizzo (autorizzo PosterWorld a salvare i miei dati)</label>
+        </div>
+        <div class="btn-add">
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
+            <input type="submit" value="Prosegui al pagamento">
+        </div>
 
-</form>
-
-<a href="ProductView.jsp">Continua lo shopping</a>
+    </form>
+</div>
+<div class="addresses-cata">
+    <a href="ProductView.jsp">Continua lo shopping</a>
+</div>
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

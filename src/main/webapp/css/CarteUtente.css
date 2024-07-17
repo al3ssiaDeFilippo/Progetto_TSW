@@ -1,0 +1,153 @@
+/* Stile di base per il corpo della pagina */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #000000;
+}
+
+/* Stile per il titolo */
+h2 {
+    color: #000000;
+    margin: 10px 0;
+    text-align: center; /* Centra il testo del titolo */
+}
+
+/* Stile per i dettagli delle carte */
+.card-detail {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Stile per i paragrafi */
+.card-detail p {
+    margin: 10px 0;
+    color: #000000;
+}
+
+/* Stile per i campi input */
+.card-detail input[type="text"],
+.card-detail input[type="month"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: calc(100% - 22px); /* Adjust width to match padding */
+}
+
+/* Stile per i campi input al passaggio del mouse */
+.card-detail input[type="text"]:hover,
+.card-detail input[type="month"]:hover {
+    border-color: #aaa;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile per il pulsante di invio */
+.btn-add input[type="submit"] {
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Stile per il pulsante di invio al passaggio del mouse */
+.btn-add input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Stile per il pulsante di eliminazione */
+.btn-delete input[type="submit"] {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Stile per il pulsante di eliminazione al passaggio del mouse */
+.btn-delete input[type="submit"]:hover {
+    background-color: #cc0000;
+}
+
+/* Stile per il link di ritorno al catalogo */
+.card-cata {
+    background-color: #007bff; /* Blu */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s; /* Transizione per l'hover */
+}
+
+.card-cata a {
+    color: #ffffff; /* Bianco */
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 20px; /* Aumenta la dimensione del testo per renderlo più visibile */
+}
+
+.card-cata:hover {
+    background-color: #0056b3; /* Blu più scuro */
+}
+
+/* Media query per tablet */
+@media (min-width: 768px) {
+    .card-detail {
+        margin: 20px auto;
+        max-width: 700px;
+    }
+}
+
+/* Media query per desktop */
+@media (min-width: 1024px) {
+    .card-detail {
+        margin: 20px auto;
+        max-width: 900px;
+    }
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 616px) {
+    body {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .card-detail {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .card-detail input[type="text"],
+    .card-detail input[type="month"] {
+        font-size: 14px;
+        padding: 8px;
+        width: calc(100% - 18px); /* Adjust width to match padding */
+    }
+
+    .card-detail input[type="submit"],
+    .btn-add,
+    .btn-delete {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

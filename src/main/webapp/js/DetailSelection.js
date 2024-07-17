@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     frameSelect.addEventListener("change", function() {
         updateImage();
         if (frameSelect.value === "no frame") {
+            frameColorSelect.value = "no color"; // Reset frame color select to "no color"
             frameColorSelectContainer.style.display = 'none';
         }
     });

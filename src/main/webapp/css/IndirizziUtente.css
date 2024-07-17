@@ -1,0 +1,175 @@
+/* Stile di base per il corpo della pagina */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #000000;
+}
+
+/* Stile per il titolo */
+h2 {
+    color: #000000;
+    margin: 10px 0;
+    text-align: center; /* Centra il testo del titolo */
+}
+
+/* Stile per i dettagli degli indirizzi */
+.addresses-detail,
+.address-detail {
+    background-color: #ffffff;
+    border: 0 solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Updated shadow */
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Stile per i paragrafi */
+.addresses-detail p,
+.address-detail p {
+    margin: 10px 0;
+    color: #000000;
+}
+
+/* Stile per i campi input */
+.addresses-detail input[type="text"],
+.addresses-detail input[type="month"],
+.address-detail input[type="text"],
+.address-detail input[type="month"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: calc(100% - 22px); /* Adjust width to match padding */
+}
+
+/* Stile per i campi input al passaggio del mouse */
+.address-detail input[type="text"]:hover,
+.address-detail input[type="month"]:hover {
+    border-color: #aaa;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile per il pulsante di invio */
+.btn-add input[type="submit"] {
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Stile per il pulsante di invio al passaggio del mouse */
+.btn-add input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Stile per il pulsante di invio */
+.btn-delete input[type="submit"] {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Stile per il pulsante di invio al passaggio del mouse */
+.btn-delete input[type="submit"]:hover {
+    background-color: #ff0000;
+}
+
+.addresses-cata {
+    background-color: #007bff; /* Blu */
+    padding: 1px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s; /* Transizione per l'hover */
+}
+
+.addresses-cata a {
+    color: #ffffff; /* Bianco */
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 20px; /* Aumenta la dimensione del testo per renderlo più visibile */
+}
+
+.addresses-cata:hover {
+    background-color: #0056b3; /* Blu più scuro */
+}
+
+/* Stile per il link di ritorno al catalogo */
+div > a {
+    color: #0066cc;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* Stile per il link di ritorno al catalogo al passaggio del mouse */
+div > a:hover {
+    color: #004499;
+}
+
+/* Media query per tablet */
+@media (min-width: 768px) {
+    .addresses-detail,
+    .address-detail {
+        margin: 20px auto;
+        max-width: 700px;
+    }
+}
+
+/* Media query per desktop */
+@media (min-width: 1024px) {
+    .addresses-detail,
+    .address-detail {
+        margin: 20px auto;
+        max-width: 900px;
+    }
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 616px) {
+    body {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .addresses-detail,
+    .address-detail {
+        margin: 10px;
+        padding: 15px;
+    }
+
+
+    .address-detail input[type="text"],
+    .address-detail input[type="month"] {
+        font-size: 14px;
+        padding: 8px;
+        width: calc(100% - 18px); /* Adjust width to match padding */
+    }
+
+    .address-detail input[type="submit"],
+    .btn-submit,
+    .btn-delete {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

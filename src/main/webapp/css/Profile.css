@@ -1,32 +1,35 @@
-/* Reset dei margini e padding */
+/* Stile di base per il corpo della pagina */
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
     padding: 0;
     background-color: #f5f5f5;
+    color: #000000;
+}
+
+/* Stile per il titolo */
+h2 {
+    color: #000000;
+    margin: 10px 0;
+    text-align: center; /* Centra il testo del titolo */
 }
 
 /* Contenitore principale del profilo */
 .profile-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-/* Titolo principale */
-h1 {
-    text-align: center;
-    color: #333333;
+    border: 0 solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Updated shadow */
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    text-align: left;
 }
 
 /* Griglia per le informazioni del profilo */
 .profile-table {
-    display: grid;
-    grid-template-columns: 1fr; /* Una sola colonna */
-    row-gap: 20px; /* Spazio tra le righe */
+    margin: 10px 0;
+    color: #000000;
 }
 
 /* Singola riga delle informazioni del profilo */
@@ -38,26 +41,24 @@ h1 {
 /* Singola cella di informazione */
 .profile-cell {
     padding: 15px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 5px;
 }
 
 /* Etichetta della cella */
 .profile-label {
     font-weight: bold;
-    color: #555555;
+    color: #000000;
     margin-bottom: 8px;
 }
 
 /* Valore della cella */
 .profile-value {
-    color: #333333;
+    color: #000000;
     margin: 0;
 }
 
 /* Stilizzo i pulsanti */
-
 button {
     display: block;
     width: 100%;
@@ -72,13 +73,27 @@ button {
     border-radius: 5px;
 }
 
-.click-container {
+.profile-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Cambia la direzione per impilare verticalmente */
+    align-items: center; /* Centra i contenuti */
     padding: 15px;
 }
 
+.click-containers-secondary {
+    width: 100%; /* Assicura che occupi tutta la larghezza */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra i pulsanti orizzontalmente */
+    padding: 15px;
+    margin-top: 20px; /* Aggiungi spazio sopra i pulsanti */
+}
+
+.click-containers-secondary button {
+    font-size: 25px; /* Dimensione del font dei pulsanti */
+    margin: 5px; /* Aggiunge spazio tra i pulsanti */
+}
+/* Ensure button:hover remains unchanged */
 button:hover {
     background-color: #0056b3;
 }

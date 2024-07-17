@@ -10,34 +10,33 @@
     CreditCardModel creditCardModel = new CreditCardModel();
     Collection<CreditCardBean> cards = creditCardModel.doRetrieveAll(user.getIdUser());
 %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Carte di Credito</title>
+    <link rel="stylesheet" type="text/css" href="css/CarteUtente.css">
 </head>
 <body>
 <%@ include file="Header.jsp" %>
-    <% if (!cards.isEmpty()) { %>
-        <% for (CreditCardBean card : cards) { %>
-        <div>
-            <h2>Carta di Credito</h2>
-            <p>Numero Carta: <%= card.getIdCard() %></p>
-            <p>Nome Titolare: <%= card.getOwnerCard() %></p>
-            <p>Data di Scadenza: <%= card.getExpirationDate() %></p>
-            <form action="<%= request.getContextPath() %>/DeleteCardServlet" method="post">
-                <input type="hidden" name="cardId" value="<%= card.getIdCard() %>">
-                <input type="submit" value="Elimina">
-            </form>
+<% if (!cards.isEmpty()) { %>
+<% for (CreditCardBean card : cards) { %>
+<div class="card-detail">
+    <h2>Carta di Credito</h2>
+    <p>Numero Carta: <%= card.getIdCard() %></p>
+    <p>Nome Titolare: <%= card.getOwnerCard() %></p>
+    <p>Data di Scadenza: <%= card.getExpirationDate() %></p>
+    <form action="<%= request.getContextPath() %>/DeleteCardServlet" method="post">
+        <input type="hidden" name="cardId" value="<%= card.getIdCard() %>">
+        <div class="btn-delete">
+            <input type="submit" value="Elimina">
         </div>
-        <% } %>
-    <% } %>
-    <h2>Inserisci una nuova Carta di Credito</h2>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <html>
-    <head>
-        <title>Inserimento Carta</title>
-    </head>
-    <body>
+    </form>
+</div>
+<% } %>
+<% } %>
+<div class="card-detail">
     <form action="<%= request.getContextPath() %>/AddCardServlet" method="post">
+        <h2>Inserisci una nuova Carta di Credito</h2>
         <div>
             <label for="cardNumber">Numero Carta:</label>
             <input type="text" id="cardNumber" name="cardNumber" required>
@@ -56,19 +55,17 @@
         </div>
         <div>
             <input type="hidden" id="saveCard" name="saveCard" value="true">
-        </div>
-        <div>
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="nextPage" value="CarteUtente.jsp">
-            <input type="submit" value="Salva carta">
+            <div class="btn-add">
+                <input type="submit" value="Salva carta">
+            </div>
         </div>
     </form>
-
-    <div>
-        <a href="ProductView.jsp">Torna al catalogo</a>
-    </div>
-    </body>
-    </html>
+</div>
+<div class="card-cata">
+    <a href="ProductView.jsp">Torna al catalogo</a>
+</div>
 <%@ include file="Footer.jsp" %>
 </body>
 </html>
