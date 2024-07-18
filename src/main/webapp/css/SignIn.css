@@ -1,7 +1,10 @@
 /* Apply global font and color scheme */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
     color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 /* Enhance link styling for consistency */
@@ -18,54 +21,91 @@ a:hover {
 
 h2 {
     text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
 }
 
 .registration-form {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Stilizzazione dei messaggi di errore */
 .error {
-    display: block;
-    margin-top: 5px;
-    margin-bottom: 15px;
     color: red;
     font-size: 14px;
 }
 
-/* Stilizzazione dei campi di input */
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="email"],
-input[type="tel"] {
-    width: 100%; /* Assicura che tutti gli input si estendano alla stessa larghezza */
-    max-width: 400px; /* Imposta una larghezza massima per tutti gli input */
-    height: 40px; /* Uniforma l'altezza degli input */
-    padding: 8px; /* Applica lo stesso padding interno per tutti gli input */
-    margin-bottom: 20px; /* Mantiene uno spazio uniforme tra gli input */
-    border: 1px solid #ccc; /* Applica lo stesso stile di bordo per coerenza */
-    border-radius: 4px; /* Arrotonda i bordi per un aspetto uniforme */
-    box-sizing: border-box; /* Include padding e bordo nel calcolo delle dimensioni dell'elemento */
-    display: block; /* Assicura che ogni input occupi la propria riga */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-flow: column;
 }
 
-/* Stilizzazione del pulsante di registrazione */
-input[type="submit"] {
+.form-wrapper {
+    position: relative;
+    margin: 20px 0;
     width: 100%;
-    padding: 10px;
+}
+
+#confirmPasswordGroup .form-wrapper {
+    margin: 20px 0; /* Stesso margine per il campo Conferma Password */
+}
+
+.form-wrapper input {
+    padding: 12px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #acacac;
+    background-color: transparent;
+    color: #333;
+    width: 100%;
+    transition: 0.15s all ease;
+}
+
+.form-wrapper input::placeholder {
+    color: transparent;
+}
+
+.form-wrapper .form-label {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    font-size: 16px;
+    color: #acacac;
+    pointer-events: none;
+    transition: 0.15s all ease;
+}
+
+.form-wrapper input:focus + .form-label,
+.form-wrapper input:not(:placeholder-shown) + .form-label {
+    transform: translate(0, -28px);
+    background-color: white;
+    padding: 0 5px;
+    color: #007bff;
+    font-size: 14px;
+}
+
+input[type="submit"] {
     border: none;
-    border-radius: 4px;
     background-color: #0056b3;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
     transition: background-color 0.3s;
 }
 
@@ -73,69 +113,48 @@ input[type="submit"]:hover {
     background-color: #004494;
 }
 
+.center-align {
+    padding: 10px;
+    text-align: center;
+}
+
 /* Media query per schermi medi (tablet) */
 @media (min-width: 768px) {
     .registration-form {
-        padding: 30px;
+        padding: 40px;
         margin: 40px auto;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    input[type="date"],
-    input[type="email"],
-    input[type="tel"] {
-        padding: 12px;
-        margin-bottom: 5px;
-    }
-
-    input[type="submit"] {
-        padding: 12px;
-        font-size: 18px;
     }
 }
 
 .strength-bar-container {
-    position: relative;
-    display: inline-block;
-    margin-left: 10px;
-    top: -10px; /* Sposta la barra di forza verso l'alto di 7px */
-    left: 60%;
-    width: 50px; /* Larghezza del rettangolo contenitore */
-    height: 5px; /* Altezza del rettangolo */
-    background-color: #ccc; /* Colore di sfondo del rettangolo */
-    border-radius: 4px; /* Arrotondamento bordi */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
 }
 
 .strength-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
     height: 100%;
-    background-color: #f44336; /* Colore rosso per il segmento "debole" */
-    border-radius: 4px; /* Arrotondamento bordi */
-    transition: width 0.3s ease-in-out; /* Transizione animata */
+    background-color: #f44336;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
 }
 
+
 .strength-bar.normal {
-    background-color: #ffeb3b; /* Colore giallo per il segmento "normale" */
+    background-color: #ffeb3b;
 }
 
 .strength-bar.strong {
-    background-color: #4caf50; /* Colore verde per il segmento "forte" */
+    background-color: #4caf50;
 }
-
 
 /* Media query per schermi grandi (desktop) */
 @media (min-width: 1024px) {
     .registration-form {
-        max-width: 600px; /* Limita la larghezza massima per desktop */
+        max-width: 600px;
     }
 }
-
-/* Nascondi il campo Conferma Password di default */
-#confirmPasswordGroup {
-    display: none;
-}
-
-
