@@ -26,7 +26,7 @@
 
 <%@ include file="Header.jsp" %> <!-- Include the header -->
 
-<h1>Prodotti in <%= request.getParameter("category") %></h1>
+<h2>Prodotti in <%= request.getParameter("category") %></h2>
 <div class="products-container">
     <%
         String category = request.getParameter("category");

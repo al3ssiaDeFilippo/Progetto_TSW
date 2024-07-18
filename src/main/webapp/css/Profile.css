@@ -80,19 +80,6 @@ button {
     padding: 15px;
 }
 
-.click-containers-secondary {
-    width: 100%; /* Assicura che occupi tutta la larghezza */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra i pulsanti orizzontalmente */
-    padding: 15px;
-    margin-top: 20px; /* Aggiungi spazio sopra i pulsanti */
-}
-
-.click-containers-secondary button {
-    font-size: 25px; /* Dimensione del font dei pulsanti */
-    margin: 5px; /* Aggiunge spazio tra i pulsanti */
-}
 /* Ensure button:hover remains unchanged */
 button:hover {
     background-color: #0056b3;

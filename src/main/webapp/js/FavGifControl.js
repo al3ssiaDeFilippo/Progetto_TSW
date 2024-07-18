@@ -24,11 +24,11 @@ function toggleFavorite(form, productCode, userId) {
             // Change the image to the correct static image based on the action
             var responseText = xhr.responseText.trim();
             if (responseText === "added") {
-                img.src = "Images/full-heart.png";
+                img.src = contextPath + "/Images/full-heart.png";
                 form.setAttribute('data-action', 'remove');
                 form.action = actionUrl.replace("AddToFavoriteServlet", "RemoveFromFavoriteServlet");
             } else if (responseText === "removed") {
-                img.src = "Images/empty-heart.png";
+                img.src = contextPath + "/Images/empty-heart.png";
                 form.setAttribute('data-action', 'add');
                 form.action = actionUrl.replace("RemoveFromFavoriteServlet", "AddToFavoriteServlet");
             }

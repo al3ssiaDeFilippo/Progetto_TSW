@@ -58,7 +58,6 @@
                     <p class="profile-value"><%= user.getTelNumber() %></p>
                 </div>
             </div>
-
         <div>
             <div>
                 <form action="ModificaDati.jsp" method="post">
@@ -71,17 +70,6 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="click-containers-secondary">
-        <form action="CarteUtente.jsp" method="post">
-            <button class="cards-btn" type="submit">Le mie carte</button>
-        </form>
-        <form action="OrderHistory.jsp" method="post">
-            <button class="order-btn" type="submit">I miei ordini</button>
-        </form>
-        <form action="IndirizziUtente.jsp" method="post">
-            <button class="shipping-btn" type="submit">Indirizzi</button>
-        </form>
     </div>
 </div>
 

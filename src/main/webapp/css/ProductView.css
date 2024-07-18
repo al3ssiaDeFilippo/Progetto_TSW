@@ -3,107 +3,167 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
     color: #333;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    position: relative;
 }
 
-/* Table Styles */
-.product-table {
-    max-width: 80%;
-    border-collapse: collapse;
-    margin: 20px auto;
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto; /* Centra il contenuto principale */
+    margin-top: 30px;
 }
 
-.product-table th, .product-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+h2 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.product-table th {
-    background-color: #f7f7f7;
+/* Product Container */
+.products-container {
+    display: grid;
+    grid-template-columns: 50vh 50vh 50vh;
+    flex-wrap: wrap;
+    column-count: 3;
+    justify-content: center; /* Centra i prodotti nel contenitore */
+    row-gap: 10vh; /*Spazio tra le righe*/
+    column-gap: 20px; /*Spazio tra le colonne*/
 }
-/* Posizionamento dei link in alto a destra */
-.top-right-links {
+
+/* Badge for discount */
+.discount-badge {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px; /* Sposta il badge in alto */
+    left: 10px; /* Sposta il badge a sinistra */
+    background-color: red; /* Colore di sfondo del badge */
+    color: white; /* Colore del testo del badge */
+    padding: 5px 10px; /* Padding interno del badge */
+    border-radius: 5px; /* Arrotonda gli angoli del badge */
+    font-size: 14px; /* Dimensione del testo del badge */
+    font-weight: bold; /* Grassetto per il testo del badge */
+    z-index: 1; /* Assicura che il badge si sovrapponga all'immagine */
+}
+
+.product {
+    position: relative;
+    align-items: center;
+    margin: auto;
+    padding-top: 30px;
+    place-items: center;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Aggiungi l'ombra nera alle immagini */
+}
+
+.product-image {
+    height: 45vh;
+    width: auto;
+    display: block;
+    margin: auto; /* Centra l'immagine all'interno del contenitore */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiungi l'ombra nera alle immagini */
+    transition: box-shadow 0.3s ease;
+}
+
+.product a:hover img {
+    box-shadow: 0 4px 8px rgb(158, 158, 158); /* Applica l'ombra solo all'immagine all'interno dell'ancora */
+}
+
+.price-p {
     padding: 10px;
 }
 
+.product h2 {
+    height: 70px;
+    margin: 0;
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    text-align: center;
+}
 
+.product p {
+    padding: 0 15px 15px;
+    font-size: 22px;
+    text-align: center;
+}
 
-/* Product Image */
-.product-image {
-    width: 80px;
+.original-price {
+    color: #ff0000; /* Cambia il colore del testo */
+    font-size: 18px; /* Riduci la dimensione del testo se necessario */
+    text-decoration: line-through; /* Assicurati che il prezzo originale sia barrato */
+}
+
+.discounted-price {
+    color: #008000; /* Imposta il colore del testo per il prezzo scontato a verde */
+}
+
+.price-label {
+    color: #490808; /* Cambia il colore del testo a blu */
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none; /* Rimuove l'effetto sottolineato */
+    color: #0056b3; /* Sostituisci con il colore desiderato */
+}
+
+.favorite-form {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    height: 40px;
+    justify-content: flex-end; /* Allinea l'immagine del cuore alla fine del contenitore */
+    align-items: center;
+    margin: 1px;
+}
+
+/* Stile base per l'icona del cuore */
+.favorite-icon {
+    width: 32px; /* Dimensioni dell'icona del cuore */
     height: auto;
-    display: block;
-    margin: auto;
+    cursor: pointer; /* Cambia il cursore al passaggio sopra */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-/* Buttons and Links */
-input[type="submit"], .centered-links a {
-    background-color: #0056b3;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* Effetto di zoom e dissolvenza al passaggio del mouse */
+.favorite-icon:hover {
+    transform: scale(1.2); /* Effetto di zoom */
 }
 
-input[type="submit"]:hover, .centered-links a:hover {
-    background-color: #003d7a;
+/* Stile quando l'utente ha aggiunto il prodotto ai preferiti */
+.favorite-icon.added {
+    opacity: 0; /* Opacità a 0 per dissolvere l'icona */
+    transition: none; /* Rimuove la transizione quando l'icona scompare */
+    transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
+}
+
+/* Stile quando l'utente ha rimosso il prodotto dai preferiti */
+.favorite-icon.removed {
+    opacity: 0; /* Opacità a 0 per dissolvere l'icona */
+    transition: none; /* Rimuove la transizione quando l'icona scompare */
+    transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
+}
+
+/* Price styling */
+.product p:last-child {
+    color: #050505;
+    font-weight: bold;
+    padding: 0 15px 0; /* Imposta il padding solo per i lati sinistro e destro */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* Riduci la dimensione del testo per migliorare la leggibilità */
-    body, input[type="submit"], .centered-links a {
-        font-size: 14px;
+    .products-container {
+        grid-template-columns: 1fr; /* One column layout on smaller screens */
     }
-
-    /* Riduci la dimensione delle immagini dei prodotti */
-    .product-image {
-        width: 80px; /* Riduci la larghezza dell'immagine */
-    }
-
-    /* Riduci il padding e il margine per risparmiare spazio */
-    .product-table th, .product-table td {
-        padding: 4px;
-    }
-
-    .top-right-links {
-        padding: 5px;
-    }
-
-    /* Aumenta lo spazio tra i link quando sono visualizzati come blocco */
-    .centered-links a, .top-right-links a {
-        margin-bottom: 5px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Per dispositivi molto piccoli, apporta ulteriori regolazioni */
-    body, input[type="submit"], .centered-links a {
-        font-size: 12px;
-    }
-
-    .product-table {
-        max-width: 100%; /* Permetti alla tabella di espandersi fino al 100% della larghezza dello schermo */
-    }
-
-    .product-image {
-        width: 60px; /* Riduci ulteriormente la larghezza dell'immagine */
-    }
-
-    .top-right-links, .centered-links {
-        text-align: center; /* Centra i link per una migliore visualizzazione */
-    }
-
-    .top-right-links {
-        position: static; /* Rimuovi il posizionamento assoluto per evitare problemi di sovrapposizione */
+    .product {
+        width: 100%; /* Full width on smaller screens */
+        margin: 10px 0; /* Vertical spacing */
     }
 }
