@@ -1,7 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-}
-
+/* Cart Styles */
 .cart-container {
     display: flex;
     justify-content: space-between;
@@ -64,7 +61,6 @@ body {
     color: red;
     margin-right: 10px;
     font-size: 18px;
-
 }
 
 .product-price span {
@@ -75,11 +71,11 @@ body {
 
 .product-price .total-price-without-discount {
     font-size: 0.9em;
-    color: #666; /* Colore per il prezzo senza sconto */
+    color: #666;
 }
 
 .price-label {
-    color: #000; /* Cambia il colore del testo a nero */
+    color: #000;
 }
 
 form {
@@ -142,19 +138,19 @@ p {
 
 .icon-button {
     padding: 5px;
-    width: 30px; /* Larghezza del pulsante */
-    height: 30px; /* Altezza del pulsante */
+    width: 30px;
+    height: 30px;
     background: none;
     border: none;
     cursor: pointer;
-    position: relative; /* Posizione relativa per l'animazione */
-    overflow: hidden; /* Nasconde gli elementi fuoriusciti dal pulsante */
+    position: relative;
+    overflow: hidden;
 }
 
 .icon-button img {
     transition: transform 0.3s ease;
-    width: 100%; /* L'immagine occupa tutta la larghezza del pulsante */
-    height: auto; /* Altezza automatica per mantenere il rapporto */
+    width: 100%;
+    height: auto;
 }
 
 .payment-modes {
@@ -174,20 +170,18 @@ p {
 }
 
 .payment-accepted p {
-    text-align: center; /* Allinea il testo al centro */
-    color: #333; /* Imposta il colore del testo a un grigio scuro */
-    font-size: 16px; /* Imposta la dimensione del carattere a 16px */
+    text-align: center;
+    color: #333;
+    font-size: 16px;
     margin-top: 15px;
-    margin-bottom: 15px; /* Aggiunge un margine inferiore di 10px */
+    margin-bottom: 15px;
 }
 
 .payment-modes img {
-    width: 50px; /* Imposta la larghezza dell'immagine */
-    height: auto; /* Mantiene il rapporto di aspetto dell'immagine */
+    width: 50px;
+    height: auto;
     border: 1px solid #ddd;
-    padding-left: 4px; /* Aggiunge padding intorno all'immagine */
+    padding-left: 4px;
     padding-right: 4px;
     border-radius: 5px;
 }
-
-

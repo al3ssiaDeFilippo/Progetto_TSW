@@ -3,12 +3,11 @@ body {
       font-family: 'Roboto', sans-serif;
       background-color: #f9f9f9;
       color: #333;
-      line-height: 1.6;
       margin: 0;
       padding: 0;
 }
 
-/* Contenitore dell'header principale */
+/* Header Styles */
 .header-container {
       height: 70px;
       display: flex;
@@ -18,39 +17,40 @@ body {
       padding: 0 20px;
       border-bottom: 1px solid #ccc;
       position: relative;
-      z-index: 2; /* Assicurarsi che l'header sia sopra la barra di navigazione */
+      z-index: 2;
+      box-sizing: border-box;
 }
 
-/* Contenitore del logo */
+.header-icon {
+      width: 30px;
+      height: 30px;
+}
+
 .logo-link {
       display: flex;
       align-items: center;
 }
 
-/* Logo */
 .logo-img {
       width: 50px;
       height: 50px;
       margin-right: 15px;
 }
 
-/* Barra di ricerca */
 .search-container {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-grow: 1;
-      margin-bottom: 10px; /* Aggiungi margine inferiore */
 }
 
-/* Form di ricerca */
 .search-container form {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
       max-width: 300px;
-      margin: 0 auto; /* Centrato all'interno del genitore */
+      margin: 0 auto;
 }
 
 .search-container input[type="search"] {
@@ -63,7 +63,6 @@ body {
       font-size: 16px;
 }
 
-/* Pulsante della barra di ricerca */
 .search-container button {
       width: 35px;
       height: 40px;
@@ -77,12 +76,10 @@ body {
       justify-content: center;
 }
 
-/* Hover del pulsante della barra di ricerca */
 .search-container button:hover {
       background: #365492;
 }
 
-/* Contenitore dei bottoni */
 .src-img {
       width: 20px;
       height: 20px;
@@ -90,33 +87,29 @@ body {
 
 .button-container {
       display: flex;
+      justify-content: center;
       align-items: center;
+      gap: 20px; /* Spazio tra i pulsanti */
+      margin: 5px;
+      padding: 10px; /* Assicura un padding coerente */
+      border-radius: 5px; /* Bordo arrotondato comune */
+      box-sizing: border-box; /* Includi padding e bordi nella dimensione totale */
 }
 
-/* Bottone del carrello, login, info */
 .footer-button, .cart-button, .login-button {
       width: 30px;
       height: 30px;
-      margin-right: 15px;
       transition: transform 0.3s;
 }
 
-/* Hover del bottone del carrello, login, info */
 .footer-button:hover, .cart-button:hover, .login-button:hover {
       transform: scale(1.1);
 }
 
-/* Rimuovi il primo margine a sinistra del bottone di login */
-.button-container a:first-child img {
-      margin-left: 15px;
-}
-
-/* Rimuovi l'ultimo margine a destra del bottone di login */
 .button-container a:last-child img {
       margin-right: 0;
 }
 
-/* Contenitore dell'header sottostante all'header principale */
 .sub-header-container {
       height: 40px;
       display: flex;
@@ -125,43 +118,15 @@ body {
       background: #4b6cb7;
       padding: 0 20px;
       border-bottom: 1px solid #365492;
-      margin-top: -1px; /* Assicura che non ci sia spazio tra gli header */
+      margin-top: -1px;
       margin-bottom: 15px;
       position: relative;
       z-index: 1;
 }
 
-.profile-box {
-      background-image: linear-gradient(to right, #7DCFB6, #E0F7FA); /* Verde acqua scuro a azzurro molto chiaro */
-}
-
-.order-box {
-      background-image: linear-gradient(to right, #4A90E2, #B3E5FC); /* Blu vivace a azzurro chiaro */
-}
-
-.favorites-box {
-      background-image: linear-gradient(to right, #E57373, #FFCDD2); /* Rosa scuro a rosa chiaro */
-}
-
-.card-box {
-      background-image: linear-gradient(to right, #BA68C8, #E1BEE7); /* Viola chiaro a viola molto chiaro */
-}
-
-.info-box {
-      background-image: linear-gradient(to right, #7986CB, #C5CAE9); /* Blu grigio scuro a blu grigio chiaro */
-}
-
-.address-box {
-      background-image: linear-gradient(to right, #FFB74D, #FFE0B2); /* Arancione scuro a arancione chiaro */
-}
-
-
-
 .sub-header-container .nav-bar {
       display: flex;
-      /*modifiche di biagio*/
       flex-direction: row-reverse;
-      /**/
       justify-content: space-around;
       width: 100%;
       max-width: 1000px;
@@ -177,7 +142,6 @@ body {
       text-decoration: underline;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
       .header-container, .sub-header-container {
             flex-direction: column;
@@ -186,7 +150,7 @@ body {
 
       .search-container {
             order: 2;
-            margin: 10px 0; /* Aggiungi margine superiore e inferiore per separazione */
+            margin: 10px 0;
       }
 
       .button-container {
@@ -208,7 +172,7 @@ body {
 
 @media (max-width: 480px) {
       .search-container form {
-            max-width: 90%; /* Riduce la larghezza massima */
+            max-width: 90%;
       }
 
       .search-container input[type="search"] {

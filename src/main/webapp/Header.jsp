@@ -38,10 +38,10 @@
     <!-- Aggiunta dei bottoni -->
     <div class="button-container">
         <a href="#footer">
-            <img class="footer-button" src="Images/infoIcon.png" alt="Image not found">
+            <img class="footer-button header-icon" src="Images/infoIcon.png" alt="Image not found">
         </a>
         <a href="carrello.jsp">
-            <img class="cart-button" src="Images/cartIcon.png" alt="Image not found">
+            <img class="cart-button header-icon" src="Images/cartIcon.png" alt="Image not found">
         </a>
         <%
             // Recupera l'utente dalla sessione
@@ -49,13 +49,13 @@
             if (loggedInUser != null) {
         %>
         <a href="ProfileOverview.jsp">
-            <img class="login-button" src="Images/userIcon.png" alt="Image not found">
+            <img class="login-button header-icon" src="Images/userIcon.png" alt="Image not found">
         </a>
         <%
         } else {
         %>
         <a href="LogIn.jsp">
-            <img class="login-button" src="Images/userIcon.png" alt="Image not found">
+            <img class="login-button header-icon" src="Images/userIcon.png" alt="Image not found">
         </a>
         <%
             }
