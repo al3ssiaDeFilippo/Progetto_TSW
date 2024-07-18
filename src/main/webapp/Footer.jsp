@@ -10,9 +10,6 @@
 </head>
 <body>
 <div class="site-wrapper">
-    <header>
-        <!-- Inserisci qui il contenuto dell'header -->
-    </header>
 
     <main class="site-content">
         <!-- Inserisci qui il contenuto principale della pagina -->
