@@ -460,7 +460,7 @@ public class ProductModelDS implements ProductModel {
         Collections.shuffle(allProducts);
 
         // Seleziona i primi 5 prodotti
-        List<ProductBean> randomProducts = allProducts.subList(0, Math.min(7, allProducts.size()));
+        List<ProductBean> randomProducts = allProducts.subList(0, allProducts.size());
 
         return randomProducts;
     }
