@@ -9,6 +9,10 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ProductModelDS implements ProductModel {
 
@@ -379,5 +383,88 @@ public class ProductModelDS implements ProductModel {
         float discount = PB.getDiscount();
         return price - (price * (discount / 100));
     }
+
+    public Collection<ProductBean> getAllProducts() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Collection<ProductBean> products = new LinkedList<ProductBean>();
+
+        String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME;
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                ProductBean bean = new ProductBean();
+
+                bean.setCode(rs.getInt("CODE"));
+                bean.setProductName(rs.getString("PRODUCTNAME"));
+                bean.setDetails(rs.getString("DETAILS"));
+                bean.setQuantity(rs.getInt("QUANTITY"));
+                bean.setCategory(rs.getString("CATEGORY"));
+                bean.setPrice(rs.getFloat("PRICE"));
+                bean.setIva(rs.getInt("IVA"));
+                bean.setDiscount(rs.getInt("DISCOUNT"));
+                bean.setFrame(rs.getString("FRAME"));
+                bean.setFrameColor(rs.getString("FRAMECOLOR"));
+                bean.setSize(rs.getString("SIZE"));
+                bean.setPhoto(rs.getBlob("PHOTO"));
+                products.add(bean);
+            }
+
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        return products;
+    } // fine metodo
+
+
+    public Collection<ProductBean> GetDiscountedProductsList() throws SQLException {
+        // Ottieni tutti i prodotti
+        Collection<ProductBean> allProducts = this.getAllProducts();
+
+        // Filtra la lista per includere solo i prodotti con uno sconto maggiore di zero
+        return allProducts.stream()
+                .filter(product -> product.getDiscount() > 0)
+                .collect(Collectors.toList());
+    }
+
+    public Collection<ProductBean> getRandomDiscountedProducts() throws SQLException {
+        // Ottieni tutti i prodotti scontati
+        List<ProductBean> allDiscountedProducts = new ArrayList<>(this.GetDiscountedProductsList());
+
+        // Mescola la lista
+        Collections.shuffle(allDiscountedProducts);
+
+        // Seleziona i primi 5 prodotti
+        List<ProductBean> randomProducts = allDiscountedProducts.subList(0, Math.min(7, allDiscountedProducts.size()));
+
+        return randomProducts;
+    }
+
+    public Collection<ProductBean> getRandomProducts() throws SQLException {
+        // Ottieni tutti i prodotti
+        List<ProductBean> allProducts = new ArrayList<>(this.getAllProducts());
+
+        // Mescola la lista
+        Collections.shuffle(allProducts);
+
+        // Seleziona i primi 5 prodotti
+        List<ProductBean> randomProducts = allProducts.subList(0, Math.min(7, allProducts.size()));
+
+        return randomProducts;
+    }
+
+
 
 }
