@@ -27,6 +27,12 @@ h2 {
     text-align: left;
 }
 
+.error {
+    color: red !important;
+    font-size: 14px !important;
+    margin: 10px 0;
+}
+
 /* Stile per i paragrafi */
 .addresses-detail p,
 .address-detail p {

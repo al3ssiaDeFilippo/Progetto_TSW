@@ -38,7 +38,7 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Aumentato per spazio tra gli input */
     padding: 10px;
     transition: border-color 0.3s, box-shadow 0.3s;
     width: calc(100% - 22px); /* Adjust width to match padding */
@@ -49,6 +49,15 @@ h2 {
 .card-detail input[type="month"]:hover {
     border-color: #aaa;
     box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile per il messaggio di errore */
+.error {
+    color: #ff0000;
+    font-size: 14px;
+    margin: 0; /* Rimuovi margine superiore per posizionare il messaggio subito sotto l'input */
+    padding: 0; /* Assicurati che non ci siano spazi extra */
+    margin-bottom: 15px; /* Spazio inferiore per separare dal prossimo elemento */
 }
 
 /* Stile per il pulsante di invio */
@@ -85,28 +94,6 @@ h2 {
     background-color: #cc0000;
 }
 
-/* Stile per il link di ritorno al catalogo */
-.card-cata {
-    background-color: #007bff; /* Blu */
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s; /* Transizione per l'hover */
-}
-
-.card-cata a {
-    color: #ffffff; /* Bianco */
-    display: inline-block;
-    width: 100%;
-    text-decoration: none;
-    font-size: 20px; /* Aumenta la dimensione del testo per renderlo più visibile */
-}
-
-.card-cata:hover {
-    background-color: #0056b3; /* Blu più scuro */
-}
-/* Existing styles optimized for mobile-first approach */
-
 /* Enhancements for tablet devices */
 @media (min-width: 768px) {
     .card-detail {
@@ -139,10 +126,6 @@ h2 {
     .btn-delete input[type="submit"] {
         font-size: 18px; /* Larger buttons for easier clicking */
         padding: 15px 30px; /* More padding for a larger clickable area */
-    }
-
-    .card-cata a {
-        font-size: 22px; /* Larger text for links */
     }
 }
 

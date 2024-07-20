@@ -7,6 +7,7 @@
 <head>
     <title>Inserimento Carta</title>
     <link rel="stylesheet" type="text/css" href="css/CheckoutCard.css">
+    <script src="js/UserCreditCardFormValidation.js"></script>
 </head>
 <body>
 <%@ include file="Header.jsp" %>

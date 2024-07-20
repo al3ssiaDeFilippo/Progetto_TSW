@@ -9,6 +9,7 @@
 <head>
     <title>Indirizzo di spedizione</title>
     <link rel="stylesheet" type="text/css" href="css/CheckoutShipping.css">
+    <script src="js/ShippingFormValidation.js"></script>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -42,24 +43,28 @@
 
 <div class="addresses-detail">
     <h2>Inserimento nuovo indirizzo</h2>
-    <form action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
+    <form id="addAddressForm" action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
         <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
         <input type="hidden" id="idUser" name="idUser">
         <div>
             <label for="recipientName">Nome del Ricevente:</label>
             <input type="text" id="recipientName" name="recipientName" required>
+            <div id="recipientNameError" class="error"></div>
         </div>
         <div>
             <label for="address">Indirizzo:</label>
             <input type="text" id="address" name="address" required>
+            <div id="addressError" class="error"></div>
         </div>
         <div>
             <label for="city">Città:</label>
             <input type="text" id="city" name="city" required>
+            <div id="cityError" class="error"></div>
         </div>
         <div>
             <label for="cap">CAP:</label>
             <input type="text" id="cap" name="cap" required>
+            <div id="capError" class="error"></div>
         </div>
         <div>
             <input type="checkbox" id="saveAddress" name="saveAddress" value="true">
@@ -70,7 +75,6 @@
             <input type="hidden" name="nextPage" value="CheckoutCard.jsp">
             <input type="submit" value="Prosegui al pagamento">
         </div>
-
     </form>
 </div>
 <div class="addresses-cata">

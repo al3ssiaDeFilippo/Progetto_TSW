@@ -7,7 +7,7 @@
 <%
     UserBean user = (UserBean) session.getAttribute("user");
     if (user == null) {
-        response.sendRedirect("Login.jsp");
+        response.sendRedirect("LogIn.jsp");
         return;
     }
     ShippingModel shippingModel = new ShippingModel();
@@ -18,6 +18,7 @@
 <head>
     <title>Indirizzi di Spedizione</title>
     <link rel="stylesheet" type="text/css" href="css/IndirizziUtente.css">
+    <script src="js/ShippingFormValidation.js"></script>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -40,29 +41,33 @@
 <% } %>
 <% } %>
 <div class="addresses-detail">
-    <form action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
+    <form id="addAddressForm" action="<%= request.getContextPath() %>/AddAddressServlet" method="post">
         <h2>Inserimento Indirizzo di Spedizione</h2>
         <input type="hidden" id="idUser" name="idUser" value="<%= user.getIdUser() %>">
         <div>
             <label for="recipientName">Nome Destinatario:</label>
             <input type="text" id="recipientName" name="recipientName" required>
+            <div id="recipientNameError" class="error"></div>
         </div>
         <div>
             <label for="address">Indirizzo:</label>
             <input type="text" id="address" name="address" required>
+            <div id="addressError" class="error"></div>
         </div>
         <div>
             <label for="city">Città:</label>
             <input type="text" id="city" name="city" required>
+            <div id="cityError" class="error"></div>
         </div>
         <div>
             <label for="cap">CAP:</label>
             <input type="text" id="cap" name="cap" required>
+            <div id="capError" class="error"></div>
         </div>
         <div>
             <input type="hidden" name="saveAddress" value="true">
             <div class="btn-add">
-                <input type="submit" value="Salva carta">
+                <input type="submit" value="Salva indirizzo">
             </div>
         </div>
     </form>
