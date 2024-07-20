@@ -67,52 +67,75 @@ h2 {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    form {
-        padding: 15px;
-        margin: 15px;
+/* Adjustments for small screens */
+@media (max-width: 600px) {
+    .registration-form {
+        padding: 20px;
+        margin: 10px;
     }
 
-    input[type="text"],
-    input[type="password"] {
-        width: calc(100% - 16px);
-        padding: 8px;
-        margin-bottom: 15px;
-    }
-
-    input[type="submit"] {
-        padding: 8px;
+    .form-wrapper input, .form-wrapper .form-label {
         font-size: 14px;
     }
 
-    a {
+    input[type="submit"] {
+        padding: 10px;
         font-size: 14px;
     }
 }
 
+
+/* Adjustments for very small screens */
 @media (max-width: 480px) {
-    form {
-        padding: 10px;
-        margin: 10px;
+    .registration-form {
+        padding: 15px; /* Slightly reduce padding */
+        margin: 5px; /* Reduce margin to use more of the screen */
+        width: 95%; /* Allow the form to fill more of the screen */
     }
 
     input[type="text"],
-    input[type="password"] {
-        width: calc(100% - 12px);
-        padding: 6px;
-        margin-bottom: 10px;
+    input[type="password"],
+    input[type="submit"],
+    .form-wrapper input,
+    .form-wrapper .form-label {
+        font-size: 12px; /* Reduce font size for better fit */
     }
 
     input[type="submit"] {
-        padding: 6px;
-        font-size: 12px;
+        padding: 8px; /* Reduce padding on the submit button */
+    }
+}
+/* Adjustments for medium screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .registration-form {
+        padding: 30px;
+        margin: 20px auto;
     }
 
-    a {
-        font-size: 12px;
+    .form-wrapper input, .form-wrapper .form-label {
+        font-size: 16px;
     }
 
-    h2 {
-        font-size: 20px;
+    input[type="submit"] {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+/* Adjustments for large screens */
+@media (min-width: 1025px) {
+    .registration-form {
+        padding: 40px;
+        margin: 40px auto;
+        max-width: 500px; /* Limit the width for better readability */
+    }
+
+    .form-wrapper input, .form-wrapper .form-label {
+        font-size: 18px;
+    }
+
+    input[type="submit"] {
+        padding: 14px;
+        font-size: 18px;
     }
 }

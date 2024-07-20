@@ -1,4 +1,4 @@
-/* Info.css */
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -37,9 +37,13 @@ body {
 
 .team-section {
     margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .team-member {
+    flex: 1 1 100%;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -47,8 +51,8 @@ body {
 .team-img {
     border-radius: 50%;
     margin: auto;
-    width: 150px; /* Dimensione ideale */
-    height: 150px; /* Dimensione ideale */
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     object-position: center;
 }
@@ -56,20 +60,21 @@ body {
 .materials-section {
     margin-top: 40px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
 .material {
+    flex: 1 1 100%;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .material-info {
-    max-width: 250px; /* Larghezza massima per il contenuto informativo */
-    margin: auto; /* Centra il contenuto orizzontalmente */
+    max-width: 250px;
+    margin: auto;
     font-size: 14px;
 }
-
 
 .material-img {
     width: 250px;
@@ -81,11 +86,10 @@ body {
 
 .slideshow-container {
     position: relative;
-    max-width: 250px; /* Aggiorna la larghezza massima per adattarsi alle immagini più grandi */
+    max-width: 250px;
     margin: auto;
-    text-align: center; /* Centra le immagini orizzontalmente */
+    text-align: center;
 }
-
 
 .mySlides {
     display: none;
@@ -111,4 +115,98 @@ body {
 
 .team-member h3, .material h3 {
     margin-top: 10px;
+}
+
+/* Responsive Enhancements */
+
+/* Mobile devices */
+@media (max-width: 767px) {
+    .team-section, .materials-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-member, .material {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+
+    .team-img, .material-img {
+        width: 80%;
+        height: auto;
+    }
+
+    .material-info {
+        max-width: 80%;
+        font-size: 14px;
+    }
+
+    .slideshow-container {
+        max-width: 80%;
+    }
+}
+
+/* Tablet devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .team-member, .material {
+        flex: 1 1 48%;
+        margin-bottom: 20px;
+    }
+
+    .team-img, .material-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .material-info {
+        max-width: 90%;
+    }
+
+    .slideshow-container {
+        max-width: 90%;
+    }
+}
+
+/* Desktop devices */
+@media (min-width: 1024px) {
+    .team-section, .materials-section {
+        flex-direction: row;
+    }
+
+    .team-member, .material {
+        flex: 1 1 45%;
+    }
+
+    .team-img, .material-img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .material-info {
+        max-width: 250px;
+    }
+
+    .slideshow-container {
+        max-width: 250px;
+    }
+}
+
+/* Additional media query for very large screens */
+@media (min-width: 1440px) {
+    .team-member, .material {
+        flex: 1 1 30%;
+    }
+
+    .team-img, .material-img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .material-info {
+        max-width: 250px;
+    }
+
+    .slideshow-container {
+        max-width: 250px;
+    }
 }

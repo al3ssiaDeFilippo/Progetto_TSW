@@ -128,13 +128,43 @@ form input[type="submit"]:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container, .order-table, form {
-        width: 100%;
+/* Global Responsive Adjustments */
+@media (max-width: 480px) {
+    body, html {
+        font-size: 14px; /* Adjust base font size for extra small screens */
     }
+    .container, .profile-container, .products-container, .overview-container {
+        padding: 5px;
+        margin: 0 auto;
+        width: 95%; /* Adjust container widths for small screens */
+    }
+    .profile-wrapper, .order-table, .product, .profile-box, .favorites-box, .info-box, .order-box, .card-box, .address-box {
+        width: 100%; /* Full width for smaller screens */
+    }
+    button, .btn-submit input[type="submit"], form input[type="submit"] {
+        font-size: 14px; /* Increase font size for better readability on touch devices */
+        padding: 12px; /* Increase padding for easier interaction */
+    }
+}
 
-    .order-table th, .order-table td {
-        padding: 8px;
+@media (min-width: 481px) and (max-width: 768px) {
+    .container, .profile-container, .products-container, .overview-container {
+        width: 90%; /* Adjust container widths for medium screens */
+    }
+    .profile-wrapper, .order-table, .product, .profile-box, .favorites-box, .info-box, .order-box, .card-box, .address-box {
+        width: auto; /* Auto width for medium screens */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container, .profile-container, .products-container, .overview-container {
+        width: 85%; /* Adjust container widths for large screens */
+    }
+}
+
+@media (min-width: 1025px) {
+    .container, .profile-container, .products-container, .overview-container {
+        max-width: 1200px; /* Max width for extra large screens */
+        margin: 0 auto; /* Centering the container */
     }
 }

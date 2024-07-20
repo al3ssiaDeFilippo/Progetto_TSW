@@ -47,7 +47,7 @@ public class UploadImageServlet extends HttpServlet {
                 ProductBean product = model.doRetrieveByKey(code);
                 product.setPhoto(photo);
                 model.doUpdate(product);
-                String newImageUrl = "ProductImageServlet?action=get&code=" + code;
+                String newImageUrl = "GetProduct?action=get&code=" + code;
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write("{\"newImageUrl\": \"" + newImageUrl + "\"}");

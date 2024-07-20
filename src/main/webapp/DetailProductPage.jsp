@@ -2,7 +2,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.bean.UserBean" %>
-<%@ page import="main.javas.bean.CartBean" %>
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
 
@@ -50,8 +49,10 @@
         <% } else { %>
         <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
         <% } %>
-        <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post" onsubmit="return validateForm()">
-            <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
+
+        <% if(product.getQuantity() > 0) { %>
+        <!-- Form for selecting options, visible to all users -->
+        <form onsubmit="return false;">
             <p><strong>Dimensioni:</strong>
                 <select name="size" id="sizeSelect">
                     <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
@@ -61,7 +62,7 @@
                 </select>
             </p>
             <p id="frameSelectContainer"><strong>Materiale Cornice:</strong>
-                <select name="frame" id="frameSelect" >
+                <select name="frame" id="frameSelect">
                     <option value="no frame" selected>No Frame</option>
                     <option value="wood">Wood</option>
                     <option value="PVC">PVC</option>
@@ -76,15 +77,30 @@
                     <option value="white">White</option>
                 </select>
             </p>
-            <p id="errorMessage" style="color:red; display:none;"></p>
-            <% if(product.getQuantity() > 0) { %>
-            <% if (user == null || !user.getAdmin()) { %>
-            <input type="submit" value="Aggiungi al Carrello">
-            <% } %>
-            <% } else { %>
-            <p class="unavailable-product">Prodotto non disponibile al momento</p>
-            <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
         </form>
+
+        <% if (user == null || !user.getAdmin()) { %>
+        <!-- Form for adding to cart, hidden for admins -->
+        <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post" onsubmit="return validateForm()">
+            <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
+            <p id="errorMessage" style="color:red; display:none;"></p>
+            <input type="submit" value="Aggiungi al Carrello" class="add-to-cart-button">
+        </form>
+        <% } else { %>
+        <p class="admin-message">Gli amministratori non possono aggiungere prodotti al carrello</p>
+        <% } %>
+        <% } else if(product.getQuantity() <= 0) { %>
+        <p class="unavailable-product">Prodotto non disponibile al momento</p>
+        <% } %>
+
+        <% if (user != null && user.getAdmin()) { %> <!-- Show admin controls -->
+        <form action="<%= request.getContextPath() %>/DeleteProductServlet" method="post">
+            <input type="hidden" name="code" value="<%= product.getCode() %>">
+            <input type="submit" class="delete-button" value="Elimina">
+        </form>
+        <a href="EditProductPage.jsp?code=<%= product.getCode() %>" class="modify-button">Modifica Prodotto</a>
+        <% System.out.println("DetailProduct.jsp:  " + product.getCode());%>
+        <% } %>
     </div>
     <div class="product-details">
         <p><strong>Dettagli: <br></strong> <%= product.getDetails() %></p>

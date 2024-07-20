@@ -14,39 +14,38 @@ h2 {
     text-align: center; /* Centra il testo del titolo */
 }
 
-/* Contenitore per il contenuto del prodotto */
-.product-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 20px;
-}
-
 /* Contenitore per l'immagine del prodotto */
 .product-image {
     flex: 1;
-    margin-left: 250px;
     text-align: left;
     margin-right: 20px;
 }
 
+/* Contenitore per il contenuto del prodotto */
+.product-content {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 /* Stile per l'immagine del prodotto */
 .product-image img {
-    max-width: 400px; /* Aumenta la larghezza massima dell'immagine */
+    max-width: 350px; /* Aumenta la larghezza massima dell'immagine */
     width: 100%;     /* Mantiene l'immagine responsive */
     height: auto;    /* Mantiene l'altezza proporzionale alla nuova larghezza */
     border-radius: 10px;
+    margin-left: 150px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenitore per le informazioni del prodotto */
 .product-info {
     flex: 2;
-    font-size: 15px; /* Dimensione base del font */
+    font-size: 25px; /* Dimensione base del font */
     max-width: 500px;
-    margin-left: 20px;
-    margin-right: 200px;
+    margin-right: 150px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -56,34 +55,21 @@ h2 {
 
 /* Stile per i paragrafi delle informazioni del prodotto */
 .product-info p {
-    margin: 5px 0;
+    margin: 10px 0;
     color: #000000;
-    font-size: 25px;
 }
 
 /* Stile per i campi input nelle informazioni del prodotto */
 .product-info p input, .product-info p select {
-    width: calc(100% - 20px);
+    width: calc(100% - 120px);
     padding: 10px;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 15px;
+    margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9; /* Colore di sfondo */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
     transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
-}
-
-.photo-label {
-    font-size: 20px; /* Increase font size */
-    margin-bottom: 5px;
-}
-
-.photo-input {
-    margin-left: -15px;
-    font-size: 25px; /* Makes the text inside the button larger */
-    padding: 15px 15px; /* Increase padding for a larger button */
-    cursor: pointer;
 }
 
 /* Stile per i campi input al passaggio del mouse */
@@ -99,9 +85,14 @@ h2 {
     cursor: pointer;
 }
 
-.photo-insert {
-    margin-left: 10px;
-    font-size: 25px;
+/* Stile per le opzioni all'interno del select */
+.product-info p select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px; /* Rendi i bordi più arrotondati */
+    display: block; /* Rende le opzioni come blocchi separati */
+    margin-bottom: 8px; /* Spazio tra le opzioni */
 }
 
 /* Stile per il pulsante di invio */
@@ -112,7 +103,7 @@ input[type="submit"] {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     transition: background-color 0.3s; /* Transizione */
 }
 
@@ -121,96 +112,33 @@ input[type="submit"]:hover {
     background-color: #218838;
 }
 
-/* Media query per tablet */
-@media (min-width: 768px) {
+/* Media queries per rendere la pagina responsive */
+@media (max-width: 768px) {
     .product-content {
-        flex-direction: row; /* Ritorna al layout orizzontale */
-        justify-content: space-around; /* Distribuisce lo spazio intorno agli elementi */
-    }
-
-    .product-image img {
-        margin-left: 0; /* Assicura che l'immagine sia centrata */
-    }
-
-    .product-info {
-        text-align: left; /* Allinea il testo a sinistra */
-        margin-left: 20px; /* Aggiunge un margine sinistro */
-    }
-}
-
-/* Media query per desktop */
-@media (min-width: 1024px) {
-    .product-content {
-        justify-content: center; /* Centra gli elementi nel contenitore */
-    }
-
-    .product-image img {
-        margin-left: 0; /* Ripristina il margine sinistro per l'immagine */
-    }
-
-    .product-info {
-        max-width: 500px; /* Limita la larghezza delle informazioni del prodotto */
-        margin-left: 20px; /* Aumenta il margine sinistro */
-    }
-}
-
-/* Media query per dispositivi mobili */
-@media (max-width: 616px) {
-    body {
-        font-size: 14px; /* Riduce la dimensione del font */
-    }
-
-    h2 {
-        font-size: 18px; /* Riduce la dimensione del font del titolo */
-    }
-
-    .product-content {
-        padding: 10px;
+        flex-direction: column; /* Disporre gli elementi in colonna */
+        align-items: center; /* Centrare gli elementi */
     }
 
     .product-image {
-        margin-left: 0;
-        text-align: center;
-    }
-
-    .product-image img {
-        max-width: 100%; /* Permette all'immagine di espandersi fino al 100% della larghezza del contenitore */
-        margin: 0 auto; /* Centra l'immagine */
+        margin-left: 0; /* Rimuovere il margine sinistro */
+        margin-right: 0; /* Rimuovere il margine destro */
+        text-align: center; /* Centrare l'immagine */
     }
 
     .product-info {
-        font-size: 16px; /* Ajusta la dimensione del font per le informazioni e i dettagli del prodotto */
-        padding: 10px; /* Aggiunge un padding per evitare che il testo tocchi i bordi dello schermo */
-        margin-left: 0; /* Rimuove il margine sinistro */
-    }
-
-    .product-info p input, .product-info p select {
-        width: 100%; /* Espande i campi di input e select per occupare tutta la larghezza disponibile */
-        margin: 10px 0; /* Aggiunge un margine superiore e inferiore per separare meglio gli elementi */
-    }
-
-    input[type="submit"] {
-        width: 100%; /* Espande il pulsante di invio per occupare tutta la larghezza disponibile */
+        max-width: 100%;
+        margin-right: 0; /* Rimuovere il margine destro */
+        margin-top: 20px; /* Aggiungere margine superiore */
     }
 }
 
-/* Media query per dispositivi mobili molto piccoli */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
     .product-info {
-        font-size: 14px; /* Ajusta la dimensione del font per schermi molto piccoli */
+        padding: 10px; /* Ridurre il padding */
+        font-size: 20px; /* Ridurre la dimensione del font */
     }
 
-    .product-info p {
-        font-size: 20px; /* Ajusta la dimensione del font per i paragrafi */
-    }
-
-    .product-info p input, .product-info p select {
-        font-size: 18px; /* Ajusta la dimensione del font per i campi di input */
-        padding: 8px; /* Riduce il padding per i campi di input */
-    }
-
-    .photo-input {
-        font-size: 20px; /* Ajusta la dimensione del font per il bottone di caricamento foto */
-        padding: 10px 15px; /* Riduce il padding per il bottone */
+    .product-image img {
+        max-width: 100%; /* Assicurarsi che l'immagine non superi la larghezza dello schermo */
     }
 }

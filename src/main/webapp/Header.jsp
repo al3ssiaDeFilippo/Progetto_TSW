@@ -27,13 +27,13 @@
 
     <!-- Aggiunta della barra di ricerca -->
     <div class="search-container">
-        <form id="searchForm" action="SearchServlet" method="get">
-            <input type="search" name="q" id="searchBar" placeholder="Cerca...">
-            <button type="submit">
-                <img class="src-img" src="Images/searchIcon.png" alt="Cerca">
-            </button>
-        </form>
-    </div>
+    <form id="searchForm" action="SearchServlet" method="get">
+        <input type="search" name="q" id="searchBar" placeholder="Cerca...">
+        <button type="submit">
+            <img class="src-img" src="Images/searchIcon.png" alt="Cerca">
+        </button>
+    </form>
+</div>
 
     <!-- Aggiunta dei bottoni -->
     <div class="button-container">

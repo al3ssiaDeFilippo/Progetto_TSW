@@ -50,3 +50,75 @@ body {
     text-decoration: underline;
 }
 
+/* Media query for small screens */
+@media (max-width: 600px) {
+    .error-container {
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .error-container img {
+        width: 80px; /* Smaller image */
+    }
+
+    .error-container h1 {
+        font-size: 48px; /* Smaller font size for the 404 */
+    }
+
+    .error-container h2 {
+        font-size: 20px; /* Smaller subtitle */
+    }
+
+    .error-container p {
+        font-size: 14px; /* Smaller paragraph text */
+    }
+}
+
+/* Media query for medium screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .error-container {
+        padding: 30px;
+        border-radius: 8px;
+    }
+
+    .error-container img {
+        width: 90px; /* Adjust image size */
+    }
+
+    .error-container h1 {
+        font-size: 60px; /* Adjust font size for the 404 */
+    }
+
+    .error-container h2 {
+        font-size: 22px; /* Adjust subtitle */
+    }
+
+    .error-container p {
+        font-size: 16px; /* Adjust paragraph text */
+    }
+}
+
+/* Media query for large screens */
+@media (min-width: 1025px) {
+    .error-container {
+        padding: 50px;
+        border-radius: 10px;
+        max-width: 600px; /* Limit the width of the container */
+    }
+
+    .error-container img {
+        width: 100px; /* Revert to default size */
+    }
+
+    .error-container h1 {
+        font-size: 72px; /* Revert to default size for the 404 */
+    }
+
+    .error-container h2 {
+        font-size: 24px; /* Revert to default subtitle */
+    }
+
+    .error-container p {
+        font-size: 16px; /* Revert to default paragraph text */
+    }
+}

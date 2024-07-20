@@ -49,23 +49,18 @@ h2 {
 .product {
     position: relative;
     align-items: center;
-    align-content: center;
     margin: auto;
     padding-top: 30px;
     place-items: center;
     width: 300px;
-    height: fit-content;
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
-    flex: 0 1 calc(33.333% - 20px); /* Imposta la larghezza per 3 prodotti per riga, considerando 20px di margine */
     background-color: #fff;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Aggiungi l'ombra nera alle immagini */
-
 }
 
 .product-image {
-    /* Mantiene la larghezza massima dell'immagine */
     height: 45vh;
     width: auto;
     display: block;
@@ -74,30 +69,28 @@ h2 {
     transition: box-shadow 0.3s ease;
 }
 
-
 .product a:hover img {
     box-shadow: 0 4px 8px rgb(158, 158, 158); /* Applica l'ombra solo all'immagine all'interno dell'ancora */
 }
-
 
 .price-p {
     padding: 10px;
 }
 
 .product h2 {
-    align-content: center;
-    align-items: center;
     height: 70px;
     margin: 0;
     padding: 15px;
     background-color: #f7f7f7;
     border-bottom: 1px solid #eee;
     font-size: 20px;
+    text-align: center;
 }
 
 .product p {
     padding: 0 15px 15px;
     font-size: 22px;
+    text-align: center;
 }
 
 .original-price {
@@ -157,8 +150,6 @@ a:link, a:visited, a:hover, a:active {
     transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
 }
 
-
-
 /* Price styling */
 .product p:last-child {
     color: #050505;
@@ -166,13 +157,51 @@ a:link, a:visited, a:hover, a:active {
     padding: 0 15px 0; /* Imposta il padding solo per i lati sinistro e destro */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .products-container {
-        justify-content: center; /* Centra gli elementi su schermi piccoli */
+@media (max-width: 480px) {
+    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 5px;
+        font-size: 12px;
     }
-    .product {
-        flex: 1 1 100%; /* Un prodotto per riga su schermi piccoli */
-        margin: 10px; /* Mantiene margini simmetrici */
+    button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 10px;
+        font-size: 14px;
+    }
+    button {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 15px;
+        font-size: 16px;
+    }
+    button {
+        padding: 12px;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .profile-container {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+    }
+    .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 20px;
+        font-size: 18px;
+    }
+    button {
+        padding: 14px;
+        font-size: 20px;
     }
 }

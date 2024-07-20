@@ -43,6 +43,7 @@ h2 {
     padding: 15px;
     background-color: #ffffff;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 /* Etichetta della cella */
@@ -73,6 +74,10 @@ button {
     border-radius: 5px;
 }
 
+button:hover {
+    background-color: #0056b3;
+}
+
 .profile-wrapper {
     display: flex;
     flex-direction: column; /* Cambia la direzione per impilare verticalmente */
@@ -80,7 +85,59 @@ button {
     padding: 15px;
 }
 
-/* Ensure button:hover remains unchanged */
-button:hover {
-    background-color: #0056b3;
+.click-containers-secondary {
+    width: 100%; /* Assicura che occupi tutta la larghezza */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra i pulsanti orizzontalmente */
+    padding: 15px;
+    margin-top: 20px; /* Aggiungi spazio sopra i pulsanti */
+}
+
+.click-containers-secondary button {
+    font-size: 16px; /* Dimensione del font dei pulsanti */
+    margin: 5px; /* Aggiunge spazio tra i pulsanti */
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .profile-container, .profile-row, .profile-cell {
+        padding: 5px;
+        font-size: 12px;
+    }
+    .profile-container {
+        max-width: 100%; /* Utilizza tutta la larghezza disponibile */
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .profile-container, .profile-row, .profile-cell {
+        padding: 10px;
+        font-size: 14px;
+    }
+    .profile-container {
+        max-width: 90%; /* Lascia un po' di margine ai lati */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profile-container, .profile-row, .profile-cell {
+        padding: 15px;
+        font-size: 16px;
+    }
+    .profile-container {
+        max-width: 80%; /* Lascia più margine ai lati */
+    }
+}
+
+@media (min-width: 1025px) {
+    .profile-container {
+        padding: 20px;
+        max-width: 70%; /* Ottimizza lo spazio su schermi grandi */
+        margin: auto; /* Centra il contenitore */
+    }
+    .profile-row, .profile-cell {
+        padding: 20px;
+        font-size: 18px;
+    }
 }

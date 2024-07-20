@@ -94,21 +94,8 @@ h2 {
     color: #0056b3;
 }
 
-/* Media query per tablet */
-@media (min-width: 768px) {
-    .form-container {
-        max-width: 700px;
-    }
-}
 
-/* Media query per desktop */
-@media (min-width: 1024px) {
-    .form-container {
-        max-width: 900px;
-    }
-}
-
-/* Media query per dispositivi mobili */
+/* Adjustments for small screens */
 @media (max-width: 616px) {
     body {
         font-size: 14px;
@@ -135,5 +122,30 @@ h2 {
     .btn-submit input[type="submit"] {
         font-size: 14px;
         padding: 8px 16px;
+    }
+}
+
+/* Adjustments for medium screens (tablets) */
+@media (min-width: 617px) and (max-width: 768px) {
+    .form-container {
+        max-width: 700px;
+    }
+}
+
+/* Adjustments for large screens (desktops) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .form-container {
+        max-width: 800px;
+    }
+}
+
+/* Adjustments for extra large screens */
+@media (min-width: 1025px) {
+    .form-container {
+        max-width: 900px;
+    }
+
+    body, h2, .form-group input, .btn-submit input[type="submit"] {
+        /* Optionally increase font sizes for better readability */
     }
 }

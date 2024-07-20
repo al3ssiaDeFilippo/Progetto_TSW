@@ -24,12 +24,12 @@ h2 {
 /* Product Container */
 .products-container {
     display: grid;
-    grid-template-columns: 50vh 50vh 50vh;
-    flex-wrap: wrap;
-    column-count: 3;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Utilizza frazioni automatiche */
     justify-content: center; /* Centra i prodotti nel contenitore */
-    row-gap: 10vh; /*Spazio tra le righe*/
-    column-gap: 20px; /*Spazio tra le colonne*/
+    gap: 60px; /* Spazio tra i prodotti */
+    padding: 20px; /* Padding aggiunto per separazione dai bordi del main */
+    margin: 0 auto; /* Centra il contenitore */
+    max-width: 1200px; /* Massima larghezza del contenitore */
 }
 
 /* Badge for discount */
@@ -67,8 +67,8 @@ h2 {
     margin: auto; /* Centra l'immagine all'interno del contenitore */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiungi l'ombra nera alle immagini */
     transition: box-shadow 0.3s ease;
+    margin-bottom: 27px; /* Aggiungi spazio tra l'immagine e il titolo del prodotto */
 }
-
 .product a:hover img {
     box-shadow: 0 4px 8px rgb(158, 158, 158); /* Applica l'ombra solo all'immagine all'interno dell'ancora */
 }
@@ -157,13 +157,51 @@ a:link, a:visited, a:hover, a:active {
     padding: 0 15px 0; /* Imposta il padding solo per i lati sinistro e destro */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .products-container {
-        grid-template-columns: 1fr; /* One column layout on smaller screens */
+@media (max-width: 480px) {
+    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 5px;
+        font-size: 12px;
     }
-    .product {
-        width: 100%; /* Full width on smaller screens */
-        margin: 10px 0; /* Vertical spacing */
+    button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 10px;
+        font-size: 14px;
+    }
+    button {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 15px;
+        font-size: 16px;
+    }
+    button {
+        padding: 12px;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .profile-container {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+    }
+    .profile-row, .profile-cell, .click-containers-secondary button {
+        padding: 20px;
+        font-size: 18px;
+    }
+    button {
+        padding: 14px;
+        font-size: 20px;
     }
 }

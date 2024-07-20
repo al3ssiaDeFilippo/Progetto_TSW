@@ -124,52 +124,39 @@ div > a:hover {
     color: #ffffff;
 }
 
-/* Media query per tablet */
-@media (min-width: 768px) {
-    .addresses-detail,
-    .address-detail {
-        margin: 20px auto;
+
+@media (min-width: 617px) and (max-width: 768px) {
+    .card-detail, .address-detail {
         max-width: 700px;
     }
 }
 
-/* Media query per desktop */
-@media (min-width: 1024px) {
-    .addresses-detail,
-    .address-detail {
-        margin: 20px auto;
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card-detail, .address-detail {
         max-width: 900px;
     }
 }
 
-/* Media query per dispositivi mobili */
-@media (max-width: 616px) {
-    body {
-        font-size: 14px;
+@media (min-width: 1025px) {
+    .card-detail, .address-detail {
+        max-width: 1100px;
     }
 
     h2 {
-        font-size: 18px;
+        font-size: 24px;
     }
 
-    .addresses-detail,
-    .address-detail {
-        margin: 10px;
-        padding: 15px;
+    input[type="text"],
+    input[type="month"] {
+        font-size: 16px;
     }
 
-
-    .address-detail input[type="text"],
-    .address-detail input[type="month"] {
-        font-size: 14px;
-        padding: 8px;
-        width: calc(100% - 18px); /* Adjust width to match padding */
+    input[type="submit"] {
+        font-size: 16px;
+        padding: 10px 20px;
     }
 
-    .address-detail input[type="submit"],
-    .btn-submit,
-    .btn-delete {
-        font-size: 14px;
-        padding: 8px 16px;
+    .card-cata a, .addresses-cata a {
+        font-size: 20px;
     }
 }

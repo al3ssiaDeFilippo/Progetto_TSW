@@ -120,46 +120,49 @@ div > a:hover {
     color: #ffffff;
 }
 
-/* Media query per tablet */
+
+/* Enhancements for tablet devices */
 @media (min-width: 768px) {
     .card-detail {
-        margin: 20px auto;
-        max-width: 700px;
+        max-width: 700px; /* Adjusted for tablet screens */
     }
 }
 
-/* Media query per desktop */
+/* Enhancements for desktop devices */
 @media (min-width: 1024px) {
     .card-detail {
-        margin: 20px auto;
-        max-width: 900px;
+        max-width: 900px; /* Utilize more space on larger screens */
     }
 }
 
-/* Media query per dispositivi mobili */
-@media (max-width: 616px) {
+/* Additional media query for very large screens */
+@media (min-width: 1440px) {
     body {
-        font-size: 14px;
+        font-size: 16px; /* Slightly larger font for readability */
     }
 
     h2 {
-        font-size: 18px;
+        font-size: 24px; /* Larger heading for desktop */
     }
 
     .card-detail {
-        margin: 10px;
-        padding: 15px;
+        max-width: 1100px; /* Further increase max width for very large screens */
+        padding: 25px; /* More padding for a better layout */
     }
 
     .card-detail input[type="text"],
     .card-detail input[type="month"] {
-        font-size: 14px;
-        padding: 8px;
-        width: calc(100% - 18px); /* Adjust width to match padding */
+        font-size: 18px; /* Larger input text for easier interaction */
+        padding: 12px; /* More padding for inputs */
     }
 
-    .card-detail input[type="submit"] {
-        font-size: 14px;
-        padding: 8px 16px;
+    .btn-add input[type="submit"],
+    .btn-delete input[type="submit"] {
+        font-size: 18px; /* Larger buttons for easier clicking */
+        padding: 15px 30px; /* More padding for a larger clickable area */
+    }
+
+    .card-cata a {
+        font-size: 22px; /* Larger text for links */
     }
 }

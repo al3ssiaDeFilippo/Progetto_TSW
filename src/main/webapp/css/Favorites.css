@@ -18,6 +18,7 @@ body {
     flex-direction: row; /* Posiziona i dettagli a destra dell'immagine */
     align-items: center; /* Centra verticalmente l'elemento */
     margin: 20px 60px;
+    flex-wrap: wrap; /* Aggiunto per migliorare la responsività */
 }
 
 .product-image {
@@ -81,8 +82,6 @@ body {
     padding: 5px 10px;
     background-color: #ff6347;
     color: white;
-    width: 200px;
-    height: 50px;
     font-size: 15px;
     border: none;
     cursor: pointer;
@@ -97,4 +96,117 @@ body {
 a {
     text-decoration: none; /* Rimuove il sottolineato */
     color: #333; /* Cambia il colore del testo del link, se necessario */
+}
+
+/* Responsive Enhancements */
+
+/* Mobile devices */
+@media (max-width: 767px) {
+    .favorite-item {
+        flex-direction: column; /* Coloca i dettagli sotto l'immagine */
+        margin: 10px 20px;
+    }
+
+    .product-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 80px; /* Riduce la larghezza dell'immagine su dispositivi mobili */
+    }
+
+    .product-details h3 {
+        font-size: 24px;
+    }
+
+    .product-details p {
+        font-size: 14px;
+    }
+
+    .remove-favorite-form button {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px; /* Riduce il padding del pulsante */
+    }
+}
+
+/* Tablet devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .favorite-item {
+        margin: 15px 40px;
+    }
+
+    .product-image {
+        width: 90px;
+    }
+
+    .product-details h3 {
+        font-size: 26px;
+    }
+
+    .product-details p {
+        font-size: 15px;
+    }
+
+    .remove-favorite-form button {
+        width: 150px;
+        font-size: 14px;
+        padding: 10px; /* Riduce il padding del pulsante */
+    }
+}
+
+/* Desktop devices */
+@media (min-width: 1024px) {
+    body {
+        font-size: 16px; /* Slightly larger font for readability */
+    }
+
+    h2 {
+        font-size: 24px; /* Larger heading for desktop */
+    }
+
+    .favorite-item {
+        margin: 20px 60px;
+    }
+
+    .product-image {
+        width: 100px;
+    }
+
+    .product-details h3 {
+        font-size: 30px;
+    }
+
+    .product-details p {
+        font-size: 16px;
+    }
+
+    .remove-favorite-form button {
+        width: 200px;
+        font-size: 15px;
+        padding: 15px 20px; /* Adjusted padding for desktop */
+    }
+}
+
+/* Additional media query for very large screens */
+@media (min-width: 1440px) {
+    .favorite-item {
+        margin: 20px 80px;
+    }
+
+    .product-image {
+        width: 110px;
+    }
+
+    .product-details h3 {
+        font-size: 32px;
+    }
+
+    .product-details p {
+        font-size: 17px;
+    }
+
+    .remove-favorite-form button {
+        width: 220px;
+        font-size: 16px;
+        padding: 15px 25px; /* More padding for a better layout */
+    }
 }

@@ -12,7 +12,6 @@
     }
 
     GeneralUtils utils = new GeneralUtils();
-
 %>
 <!DOCTYPE html>
 <html lang="it">
@@ -28,47 +27,43 @@
     <div class="profile-container">
         <h2>Profilo Utente</h2>
 
-            <div class="profile-row">
-                <div class="profile-cell">
-                    <p class="profile-label">Nome</p>
-                    <p class="profile-value"><%= user.getName() %></p>
-                </div>
-                <div class="profile-cell">
-                    <p class="profile-label">Cognome</p>
-                    <p class="profile-value"><%= user.getSurname() %></p>
-                </div>
-                <div class="profile-cell">
-                    <p class="profile-label">Username</p>
-                    <p class="profile-value"><%= user.getUsername() %></p>
-                </div>
-                <div class="profile-cell">
-                    <p class="profile-label">Data di Nascita</p>
-                    <p class="profile-value"><%= user.getBirthDate() %></p>
-                </div>
-                <div class="profile-cell">
-                    <p class="profile-label">Email</p>
-                    <p class="profile-value"><%= user.getEmail() %></p>
-                </div>
-                <div class="profile-cell">
-                    <p class="profile-label">Password</p>
-                    <p class="profile-value"><%= utils.zippedPassword(user.getPassword())%></p>
-                </div>
-                <div class="profile-cell">
-                    <p class="profile-label">Numero di Telefono</p>
-                    <p class="profile-value"><%= user.getTelNumber() %></p>
-                </div>
+        <div class="profile-row">
+            <div class="profile-cell">
+                <p class="profile-label">Nome</p>
+                <p class="profile-value"><%= user.getName() %></p>
             </div>
-        <div>
-            <div>
-                <form action="ModificaDati.jsp" method="post">
-                    <button class="change-btn" type="submit">Modifica Dati</button>
-                </form>
+            <div class="profile-cell">
+                <p class="profile-label">Cognome</p>
+                <p class="profile-value"><%= user.getSurname() %></p>
             </div>
-            <div>
-                <form action="ModificaPassword.jsp" method="post">
-                    <button class="change-btn" type="submit">Modifica password</button>
-                </form>
+            <div class="profile-cell">
+                <p class="profile-label">Username</p>
+                <p class="profile-value"><%= user.getUsername() %></p>
             </div>
+            <div class="profile-cell">
+                <p class="profile-label">Data di Nascita</p>
+                <p class="profile-value"><%= user.getBirthDate() %></p>
+            </div>
+            <div class="profile-cell">
+                <p class="profile-label">Email</p>
+                <p class="profile-value"><%= user.getEmail() %></p>
+            </div>
+            <div class="profile-cell">
+                <p class="profile-label">Password</p>
+                <p class="profile-value"><%= utils.zippedPassword(user.getPassword())%></p>
+            </div>
+            <div class="profile-cell">
+                <p class="profile-label">Numero di Telefono</p>
+                <p class="profile-value"><%= user.getTelNumber() %></p>
+            </div>
+        </div>
+        <div class="click-containers-secondary">
+            <form action="ModificaDati.jsp" method="post">
+                <button class="change-btn" type="submit">Modifica Dati</button>
+            </form>
+            <form action="ModificaPassword.jsp" method="post">
+                <button class="change-btn" type="submit">Modifica password</button>
+            </form>
         </div>
     </div>
 </div>

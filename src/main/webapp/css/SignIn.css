@@ -152,9 +152,62 @@ input[type="submit"]:hover {
     background-color: #4caf50;
 }
 
-/* Media query per schermi grandi (desktop) */
-@media (min-width: 1024px) {
+/* Adjustments for extra small screens */
+@media (max-width: 480px) {
+    body, html {
+        font-size: 14px; /* Reduce base font size for extra small screens */
+    }
+
     .registration-form {
-        max-width: 600px;
+        padding: 20px; /* Reduce padding to fit content on smaller screens */
+        margin: 10px auto; /* Adjust margin for better centering */
+        width: 90%; /* Adjust width to fit smaller screens */
+    }
+
+    .form-wrapper input, .form-wrapper .form-label {
+        font-size: 14px; /* Adjust font size for better readability */
+    }
+
+    input[type="submit"] {
+        padding: 10px; /* Adjust padding for easier interaction */
+        font-size: 16px; /* Adjust font size for visibility */
+    }
+}
+
+/* Existing media query for small screens (up to 768px) handles adjustments */
+
+/* Adjustments for medium screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .registration-form {
+        padding: 30px; /* Adjust padding for medium screens */
+        margin: 20px auto; /* Adjust margin for better centering */
+        width: 80%; /* Adjust width for medium screens */
+    }
+
+    .form-wrapper input, .form-wrapper .form-label {
+        font-size: 16px; /* Adjust font size for medium screens */
+    }
+
+    input[type="submit"] {
+        padding: 12px; /* Adjust padding for medium screens */
+        font-size: 18px; /* Adjust font size for medium screens */
+    }
+}
+
+/* Adjustments for large screens */
+@media (min-width: 1025px) {
+    .registration-form {
+        padding: 40px; /* Increase padding for large screens */
+        margin: 40px auto; /* Adjust margin for better centering */
+        max-width: 600px; /* Limit max width for better readability */
+    }
+
+    .form-wrapper input, .form-wrapper .form-label {
+        font-size: 18px; /* Increase font size for large screens */
+    }
+
+    input[type="submit"] {
+        padding: 14px; /* Increase padding for large screens */
+        font-size: 20px; /* Increase font size for large screens */
     }
 }
