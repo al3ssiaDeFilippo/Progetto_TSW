@@ -13,6 +13,13 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <style>
+        /* Sfondo della pagina */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4; /* Colore di sfondo leggero per l'intera pagina */
+            color: #333; /* Colore del testo principale */
+        }
+
         .overlay {
             position: relative;
             width: 100%;
@@ -21,7 +28,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(135deg, #ffffff 100%, #cac6c6 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%); /* Gradiente grigio chiaro */
             box-shadow: 0 10px 22px rgba(85, 81, 81, 0.1);
             transition: all 1s ease-in-out;
         }
@@ -106,104 +113,77 @@
             color: black;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
+
         .content-section {
             display: flex;
             justify-content: space-between;
             gap: 20px;
             margin: 20px 0;
         }
-        .content-box {
-            flex: 1;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 45%; /* Adattato per stare sulla stessa riga */
-            text-align: center;
-            position: relative;
-            height: 400px; /* Aggiungi un'altezza fissa per rendere i box quadrati */
+
+        .content-section a {
+            text-decoration: none;
         }
+
+        /* Effetti specifici per il riquadro "About Us" */
         .content-box.square {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
-        .content-box.square img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+
         .content-box.square p {
-            position: absolute;
-            font-size: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-box.square p:first-child {
+            font-size: 2em;
             font-weight: bold;
-            color: white;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #37474f;
+            margin-bottom: 10px;
         }
-        .slideshow-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+
+        .content-box.square p.sub-text {
+            font-size: 1em;
+            color: #607d8b;
         }
-        .slideshow {
-            width: 100%;
+
+        /* Effetti di hover per i riquadri */
+        .content-box {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
             position: relative;
-            overflow: hidden;
-        }
-        .slideshow img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .slideshow-content {
-            position: absolute;
-            width: 100%;
-            height: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .slideshow-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 16px;
-            color: white;
+            height: 400px;
+            font-size: 25px;
             font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
+            align-content: center;
+            transition: all 0.3s ease-in-out;
         }
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
+
+        .content-box:hover {
+            background-color: #f9f9f9; /* Cambia il colore di sfondo al passaggio del mouse */
+            border-color: #b0bec5; /* Bordo blu-grigio chiaro al passaggio del mouse */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta l'ombra per dare l'effetto di sollevamento */
+            transform: scale(1.02); /* Leggero ingrandimento del box */
         }
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+
         .discount-box {
             padding: 20px;
             width: 100%;
             min-width: 300px;
             text-align: center;
-            background-color: white;
             margin: 20px 0 0 0;
+            background-color: #ffffff; /* Colore di sfondo chiaro e caldo per la sezione sconto */
+            border: 2px solid #cfd8dc; /* Bordi colorati per enfatizzare la sezione */
+            border-radius: 8px; /* Angoli arrotondati */
         }
         .slogan {
-            font-size: 25px;
+            font-size: 70px;
             font-weight: bold;
             color: black;
             text-align: center;
@@ -212,6 +192,56 @@
             padding: 20px;
             border-radius: 10px;
             text-transform: uppercase;
+        }
+        .best-seller-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 40px 0 20px;
+            color: black;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Effetti di hover per il box del catalogo */
+        .catalog-box {
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            background-color: #ffffff; /* Colore di sfondo bianco */
+            margin: 40px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid #e0e0e0; /* Bordo grigio chiaro */
+        }
+
+        .catalog-box:hover {
+            background-color: #f5f5f5; /* Colore di sfondo grigio più chiaro al passaggio del mouse */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .catalog-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .catalog-box p {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #37474f; /* Colore verde scuro per il testo */
+        }
+
+        .catalog-img {
+            width: 30%;
+            height: auto;
+            border-radius: 8px;
+            margin: 0 10px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .catalog-img:hover {
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -235,7 +265,12 @@
             <div class="swiper-wrapper">
                 <%
                     ProductModelDS productModel = new ProductModelDS();
-                    List<ProductBean> discountedProducts = (List<ProductBean>) productModel.getRandomProducts();
+                    List<ProductBean> discountedProducts = null;
+                    try {
+                        discountedProducts = (List<ProductBean>) productModel.getRandomProducts();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     for (ProductBean product : discountedProducts) {
                 %>
@@ -258,41 +293,66 @@
 </div>
 
 <div class="slogan">
-    <p>"I migliori poster per la tua casa"</p>
+    <p>"Poster<br>Your<br>World"</p>
 </div>
 
 <!-- Due contenitori: uno per il box quadrato e uno per lo slideshow -->
 <div class="content-section">
     <!-- Primo contenitore: box quadrato -->
-    <div class="content-box square">
-        <img src="Images/sconto2.jpg" alt="Sconto">
-        <p>Info</p>
-    </div>
-    <!-- Secondo contenitore: slideshow -->
-    <div class="content-box slideshow-container">
-        <div class="slideshow">
-            <%
-                List<ProductBean> slideshowProducts = null;
-                try {
-                    slideshowProducts = (List<ProductBean>) productModel.getRandomProducts();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-
-                for (ProductBean product : slideshowProducts) {
-            %>
-            <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>">
-                <div class="slideshow-content">
-                    <img src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName() %>">
-                </div>
-            </a>
-            <%
-                }
-            %>
+    <a href="Info.jsp">
+        <div class="content-box square">
+            <p>About Us</p>
+            <p class="sub-text">Scopri chi siamo e cosa facciamo per offrirti i migliori poster.</p>
         </div>
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </a>
+    <!-- Secondo contenitore: breve recap del sito -->
+    <div class="content-box">
+        <p>Benvenuti su PosterWorld!</p>
+        <p class="sub-text">Esplora la nostra vasta collezione di poster esclusivi per ogni gusto e stile. Offriamo una selezione accurata dei migliori poster per decorare la tua casa e il tuo ufficio. Trova il pezzo perfetto che aggiungerà un tocco speciale ai tuoi spazi.</p>
     </div>
+</div>
+
+
+<!-- Sezione Best Seller -->
+<div class="best-seller-section">
+    <div class="best-seller-title">Best Seller</div>
+    <div class="carousel-container">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <%
+                    List<ProductBean> bestSellerProducts = null;
+                    try {
+                        bestSellerProducts = (List<ProductBean>) productModel.getRandomProducts();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    for (ProductBean product : bestSellerProducts) {
+                %>
+                <div class="swiper-slide">
+                    <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>">
+                        <img src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName() %>">
+                    </a>
+                </div>
+                <%
+                    }
+                %>
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Riquadro del catalogo -->
+<div class="catalog-box" onclick="window.location.href='ProductView.jsp'">
+    <p>Visita il nostro catalogo</p>
+    <img src="Images/1.png" alt="Catalog Image 1" class="catalog-img">
+    <img src="Images/2.png" alt="Catalog Image 2" class="catalog-img">
+    <img src="Images/3.png" alt="Catalog Image 3" class="catalog-img">
 </div>
 
 <%@ include file="Footer.jsp" %>
@@ -335,31 +395,6 @@
                 prevEl: '.swiper-button-prev',
             },
         });
-
-        var slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            var slides = document.getElementsByClassName("slideshow-content");
-            for (var i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].style.display = "block"; // Cambia "flex" in "block"
-            setTimeout(showSlides, 3000);
-        }
-
-        function plusSlides(n) {
-            slideIndex += n;
-            var slides = document.getElementsByClassName("slideshow-content");
-            if (slideIndex > slides.length) {slideIndex = 1}
-            if (slideIndex < 1) {slideIndex = slides.length}
-            for (var i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex-1].style.display = "block"; // Cambia "flex" in "block"
-        }
     }
 </script>
 </body>

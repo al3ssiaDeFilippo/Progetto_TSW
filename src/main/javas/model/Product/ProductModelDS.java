@@ -456,6 +456,8 @@ public class ProductModelDS implements ProductModel {
         // Ottieni tutti i prodotti
         List<ProductBean> allProducts = new ArrayList<>(this.getAllProducts());
 
+        System.out.println("Debug: " + allProducts.size());
+
         // Mescola la lista
         Collections.shuffle(allProducts);
 
