@@ -70,101 +70,22 @@ h2 {
 
 .discount-percentage {
     font-size: 25px;
-    color: red; /* Colore rosso per la percentuale di sconto */
-}
-
-.original-price {
-    margin-left: 50px;
-    font-size: 15px;
-    color: #000000; /* Colore per il prezzo originale, se desideri differenziarlo */
-    text-decoration: line-through; /* Aggiunge l'effetto barrato */
-}
-/* Riduci la dimensione del testo per i messaggi specifici */
-.unavailable-product {
-    font-size: 0.6em; /* Riduci la dimensione del testo */
-    color: red; /* Mantieni il colore rosso per il testo */
-}
-
-/* Riduci la dimensione del testo per i messaggi specifici per gli amministratori */
-.admin-message {
-    font-size: 0.6em; /* Riduci la dimensione del testo */
-    color: #ff0000; /* Mantieni il colore rosso per il testo */
+    color: red; /* Colore rosso per il testo del prezzo scontato */
 }
 
 .discounted-price {
-    font-size: 25px;
-    color: #00a800; /* Colore verde per il prezzo scontato */
+    font-size: 30px; /* Dimensione del font per il prezzo scontato */
+    color: green; /* Colore verde per il prezzo scontato */
 }
 
-
-/* Stile per i campi input nelle informazioni del prodotto */
-.product-info p input, .product-info p select {
-    width: calc(100% - 120px);
-    padding: 10px;
-    font-size: 15px;
-    margin-left: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9; /* Colore di sfondo */
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
-    transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
+.original-price {
+    text-decoration: line-through; /* Barrato per il prezzo originale */
+    font-size: 20px; /* Dimensione del font per il prezzo originale */
+    color: grey; /* Colore grigio per il prezzo originale */
 }
 
-/* Stile per i campi input al passaggio del mouse */
-.product-info p input:hover, .product-info p select:hover {
-    border-color: #aaa;
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2); /* Effetto ombra interna maggiore */
-}
-
-/* Stile per i campi select nelle informazioni del prodotto */
-.product-info p select {
-    appearance: none; /* Rimuove la stilizzazione predefinita del browser */
-    background-color: #f9f9f9;
-    cursor: pointer;
-}
-
-/* Stile per le opzioni all'interno del select */
-.product-info p select option {
-    padding: 10px;
-    background-color: #fff;
-    color: #333;
-    border-radius: 8px; /* Rendi i bordi più arrotondati */
-    display: block; /* Rende le opzioni come blocchi separati */
-    margin-bottom: 8px; /* Spazio tra le opzioni */
-}
-
-/* Stile per i pulsanti */
-.delete-button {
-    background-color: #dc3545; /* Rosso per eliminare */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 10px; /* Spazio a destra */
-    margin-bottom: 10px; /* Spazio in basso */
-}
-
-.modify-button {
-    background-color: #007bff; /* Blu per modificare */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 10px; /* Spazio a destra */
-    margin-bottom: 10px; /* Spazio in basso */
-}
-
-.add-to-cart-button {
-    background-color: #28a745; /* Verde per aggiungere al carrello */
+.add-to-cart-button, .delete-button, .modify-button {
+    background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -174,136 +95,68 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 10px; /* Spazio a destra */
-    margin-bottom: 10px; /* Spazio in basso */
 }
 
-/* Stile per i link al passaggio del mouse */
-.centered-links a:hover {
-    background-color: #0066cc;
-    color: #fff;
+.add-to-cart-button {
+    background-color: #28a745; /* Verde per aggiungere al carrello */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Rosso per eliminare */
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.modify-button {
+    background-color: #007bff; /* Blu per modificare */
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .unavailable-product {
-    color: red !important;
-    font-size: 20px;
-    text-align: left;
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-#product-image {
-    position: relative;
-    overflow: hidden;
-}
-
-#product-image img {
-    transition: transform .5s ease;
+.admin-message {
+    color: #ff0000;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999;
-    padding-top: 100px; /* Aggiungi un padding-top per spostare il contenuto del modale verso il basso */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
 }
 
 .modal-content {
-    max-width: 50%;
-    margin: auto;
-}
-
-.modal-content img {
-    max-width: 50%;
-    max-height: 50%;
-    display: block;
-    margin: auto;
-    transition: transform 0.5s ease; /* Transizione per lo zoom */
-}
-
-.modal-content img:hover {
-    cursor: zoom-in; /* Cambia il cursore al passaggio del mouse per indicare che l'immagine è cliccabile */
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 
 .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    transition: 0.3s;
 }
 
 .close:hover,
 .close:focus {
-    color: #bbb;
+    color: black;
     text-decoration: none;
     cursor: pointer;
-}
-
-/* Media queries per rendere la pagina responsive */
-@media (max-width: 768px) {
-    .product-content {
-        flex-direction: column; /* Disporre gli elementi in colonna */
-        align-items: center; /* Centrare gli elementi */
-    }
-
-    .product-image {
-        margin-left: 0; /* Rimuovere il margine sinistro */
-        margin-right: 0; /* Rimuovere il margine destro */
-        text-align: center; /* Centrare l'immagine */
-    }
-
-    .product-info {
-        max-width: 100%;
-        margin-right: 0; /* Rimuovere il margine destro */
-        margin-top: 20px; /* Aggiungere margine superiore */
-    }
-
-    .product-details {
-        margin-left: 0; /* Rimuovere il margine sinistro */
-        font-size: 20px; /* Ridurre la dimensione del font */
-        width: 100%; /* Impostare la larghezza al 100% */
-        text-align: center; /* Centrare il testo */
-    }
-
-    .product-image img {
-        max-width: 100%; /* Impostare la larghezza massima al 100% */
-        margin-left: 0; /* Rimuovere il margine sinistro */
-    }
-}
-
-@media (max-width: 480px) {
-    .product-info {
-        padding: 10px; /* Ridurre il padding */
-        font-size: 20px; /* Ridurre la dimensione del font */
-    }
-
-    .product-details {
-        font-size: 16px; /* Ridurre ulteriormente la dimensione del font */
-    }
-
-    .product-image img {
-        max-width: 100%; /* Assicurarsi che l'immagine non superi la larghezza dello schermo */
-    }
-
-    .modal-content {
-        max-width: 90%; /* Consentire al modale di occupare più spazio sullo schermo */
-    }
-
-    .modal-content img {
-        max-width: 100%; /* Consentire all'immagine di scalare all'interno del modale */
-        max-height: auto;
-    }
-
-    .close {
-        top: 10px;
-        right: 10px;
-        font-size: 30px; /* Regolare per schermi più piccoli */
-    }
 }

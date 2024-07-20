@@ -101,11 +101,7 @@
         <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
             <input type="hidden" name="code" value="<%=product.getCode()%>">
             <input type="hidden" name="action" value="edit">
-            <input type="submit" value="Modifica">
-        </form>
-        <form action="<%= request.getContextPath() %>/DeleteProductServlet" method="post">
-            <input type="hidden" name="code" value="<%=product.getCode()%>">
-            <input type="submit" value="Elimina">
+            <input type="submit" class="modify-button" value="Modifica">
         </form>
         <% } %>
     </div>
