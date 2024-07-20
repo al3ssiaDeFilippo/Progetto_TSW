@@ -21,35 +21,41 @@
 <h2>Modifica Dati Profilo</h2>
 
 <div class="form-container">
-    <form action="<%= request.getContextPath() %>/UpdateProfileServlet" method="post">
+    <form id="registrationForm" action="<%= request.getContextPath() %>/UpdateProfileServlet" method="post">
         <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" value="<%= user.getName() %>" required>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" value="<%= user.getName() %>" required>
+            <span id="nameError" class="error"></span>
         </div>
 
         <div class="form-group">
-            <label for="cognome">Cognome:</label>
-            <input type="text" id="cognome" name="cognome" value="<%= user.getSurname() %>" required>
+            <label for="surname">Cognome:</label>
+            <input type="text" id="surname" name="surname" value="<%= user.getSurname() %>" required>
+            <span id="surnameError" class="error"></span>
         </div>
 
         <div class="form-group">
-            <label for="nickname">Nickname:</label>
-            <input type="text" id="nickname" name="nickname" value="<%= user.getUsername() %>" required>
+            <label for="username">Nickname:</label>
+            <input type="text" id="username" name="username" value="<%= user.getUsername() %>" required>
+            <span id="usernameError" class="error"></span>
         </div>
 
         <div class="form-group">
-            <label for="dataNascita">Data di Nascita:</label>
-            <input type="date" id="dataNascita" name="dataNascita" value="<%= user.getBirthDate() %>" required>
+            <label for="birthdate">Data di Nascita:</label>
+            <input type="date" id="birthdate" name="birthdate" value="<%= user.getBirthDate() %>" required>
+            <span id="BirthDateError" class="error"></span>
         </div>
 
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" value="<%= user.getEmail() %>" required>
+            <span id="emailError" class="error"></span>
         </div>
 
         <div class="form-group">
-            <label for="telefono">Numero di Telefono:</label>
-            <input type="tel" id="telefono" name="telefono" value="<%= user.getTelNumber() %>" required>
+            <label for="telNumber">Numero di Telefono:</label>
+            <input type="tel" id="telNumber" name="telNumber" value="<%= user.getTelNumber() %>" required>
+            <span id="telNumberError" class="error"></span>
         </div>
 
         <div class="btn-submit">

@@ -14,6 +14,12 @@ h2 {
     text-align: center; /* Centra il testo del titolo */
 }
 
+.error {
+    color: red !important;
+    font-size: 14px !important;
+    margin: 10px 0;
+}
+
 /* Stile per il contenitore del modulo */
 .form-container {
     background-color: #ffffff;
