@@ -10,8 +10,9 @@ body {
 
 h2 {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px;
     color: #4b6cb7;
+    font-size: 35px;
 }
 
 .as {
@@ -24,9 +25,10 @@ h2 {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 10px 0 0; /* Riduci il margine inferiore a 0px */
     font-weight: bold;
     color: #333;
 }
@@ -37,13 +39,14 @@ select,
 input[type="file"] {
     width: 100%;
     padding: 10px;
+    margin-top: -10px; /* Riduci il margine superiore a -10px */
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-input[type="submit"] {
+button#submitButton {
     display: block;
     width: 100%;
     padding: 10px;
@@ -53,10 +56,46 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
+button#submitButton:hover {
     background-color: #0056b3;
+}
+
+button#submitButton img {
+    vertical-align: middle; /* Allinea verticalmente l'immagine all'interno del pulsante */
+    width: 20px; /* Imposta una larghezza fissa per l'immagine */
+    height: 20px; /* Imposta un'altezza fissa per l'immagine */
+    margin-left: 10px;
+}
+
+/* Stile per la GIF di caricamento */
+#loadingGif {
+    display: none; /* Nascondi la GIF inizialmente */
+    width: 100%; /* Adatta la larghezza della GIF alla larghezza del pulsante */
+    max-width: 120px; /* Imposta una larghezza massima per la GIF */
+    height: auto; /* Mantieni le proporzioni della GIF */
+    margin: 20px auto; /* Centra la GIF orizzontalmente */
+}
+
+/* Animazione per la GIF */
+@keyframes slow-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#loadingGif {
+    animation: slow-spin 3s linear infinite;
+}
+
+/* Stile per i messaggi di errore */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .alert {
@@ -91,6 +130,11 @@ input[type="submit"]:hover {
     input[type="submit"] {
         padding: 8px;
     }
+
+    #loadingGif {
+        width: 80px;  /* Riduci la larghezza per dispositivi mobili */
+        height: auto; /* Mantieni le proporzioni per dispositivi mobili */
+    }
 }
 
 /* Tablet devices */
@@ -105,5 +149,10 @@ input[type="submit"]:hover {
 
     input[type="submit"] {
         padding: 9px;
+    }
+
+    #loadingGif {
+        width: 90px;  /* Riduci la larghezza per tablet */
+        height: auto; /* Mantieni le proporzioni per tablet */
     }
 }
