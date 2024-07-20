@@ -90,7 +90,7 @@ section {
 
 .form-wrapper input:focus + .form-label,
 .form-wrapper input:not(:placeholder-shown) + .form-label {
-    transform: translate(0, -28px);
+    transform: translate(0, -26px);
     background-color: white;
     padding: 0 5px;
     color: #007bff;
