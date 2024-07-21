@@ -28,9 +28,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/Header.css">
+    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <script>
         var contextPath = '<%= request.getContextPath() %>';
@@ -56,7 +55,7 @@
         <div class="discount-badge">Sconto</div>
         <% } %>
 
-        <% if (!user.getAdmin()) { %>
+        <% if (user != null && !user.getAdmin()) { %>
         <form class="favorite-form"
               action="<%= request.getContextPath() + "/ToggleFavoriteServlet" %>"
               method="post"
@@ -83,24 +82,6 @@
             }
         }
     %>
-</div>
-<div class="centered-links">
-    <a href="HomePage.jsp">Home</a>
-    <% if (user != null && user.getAdmin()) { %>
-    <a href="Profilo.jsp">Profilo</a>
-    <form action="<%= request.getContextPath() %>/LogOutServlet" method="post">
-        <input type="submit" value="Logout">
-    </form>
-    <a href="InsertPage.jsp">Inserisci prodotto</a>
-    <a href="UserView.jsp">Utenti</a>
-    <a href="OrderView.jsp">Ordini</a>
-    <% } else if (user != null) { %>
-    <form action="<%= request.getContextPath() %>/LogOutServlet" method="post" class="logout-button">
-        <input type="submit" value="Logout">
-    </form>
-    <% } else { %>
-    <a href="LogIn.jsp">Log In</a>
-    <% } %>
 </div>
 <%@ include file="Footer.jsp" %>
 </body>

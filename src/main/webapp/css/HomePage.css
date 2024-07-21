@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1;
     background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%); /* Gradiente grigio chiaro */
     box-shadow: 0 10px 22px rgba(85, 81, 81, 0.1);
     transition: all 1s ease-in-out;
