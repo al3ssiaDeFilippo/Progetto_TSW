@@ -93,9 +93,12 @@ CREATE TABLE orderDetails (
       iva INT NOT NULL,
       idUser INT,
       PRIMARY KEY (idOrder, productCode),  -- Chiave primaria composta
-      FOREIGN KEY (idUser) REFERENCES user(idUser),
-      FOREIGN KEY (productCode) REFERENCES product(code),
+      FOREIGN KEY (idUser) REFERENCES user(idUser)
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+      FOREIGN KEY (productCode) REFERENCES product(code)
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
       FOREIGN KEY (idOrder) REFERENCES orders(idOrder)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE favorites (

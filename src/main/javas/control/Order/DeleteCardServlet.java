@@ -25,15 +25,22 @@ public class DeleteCardServlet extends HttpServlet {
         UserBean user = (UserBean) session.getAttribute("user");
 
         String cardId = request.getParameter("cardId");
+        System.out.println("caoefwpfjpofjpofefnof:::::: "+ cardId);
 
         if (cardId == null) {
             throw new ServletException("Missing cardId parameter");
         }
 
         try {
-            creditCardModel.doDelete(cardId);
+            boolean res = creditCardModel.doDelete(cardId);
+            if(res) {
+                System.out.println("Card deleted successfully");
+            } else {
+                System.out.println("Error deleting the card");
+            }
             response.sendRedirect("CarteUtente.jsp");
         } catch (SQLException e) {
+            e.printStackTrace(); // This will print detailed information about the SQLException
             throw new ServletException("Error deleting the credit card");
         }
     }

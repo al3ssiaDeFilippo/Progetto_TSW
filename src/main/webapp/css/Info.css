@@ -144,6 +144,10 @@ body {
     .slideshow-container {
         max-width: 80%;
     }
+
+    .materials-section {
+        flex-direction: column;
+    }
 }
 
 /* Tablet devices */

@@ -65,6 +65,7 @@ public class CreditCardModel {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(deleteSQL);
             preparedStatement.setString(1, idCard);
+            System.out.println("idCard: " + idCard);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;
