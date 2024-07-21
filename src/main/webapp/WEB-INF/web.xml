@@ -35,7 +35,7 @@
 
   <servlet-mapping>
     <servlet-name>AddToCartServlet</servlet-name>
-    <url-pattern>/AddToCardServlet</url-pattern>
+    <url-pattern>/AddToCartServlet</url-pattern>
   </servlet-mapping>
 
   <servlet>

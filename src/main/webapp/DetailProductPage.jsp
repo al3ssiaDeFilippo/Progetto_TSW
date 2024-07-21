@@ -2,21 +2,19 @@
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.bean.UserBean" %>
+<%@ page import="main.javas.bean.CartBean" %>
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
-    UserBean user = (UserBean) session.getAttribute("user"); // Retrieve the user object from the session
-    float discounted = 0; // Declare the discounted variable
-    if (product != null) {
-        // Assuming ProductModelDS has a method to calculate discounted price
-        ProductModelDS PMDS = new ProductModelDS();
-        try {
-            discounted = PMDS.calculateDiscountedPrice(product.getCode()); // Calculate the discounted price
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    UserBean user = (UserBean) session.getAttribute("user"); // Assumi che l'oggetto utente sia salvato in sessione come "user"
+    ProductModelDS PMDS = new ProductModelDS();
+    float discounted = 0;
+    try {
+        discounted = PMDS.calculateDiscountedPrice(product.getCode());
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
     }
 %>
 
@@ -26,7 +24,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="css/DetailProductPage.css" rel="stylesheet" type="text/css">
     <script src="js/DetailSelection.js"></script>
-    <script src="js/ModalImage.js"></script>
     <title>Dettagli Prodotto</title>
 </head>
 <body>
@@ -38,21 +35,19 @@
     <h2><%= product.getProductName() %></h2>
 </div>
 <div class="product-content">
-    <div class="product-image" id="product-image">
+    <div class="product-image">
         <img id="productImage" data-product-code="<%= product.getCode() %>" src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
     </div>
 
     <div class="product-info">
         <% if(product.getDiscount() > 0) { %>
-        <p><strong>Prezzo: </strong> <strong><span class="discount-percentage">-<%=product.getDiscount() %>% &nbsp;</span></strong> <span class="discounted-price"><%= discounted %> €</span></p>
-        <p><span class="original-price"><%= product.getPrice() %> €</span></p>
+        <p><strong>Prezzo: </strong> <strong> -<span class="discount-percentage"><%=product.getDiscount() %>% &nbsp;</strong> <span class="discounted-price"><%= discounted%> €</span></p>
+        <p><span class="original-price"><%= product.getPrice()%> €</span></p>
         <% } else { %>
         <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
         <% } %>
-
-        <% if(product.getQuantity() > 0) { %>
-        <!-- Form for selecting options, visible to all users -->
-        <form onsubmit="return false;">
+        <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post" onsubmit="return validateForm()">
+            <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
             <p><strong>Dimensioni:</strong>
                 <select name="size" id="sizeSelect">
                     <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
@@ -62,7 +57,7 @@
                 </select>
             </p>
             <p id="frameSelectContainer"><strong>Materiale Cornice:</strong>
-                <select name="frame" id="frameSelect">
+                <select name="frame" id="frameSelect" >
                     <option value="no frame" selected>No Frame</option>
                     <option value="wood">Wood</option>
                     <option value="PVC">PVC</option>
@@ -77,33 +72,15 @@
                     <option value="white">White</option>
                 </select>
             </p>
-        </form>
-
-        <% if (user == null || !user.getAdmin()) { %>
-        <!-- Form for adding to cart, hidden for admins -->
-        <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post" onsubmit="return validateForm()">
-            <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
             <p id="errorMessage" style="color:red; display:none;"></p>
-            <input type="submit" value="Aggiungi al Carrello" class="add-to-cart-button">
+            <input type="submit" value="Aggiungi al Carrello">
+            <% if(product.getQuantity() > 0) { %>
+            <% if (user == null || !user.getAdmin()) { %>
+            <% } %>
         </form>
         <% } else { %>
-        <p class="admin-message">Gli amministratori non possono aggiungere prodotti al carrello</p>
-        <% } %>
-        <% } else if(product.getQuantity() <= 0) { %>
         <p class="unavailable-product">Prodotto non disponibile al momento</p>
-        <% } %>
-
-        <% if (user != null && user.getAdmin()) { %> <!-- Show admin controls -->
-        <form action="<%= request.getContextPath() %>/DeleteProductServlet" method="post">
-            <input type="hidden" name="code" value="<%= product.getCode() %>">
-            <input type="submit" class="delete-button" value="Elimina">
-        </form>
-        <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="code" value="<%=product.getCode()%>">
-            <input type="hidden" name="action" value="edit">
-            <input type="submit" class="modify-button" value="Modifica">
-        </form>
-        <% } %>
+        <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
     </div>
     <div class="product-details">
         <p><strong>Dettagli: <br></strong> <%= product.getDetails() %></p>
@@ -112,15 +89,6 @@
 <% } else { %>
 <p>Nessun prodotto selezionato</p>
 <% } %>
-
-<div id="myModal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content">
-        <img id="img01" class="modal-image">
-    </div>
-    <div id="caption"></div>
-</div>
-
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

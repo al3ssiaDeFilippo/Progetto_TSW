@@ -8,11 +8,9 @@ import main.javas.model.Product.ProductModelDS;
 import main.javas.util.Carrello;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/AddToCartServlet")
 public class AddToCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final CartModel cartModel = new CartModel();

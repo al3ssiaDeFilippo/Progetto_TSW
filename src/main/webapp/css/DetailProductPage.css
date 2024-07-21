@@ -35,6 +35,7 @@ h2 {
     margin-top: 20px;
 }
 
+
 /* Stile per l'immagine del prodotto */
 .product-image img {
     max-width: 350px; /* Aumenta la larghezza massima dell'immagine */
@@ -70,93 +71,150 @@ h2 {
 
 .discount-percentage {
     font-size: 25px;
-    color: red; /* Colore rosso per il testo del prezzo scontato */
-}
-
-.discounted-price {
-    font-size: 30px; /* Dimensione del font per il prezzo scontato */
-    color: green; /* Colore verde per il prezzo scontato */
+    color: red; /* Colore rosso per la percentuale di sconto */
 }
 
 .original-price {
-    text-decoration: line-through; /* Barrato per il prezzo originale */
-    font-size: 20px; /* Dimensione del font per il prezzo originale */
-    color: grey; /* Colore grigio per il prezzo originale */
+    margin-left: 50px;
+    font-size: 15px;
+    color: #000000; /* Colore per il prezzo originale, se desideri differenziarlo */
+    text-decoration: line-through; /* Aggiunge l'effetto barrato */
 }
 
-.add-to-cart-button, .delete-button, .modify-button {
-    background-color: #007bff;
+.discounted-price {
+    font-size: 25px;
+    color: #00a800; /* Colore verde per il prezzo scontato */
+}
+
+
+/* Stile per i paragrafi delle informazioni del prodotto */
+.product-info p {
+    margin: 10px 0;
+    color: #000000;
+}
+
+/* Stile per i campi input nelle informazioni del prodotto */
+.product-info p input, .product-info p select {
+    width: calc(100% - 120px);
+    padding: 10px;
+    font-size: 15px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Colore di sfondo */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
+}
+
+/* Stile per i campi input al passaggio del mouse */
+.product-info p input:hover, .product-info p select:hover {
+    border-color: #aaa;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2); /* Effetto ombra interna maggiore */
+}
+
+/* Stile per i campi select nelle informazioni del prodotto */
+.product-info p select {
+    appearance: none; /* Rimuove la stilizzazione predefinita del browser */
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Stile per le opzioni all'interno del select */
+.product-info p select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px; /* Rendi i bordi piÃ¹ arrotondati */
+    display: block; /* Rende le opzioni come blocchi separati */
+    margin-bottom: 8px; /* Spazio tra le opzioni */
+}
+
+
+/* Stile per i link al passaggio del mouse */
+.centered-links a:hover {
+    background-color: #0066cc;
+    color: #fff;
+}
+
+/* Stile per il pulsante di invio */
+input[type="submit"] {
+    background-color: #28a745;
     color: #fff;
     border: none;
     padding: 10px 20px;
-    margin-top: 10px;
-    font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.add-to-cart-button {
-    background-color: #28a745; /* Verde per aggiungere al carrello */
-}
-
-.delete-button {
-    background-color: #dc3545; /* Rosso per eliminare */
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.modify-button {
-    background-color: #007bff; /* Blu per modificare */
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.unavailable-product {
-    color: red;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.admin-message {
-    color: #ff0000;
     font-size: 16px;
-    font-weight: bold;
+    transition: background-color 0.3s; /* Transizione */
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+/* Stile per il pulsante di invio al passaggio del mouse */
+input[type="submit"]:hover {
+    background-color: #218838;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+/* Media query per tablet */
+@media (min-width: 768px) {
+    .product-content {
+        flex-direction: row; /* Ritorna al layout orizzontale */
+        justify-content: space-around; /* Distribuisce lo spazio intorno agli elementi */
+    }
+
+    .product-image img {
+        margin-left: 0; /* Assicura che l'immagine sia centrata */
+    }
+
+    .product-info, .product-details {
+        text-align: left; /* Allinea il testo a sinistra */
+        margin-right: 20px; /* Aggiunge un margine destro */
+    }
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+/* Media query per desktop */
+@media (min-width: 1024px) {
+    .product-content {
+        justify-content: center; /* Centra gli elementi nel contenitore */
+    }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    .product-image img {
+        margin-left: 150px; /* Ripristina il margine sinistro per l'immagine */
+    }
+
+    .product-info {
+        max-width: 500px; /* Limita la larghezza delle informazioni del prodotto */
+        margin-right: 150px; /* Aumenta il margine destro */
+    }
+
+    .product-details {
+        margin-left: -50px; /* Ajusta il margine sinistro per i dettagli del prodotto */
+    }
+}
+@media (max-width: 616px) {
+    body {
+        font-size: 14px; /* Riduce la dimensione del font */
+    }
+
+    h2 {
+        font-size: 18px; /* Riduce la dimensione del font del titolo */
+    }
+
+    .product-image img {
+        max-width: 100%; /* Permette all'immagine di espandersi fino al 100% della larghezza del contenitore */
+        margin: 0 auto; /* Centra l'immagine */
+    }
+
+    .product-info, .product-details {
+        font-size: 16px; /* Ajusta la dimensione del font per le informazioni e i dettagli del prodotto */
+        padding: 10px; /* Aggiunge un padding per evitare che il testo tocchi i bordi dello schermo */
+        margin-right: 0; /* Rimuove il margine destro */
+    }
+
+    .product-info p input, .product-info p select {
+        width: 100%; /* Espande i campi di input e select per occupare tutta la larghezza disponibile */
+        margin: 10px 0; /* Aggiunge un margine superiore e inferiore per separare meglio gli elementi */
+    }
+
+    input[type="submit"] {
+        width: 100%; /* Espande il pulsante di invio per occupare tutta la larghezza disponibile */
+    }
 }
