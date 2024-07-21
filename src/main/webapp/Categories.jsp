@@ -52,16 +52,17 @@
             var contextPath = '<%= request.getContextPath() %>';
         </script>
 
-        <!-- Aggiungi il simbolo del prodotto preferito -->
-        <form class="favorite-form"
-              action="<%= request.getContextPath() + "/ToggleFavoriteServlet" %>"
-              method="post"
-              data-action="<%= isFavorite ? "remove" : "add" %>"
-              onclick="return toggleFavorite(this, '<%=product.getCode()%>', '<%=user != null ? user.getIdUser() : ""%>')">
-            <input type="hidden" name="productCode" value="<%=product.getCode()%>">
-            <img class="favorite-icon" src="<%= isFavorite ? "Images/full-heart.png" : "Images/empty-heart.png" %>" alt="favorite-icon">
-        </form>
-
+        <% if (!user.getAdmin()) { %>
+            <!-- Aggiungi il simbolo del prodotto preferito -->
+            <form class="favorite-form"
+                  action="<%= request.getContextPath() + "/ToggleFavoriteServlet" %>"
+                  method="post"
+                  data-action="<%= isFavorite ? "remove" : "add" %>"
+                  onclick="return toggleFavorite(this, '<%=product.getCode()%>', '<%=user != null ? user.getIdUser() : ""%>')">
+                <input type="hidden" name="productCode" value="<%=product.getCode()%>">
+                <img class="favorite-icon" src="<%= isFavorite ? "Images/full-heart.png" : "Images/empty-heart.png" %>" alt="favorite-icon">
+            </form>
+        <% } %>
         <!-- Link to DetailProductPage.jsp with product code as a query parameter -->
         <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>">
             <img class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">

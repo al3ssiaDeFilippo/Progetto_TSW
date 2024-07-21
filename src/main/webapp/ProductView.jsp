@@ -55,6 +55,8 @@
         <% if (product.getDiscount() > 0) { %>
         <div class="discount-badge">Sconto</div>
         <% } %>
+
+        <% if (!user.getAdmin()) { %>
         <form class="favorite-form"
               action="<%= request.getContextPath() + "/ToggleFavoriteServlet" %>"
               method="post"
@@ -63,6 +65,8 @@
             <input type="hidden" name="productCode" value="<%=product.getCode()%>">
             <img class="favorite-icon" src="<%= isFavorite ? "Images/full-heart.png" : "Images/empty-heart.png" %>" alt="favorite-icon">
         </form>
+        <% } %>
+
         <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=product.getCode()%>">
             <img class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=product.getCode()%>" alt="<%= product.getProductName()%>">
             <h2><%= product.getProductName() %></h2>

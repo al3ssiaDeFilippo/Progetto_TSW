@@ -2,6 +2,7 @@
 <%@ page import="main.javas.bean.ShippingBean" %>
 <%@ page import="main.javas.model.Order.ShippingModel" %>
 <%@ page import="java.util.Collection" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -11,7 +12,12 @@
         return;
     }
     ShippingModel shippingModel = new ShippingModel();
-    Collection<ShippingBean> addresses = shippingModel.doRetrieveAll(user.getIdUser());
+    Collection<ShippingBean> addresses = null;
+    try {
+        addresses = shippingModel.doRetrieveAll(user.getIdUser());
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
 %>
 
 <html>
