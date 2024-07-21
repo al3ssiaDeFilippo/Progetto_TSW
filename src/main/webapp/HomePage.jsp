@@ -116,7 +116,7 @@
 </div>
 
 <!-- Riquadro del catalogo -->
-<div class="catalog-box" onclick="window.location.href='ProductView.jsp'">
+<div class="catalog-box" onclick="window.location.href='FilterProductServlet?filter=all'">
     <p>Visita il nostro catalogo</p>
     <img src="Gallery/Anime/TokyoG.jpg" alt="Catalog Image 1" class="catalog-img">
     <img src="Images/2.png" alt="Catalog Image 3" class="catalog-img">

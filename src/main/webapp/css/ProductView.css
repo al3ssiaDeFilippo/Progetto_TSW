@@ -3,15 +3,12 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
     color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
 }
 
 main {
     padding: 20px;
     max-width: 1200px;
-    margin: auto; /* Centra il contenuto principale */
+    margin: auto;
     margin-top: 30px;
 }
 
@@ -19,18 +16,77 @@ h2 {
     color: #0056b3;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 40px
+    font-size: 40px;
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: relative;
+    top: -80px;
+    left: 0;
+    height: 600px;
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#filter-form fieldset {
+    border: none;
+    padding: 0;
+}
+
+#filter-form legend {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+#filter-form label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+#filter-form input[type="radio"] {
+    margin-right: 10px;
+    padding: 30px;
+}
+
+#filter-form input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#filter-form input[type="submit"]:hover {
+    background-color: #003d80;
 }
 
 /* Product Container */
 .products-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Utilizza frazioni automatiche */
-    justify-content: center; /* Centra i prodotti nel contenitore */
-    gap: 60px; /* Spazio tra i prodotti */
-    padding: 20px; /* Padding aggiunto per separazione dai bordi del main */
-    margin: 0 auto; /* Centra il contenitore */
-    max-width: 1200px; /* Massima larghezza del contenitore */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Spazio tra i prodotti */
+    margin-left: 40px; /* Larghezza della sidebar + padding */
+    padding: 20px;
+    width: calc(100% - 270px); /* Larghezza totale meno sidebar */
 }
 
 /* Badge for discount */
@@ -66,16 +122,38 @@ h2 {
     width: auto;
     display: block;
     margin: auto; /* Centra l'immagine all'interno del contenitore */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiungi l'ombra nera alle immagini */
-    transition: box-shadow 0.3s ease;
-    margin-bottom: 27px; /* Aggiungi spazio tra l'immagine e il titolo del prodotto */
-}
-.product a:hover img {
-    box-shadow: 0 4px 8px rgb(158, 158, 158); /* Applica l'ombra solo all'immagine all'interno dell'ancora */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Aggiungi l'ombra alle immagini */
+    transition: transform 0.3s ease-in-out; /* Aggiungi una transizione all'ombra */
 }
 
-.price-p {
-    padding: 10px;
+/* Styled buttons */
+button, .button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+    background-color: #003d80;
+}
+
+.product button {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ddd;
+    background-color: #0056b3;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #003d80;
 }
 
 .product h2 {
@@ -95,22 +173,22 @@ h2 {
 }
 
 .original-price {
-    color: #ff0000; /* Cambia il colore del testo */
-    font-size: 18px; /* Riduci la dimensione del testo se necessario */
-    text-decoration: line-through; /* Assicurati che il prezzo originale sia barrato */
+    color: #ff0000;
+    font-size: 18px;
+    text-decoration: line-through;
 }
 
 .discounted-price {
-    color: #008000; /* Imposta il colore del testo per il prezzo scontato a verde */
+    color: #008000;
 }
 
 .price-label {
-    color: #490808; /* Cambia il colore del testo a blu */
+    color: #490808;
 }
 
 a:link, a:visited, a:hover, a:active {
-    text-decoration: none; /* Rimuove l'effetto sottolineato */
-    color: #0056b3; /* Sostituisci con il colore desiderato */
+    text-decoration: none;
+    color: #0056b3;
 }
 
 .favorite-form {
@@ -119,90 +197,52 @@ a:link, a:visited, a:hover, a:active {
     right: 2px;
     display: flex;
     height: 40px;
-    justify-content: flex-end; /* Allinea l'immagine del cuore alla fine del contenitore */
+    justify-content: flex-end;
     align-items: center;
     margin: 1px;
 }
 
-/* Stile base per l'icona del cuore */
 .favorite-icon {
-    width: 32px; /* Dimensioni dell'icona del cuore */
+    width: 32px;
     height: auto;
-    cursor: pointer; /* Cambia il cursore al passaggio sopra */
+    cursor: pointer;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-/* Effetto di zoom e dissolvenza al passaggio del mouse */
 .favorite-icon:hover {
-    transform: scale(1.2); /* Effetto di zoom */
+    transform: scale(1.2);
 }
 
-/* Stile quando l'utente ha aggiunto il prodotto ai preferiti */
 .favorite-icon.added {
-    opacity: 0; /* Opacità a 0 per dissolvere l'icona */
-    transition: none; /* Rimuove la transizione quando l'icona scompare */
-    transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
+    opacity: 0;
+    transition: none;
+    transform: scale(0.8);
 }
 
-/* Stile quando l'utente ha rimosso il prodotto dai preferiti */
 .favorite-icon.removed {
-    opacity: 0; /* Opacità a 0 per dissolvere l'icona */
-    transition: none; /* Rimuove la transizione quando l'icona scompare */
-    transform: scale(0.8); /* Effetto di riduzione prima della dissolvenza */
+    opacity: 0;
+    transition: none;
+    transform: scale(0.8);
 }
 
-/* Price styling */
 .product p:last-child {
     color: #050505;
     font-weight: bold;
-    padding: 0 15px 0; /* Imposta il padding solo per i lati sinistro e destro */
+    padding: 0 15px 0;
 }
 
-@media (max-width: 480px) {
-    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
-        padding: 5px;
-        font-size: 12px;
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
     }
-    button {
-        padding: 8px;
-        font-size: 14px;
+    .main-container {
+        flex-direction: column;
     }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
-        padding: 10px;
-        font-size: 14px;
-    }
-    button {
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .profile-container, .profile-row, .profile-cell, .click-containers-secondary button {
-        padding: 15px;
-        font-size: 16px;
-    }
-    button {
-        padding: 12px;
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 1025px) {
-    .profile-container {
-        padding: 20px;
-        max-width: 800px;
-        margin: auto;
-    }
-    .profile-row, .profile-cell, .click-containers-secondary button {
-        padding: 20px;
-        font-size: 18px;
-    }
-    button {
-        padding: 14px;
-        font-size: 20px;
+    .products-container {
+        margin-left: 0;
+        width: 100%;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Aggiunge un layout responsivo per schermi più piccoli */
     }
 }

@@ -398,6 +398,7 @@ public class ProductModelDS implements ProductModel {
 
             ResultSet rs = preparedStatement.executeQuery();
 
+            int count = 0; // Debug
             while (rs.next()) {
                 ProductBean bean = new ProductBean();
 
@@ -414,7 +415,10 @@ public class ProductModelDS implements ProductModel {
                 bean.setSize(rs.getString("SIZE"));
                 bean.setPhoto(rs.getBlob("PHOTO"));
                 products.add(bean);
+
+                count++; // Debug
             }
+            System.out.println("Number of products fetched from database: " + count); // Debug
 
         } finally {
             try {
@@ -426,18 +430,22 @@ public class ProductModelDS implements ProductModel {
             }
         }
         return products;
-    } // fine metodo
+    }
+
 
 
     public Collection<ProductBean> GetDiscountedProductsList() throws SQLException {
-        // Ottieni tutti i prodotti
         Collection<ProductBean> allProducts = this.getAllProducts();
+        System.out.println("Total products retrieved: " + allProducts.size()); // Debug
 
-        // Filtra la lista per includere solo i prodotti con uno sconto maggiore di zero
-        return allProducts.stream()
+        Collection<ProductBean> filteredProducts = allProducts.stream()
                 .filter(product -> product.getDiscount() > 0)
                 .collect(Collectors.toList());
+
+        System.out.println("Discounted products count: " + filteredProducts.size()); // Debug
+        return filteredProducts;
     }
+
 
     public Collection<ProductBean> getRandomDiscountedProducts() throws SQLException {
         // Ottieni tutti i prodotti scontati
@@ -465,6 +473,27 @@ public class ProductModelDS implements ProductModel {
         List<ProductBean> randomProducts = allProducts.subList(0, allProducts.size());
 
         return randomProducts;
+    }
+
+    public Collection<ProductBean> getProductsByPriceRange(float minPrice, float maxPrice) throws SQLException {
+        Collection<ProductBean> allProducts = this.getAllProducts();
+        System.out.println("Total products retrieved: " + allProducts.size()); // Debug
+
+        Collection<ProductBean> filteredProducts = allProducts.stream()
+                .filter(product -> {
+                    try {
+                        float discountedPrice = calculateDiscountedPrice(product.getCode());
+                        System.out.println("Product: " + product.getProductName() + ", Discounted Price: " + discountedPrice);
+                        return discountedPrice >= minPrice && discountedPrice <= maxPrice;
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        System.out.println("Filtered products count: " + filteredProducts.size()); // Debug
+        return filteredProducts;
     }
 
 
