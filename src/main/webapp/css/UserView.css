@@ -72,6 +72,28 @@ h2 {
     color: #333;
 }
 
+/* Stile per il pulsante Elimina */
+input[type="submit"][value="Elimina"] {
+    background-color: #ff4d4d; /* Rosso chiaro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Stile per il pulsante Admin */
+input[type="submit"][value="Admin"] {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
 /* Adjustments for extra small screens */
 @media (max-width: 480px) {
     body, html {

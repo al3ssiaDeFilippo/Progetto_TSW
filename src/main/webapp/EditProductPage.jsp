@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta enctype="multipart/form-data">
-    <link rel="stylesheet" type="text/css" href="css/ProductView.css">
+    <link rel="stylesheet" type="text/css" href="css/EditProductPage.css">
     <title>Modifica Prodotto</title>
     <script src="js/UploadImage.js" defer></script>
     <script>
@@ -21,7 +21,10 @@
     </script>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
+
 <h2>Modifica Prodotto</h2>
+<div class="as">
 <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
     <input type="hidden" name="action" value="update">
 
@@ -61,10 +64,15 @@
 
     <!-- Mostra l'immagine attuale del prodotto -->
     <img id="productImage" class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getCode() : "" %>" alt="Immagine attuale del prodotto"><br>
-
     <input type="hidden" name="currentPhoto" value="<%=request.getAttribute("product") != null && ((ProductBean) request.getAttribute("product")).getPhoto() != null ? "true" : "false"%>">
 
-    <input type="submit" value="Modifica Prodotto">
+    <div class="button-container">
+        <input type="submit" value="Modifica Prodotto">
+    </div>
+</div>
+
 </form>
+<%@ include file="Footer.jsp" %>
+
 </body>
 </html>

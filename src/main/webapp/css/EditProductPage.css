@@ -1,144 +1,175 @@
-/* Stile di base per il corpo della pagina */
+/* InsertPage.css */
+
 body {
     font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-    color: #000000;
 }
 
-/* Stile per il titolo */
 h2 {
-    color: #000000;
-    margin: 10px 0;
-    text-align: center; /* Centra il testo del titolo */
+    text-align: center;
+    margin: 20px;
+    color: #4b6cb7;
+    font-size: 35px;
 }
 
-/* Contenitore per l'immagine del prodotto */
-.product-image {
-    flex: 1;
-    text-align: left;
-    margin-right: 20px;
-}
-
-/* Contenitore per il contenuto del prodotto */
-.product-content {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-/* Stile per l'immagine del prodotto */
-.product-image img {
-    max-width: 350px; /* Aumenta la larghezza massima dell'immagine */
-    width: 100%;     /* Mantiene l'immagine responsive */
-    height: auto;    /* Mantiene l'altezza proporzionale alla nuova larghezza */
-    border-radius: 10px;
-    margin-left: 150px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Contenitore per le informazioni del prodotto */
-.product-info {
-    flex: 2;
-    font-size: 25px; /* Dimensione base del font */
-    max-width: 500px;
-    margin-right: 150px;
+.as {
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #fff;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Stile per i paragrafi delle informazioni del prodotto */
-.product-info p {
-    margin: 10px 0;
-    color: #000000;
+input[type="submit"] {
+     width: fit-content; /* Adjust the width to fit the content */
+     margin: 0 auto; /* Auto-adjust margins to center the button */
+     /* Keep existing styles */
+     padding: 10px 20px;
+     border: none;
+     border-radius: 5px;
+     background-color: #007bff;
+     color: white;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
+
+.product-image {
+    display: block;
+    margin: auto;
 }
 
-/* Stile per i campi input nelle informazioni del prodotto */
-.product-info p input, .product-info p select {
-    width: calc(100% - 120px);
+label {
+    display: block;
+    margin: 10px 0 0; /* Riduci il margine inferiore a 0px */
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="file"] {
+    width: 100%;
     padding: 10px;
-    font-size: 15px;
-    margin-left: 10px;
+    margin-top: -10px; /* Riduci il margine superiore a -10px */
+    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9; /* Colore di sfondo */
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
-    transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
+    box-sizing: border-box;
 }
 
-/* Stile per i campi input al passaggio del mouse */
-.product-info p input:hover, .product-info p select:hover {
-    border-color: #aaa;
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2); /* Effetto ombra interna maggiore */
-}
-
-/* Stile per i campi select nelle informazioni del prodotto */
-.product-info p select {
-    appearance: none; /* Rimuove la stilizzazione predefinita del browser */
-    background-color: #f9f9f9;
-    cursor: pointer;
-}
-
-/* Stile per le opzioni all'interno del select */
-.product-info p select option {
+button#submitButton {
+    display: block;
+    width: 100%;
     padding: 10px;
-    background-color: #fff;
-    color: #333;
-    border-radius: 8px; /* Rendi i bordi più arrotondati */
-    display: block; /* Rende le opzioni come blocchi separati */
-    margin-bottom: 8px; /* Spazio tra le opzioni */
-}
-
-/* Stile per il pulsante di invio */
-input[type="submit"] {
-    background-color: #28a745;
-    color: #fff;
+    background-color: #007bff;
+    color: white;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s; /* Transizione */
+    transition: background-color 0.3s;
 }
 
-/* Stile per il pulsante di invio al passaggio del mouse */
-input[type="submit"]:hover {
-    background-color: #218838;
+button#submitButton:hover {
+    background-color: #0056b3;
 }
 
-/* Media queries per rendere la pagina responsive */
-@media (max-width: 768px) {
-    .product-content {
-        flex-direction: column; /* Disporre gli elementi in colonna */
-        align-items: center; /* Centrare gli elementi */
+button#submitButton img {
+    vertical-align: middle; /* Allinea verticalmente l'immagine all'interno del pulsante */
+    width: 20px; /* Imposta una larghezza fissa per l'immagine */
+    height: 20px; /* Imposta un'altezza fissa per l'immagine */
+    margin-left: 10px;
+}
+
+/* Stile per la GIF di caricamento */
+#loadingGif {
+    display: none; /* Nascondi la GIF inizialmente */
+    width: 100%; /* Adatta la larghezza della GIF alla larghezza del pulsante */
+    max-width: 120px; /* Imposta una larghezza massima per la GIF */
+    height: auto; /* Mantieni le proporzioni della GIF */
+    margin: 20px auto; /* Centra la GIF orizzontalmente */
+}
+
+/* Animazione per la GIF */
+@keyframes slow-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#loadingGif {
+    animation: slow-spin 3s linear infinite;
+}
+
+/* Stile per i messaggi di errore */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.alert {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+.alert-danger {
+    background-color: #ff4f4f;
+}
+
+.alert-success {
+    background-color: #4caf50;
+}
+
+/* Responsive Enhancements */
+
+/* Mobile devices */
+@media (max-width: 767px) {
+    form {
+        padding: 15px;
     }
 
-    .product-image {
-        margin-left: 0; /* Rimuovere il margine sinistro */
-        margin-right: 0; /* Rimuovere il margine destro */
-        text-align: center; /* Centrare l'immagine */
+    label {
+        margin: 5px 0;
     }
 
-    .product-info {
-        max-width: 100%;
-        margin-right: 0; /* Rimuovere il margine destro */
-        margin-top: 20px; /* Aggiungere margine superiore */
+    input[type="submit"] {
+        padding: 8px;
+    }
+
+    #loadingGif {
+        width: 80px;  /* Riduci la larghezza per dispositivi mobili */
+        height: auto; /* Mantieni le proporzioni per dispositivi mobili */
     }
 }
 
-@media (max-width: 480px) {
-    .product-info {
-        padding: 10px; /* Ridurre il padding */
-        font-size: 20px; /* Ridurre la dimensione del font */
+/* Tablet devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+    form {
+        padding: 18px;
     }
 
-    .product-image img {
-        max-width: 100%; /* Assicurarsi che l'immagine non superi la larghezza dello schermo */
+    label {
+        margin: 8px 0;
+    }
+
+    input[type="submit"] {
+        padding: 9px;
+    }
+
+    #loadingGif {
+        width: 90px;  /* Riduci la larghezza per tablet */
+        height: auto; /* Mantieni le proporzioni per tablet */
     }
 }
