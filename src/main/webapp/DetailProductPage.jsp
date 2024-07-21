@@ -2,19 +2,23 @@
 <%@ page import="java.util.*" %>
 <%@ page import="main.javas.bean.ProductBean" %>
 <%@ page import="main.javas.bean.UserBean" %>
-<%@ page import="main.javas.bean.CartBean" %>
 <%@ page import="main.javas.model.Product.ProductModelDS" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="main.javas.model.Product.FavoritesModel" %>
 
 <%
     ProductBean product = (ProductBean) request.getAttribute("product");
     UserBean user = (UserBean) session.getAttribute("user"); // Assumi che l'oggetto utente sia salvato in sessione come "user"
-    ProductModelDS PMDS = new ProductModelDS();
     float discounted = 0;
-    try {
-        discounted = PMDS.calculateDiscountedPrice(product.getCode());
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
+    ProductModelDS PMDS = new ProductModelDS();
+
+    if (product != null) {
+        // Assuming ProductModelDS has a method to calculate discounted price
+        try {
+            discounted = PMDS.calculateDiscountedPrice(product.getCode()); // Calculate the discounted price
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 %>
 
@@ -23,31 +27,44 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="css/DetailProductPage.css" rel="stylesheet" type="text/css">
-    <script src="js/DetailSelection.js"></script>
+    <script src="js/DetailSelection.js" defer></script>
+    <script src="js/ModalImage.js" defer></script>
     <title>Dettagli Prodotto</title>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
 <%
+    FavoritesModel favoritesModel = new FavoritesModel();
+    boolean isFavorite = false;
+    try {
+        if(product != null) {
+            isFavorite = user != null && favoritesModel.isFavorite(product, user);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
     if (product != null) {
 %>
-<div class="product-header">
-    <h2><%= product.getProductName() %></h2>
-</div>
 <div class="product-content">
     <div class="product-image">
-        <img id="productImage" data-product-code="<%= product.getCode() %>" src="GetProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
+        <img id="productImage" data-product-code="<%= product.getCode() %>" src="<%= request.getContextPath()%>/GetProductImageServlet?action=get&code=<%= product.getCode() %>&custom=true" alt="image not found">
     </div>
 
     <div class="product-info">
-        <% if(product.getDiscount() > 0) { %>
-        <p><strong>Prezzo: </strong> <strong> -<span class="discount-percentage"><%=product.getDiscount() %>% &nbsp;</strong> <span class="discounted-price"><%= discounted%> €</span></p>
-        <p><span class="original-price"><%= product.getPrice()%> €</span></p>
-        <% } else { %>
-        <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
-        <% } %>
+        <h2><%= product.getProductName() %></h2>
+        <div class="price-container">
+            <% if(product.getDiscount() > 0) { %>
+            <div class="discount-badge">Sconto del <%= product.getDiscount() %>%</div>
+            <p><strong>Prezzo:</strong> <span class="original-price"><%= product.getPrice() %> €</span></p>
+            <p><span class="discounted-price"><%= discounted %> €</span></p>
+            <% } else { %>
+            <p><strong>Prezzo:</strong> <%= product.getPrice() %> €</p>
+            <% } %>
+        </div>
+        <!-- Aggiungi al Carrello e Preferiti -->
+        <% if (product.getQuantity() > 0) { %>
         <form action="<%= request.getContextPath() %>/AddToCartServlet" method="post" onsubmit="return validateForm()">
-            <input type="hidden" name="code" value="<%= product != null ? product.getCode() : "" %>">
+            <input type="hidden" name="code" value="<%= product.getCode() %>">
             <p><strong>Dimensioni:</strong>
                 <select name="size" id="sizeSelect">
                     <option value="selectAsize" disabled selected>Seleziona la dimensione</option>
@@ -57,7 +74,7 @@
                 </select>
             </p>
             <p id="frameSelectContainer"><strong>Materiale Cornice:</strong>
-                <select name="frame" id="frameSelect" >
+                <select name="frame" id="frameSelect">
                     <option value="no frame" selected>No Frame</option>
                     <option value="wood">Wood</option>
                     <option value="PVC">PVC</option>
@@ -72,23 +89,85 @@
                     <option value="white">White</option>
                 </select>
             </p>
-            <p id="errorMessage" style="color:red; display:none;"></p>
-            <input type="submit" value="Aggiungi al Carrello">
-            <% if(product.getQuantity() > 0) { %>
             <% if (user == null || !user.getAdmin()) { %>
+            <!-- Form for adding to cart, hidden for admins -->
+            <p id="errorMessage" style="color:red; display:none;"></p>
+            <input type="submit" value="Aggiungi al Carrello" class="add-to-cart-button">
+            <% } else { %>
+            <p class="admin-message">Gli amministratori non possono aggiungere prodotti al carrello</p>
             <% } %>
         </form>
-        <% } else { %>
+        <% } else if(product.getQuantity() <= 0) { %>
         <p class="unavailable-product">Prodotto non disponibile al momento</p>
-        <% } %> <!-- Chiudi il blocco if-else per il controllo della quantità del prodotto -->
-    </div>
-    <div class="product-details">
-        <p><strong>Dettagli: <br></strong> <%= product.getDetails() %></p>
+        <% } %>
+
+        <% if (user != null && user.getAdmin()) { %> <!-- Show admin controls -->
+        <form action="<%= request.getContextPath() %>/DeleteProductServlet" method="post">
+            <input type="hidden" name="code" value="<%= product.getCode() %>">
+            <input type="submit" class="delete-button" value="Elimina">
+        </form>
+        <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="code" value="<%=product.getCode()%>">
+            <input type="hidden" name="action" value="edit">
+            <input type="submit" class="modify-button" value="Modifica">
+        </form>
+        <% } %>
     </div>
 </div>
-<% } else { %>
-<p>Nessun prodotto selezionato</p>
-<% } %>
+<div class="product-details">
+    <h2>Dettagli del Prodotto</h2>
+    <p><%= product.getDetails() %></p>
+</div>
+<%
+} else {
+%>
+<p>Prodotto non trovato.</p>
+<%
+    }
+%>
+
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <img id="img01" class="modal-image">
+    </div>
+    <div id="caption"></div>
+</div>
+
+<!-- Sezione Best Seller -->
+<div class="best-seller-section">
+    <div class="best-seller-title">Prodotti correlati: </div>
+    <div class="carousel-container">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <%
+                    List<ProductBean> bestSellerProducts = null;
+                    try {
+                        bestSellerProducts = (List<ProductBean>) PMDS.getRandomProducts();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    for (ProductBean products : bestSellerProducts) {
+                %>
+                <div class="swiper-slide">
+                    <a href="<%= request.getContextPath() %>/RetrieveProductServlet?action=read&code=<%=products.getCode()%>">
+                        <img src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=products.getCode() %>" alt="<%= product.getProductName() %>">
+                    </a>
+                </div>
+                <%
+                    }
+                %>
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</div>
+
 <%@ include file="Footer.jsp" %>
 </body>
 </html>

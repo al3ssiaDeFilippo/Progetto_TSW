@@ -13,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
-    <script src="js/FavGifControl.js"></script>
+    <script src="js/FavGifControl.js" defer></script>
+    <script src="js/DetailSelection.js" defer></script>
     <title>Prodotti per Categoria</title>
 </head>
 <body>
@@ -52,13 +53,13 @@
             var contextPath = '<%= request.getContextPath() %>';
         </script>
 
-        <% if (!user.getAdmin()) { %>
+        <% if (user != null && !user.getAdmin()) { %>
             <!-- Aggiungi il simbolo del prodotto preferito -->
             <form class="favorite-form"
                   action="<%= request.getContextPath() + "/ToggleFavoriteServlet" %>"
                   method="post"
                   data-action="<%= isFavorite ? "remove" : "add" %>"
-                  onclick="return toggleFavorite(this, '<%=product.getCode()%>', '<%=user != null ? user.getIdUser() : ""%>')">
+                  onclick="return toggleFavorite(this, '<%=product.getCode()%>', '<%=user.getIdUser()%>')">
                 <input type="hidden" name="productCode" value="<%=product.getCode()%>">
                 <img class="favorite-icon" src="<%= isFavorite ? "Images/full-heart.png" : "Images/empty-heart.png" %>" alt="favorite-icon">
             </form>

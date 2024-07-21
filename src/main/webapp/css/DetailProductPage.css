@@ -5,116 +5,147 @@ body {
     padding: 0;
     background-color: #f5f5f5;
     color: #000000;
+    text-align: center;
 }
 
 /* Stile per il titolo */
 h2 {
     color: #000000;
     margin: 10px 0;
-    text-align: center; /* Centra il testo del titolo */
-}
-
-/* Contenitore per l'immagine del prodotto */
-.product-image {
-    flex: 1;
-    text-align: left;
-    margin-right: 20px;
-}
-
-/* Contenitore per il titolo e la categoria del prodotto */
-.product-header {
-    width: 100%;
+    font-size: 50px;
 }
 
 /* Contenitore per il contenuto del prodotto */
 .product-content {
     display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; /* Centra il contenuto orizzontalmente */
+    align-items: stretch; /* Allinea gli elementi figli per avere la stessa altezza */
     margin-top: 20px;
 }
 
-
-/* Stile per l'immagine del prodotto */
-.product-image img {
-    max-width: 350px; /* Aumenta la larghezza massima dell'immagine */
-    width: 100%;     /* Mantiene l'immagine responsive */
-    height: auto;    /* Mantiene l'altezza proporzionale alla nuova larghezza */
-    border-radius: 10px;
-    margin-left: 150px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Contenitore per le informazioni del prodotto */
-.product-info {
-    flex: 2;
-    font-size: 25px; /* Dimensione base del font */
-    max-width: 500px;
-    margin-right: 150px;
-    padding: 20px;
+/* Contenitore per l'immagine del prodotto */
+.product-image {
+    margin-right: 20px; /* Aggiunto margine per separare l'immagine dal contenitore delle informazioni */
+    margin-top: 80px;
+    width: 100%;
+    max-width: 550px; /* Aumentato per una dimensione maggiore */
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.product-details {
-    align-self: flex-start; /* Allinea i dettagli del prodotto a sinistra */
-    text-align: left; /* Assicura che il testo all'interno sia allineato a sinistra */
-    margin-top: 50px; /* Rimuovi il margine superiore se precedentemente impostato */
-    margin-left: -50px;
-    font-size: 30px;
-    width: 90%; /* Sostituisci con la larghezza che corrisponde al numero di caratteri `n` che desideri */
-    word-wrap: break-word;
+/* Stile per l'immagine del prodotto */
+.product-image img {
+    max-width: 550px; /* Aumentato per una dimensione maggiore */
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
-.discount-percentage {
-    font-size: 25px;
-    color: red; /* Colore rosso per la percentuale di sconto */
+/* Contenitore per le informazioni del prodotto */
+.product-info {
+    width: 100%;
+    margin-top: 80px;
+    max-width: 550px; /* La stessa larghezza dell'immagine */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+/* Contenitore per i dettagli del prodotto */
+.product-details {
+    margin: 20px auto; /* Centra il contenitore */
+    width: 100%;
+    max-width: 600px; /* Stessa larghezza massima del contenitore delle informazioni */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Centra il testo */
+    font-size: 18px;
+    word-wrap: break-word; /* Evita che il testo esca dai bordi del contenitore */
+}
+
+
+/* Prezzo scontato e originale */
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spazio tra gli elementi */
+    margin-top: 10px;
 }
 
 .original-price {
-    margin-left: 50px;
-    font-size: 15px;
-    color: #000000; /* Colore per il prezzo originale, se desideri differenziarlo */
-    text-decoration: line-through; /* Aggiunge l'effetto barrato */
+    font-size: 20px; /* Dimensione del prezzo barrato */
+    color: #000000;
+    font-weight: bold;
+    text-decoration: line-through;
 }
+
+/* Assicurati che .product-info abbia position: relative per poter posizionare .discount-badge rispetto a esso */
+.product-info {
+    position: relative; /* Necessario per il posizionamento assoluto del badge di sconto */
+    width: 100%;
+    margin-top: 80px;
+    max-width: 550px; /* La stessa larghezza dell'immagine */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+/* Stile per il badge di sconto */
+.discount-badge {
+    position: absolute;
+    top: 10px; /* Distanza dalla parte superiore del contenitore */
+    right: 10px; /* Distanza dal lato destro del contenitore */
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1; /* Assicura che il badge sia sopra gli altri contenuti */
+}
+
 
 .discounted-price {
-    font-size: 25px;
-    color: #00a800; /* Colore verde per il prezzo scontato */
+    font-size: 25px; /* Dimensione del prezzo scontato, un po' più grande */
+    color: #00a800;
+    font-weight: bold;
 }
-
 
 /* Stile per i paragrafi delle informazioni del prodotto */
 .product-info p {
     margin: 10px 0;
     color: #000000;
+    font-size: 30px;
 }
 
 /* Stile per i campi input nelle informazioni del prodotto */
 .product-info p input, .product-info p select {
-    width: calc(100% - 120px);
+    width: calc(100% - 20px);
     padding: 10px;
     font-size: 15px;
-    margin-left: 10px;
+    margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9; /* Colore di sfondo */
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Effetto ombra interna */
-    transition: border-color 0.3s, box-shadow 0.3s; /* Transizione */
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Stile per i campi input al passaggio del mouse */
-.product-info p input:hover, .product-info p select:hover {
-    border-color: #aaa;
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2); /* Effetto ombra interna maggiore */
-}
-
-/* Stile per i campi select nelle informazioni del prodotto */
 .product-info p select {
-    appearance: none; /* Rimuove la stilizzazione predefinita del browser */
+    appearance: none;
     background-color: #f9f9f9;
     cursor: pointer;
 }
@@ -124,97 +155,226 @@ h2 {
     padding: 10px;
     background-color: #fff;
     color: #333;
-    border-radius: 8px; /* Rendi i bordi piÃ¹ arrotondati */
-    display: block; /* Rende le opzioni come blocchi separati */
-    margin-bottom: 8px; /* Spazio tra le opzioni */
+    border-radius: 8px;
 }
 
-
-/* Stile per i link al passaggio del mouse */
-.centered-links a:hover {
-    background-color: #0066cc;
-    color: #fff;
+/* Contenitore per i pulsanti */
+.buttons-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* Spazio sopra i pulsanti */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    max-width: 550px; /* La stessa larghezza massima del contenitore */
 }
 
 /* Stile per il pulsante di invio */
-input[type="submit"] {
+.add-to-cart-button, .delete-button, .modify-button {
     background-color: #28a745;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 18px;
+    margin: 10px 0; /* Spazio tra i pulsanti */
+    transition: background-color 0.3s;
+    width: 100%; /* Larghezza completa del contenitore */
+    max-width: 500px; /* Limita la larghezza del pulsante */
+}
+
+.add-to-cart-button {
+    background-color: #28a745; /* Verde per aggiungere al carrello */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Rosso per eliminare */
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.modify-button {
+    background-color: #007bff; /* Blu per modificare */
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.unavailable-product {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.admin-message {
+    color: #ff0000;
     font-size: 16px;
-    transition: background-color 0.3s; /* Transizione */
+    font-weight: bold;
 }
 
-/* Stile per il pulsante di invio al passaggio del mouse */
-input[type="submit"]:hover {
-    background-color: #218838;
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 100px; /* Aggiungi un padding-top per spostare il contenuto del modale verso il basso */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
 }
 
-/* Media query per tablet */
-@media (min-width: 768px) {
+.modal-content {
+    max-width: 50%;
+    margin: auto;
+}
+
+.modal-content img {
+    max-width: 50%;
+    max-height: 50%;
+    display: block;
+    margin: auto;
+    transition: transform 0.5s ease; /* Transizione per lo zoom */
+}
+
+.modal-content img:hover {
+    cursor: zoom-in; /* Cambia il cursore al passaggio del mouse per indicare che l'immagine è cliccabile */
+}
+
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 300px; /* Altezza fissa per il carosello */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    background-color: white;
+}
+
+.best-seller-title {
+    margin-top: 50px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%; /* Altezza completa del contenitore */
+}
+
+.swiper-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%; /* Altezza completa del contenitore */
+}
+
+.swiper-slide {
+    flex: 0 0 auto;
+    width: 25%; /* Ridotto per immagini più piccole */
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.swiper-slide img {
+    max-width: 55%; /* Limita la larghezza dell'immagine */
+    max-height: 100%;
+    object-fit: contain; /* Mantiene le proporzioni senza distorsioni */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.swiper-slide img:hover {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.swiper-button-next,
+.swiper-button-prev {
+    display: none;
+}
+.swiper-pagination {
+    display: none;
+}
+
+/* Media Queries per layout responsive */
+@media (max-width: 768px) {
     .product-content {
-        flex-direction: row; /* Ritorna al layout orizzontale */
-        justify-content: space-around; /* Distribuisce lo spazio intorno agli elementi */
+        flex-direction: column; /* Layout verticale per schermi più piccoli */
+        align-items: center; /* Centra il contenuto */
     }
 
-    .product-image img {
-        margin-left: 0; /* Assicura che l'immagine sia centrata */
-    }
-
-    .product-info, .product-details {
-        text-align: left; /* Allinea il testo a sinistra */
-        margin-right: 20px; /* Aggiunge un margine destro */
-    }
-}
-
-/* Media query per desktop */
-@media (min-width: 1024px) {
-    .product-content {
-        justify-content: center; /* Centra gli elementi nel contenitore */
-    }
-
-    .product-image img {
-        margin-left: 150px; /* Ripristina il margine sinistro per l'immagine */
+    .product-image, .product-info {
+        max-width: 90%; /* Ridotto per schermi più piccoli */
     }
 
     .product-info {
-        max-width: 500px; /* Limita la larghezza delle informazioni del prodotto */
-        margin-right: 150px; /* Aumenta il margine destro */
+        margin-top: 20px; /* Spazio ridotto tra immagine e informazioni */
     }
 
-    .product-details {
-        margin-left: -50px; /* Ajusta il margine sinistro per i dettagli del prodotto */
+    .swiper-slide {
+        width: 50%; /* Ridotto per una visualizzazione migliore su schermi piccoli */
     }
 }
-@media (max-width: 616px) {
-    body {
-        font-size: 14px; /* Riduce la dimensione del font */
+
+@media (max-width: 480px) {
+    .product-image {
+        margin: 5px;
+    }
+    .product-info p {
+        font-size: 20px; /* Ridotto per schermi più piccoli */
     }
 
-    h2 {
-        font-size: 18px; /* Riduce la dimensione del font del titolo */
+    .price-container {
+        flex-direction: column; /* Prezzi su righe separate */
+        align-items: center; /* Allinea al centro */
     }
 
-    .product-image img {
-        max-width: 100%; /* Permette all'immagine di espandersi fino al 100% della larghezza del contenitore */
-        margin: 0 auto; /* Centra l'immagine */
+    .original-price, .discounted-price {
+        font-size: 18px; /* Ridotto per schermi più piccoli */
     }
 
-    .product-info, .product-details {
-        font-size: 16px; /* Ajusta la dimensione del font per le informazioni e i dettagli del prodotto */
-        padding: 10px; /* Aggiunge un padding per evitare che il testo tocchi i bordi dello schermo */
-        margin-right: 0; /* Rimuove il margine destro */
+    .buttons-container {
+        flex-direction: column; /* Pulsanti su righe separate */
     }
 
-    .product-info p input, .product-info p select {
-        width: 100%; /* Espande i campi di input e select per occupare tutta la larghezza disponibile */
-        margin: 10px 0; /* Aggiunge un margine superiore e inferiore per separare meglio gli elementi */
+    .add-to-cart-button, .delete-button, .modify-button {
+        width: 100%; /* Pulsanti occupano tutta la larghezza disponibile */
+        max-width: none; /* Rimuove il limite di larghezza */
     }
 
-    input[type="submit"] {
-        width: 100%; /* Espande il pulsante di invio per occupare tutta la larghezza disponibile */
+    .swiper-slide {
+        width: 100%; /* Ridotto per schermi molto piccoli */
+        margin: 5px; /* Spazio ridotto tra le slide */
+    }
+
+    .modal-content {
+        max-width: 90%; /* Ridotto per schermi più piccoli */
+    }
+
+    .modal-content img {
+        max-height: 90vh; /* Aumenta l'altezza massima per schermi molto piccoli */
     }
 }
