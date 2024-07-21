@@ -55,7 +55,7 @@ public class AddAddressServlet extends HttpServlet {
         session.setAttribute("selectedAddress", shipping);
         String nextPage = request.getParameter("nextPage");
         if (nextPage == null || nextPage.isEmpty()) {
-            nextPage = "ProductView.jsp";
+            nextPage = request.getContextPath() + "HomePage.jsp";
         }
         response.sendRedirect(response.encodeRedirectURL(nextPage));
     }

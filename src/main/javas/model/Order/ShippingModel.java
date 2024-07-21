@@ -92,9 +92,7 @@ public class ShippingModel {
         ShippingBean shipping = new ShippingBean();
 
         String selectSQL = "SELECT * FROM shipping WHERE idUser = ?";
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD " + idUser);
         try {
-            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSS ");
             con = ds.getConnection();
             con.setAutoCommit(false);
             preparedStatement = con.prepareStatement(selectSQL);
@@ -106,7 +104,6 @@ public class ShippingModel {
             if (rs.next()) {
                 shipping.setIdShipping(rs.getInt("idShipping"));
                 shipping.setRecipientName(rs.getString("recipientName"));
-                System.out.println("Recipient name: " + rs.getString("recipientName"));
                 shipping.setAddress(rs.getString("address"));
                 shipping.setCity(rs.getString("city"));
                 shipping.setCap(rs.getInt("cap"));

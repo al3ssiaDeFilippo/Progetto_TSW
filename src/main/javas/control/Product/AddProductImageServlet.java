@@ -21,10 +21,7 @@ public class AddProductImageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Debug: Entered doPost method");
-
         String action = req.getParameter("action");
-        System.out.println("Debug: Action = " + action);
 
         if ("add".equals(action)) {
             Part filePart = req.getPart("photo");
@@ -49,13 +46,10 @@ public class AddProductImageServlet extends HttpServlet {
             }
 
             String frame = req.getParameter("frame");
-            System.out.println("Debug: Frame = " + frame);
 
             String frameColor = req.getParameter("frameColor");
-            System.out.println("Debug: Frame Color = " + frameColor);
 
             String productId = req.getParameter("productCode");
-            System.out.println("Debug: Product ID = " + productId);
 
             // Create a ProductBean object
             ProductBean product = new ProductBean();
@@ -67,15 +61,11 @@ public class AddProductImageServlet extends HttpServlet {
             // Pass the ProductBean object to the doSavePhoto method
             PhotoModel photoModel = new PhotoModel();
             try {
-                System.out.println("Debug: Attempting to save photo");
                 photoModel.doSavePhoto(product);
-                System.out.println("Debug: Photo saved successfully");
             } catch (SQLException e) {
-                System.out.println("Debug: Error while saving photo");
                 throw new RuntimeException(e);
             }
 
-            System.out.println("Debug: Redirecting to InsertPhotosPage.jsp");
             resp.sendRedirect("InsertPhotosPage.jsp");
         }
     }

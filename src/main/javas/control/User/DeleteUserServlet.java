@@ -37,7 +37,6 @@ public class DeleteUserServlet extends HttpServlet {
                 return;
             }
             if (userModel.doDelete(userToDelete)) {
-                System.out.println("User deleted successfully");
                 response.sendRedirect("UserView.jsp"); // Redirect to a success page
             }
         } catch (SQLException e) {

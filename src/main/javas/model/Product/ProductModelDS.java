@@ -26,7 +26,7 @@ public class ProductModelDS implements ProductModel {
             ds = (DataSource) envCtx.lookup("jdbc/storage");
 
         } catch (NamingException e) {
-            System.out.println("File ProductModelDS, line 26 - Error:" + e.getMessage());
+            throw new RuntimeException("Cannot initialize ProductModelDS", e);
         }
     }
 
@@ -46,27 +46,16 @@ public class ProductModelDS implements ProductModel {
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getProductName());
-            System.out.println("Debug: " + product.getProductName());
             preparedStatement.setString(2, product.getDetails());
-            System.out.println("Debug: " + product.getDetails());
             preparedStatement.setInt(3, product.getQuantity());
-            System.out.println("Debug: " + product.getQuantity());
             preparedStatement.setString(4, product.getCategory());
-            System.out.println("Debug: " + product.getCategory());
             preparedStatement.setFloat(5, product.getPrice());
-            System.out.println("Debug: " + product.getPrice());
             preparedStatement.setInt(6, product.getIva());
-            System.out.println("Debug: " + product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
-            System.out.println("Debug: " + product.getDiscount());
             preparedStatement.setString(8, product.getFrame());
-            System.out.println("Debug: " + product.getFrame());
             preparedStatement.setString(9, product.getFrameColor());
-            System.out.println("Debug: " + product.getFrameColor());
             preparedStatement.setString(10, product.getSize());
-            System.out.println("Debug: " + product.getSize());
             preparedStatement.setBlob(11, product.getPhoto());
-            System.out.println("Debug: " + product.getPhoto());
             preparedStatement.executeUpdate();
             connection.commit();
 
@@ -96,8 +85,6 @@ public class ProductModelDS implements ProductModel {
         ProductBean bean = new ProductBean();
 
         String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
-
-        System.out.println("Mi trovo nel metodo doSave. Questa è la query: " + selectSQL + ". Questo è il codice: " + code + ".\n");
 
         try {
             connection = ds.getConnection();
@@ -143,8 +130,6 @@ public class ProductModelDS implements ProductModel {
         String deleteProductSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
         String deleteFromCartSQL = "DELETE FROM cart WHERE productCode = ?";
 
-        System.out.println("Debug: sto eliminando il prodotto con codice " + code);
-
         try {
             connection = ds.getConnection();
 
@@ -180,7 +165,6 @@ public class ProductModelDS implements ProductModel {
         Collection<ProductBean> products = new LinkedList<ProductBean>();
 
         String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME;
-        System.out.println(selectSQL);
 
         if (order != null && !order.equals("")) {
             selectSQL += " ORDER BY " + order;
@@ -232,24 +216,14 @@ public class ProductModelDS implements ProductModel {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(updateSQL);
             preparedStatement.setString(1, product.getProductName());
-            System.out.println("Debug: " + product.getProductName());
             preparedStatement.setString(2, product.getDetails());
-            System.out.println("Debug: " + product.getDetails());
             preparedStatement.setInt(3, product.getQuantity());
-            System.out.println("Debug: " + product.getQuantity());
             preparedStatement.setString(4, product.getCategory());
-            System.out.println("Debug: " + product.getCategory());
             preparedStatement.setFloat(5, product.getPrice());
-            System.out.println("Debug: " + product.getPrice());
             preparedStatement.setInt(6, product.getIva());
-            System.out.println("Debug: " + product.getIva());
             preparedStatement.setInt(7, product.getDiscount());
-            System.out.println("Debug: " + product.getDiscount());
             preparedStatement.setBlob(8, product.getPhoto());
-            System.out.println("Debug: " + product.getPhoto());
             preparedStatement.setInt(9, product.getCode());
-            System.out.println("Debug: " + product.getCode());
-
 
             preparedStatement.executeUpdate();
 
@@ -418,7 +392,6 @@ public class ProductModelDS implements ProductModel {
 
                 count++; // Debug
             }
-            System.out.println("Number of products fetched from database: " + count); // Debug
 
         } finally {
             try {
@@ -436,13 +409,11 @@ public class ProductModelDS implements ProductModel {
 
     public Collection<ProductBean> GetDiscountedProductsList() throws SQLException {
         Collection<ProductBean> allProducts = this.getAllProducts();
-        System.out.println("Total products retrieved: " + allProducts.size()); // Debug
 
         Collection<ProductBean> filteredProducts = allProducts.stream()
                 .filter(product -> product.getDiscount() > 0)
                 .collect(Collectors.toList());
 
-        System.out.println("Discounted products count: " + filteredProducts.size()); // Debug
         return filteredProducts;
     }
 
@@ -464,8 +435,6 @@ public class ProductModelDS implements ProductModel {
         // Ottieni tutti i prodotti
         List<ProductBean> allProducts = new ArrayList<>(this.getAllProducts());
 
-        System.out.println("Debug: " + allProducts.size());
-
         // Mescola la lista
         Collections.shuffle(allProducts);
 
@@ -477,13 +446,11 @@ public class ProductModelDS implements ProductModel {
 
     public Collection<ProductBean> getProductsByPriceRange(float minPrice, float maxPrice) throws SQLException {
         Collection<ProductBean> allProducts = this.getAllProducts();
-        System.out.println("Total products retrieved: " + allProducts.size()); // Debug
 
         Collection<ProductBean> filteredProducts = allProducts.stream()
                 .filter(product -> {
                     try {
                         float discountedPrice = calculateDiscountedPrice(product.getCode());
-                        System.out.println("Product: " + product.getProductName() + ", Discounted Price: " + discountedPrice);
                         return discountedPrice >= minPrice && discountedPrice <= maxPrice;
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -492,7 +459,6 @@ public class ProductModelDS implements ProductModel {
                 })
                 .collect(Collectors.toList());
 
-        System.out.println("Filtered products count: " + filteredProducts.size()); // Debug
         return filteredProducts;
     }
 

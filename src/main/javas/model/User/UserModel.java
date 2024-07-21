@@ -26,7 +26,7 @@ public class UserModel {
             ds = (DataSource) envCtx.lookup("jdbc/storage");
 
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            throw new RuntimeException("Error in UserModel static initializer", e);
         }
     }
     private static final String TABLE_NAME = "user";
@@ -151,7 +151,6 @@ public class UserModel {
         int result = 0;
         UserBean existingUser = doRetrieveByKey(user.getIdUser());
         if(existingUser == null) {
-            System.out.println("Utente non esistente");
             return false;
         } else {
             String deleteSQL = "DELETE FROM " + UserModel.TABLE_NAME + " WHERE IDUSER = ?";
@@ -160,33 +159,26 @@ public class UserModel {
                 con.setAutoCommit(false);
                 preparedStatement = con.prepareStatement(deleteSQL);
                 preparedStatement.setInt(1, user.getIdUser());
-                System.out.println("User Id: " + user.getIdUser());
-
-                System.out.println("Executing delete query: " + deleteSQL); // Print before executing the query
 
                 result = preparedStatement.executeUpdate();
                 con.commit();
 
-                System.out.println("Delete query executed, result: " + result); // Print after executing the query
             } catch (SQLException e) {
-                System.out.println("SQLException occurred while deleting user: " + e.getMessage());
                 e.printStackTrace();
             } finally {
                 try {
                     if(preparedStatement != null) {
                         preparedStatement.close();
-                        System.out.println("PreparedStatement closed successfully");
                     }
                 } catch (SQLException e) {
-                    System.out.println("SQLException occurred while closing PreparedStatement: " + e.getMessage());
+                    throw new RuntimeException("SQLException occurred while closing PreparedStatement: " + e.getMessage());
                 }
                 try {
                     if(con != null) {
                         con.close();
-                        System.out.println("Connection closed successfully");
                     }
                 } catch (SQLException e) {
-                    System.out.println("SQLException occurred while closing Connection: " + e.getMessage());
+                    throw new RuntimeException("SQLException occurred while closing Connection: " + e.getMessage());
                 }
             }
         }

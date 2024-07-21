@@ -39,8 +39,6 @@ public class UpdateProductServlet extends HttpServlet {
             if (product != null) {
                 request.setAttribute("product", product);
                 request.getRequestDispatcher("/EditProductPage.jsp").forward(request, response);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/ProductNotFound.jsp");
             }
         } else if (action.equalsIgnoreCase("update")) {
             if (product != null) {
@@ -108,12 +106,10 @@ public class UpdateProductServlet extends HttpServlet {
                     model.doUpdate(product);
 
                     // Reindirizza alla vista del prodotto aggiornato
-                    response.sendRedirect(request.getContextPath() + "/ProductView.jsp?code=" + code);
+                    response.sendRedirect(request.getContextPath() + "/ProductView.jsp??filter=all");
                 } catch (SQLException e) {
                     throw new ServletException(e);
                 }
-            } else {
-                response.sendRedirect(request.getContextPath() + "/ProductNotFound.jsp");
             }
         }
     }

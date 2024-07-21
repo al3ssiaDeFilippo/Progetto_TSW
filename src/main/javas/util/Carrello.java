@@ -34,7 +34,6 @@ public class Carrello {
                     int newQuantity = p.getQuantity() + prodotto.getQuantity();
                     if (newQuantity > product.getQuantity()) {
                         p.setQuantity(product.getQuantity());
-                        System.out.println("Requested quantity exceeds available quantity. Set to maximum available quantity.");
                     } else {
                         p.setQuantity(newQuantity);
                     }
@@ -44,7 +43,6 @@ public class Carrello {
             // If the product is not already in the cart, add it
             if (prodotto.getQuantity() > product.getQuantity()) {
                 prodotto.setQuantity(product.getQuantity());
-                System.out.println("Requested quantity exceeds available quantity. Set to maximum available quantity.");
             }
             prodotti.add(prodotto);
         } catch (SQLException e) {

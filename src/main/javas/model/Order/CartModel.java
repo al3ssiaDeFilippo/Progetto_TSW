@@ -27,7 +27,7 @@ public class CartModel {
 
             ds = (DataSource) envCtx.lookup("jdbc/storage");
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            throw new RuntimeException("Error:" + e.getMessage());
         }
     }
 

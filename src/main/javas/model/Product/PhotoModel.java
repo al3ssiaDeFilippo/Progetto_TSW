@@ -50,7 +50,7 @@ public class PhotoModel {
             connection.commit();
 
         } catch (SQLException e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
         finally {
             try {
@@ -58,7 +58,7 @@ public class PhotoModel {
                     preparedStatement.close();
                 }
             } catch(SQLException e) {
-                System.out.println(e);
+                throw new RuntimeException(e);
             } finally {
                 if(connection != null) {
                     connection.close();
@@ -103,11 +103,8 @@ public class PhotoModel {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(selectSQL);
             preparedStatement.setInt(1, code);
-            System.out.println("code: " + code);
             preparedStatement.setString(2, frame);
-            System.out.println("frame: " + frame);
             preparedStatement.setString(3, frameColor);
-            System.out.println("frameColor: " + frameColor);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -130,7 +127,7 @@ public class PhotoModel {
                     try {
                         con.close();
                     } catch (SQLException e) {
-                        System.out.println(e);
+                        throw new RuntimeException(e);
                     }
                 }
             }
@@ -147,10 +144,7 @@ public class PhotoModel {
 
     public static byte[] getImageByNumeroSerie(int code) {
 
-        System.out.println("Sto in getcustomphotoooooooooooooooooooooooooooo");
-
         try(Connection con = ds.getConnection()) {
-            System.out.println("getImageByNumeroSerie avviato");
             PreparedStatement ps = con.prepareStatement("SELECT photo FROM product WHERE code = ?");
             ps.setInt(1, code);
             ResultSet rs = ps.executeQuery();
@@ -159,7 +153,6 @@ public class PhotoModel {
                 Blob imageBlob = rs.getBlob("photo");
                 imageByte = imageBlob.getBytes(1, (int) imageBlob.length());
             }
-            System.out.println("Retrieved image of size: " + (imageByte != null ? imageByte.length : 0));
             return imageByte;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -172,32 +165,21 @@ public class PhotoModel {
         PreparedStatement preparedStatement = null;
         String insertPhotoSQL = "INSERT INTO photo (photo, productCode, frame, frameColor) VALUES (?, ?, ?, ?)";
 
-        System.out.println("Sto in addProductAndSaveImages");
-        System.out.println("productCode: " + productCode);
-        System.out.println("directoryPath: " + directoryPath);
-
         try {
             con = ds.getConnection();
             con.setAutoCommit(false);
 
             ProductModelDS PM = new ProductModelDS();
             ProductBean product = PM.doRetrieveByKey(productCode);
-            System.out.println("product: " + product);
 
             List<String> images = getImagesFromDirectory(directoryPath, product.getProductName());
-            for(String image : images) {
-                System.out.println("Image: " + image);
-            }
 
             preparedStatement = con.prepareStatement(insertPhotoSQL);
 
             for (String imagePath : images) {
-                System.out.println("imagePath: " + imagePath);
                 String result = extractDetailFromProductName(imagePath);
-                System.out.println("result: " + result);
 
                 if (result == null) {
-                    System.out.println("La stringa non contiene i dettagli necessari");
                     continue; // Salta questa immagine se non ha i dettagli necessari
                 }
 
@@ -207,11 +189,8 @@ public class PhotoModel {
 
                 if(parti.length == 2) {
                     frame = parti[0];
-                    System.out.println("frame: " + frame);
                     frameColor = parti[1];
-                    System.out.println("frameColor: " + frameColor);
                 } else {
-                    System.out.println("La stringa non contiene esattamente uno spazio");
                     continue; // Salta questa immagine se il formato dei dettagli non è corretto
                 }
 
@@ -246,7 +225,6 @@ public class PhotoModel {
 
         File[] files = directory.listFiles();
         if (files == null) {
-            System.out.println("La directory è vuota o non esiste");
             return images;
         }
 
@@ -261,7 +239,6 @@ public class PhotoModel {
     private String extractDetailFromProductName(String filePath) {
         File file = new File(filePath);
         String fileName = file.getName();
-        System.out.println("fileName: " + fileName);
 
         if (fileName.contains("pvc")) {
             if (fileName.contains("black")) {

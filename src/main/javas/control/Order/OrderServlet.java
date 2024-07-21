@@ -34,8 +34,6 @@ public class OrderServlet extends HttpServlet {
         try {
             List<CartBean> cartItems = cartModel.doRetrieveAll(user.getIdUser());
 
-            System.out.println("Cart items retrieved: " + cartItems.size());
-
             OrderBean order = new OrderBean();
             order.setIdUser(user.getIdUser());
             order.setIdShipping(shippingModel.doRetrieveByKey(user.getIdUser()).getIdShipping());
@@ -43,17 +41,11 @@ public class OrderServlet extends HttpServlet {
             order.setOrderDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             order.setTotalPrice(cartModel.getDiscountedTotalPrice(cartItems));
 
-            System.out.println("Order created: " + order);
-
             int idOrder = orderModel.doSave(order);
-
-            System.out.println("Order saved with ID: " + idOrder);
 
             for (CartBean cartItem : cartItems) {
                 ProductModelDS PM = new ProductModelDS();
                 ProductBean product = PM.doRetrieveByKey(cartItem.getProductCode());
-
-                System.out.println("Product retrieved: " + product);
 
                 orderDetailModel.doUpdateQuantity(product, cartItem);
 
@@ -68,17 +60,12 @@ public class OrderServlet extends HttpServlet {
                 orderDetail.setIva(product.getIva());
                 orderDetail.setIdOrder(idOrder);
 
-                System.out.println("Order detail created: " + orderDetail);
-
                 orderDetailModel.doSave(orderDetail);
-
-                System.out.println("Order detail saved");
             }
 
             Carrello sessionCart = (Carrello) session.getAttribute("cart");
             cartModel.doDeleteAllByUser(user.getIdUser());
             sessionCart.svuota();
-            System.out.println("Cart cleared");
 
             response.sendRedirect("OrderConfirmation.jsp");
         } catch (SQLException e) {

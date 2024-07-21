@@ -21,7 +21,7 @@ public class OrderModel {
 
             ds = (DataSource) envCtx.lookup("jdbc/storage");
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            throw new RuntimeException("Cannot get the data source", e);
         }
     }
 

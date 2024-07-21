@@ -24,7 +24,7 @@ public class CreditCardModel {
 
             ds = (DataSource) envCtx.lookup("jdbc/storage");
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            throw new RuntimeException("Cannot get the data source", e);
         }
     }
 
@@ -65,7 +65,6 @@ public class CreditCardModel {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(deleteSQL);
             preparedStatement.setString(1, idCard);
-            System.out.println("idCard: " + idCard);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;

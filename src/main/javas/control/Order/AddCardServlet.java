@@ -82,7 +82,7 @@ public class AddCardServlet extends HttpServlet {
 
         // Redirect to the next page
         if (nextPage == null || nextPage.isEmpty()) {
-            nextPage = "ProductView.jsp"; // Default page if nextPage is not set
+            nextPage = request.getContextPath() + "HomePage.jsp"; // Default page if nextPage is not set
         }
 
         response.sendRedirect(response.encodeRedirectURL(nextPage));

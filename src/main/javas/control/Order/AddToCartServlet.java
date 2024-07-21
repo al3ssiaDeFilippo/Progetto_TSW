@@ -49,13 +49,13 @@ public class AddToCartServlet extends HttpServlet {
                         cartModel.doSave(cartItem);
                     }
 
-                    response.sendRedirect("ProductView.jsp");
+                    response.sendRedirect("carrello.jsp");
                 }
             } catch (Exception e) {
                 throw new ServletException(e);
             }
         } else {
-            response.sendRedirect("carrello.jsp");
+            response.sendRedirect("HomePage.jsp");
         }
     }
 

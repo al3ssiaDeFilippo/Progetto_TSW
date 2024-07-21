@@ -14,7 +14,7 @@ public class LogOutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect("ProductView.jsp");
+        response.sendRedirect(request.getContextPath() + "/HomePage.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -51,7 +51,7 @@ public class CheckoutServlet extends HttpServlet {
                 // Reindirizza alla pagina di destinazione
                 String nextPage = (String) request.getParameter("nextPage");
                 if (nextPage == null || nextPage.isEmpty()) {
-                    nextPage = "ProductView.jsp"; // Pagina di de// fault se non è stato impostato un nextPage
+                    nextPage = "HomePage.jsp"; // Pagina di de// fault se non è stato impostato un nextPage
                 }
                 response.sendRedirect(nextPage);
             } else {

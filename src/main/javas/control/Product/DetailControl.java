@@ -21,11 +21,8 @@ public class DetailControl extends HttpServlet {
                 if (product != null) {
                     // Retrieve product specifications from request parameters
                     String frame = request.getParameter("frame");
-                    System.out.println("Frame: " + frame);
                     String frameColor = request.getParameter("frameColor");
-                    System.out.println("Frame color: " + frameColor);
                     String size = request.getParameter("size");
-                    System.out.println("Size: " + size);
 
                     // Set product specifications in the ProductBean object
                     if (frame != null) {
