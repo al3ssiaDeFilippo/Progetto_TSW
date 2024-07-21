@@ -5,5 +5,6 @@
   
   <Resources cacheMaxSize="10240">
     <PreResources base="C:/Users/biagi/IdeaProjects/Progetto_TSW/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+    <PostResources base="C:/Users/biagi/Downloads/gson-2.11.0.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/gson-2.11.0.jar"/>
   </Resources>
 </Context>

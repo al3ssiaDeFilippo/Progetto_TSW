@@ -312,4 +312,38 @@
     <url-pattern>/UploadImageServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>UserOrdersServlet</servlet-name>
+    <servlet-class>main.javas.control.User.UserOrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserOrdersServlet</servlet-name>
+    <url-pattern>/UserOrdersServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>UserDateServlet</servlet-name>
+    <servlet-class>main.javas.control.User.UserDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserDateServlet</servlet-name>
+    <url-pattern>/UserDateServlet</url-pattern>
+  </servlet-mapping>
+
+  <error-page>
+      <error-code>404</error-code>
+      <location>/errorPages/error404.jsp</location>
+  </error-page>
+
+  <error-page>
+      <error-code>500</error-code>
+      <location>/errorPages/error500.jsp</location>
+  </error-page>
+
+  <error-page>
+      <exception-type>java.sql.SQLException</exception-type>
+      <location>/errorPages/SQLException.jsp</location>
+  </error-page>
+
 </web-app>

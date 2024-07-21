@@ -60,19 +60,18 @@ public class OrderModel {
         }
     }
 
-    public synchronized Collection<OrderBean> doRetrieveByUser(int idUser) throws SQLException{
+    public synchronized Collection<OrderBean> doRetrieveByUser(int idUser) throws SQLException {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         Collection<OrderBean> orders = new LinkedList<>();
 
-
         String selectSQL = "SELECT * FROM orders WHERE idUser = ?";
-        try{
+        try {
             con = ds.getConnection();
             preparedStatement = con.prepareStatement(selectSQL);
-            preparedStatement.setInt(1,idUser);
+            preparedStatement.setInt(1, idUser);
             ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()){
+            while (rs.next()) {
                 OrderBean orderBean = new OrderBean();
                 orderBean.setIdOrder(rs.getInt("idOrder"));
                 orderBean.setIdUser(rs.getInt("idUser"));
@@ -80,19 +79,19 @@ public class OrderModel {
                 orderBean.setIdCreditCard(rs.getString("idCreditCard"));
                 orderBean.setOrderDate(rs.getDate("orderDate"));
                 orderBean.setTotalPrice(rs.getFloat("totalPrice"));
-
                 orders.add(orderBean);
             }
-        }finally {
-            if(con != null){
+        } finally {
+            if (con != null) {
                 con.close();
             }
-            if(preparedStatement != null){
+            if (preparedStatement != null) {
                 preparedStatement.close();
             }
         }
         return orders;
     }
+
 
     public synchronized Collection<OrderBean> doRetrieveAll() throws SQLException {
         Connection con = null;
@@ -151,4 +150,40 @@ public class OrderModel {
             }
         }
     }
+
+    public synchronized Collection<OrderBean> doRetrieveByDateRange(Date startDate, Date endDate) throws SQLException {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        Collection<OrderBean> orders = new LinkedList<>();
+
+        String selectSQL = "SELECT * FROM orders WHERE orderDate BETWEEN ? AND ?";
+        try {
+            con = ds.getConnection();
+            preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setDate(1, startDate);
+            preparedStatement.setDate(2, endDate);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                OrderBean orderBean = new OrderBean();
+                orderBean.setIdOrder(rs.getInt("idOrder"));
+                orderBean.setIdUser(rs.getInt("idUser"));
+                orderBean.setIdShipping(rs.getInt("idShipping"));
+                orderBean.setIdCreditCard(rs.getString("idCreditCard"));
+                orderBean.setOrderDate(rs.getDate("orderDate"));
+                orderBean.setTotalPrice(rs.getFloat("totalPrice"));
+                orders.add(orderBean);
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        }
+        return orders;
+    }
+
+
+
 }

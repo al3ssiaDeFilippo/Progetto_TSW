@@ -1,9 +1,7 @@
 /* Reset dei margini e padding */
 body, html {
     font-family: Arial, sans-serif;
-    background-color: #e0e0e0; /* Colore di sfondo leggermente più scuro */
-    margin: 0;
-    padding: 0;
+    background-color: #f5f5f5;
 }
 
 /* Stili per la tabella degli ordini */
@@ -14,11 +12,6 @@ table {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Rimuovi bordi sotto la tabella */
-table, th, td {
-    border: none;
 }
 
 .button-edit {
@@ -44,6 +37,7 @@ table, th, td {
 table th, table td {
     padding: 20px;
     text-align: center;
+    border: 1px solid #ddd;
 }
 
 .spazio{
@@ -68,7 +62,7 @@ p {
     text-align: center;
     margin-top: 20px;
     font-size: 16px;
-    color: #050505;
+    color: #666;
 }
 
 /* Stili per l'intestazione */
@@ -77,53 +71,6 @@ h2 {
     margin-top: 30px;
     color: #333;
 }
-
-/* Stili per i form di inserimento */
-.form-inserimento {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 50%; /* Imposta una larghezza fissa per il form */
-    margin: 20px auto; /* Centra il form orizzontalmente */
-}
-
-.form-inserimento input[type="text"],
-.form-inserimento input[type="date"],
-.form-inserimento input[type="submit"] {
-    width: calc(100% - 20px); /* Riduci la larghezza degli input per adattarli al form */
-    padding: 10px;
-    margin: 8px 10px; /* Aggiungi un margine per migliorare la visualizzazione */
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-inserimento input[type="text"]:hover,
-.form-inserimento input[type="date"]:hover,
-.form-inserimento input[type="submit"]:hover{
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta l'ombra per dare l'effetto di sollevamento */
-}
-
-.form-inserimento input[type="submit"] {
-    width: auto;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    margin: 10px 10px; /* Aggiungi un margine per migliorare la visualizzazione */
-}
-
-.form-inserimento input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-.form-inserimento label {
-    font-size: 16px;
-    color: #333;
-}
-
 
 /* Adjustments for extra small screens */
 @media (max-width: 480px) {
