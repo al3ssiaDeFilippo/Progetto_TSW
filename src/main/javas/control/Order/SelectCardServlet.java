@@ -25,10 +25,10 @@ public class SelectCardServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
 
-        String selectedCardId = request.getParameter("selectedCard");
+        String selectedCardId = request.getParameter("cardId");
 
         if (selectedCardId == null) {
-            throw new ServletException("Missing selectedCard parameter");
+            throw new ServletException("Missing cardId parameter");
         }
 
         try {
@@ -40,7 +40,7 @@ public class SelectCardServlet extends HttpServlet {
             session.setAttribute("selectedCard", selectedCard);
             response.sendRedirect("RiepilogoOrdine.jsp");
         } catch (SQLException e) {
-            throw new ServletException("Error selecting the credit card");
+            throw new ServletException("Error selecting the credit card", e);
         }
     }
 

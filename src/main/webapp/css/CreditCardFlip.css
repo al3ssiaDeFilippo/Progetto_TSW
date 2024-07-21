@@ -3,16 +3,155 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #f5f5f5;
+    color: #000000;
 }
 
-/* Wrapper per la carta di credito */
+/* Stile per i dettagli delle carte */
+.card-detail {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Stile per i paragrafi */
+.card-detail p {
+    margin: 10px 0;
+    color: #000000;
+}
+
+/* Stile per il contenitore principale */
+.container {
+    display: flex;
+    flex-direction: row; /* Default: side-by-side layout */
+    justify-content: space-between;
+    gap: 20px; /* Add gap between containers */
+}
+
+/* Stile per i contenitori delle carte salvate e nuove */
+.saved-cards,
+.new-card {
+    min-height: 400px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Aggiungi transizione per effetto hover */
+}
+
+.saved-cards:hover,
+.new-card:hover {
+    transform: translateY(-5px); /* Alza leggermente il contenitore al passaggio del mouse */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Aggiungi ombra più grande */
+
+}
+
+/* Stile per il contenitore delle carte salvate */
+.saved-cards {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+
+}
+
+.new-card,
+.saved-cards {
+    flex: 1;
+    margin-left: 0 !important; /* Sovrascrivi qualsiasi margine-left applicato altrove */
+    margin-right: 0 !important; /* Sovrascrivi qualsiasi margine-right applicato altrove */
+}
+
+
+/* Stile per il titolo */
+h2 {
+    color: #000000;
+    margin: 10px 0;
+    text-align: center; /* Centra il testo del titolo */
+}
+
+/* Stile per i campi input */
+.card-detail input[type="text"],
+.card-detail input[type="month"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px; /* Spazio tra gli input */
+    padding: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: calc(100% - 22px); /* Adjust width to match padding */
+}
+
+/* Stile per i campi input al passaggio del mouse */
+.card-detail input[type="text"]:hover,
+.card-detail input[type="month"]:hover {
+    border-color: #aaa;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile per il messaggio di errore */
+.error {
+    color: #ff0000;
+    font-size: 14px;
+    margin: 0; /* Rimuovi margine superiore per posizionare il messaggio subito sotto l'input */
+    padding: 0; /* Assicurati che non ci siano spazi extra */
+    margin-bottom: 15px; /* Spazio inferiore per separare dal prossimo elemento */
+    display: inline-block
+}
+
+/* Stile per il pulsante di invio */
+.btn-add input[type="submit"] {
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Stile per il pulsante di invio al passaggio del mouse */
+.btn-add input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Stile per il pulsante di eliminazione */
+.btn-remove input[type="submit"] {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Stile per il pulsante di eliminazione al passaggio del mouse */
+.btn-remove input[type="submit"]:hover {
+    background-color: #cc0000;
+}
+
+/* Stile per il pulsante di eliminazione nel contenitore delle carte salvate */
+.saved-card .btn-remove {
+    margin-top: 10px; /* Spazio sopra il pulsante di eliminazione */
+}
+
+/* Stile per il contenitore della carta di credito */
 .credit-card-wrapper {
     perspective: 1000px; /* Aggiunge la prospettiva per il flip 3D */
+    margin: 20px 0;
+    display: flex;
+    justify-content: center; /* Centra la carta */
 }
 
 /* Stile per la carta di credito */
@@ -57,6 +196,7 @@ body {
 .card-logo {
     display: flex;
     justify-content: flex-end;
+    padding: 15px;
 }
 
 .card-logo-img {
@@ -124,3 +264,65 @@ body {
 .credit-card.flip-card .card-back {
     transform: rotateY(0deg);
 }
+
+/* Media queries per layout responsive */
+
+/* Tablet e dispositivi con schermo più piccolo */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Passa a layout verticale su schermi piccoli */
+    }
+
+    .saved-cards,
+    .new-card {
+        margin: 0;
+        min-height: auto; /* Rimuovi l'altezza minima su schermi piccoli */
+    }
+
+    .saved-cards {
+        margin-bottom: 20px; /* Spazio tra carte salvate e nuovo modulo */
+    }
+}
+
+/* Enhancements for tablet devices */
+@media (min-width: 768px) {
+    .card-detail {
+        max-width: 700px; /* Adjusted for tablet screens */
+    }
+}
+
+/* Enhancements for desktop devices */
+@media (min-width: 1024px) {
+    body {
+        font-size: 16px; /* Slightly larger font for readability */
+    }
+
+    h2 {
+        font-size: 35px; /* Larger heading for desktop */
+    }
+
+    .card-detail {
+        max-width: 900px; /* Larger max-width for desktop screens */
+        padding: 25px; /* More padding for a better layout */
+    }
+
+    .card-detail input[type="text"],
+    .card-detail input[type="month"] {
+        font-size: 18px; /* Larger input text for easier interaction */
+        padding: 12px; /* More padding for inputs */
+    }
+
+    .btn-add input[type="submit"],
+    .btn-remove input[type="submit"] {
+        font-size: 18px; /* Larger buttons for easier clicking */
+        padding: 15px 30px; /* More padding for a larger clickable area */
+    }
+}
+
+/* Additional media query for very large screens */
+@media (min-width: 1440px) {
+    .card-detail {
+        max-width: 1100px; /* Further increase max width for very large screens */
+    }
+}
+

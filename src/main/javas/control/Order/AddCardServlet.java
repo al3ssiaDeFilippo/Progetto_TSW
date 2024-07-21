@@ -14,8 +14,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class AddCardServlet extends HttpServlet {
     private CreditCardModel creditCardModel;
@@ -46,10 +44,7 @@ public class AddCardServlet extends HttpServlet {
         Date expiryDate;
         try {
             java.util.Date parsed = format.parse(expiryDateString);
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime(parsed);
-            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // Set to the last day of the month
-            expiryDate = new Date(calendar.getTimeInMillis());
+            expiryDate = new Date(parsed.getTime());
         } catch (ParseException e) {
             throw new ServletException("Invalid expiry date format");
         }

@@ -1,5 +1,7 @@
 package main.javas.util;
 
+import main.javas.bean.UserBean;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -37,6 +39,18 @@ public class PasswordUtils {
             hashtext.append(String.format("%02x", b));
         }
         return hashtext.toString();
+    }
+
+    public static boolean verifyPassword(UserBean user, String oldPassword) {
+        // Get the hashed password and salt from the user
+        String hashedPassword = user.getPassword();
+        String salt = user.getSalt();
+
+        // Generate a hashed version of the input password
+        String hashedInputPassword = PasswordUtils.hashPassword(oldPassword, salt);
+
+        // Compare the hashed input password with the user's hashed password
+        return hashedPassword.equals(hashedInputPassword);
     }
 
 }

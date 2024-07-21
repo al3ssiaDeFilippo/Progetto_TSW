@@ -1,17 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
+
     const form = document.getElementById('creditCardForm');
 
+    // Elementi di input
     const cardNumber = document.getElementById('cardNumber');
     const cardHolder = document.getElementById('cardHolder');
     const expiryDate = document.getElementById('expiryDate');
     const cvv = document.getElementById('cvv');
 
+    // Elementi di visualizzazione della carta
     const cardNumberDisplay = document.getElementById('cardNumberDisplay');
     const cardHolderDisplay = document.getElementById('cardHolderDisplay');
     const cardExpiryDisplay = document.getElementById('cardExpiryDisplay');
     const cardCvvDisplay = document.getElementById('cardCvvDisplay');
     const creditCard = document.getElementById('creditCard');
 
+    // Pulsante per girare la carta
+    const flipCardButton = document.querySelector('.flipCardButton');
+
+    // Campi di input e i rispettivi validatori
     const inputFields = [
         { input: cardNumber, errorField: 'cardNumberError', validator: validateCardNumber },
         { input: cardHolder, errorField: 'cardHolderError', validator: validateCardHolder },
@@ -19,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { input: cvv, errorField: 'cvvError', validator: validateCvv }
     ];
 
+    // Aggiungi eventi per la validazione dei campi
     inputFields.forEach(({ input, errorField, validator }) => {
         input.addEventListener('input', async function() {
             clearError(errorField);
@@ -30,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Evento per il submit del form
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         console.log('Submit button clicked');
@@ -38,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let valid = true;
 
+        // Validazione dei campi
         for (const { input, validator, errorField } of inputFields) {
             const value = input.value;
             const error = await validator(value);
@@ -52,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Funzioni per gestire gli errori
     function clearErrors() {
         document.querySelectorAll('.error').forEach(error => error.textContent = '');
     }
@@ -64,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById(errorField).textContent = error;
     }
 
+    // Funzioni di validazione dei campi
     async function validateCardNumber(cardNumber) {
         if (cardNumber === '') {
             return 'Campo obbligatorio';
@@ -97,12 +110,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return 'Campo obbligatorio';
         }
 
-        if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-            return 'La data di scadenza deve essere nel formato MM/YY';
+        if (!/^\d{4}-\d{2}$/.test(expiryDate)) {
+            return 'La data di scadenza deve essere nel formato YYYY-MM';
         }
 
-        const [month, year] = expiryDate.split('/');
-        const currentYear = new Date().getFullYear().toString().slice(-2);
+        const [year, month] = expiryDate.split('-').map(Number);
+        const currentYear = new Date().getFullYear();
         const currentMonth = new Date().getMonth() + 1;
 
         if (year < currentYear || (year === currentYear && month < currentMonth)) {
@@ -150,20 +163,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Aggiungi l'evento input per aggiornare i dati della carta mentre si digita
-    cardNumber.addEventListener('input', () => {
-        updateCard();
-        creditCard.classList.remove('flip-card');
-    });
-    cardHolder.addEventListener('input', () => {
-        updateCard();
-        creditCard.classList.remove('flip-card');
-    });
-    expiryDate.addEventListener('input', () => {
-        updateCard();
-        creditCard.classList.remove('flip-card');
-    });
-    cvv.addEventListener('input', () => {
-        updateCard();
-        creditCard.classList.add('flip-card');
-    });
+    cardNumber.addEventListener('input', () => updateCard());
+    cardHolder.addEventListener('input', () => updateCard());
+    expiryDate.addEventListener('input', () => updateCard());
+    cvv.addEventListener('input', () => updateCard());
+
 });

@@ -25,12 +25,12 @@ public class UpdateProfileServlet extends HttpServlet {
         }
 
         // Raccogli i nuovi dettagli del profilo dal modulo
-        String nome = request.getParameter("nome");
-        String cognome = request.getParameter("cognome");
-        String nickname = request.getParameter("nickname");
-        String dataNascita = request.getParameter("dataNascita");
+        String nome = request.getParameter("name");
+        String cognome = request.getParameter("surname");
+        String nickname = request.getParameter("username");
+        String dataNascita = request.getParameter("birthdate");
         String email = request.getParameter("email");
-        String telefono = request.getParameter("telefono");
+        String telefono = request.getParameter("telNumber");
 
         // Aggiorna l'oggetto user con i nuovi dettagli
         user.setName(nome);

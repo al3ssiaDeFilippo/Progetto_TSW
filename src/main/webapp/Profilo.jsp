@@ -61,9 +61,6 @@
             <form action="ModificaDati.jsp" method="post">
                 <button class="change-btn" type="submit">Modifica Dati</button>
             </form>
-            <form action="ModificaPassword.jsp" method="post">
-                <button class="change-btn" type="submit">Modifica password</button>
-            </form>
         </div>
     </div>
 </div>

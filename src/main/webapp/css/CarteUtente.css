@@ -7,21 +7,13 @@ body {
     color: #000000;
 }
 
-/* Stile per il titolo */
-h2 {
-    color: #000000;
-    margin: 10px 0;
-    text-align: center; /* Centra il testo del titolo */
-}
-
 /* Stile per i dettagli delle carte */
 .card-detail {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    margin: 20px auto;
-    max-width: 500px;
+    margin: 20px 0;
     padding: 20px;
     text-align: left;
 }
@@ -30,6 +22,21 @@ h2 {
 .card-detail p {
     margin: 10px 0;
     color: #000000;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.saved-cards {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.new-card {
+    flex: 1;
+    margin-left: 20px;
 }
 
 /* Stile per i campi input */
@@ -108,7 +115,7 @@ h2 {
     }
 
     h2 {
-        font-size: 24px; /* Larger heading for desktop */
+        font-size: 35px; /* Larger heading for desktop */
     }
 
     .card-detail {
