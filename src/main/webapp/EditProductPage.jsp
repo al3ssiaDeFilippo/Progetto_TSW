@@ -60,7 +60,7 @@
 
     <!-- Caricamento nuova immagine -->
     <label for="photoPath">Foto:</label><br>
-    <input type="file" id="photoPath" name="photoPath" accept=".jpg" onchange="previewImage(event)"><br>
+    <input type="file" id="photoPath" name="photoPath" accept=".jpg"   onchange="previewImage(event)"><br>
 
     <!-- Mostra l'immagine attuale del prodotto -->
     <img id="productImage" class="product-image" src="<%= request.getContextPath() %>/GetProductImageServlet?action=get&code=<%=request.getAttribute("product") != null ? ((ProductBean) request.getAttribute("product")).getCode() : "" %>" alt="Immagine attuale del prodotto"><br>
